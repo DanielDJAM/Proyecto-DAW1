@@ -1,4 +1,4 @@
-package es.iespuertolacruz.developers;
+package es.iespuertolacruz.developers.vista;
 
 /**
  * Hello world!
