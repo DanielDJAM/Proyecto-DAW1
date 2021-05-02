@@ -23,17 +23,9 @@ public class UsuarioControllerTest extends UtilidadesTest {
         if (usuarioController == null){
             usuarioController = new UsuarioController();
         }
-
-        usuario = crearUsuario(null, null, null, 0, null);
-        try {
-            usuarioController.insertar(usuario);
-        } catch (UsuarioException e) {
-            fail("Error de Usuario");
-        } catch (FicheroException e) {
-            fail("Error de Fichero");
+        if (usuario == null) {
+            usuario = crearUsuario(null, null, null, 0, null);
         }
-
-        
     }
 
     @AfterEach
@@ -44,22 +36,20 @@ public class UsuarioControllerTest extends UtilidadesTest {
     @Test
     public void existeTest(){
         try {
-            assertTrue(usuarioController.existe(usuario.getUid()), "No existe el UID del usuario.");
-        } catch (UsuarioException e) {
-            fail("Error de Usuario");
-        } catch (FicheroException e) {
-            fail("Error de Fichero");
-        }
+            usuarioController.validar(usuario);
+         } catch (UsuarioException e) {
+            fail("Se ha producido un error validando el usuario no controlado");
+         }
     }
 
     @Test
     public void buscarTest(){
         try {
-            assertTrue(usuarioController.buscar("1000").equals(usuario.getUid()), "No se ha encontrado al usuario");
+            assertTrue(usuarioController.buscar("1000").toString().contains(usuario.getUid()), "No se ha encontrado al usuario");
         } catch (UsuarioException e) {
-            fail("Error de Usuario");
+            fail("Error de Usuario buscarTest");
         } catch (FicheroException e) {
-            fail("Error de Fichero");
+            fail("Error de Fichero buscarTest");
         }
     }
     

@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: es.iespuertolacruz.developers.UsuarioControllerTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.053 s <<< FAILURE! - in es.iespuertolacruz.developers.UsuarioControllerTest
+existeTest  Time elapsed: 0.042 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Error de Fichero
+	at es.iespuertolacruz.developers.UsuarioControllerTest.setUp(UsuarioControllerTest.java:33)
+
+buscarTest  Time elapsed: 0.001 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Error de Fichero
+	at es.iespuertolacruz.developers.UsuarioControllerTest.setUp(UsuarioControllerTest.java:33)
+

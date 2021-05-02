@@ -15,7 +15,7 @@ public class UsuarioController {
         usuarioModelo = new UsuarioModelo();
     }
 
-    private void validar(Usuario usuario) throws UsuarioException{
+    public void validar(Usuario usuario) throws UsuarioException{
         String mensaje = "";
 
         if (usuario == null){

@@ -1,5 +1,6 @@
 package es.iespuertolacruz.developers.api;
 
+import java.util.Objects;
 
 public class Usuario  {
     String uid;
@@ -85,37 +86,14 @@ public class Usuario  {
 
     
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
+    public boolean equals(Object o) {
+        if (o == this)
             return true;
-        if (obj == null)
+        if (!(o instanceof Usuario)) {
             return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Usuario other = (Usuario) obj;
-        if (apellidos == null) {
-            if (other.apellidos != null)
-                return false;
-        } else if (!apellidos.equals(other.apellidos))
-            return false;
-        if (dni == null) {
-            if (other.dni != null)
-                return false;
-        } else if (!dni.equals(other.dni))
-            return false;
-        if (edad != other.edad)
-            return false;
-        if (nombre == null) {
-            if (other.nombre != null)
-                return false;
-        } else if (!nombre.equals(other.nombre))
-            return false;
-        if (uid == null) {
-            if (other.uid != null)
-                return false;
-        } else if (!uid.equals(other.uid))
-            return false;
-        return true;
+        }
+        Usuario usuario = (Usuario) o;
+        return Objects.equals(uid, usuario.uid) && Objects.equals(nombre, usuario.nombre) && Objects.equals(apellidos, usuario.apellidos) && edad == usuario.edad && Objects.equals(dni, usuario.dni);
     }
     
 }
