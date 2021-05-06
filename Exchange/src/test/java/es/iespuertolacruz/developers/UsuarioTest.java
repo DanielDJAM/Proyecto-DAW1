@@ -28,7 +28,7 @@ public class UsuarioTest extends UtilidadesTest {
 
     @Test
     public void constructor2Test(){
-        Usuario usuario = new Usuario("2000");
+        Usuario usuario = new Usuario("2000", "hola", "amigo", 112, "12345674a");
         assertEquals("2000", usuario.getUid(), "Error al obtener el UID del usuario");
     }
 

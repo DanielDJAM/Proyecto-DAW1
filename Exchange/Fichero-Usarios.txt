@@ -1,0 +1,6 @@
+bbb222,borja,rodriguez,20,22222222b
+1000,daniel,exposito,25,12345678A
+1000,daniel,exposito,25,12345678A
+1000,daniel,exposito,25,12345678A
+aaa123,dani,apellidos,50,11111111A
+

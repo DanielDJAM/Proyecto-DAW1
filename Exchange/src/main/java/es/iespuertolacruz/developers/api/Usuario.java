@@ -1,8 +1,12 @@
 package es.iespuertolacruz.developers.api;
 
+import java.util.ArrayList;
 import java.util.Objects;
+import java.util.StringTokenizer;
 
 public class Usuario  {
+
+    private static final String DELIMITADOR = ",";
     String uid;
     String nombre;
     String apellidos;
@@ -17,11 +21,20 @@ public class Usuario  {
     }
 
     /**
-     * Constructor con el parametro UID
-     * @param uid del usuario.
-     */
-    public Usuario(String uid){
-        this.uid = uid;
+    * Constructor que recibe una cadena de text
+    * @param cadena con la informacion
+    */
+    public Usuario(String cadena) {
+        ArrayList<Object> elementos = new ArrayList<>();
+        StringTokenizer tokenizer = new StringTokenizer(cadena, DELIMITADOR);
+        while (tokenizer.hasMoreElements()) {
+            elementos.add(tokenizer.nextToken());
+        }
+        this.uid = (String) elementos.get(0);
+        this.nombre = (String) elementos.get(1);
+        this.apellidos = (String) elementos.get(2);
+        this.edad = Integer.parseInt((String) elementos.get(3));
+        this.dni = (String) elementos.get(4);
     }
 
     /**
@@ -82,6 +95,11 @@ public class Usuario  {
 
     public void setDni(String dni) {
         this.dni = dni;
+    }
+
+    @Override
+    public String toString() {
+        return getUid() + DELIMITADOR + getNombre() + DELIMITADOR + getApellidos() + DELIMITADOR + getEdad() + DELIMITADOR + getDni();
     }
 
     

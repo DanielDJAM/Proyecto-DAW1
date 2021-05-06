@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Fichero.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Exchange</a> &gt; <a href="index.source.html" class="el_package">es.iespuertolacruz.developers.modelo</a> &gt; <span class="el_source">Fichero.java</span></div><h1>Fichero.java</h1><pre class="source lang-java linenums">package es.iespuertolacruz.developers.modelo;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import es.iespuertolacruz.developers.api.Usuario;
+import es.iespuertolacruz.developers.excepcion.FicheroException;
+
+<span class="fc" id="L12">public class Fichero {</span>
+
+    private static final String SE_HA_PRODUCIDO_UN_ERROR_EN_EL_VOLCADO_DEL_FICHERO = &quot;Se ha producido un error en el volcado del fichero&quot;;
+    private static final String RETORNO_CARRO = &quot;\n&quot;;
+    private static final String NOMBRE_FICHERO = &quot;Fichero-Usarios.txt&quot;;
+
+    /**
+     * Metodo encargado de almacenar una usuario en el fichero
+     * 
+     * @param usuario a insertar
+     * @throws FicheroException controlado
+     */
+    public void insertar(Usuario usuario) throws FicheroException {
+        ArrayList&lt;Usuario&gt; listado;
+<span class="fc" id="L26">        listado = obtenerListado();</span>
+<span class="fc" id="L27">        listado.add(usuario);</span>
+        try {
+<span class="fc" id="L29">            crear(NOMBRE_FICHERO, obtenerLista(listado));</span>
+<span class="nc" id="L30">        } catch (FicheroException exception) {</span>
+<span class="nc" id="L31">            throw new FicheroException(SE_HA_PRODUCIDO_UN_ERROR_EN_EL_VOLCADO_DEL_FICHERO, exception);</span>
+<span class="fc" id="L32">        }</span>
+<span class="fc" id="L33">    }</span>
+
+    /**
+     * Funcion para obtener una lista de usuarios
+     * @param listado array
+     * @return un string.
+     */
+    private String obtenerLista(ArrayList&lt;Usuario&gt; listado) {
+<span class="fc" id="L41">        String lista = &quot;&quot;;</span>
+<span class="fc" id="L42">        int i = 0;</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        while (i&lt;listado.size()) {</span>
+<span class="fc" id="L44">            lista += listado.get(i).toString() +RETORNO_CARRO;</span>
+<span class="fc" id="L45">            ++i;</span>
+        }
+<span class="fc" id="L47">        return lista;</span>
+    }
+
+    /**
+     * Metodo encargado de eliminar una Usuario del fichero
+     * 
+     * @param Usuario a eliminar
+     * @throws FicheroException error controlado
+     */
+    public void eliminar(Usuario usuario) throws FicheroException {
+        ArrayList&lt;Usuario&gt; listado;
+<span class="nc" id="L58">        listado = obtenerListado();</span>
+<span class="nc" id="L59">        listado.remove(usuario);</span>
+        try {
+<span class="nc" id="L61">            crear(NOMBRE_FICHERO, obtenerLista(listado));</span>
+<span class="nc" id="L62">        } catch (FicheroException exception) {</span>
+<span class="nc" id="L63">            throw new FicheroException(SE_HA_PRODUCIDO_UN_ERROR_EN_EL_VOLCADO_DEL_FICHERO, exception);</span>
+<span class="nc" id="L64">        }</span>
+<span class="nc" id="L65">    }</span>
+
+    /**
+     * Metodo encargado de modificar un elemento del fichero
+     * 
+     * @param UsuarioAlamcenada elemento a actualizar
+     * @param Usuario elemento con la informacion actualizada
+     * @throws FicheroException
+     */
+    public void modificar(Usuario usuarioAlmacenada, Usuario usuario) throws FicheroException {
+<span class="fc" id="L75">        ArrayList&lt;Usuario&gt; listado = obtenerListado();</span>
+<span class="fc" id="L76">        int posicion = -1;</span>
+<span class="fc" id="L77">        posicion = listado.indexOf(usuarioAlmacenada);</span>
+<span class="fc" id="L78">        listado.remove(posicion);</span>
+<span class="fc" id="L79">        listado.add(posicion, usuario);</span>
+        try {
+<span class="fc" id="L81">            crear(NOMBRE_FICHERO, obtenerLista(listado));</span>
+<span class="nc" id="L82">        } catch (FicheroException exception) {</span>
+<span class="nc" id="L83">            throw new FicheroException(SE_HA_PRODUCIDO_UN_ERROR_EN_EL_VOLCADO_DEL_FICHERO, exception);</span>
+<span class="fc" id="L84">        }</span>
+
+<span class="fc" id="L86">    }</span>
+
+    /**
+     * Funcion encargada de obtener el listado de Usuarios del fichero
+     * 
+     * @return listado de Usuarios
+     * @throws FicheroException
+     */
+    public ArrayList&lt;Usuario&gt; obtenerListado() throws FicheroException {
+<span class="fc" id="L95">        ArrayList&lt;Usuario&gt; lista = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L96">        File fichero = null;</span>
+<span class="fc" id="L97">        Scanner scanner = null;</span>
+
+        try {
+<span class="fc" id="L100">            fichero = new File(NOMBRE_FICHERO);</span>
+<span class="pc bpc" id="L101" title="1 of 2 branches missed.">            if (!validarFichero(fichero)) {</span>
+<span class="nc" id="L102">                throw new FicheroException(&quot;El fichero a leer no existe&quot;);</span>
+            }
+<span class="fc" id="L104">            scanner = new Scanner(fichero);</span>
+<span class="fc bfc" id="L105" title="All 2 branches covered.">            while (scanner.hasNextLine()) {</span>
+<span class="fc" id="L106">                String linea = scanner.nextLine(); // Guardamos la linea en un String</span>
+<span class="fc bfc" id="L107" title="All 2 branches covered.">                if (!linea.isEmpty()) {</span>
+<span class="fc" id="L108">                    Usuario usuario = new Usuario(linea);</span>
+<span class="fc" id="L109">                    lista.add(usuario);</span>
+                }
+<span class="fc" id="L111">            }</span>
+<span class="nc" id="L112">        } catch (FicheroException e) {</span>
+<span class="nc" id="L113">            throw e;</span>
+<span class="nc" id="L114">        } catch (Exception e) {</span>
+<span class="nc" id="L115">            throw new FicheroException(&quot;Se ha producido un error en la lectura del fichero&quot;, e);</span>
+        } finally {
+<span class="pc bpc" id="L117" title="1 of 2 branches missed.">            if (scanner != null) {</span>
+<span class="fc" id="L118">                scanner.close();</span>
+            }
+        }
+
+<span class="fc" id="L122">        return lista;</span>
+    }
+
+    /**
+     * Metodo encargado de crear un fichero
+     * 
+     * @param nombre del fichero a crear
+     * @throws FicheroException
+     */
+    public void crear(String nombre, String cadenaTexto) throws FicheroException {
+<span class="fc" id="L132">        FileWriter fichero = null;</span>
+        try {
+<span class="fc" id="L134">            fichero = new FileWriter(nombre);</span>
+<span class="fc" id="L135">            fichero.write(cadenaTexto + RETORNO_CARRO);</span>
+<span class="nc" id="L136">        } catch (Exception ex) {</span>
+<span class="nc" id="L137">            throw new FicheroException(&quot;Se ha producido un error en la escritura del fichero&quot;, ex);</span>
+        } finally {
+<span class="pc bpc" id="L139" title="1 of 2 branches missed.">            if (fichero != null) {</span>
+                try {
+<span class="fc" id="L141">                    fichero.close();</span>
+<span class="nc" id="L142">                } catch (IOException e) {</span>
+<span class="nc" id="L143">                    throw new FicheroException(&quot;No ha sido podible cerrar el fichero&quot;, e);</span>
+<span class="fc" id="L144">                }</span>
+            }
+        }
+
+<span class="fc" id="L148">    }</span>
+
+    /**
+     * Funcion que verifica si el fichero existo
+     * 
+     * @param fichero
+     * @return
+     */
+    public boolean validarFichero(File fichero) {
+<span class="fc" id="L157">        return fichero.exists();</span>
+    }
+
+    /**
+     * Metodo encargado de elimianr un fichero/directorio
+     * 
+     * @param nombre del fichero/directorio a elimina
+     * @throws FicheroException error controlado
+     */
+    public void eliminar(String nombre) throws FicheroException {
+<span class="fc" id="L167">        File fichero = new File(nombre);</span>
+<span class="pc bpc" id="L168" title="1 of 2 branches missed.">        if (validarFichero(fichero)) {</span>
+<span class="fc" id="L169">            fichero.delete();</span>
+        } else {
+<span class="nc" id="L171">            throw new FicheroException(&quot;No se puede eliminar un fichero que no existe&quot;);</span>
+        }
+
+<span class="fc" id="L174">    }</span>
+
+    /**
+     * Funcion que verifica si se trata de un directorio noFichero-Usarios
+     * 
+     * @param path de la ruta a validad
+     * @return boolean Si/No se trata de un directorio
+     */
+    public boolean esDirectorio(String path) {
+<span class="nc" id="L183">        File fichero = new File(path);</span>
+<span class="nc" id="L184">        return fichero.isDirectory();</span>
+    }
+
+    /**
+     * Funcion encargada de obtener un usuario
+     * 
+     * @param uid del usuario
+     * @return Objeto usuario
+     * @throws FicheroException
+     */
+    public Usuario buscar(String uid) throws FicheroException {
+<span class="fc" id="L195">        Usuario usuario = null;</span>
+<span class="fc" id="L196">        ArrayList&lt;Usuario&gt; listado = obtenerListado();</span>
+<span class="fc" id="L197">        int i = 0;</span>
+
+<span class="fc bfc" id="L199" title="All 4 branches covered.">        while (i &lt; listado.size() &amp;&amp; usuario == null) {</span>
+<span class="fc bfc" id="L200" title="All 2 branches covered.">            if (uid.equals(listado.get(i).getUid())) {</span>
+<span class="fc" id="L201">                usuario = listado.get(i);</span>
+            }
+<span class="fc" id="L203">            i++;</span>
+        }
+<span class="fc" id="L205">        return usuario;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
