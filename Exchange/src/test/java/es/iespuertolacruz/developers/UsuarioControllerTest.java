@@ -37,7 +37,7 @@ public class UsuarioControllerTest extends UtilidadesTest {
             fichero = new Fichero();
         }
         if (usuario == null) {
-            usuario = crearUsuario("aaa123", "dani", "apellidos", 50, "11111111A");
+            usuario = crearUsuario("aaa123", "dakota", "perra", 50, "11111111A");
         }
         if (usuario2 == null) {
             usuario2 = crearUsuario(null, null, null, 0, null);
