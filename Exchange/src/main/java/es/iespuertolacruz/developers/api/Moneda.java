@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Moneda {
 
-    String moneda;
+    String nombreMoneda;
     String ticket;
     double cantidad;
     double valor;
@@ -13,8 +13,8 @@ public class Moneda {
     /**
      * Constructor de la clase Moneda
      */
-    public Moneda(String moneda, String ticket, double cantidad, double valor) {
-        this.moneda = moneda;
+    public Moneda(String nombreMoneda, String ticket, double cantidad, double valor) {
+        this.nombreMoneda = nombreMoneda;
         this.ticket = ticket;
         this.cantidad = cantidad;
         this.valor = valor;
@@ -25,11 +25,11 @@ public class Moneda {
      * GETTERS y Setters de la clase Moneda
      */
     public String getMoneda() {
-        return moneda;
+        return nombreMoneda;
     }
 
-    public void setMoneda(String moneda) {
-        this.moneda = moneda;
+    public void setMoneda(String nombreMoneda) {
+        this.nombreMoneda = nombreMoneda;
     }
 
     public String getTicket() {
@@ -59,7 +59,7 @@ public class Moneda {
 
     @Override
     public String toString() {
-        return "Moneda [cantidad=" + cantidad + ", moneda=" + moneda + ", ticket=" + ticket + ", valor=" + valor + "]";
+        return "Moneda [cantidad=" + cantidad + ", moneda=" + nombreMoneda + ", ticket=" + ticket + ", valor=" + valor + "]";
     }
 
     @Override
@@ -70,7 +70,7 @@ public class Moneda {
             return false;
         }
         Moneda moneda = (Moneda) o;
-        return Objects.equals(moneda, moneda.moneda) && Objects.equals(ticket, moneda.ticket) && cantidad == moneda.cantidad && valor == moneda.valor;
+        return Objects.equals(moneda, moneda.nombreMoneda) && Objects.equals(ticket, moneda.ticket) && cantidad == moneda.cantidad && valor == moneda.valor;
     }
 
 }
