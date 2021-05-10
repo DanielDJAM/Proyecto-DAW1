@@ -5,6 +5,11 @@ public class MetodoPago {
     String titular;
     String numeroCuenta;
 
+    /**
+     * Constructor de la clase MetodoPago
+     * @param titular 
+     * @param numeroCuenta
+     */
     public MetodoPago(String titular, String numeroCuenta) {
         this.titular = titular;
         this.numeroCuenta = numeroCuenta;

@@ -4,7 +4,13 @@ public class CuentaBancaria extends MetodoPago {
 
     String iban;
     String dni;
-
+    /**
+     * Constructor con parametros
+     * @param dni del titular de la cuenta
+     * @param titular de la cuenta
+     * @param numeroCuenta de la cuenta
+     * @param iban de la cuenta
+     */
     public CuentaBancaria(String dni, String titular, String numeroCuenta, String iban) {
         super(titular, numeroCuenta);
         this.dni = dni;
