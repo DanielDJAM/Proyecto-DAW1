@@ -25,10 +25,10 @@ public class Bbdd {
 
         try {
             Class.forName(driver);
-            if (usuario == null || password == null) {
-                connection = DriverManager.getConnection(url);
+            if (usuario == null || password == null) { 
+                connection = DriverManager.getConnection(url); 
             } else {
-                DriverManager.getConnection(url, usuario, password);
+                DriverManager.getConnection(url, usuario, password); 
             }
         } catch (Exception exception) {
             throw new BbddException("No se ha podido establecer la coneccion con la BBDD", exception);
@@ -39,6 +39,8 @@ public class Bbdd {
 
     // CRUD
     public void insertar(Usuario usuario) {
+
+
 
     }
 
@@ -58,7 +60,7 @@ public class Bbdd {
      * @throws BbddException controlado
      */
     private ArrayList<Usuario> obtenerListado(String sql) throws BbddException {
-        ArrayList<Usuario> listaUsuarios = new ArrayList<>();
+        ArrayList<Usuario> listaUsuarios = new ArrayList<>(); 
 
         Usuario usuario = null;
         Statement statement = null;
