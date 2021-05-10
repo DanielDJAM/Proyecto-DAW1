@@ -7,8 +7,8 @@ public class MetodoPago {
 
     /**
      * Constructor de la clase MetodoPago
-     * @param titular 
-     * @param numeroCuenta
+     * @param titular tarjeta/cuenta bancaria
+     * @param numeroCuenta tarjeta/cuenta bancaria 
      */
     public MetodoPago(String titular, String numeroCuenta) {
         this.titular = titular;
