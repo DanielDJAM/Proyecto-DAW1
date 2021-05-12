@@ -10,6 +10,8 @@ import es.iespuertolacruz.developers.api.Usuario;
 import es.iespuertolacruz.developers.controller.UsuarioController;
 
 public class MenuLogin {
+    private static final String DEBES_INSERTAR_UN_NUMERO = "Debes insertar un numero";
+    private static final String ESCRIBE_UNA_DE_LAS_OPCIONES = "Escribe una de las opciones";
     private static final String REGRESANDO_AL_MENU_ANTERIOR = "Regresando al menu anterior.";
     Usuario usuario;
     Tarjeta tarjeta;
@@ -38,7 +40,7 @@ public class MenuLogin {
 
             try {
 
-                System.out.println("Escribe una de las opciones");
+                System.out.println(ESCRIBE_UNA_DE_LAS_OPCIONES);
                 opcion = scan.nextInt();
 
                 switch (opcion) {
@@ -61,7 +63,7 @@ public class MenuLogin {
                         break;
                     case 3:
                         System.out.println("----------[TOP 10]---------- ");
-                        //Aqui pondremos un metodo que será una consulta de la tabla monedas
+                        //Aqui pondremos un metodo que sera una consulta de la tabla monedas
                         break;
                     case 4:
                         System.out.println("Listado de las monedas:  ");
@@ -72,10 +74,10 @@ public class MenuLogin {
                         salir = true;
                         break;
                     default:
-                        System.out.println("Solo números entre 1 y 5");
+                        System.out.println("Solo numeros entre 1 y 5");
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Debes insertar un número");
+                System.out.println(DEBES_INSERTAR_UN_NUMERO);
                 scan.next();
             }
         }
@@ -98,7 +100,7 @@ public class MenuLogin {
 
             try {
 
-                System.out.println("Escribe una de las opciones");
+                System.out.println(ESCRIBE_UNA_DE_LAS_OPCIONES);
                 opcion = scan.nextInt();
 
                 switch (opcion) {
@@ -165,10 +167,10 @@ public class MenuLogin {
                         salir = true;
                         break;
                     default:
-                        System.out.println("Solo números entre 1 y 6");
+                        System.out.println("Solo numeros entre 1 y 6");
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Debes insertar un número");
+                System.out.println(DEBES_INSERTAR_UN_NUMERO);
                 scan.next();
             }
         }
@@ -189,7 +191,7 @@ public class MenuLogin {
 
             try {
 
-                System.out.println("Escribe una de las opciones");
+                System.out.println(ESCRIBE_UNA_DE_LAS_OPCIONES);
                 opcion = scan.nextInt();
 
                 switch (opcion) {
@@ -236,10 +238,10 @@ public class MenuLogin {
                         salir = true;
                         break;
                     default:
-                        System.out.println("Solo números entre 1 y 3");
+                        System.out.println("Solo numeros entre 1 y 3");
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Debes insertar un número");
+                System.out.println(DEBES_INSERTAR_UN_NUMERO);
                 scan.next();
             }
         }
