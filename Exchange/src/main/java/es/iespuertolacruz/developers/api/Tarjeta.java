@@ -17,6 +17,10 @@ public class Tarjeta extends MetodoPago {
         this.fechaCaducidad = fechaCaducidad;
         this.cvv = cvv;
     }
+
+    /**
+     * Getters y Setters de la clase Tarjeta
+     */
      
     public String getFechaCaducidad() {
         return fechaCaducidad;
@@ -32,6 +36,30 @@ public class Tarjeta extends MetodoPago {
 
     public void setCvv(int cvv) {
         this.cvv = cvv;
+    }
+
+    /**
+     * Getters y Setters extendidos de la clase MetodoPago
+     */
+
+    @Override
+    public String getTitular() {
+        return titular;
+    }
+
+    @Override
+    public void setTitular(String titular) {
+        this.titular = titular;
+    }
+
+    @Override
+    public String getNumeroCuenta() {
+        return numeroCuenta;
+    }
+
+    @Override
+    public void setNumeroCuenta(String numeroCuenta) {
+        this.numeroCuenta = numeroCuenta;
     }
 
     @Override

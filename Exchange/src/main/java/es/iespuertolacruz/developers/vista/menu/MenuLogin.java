@@ -3,12 +3,17 @@ package es.iespuertolacruz.developers.vista.menu;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import es.iespuertolacruz.developers.api.CuentaBancaria;
 import es.iespuertolacruz.developers.api.Direccion;
+import es.iespuertolacruz.developers.api.Tarjeta;
 import es.iespuertolacruz.developers.api.Usuario;
 import es.iespuertolacruz.developers.controller.UsuarioController;
 
 public class MenuLogin {
+    private static final String REGRESANDO_AL_MENU_ANTERIOR = "Regresando al menu anterior.";
     Usuario usuario;
+    Tarjeta tarjeta;
+    CuentaBancaria cuentaBancaria;
     Direccion direccion = null;
     UsuarioController usuarioController = null;
     Scanner scan = new Scanner(System.in);
@@ -18,6 +23,7 @@ public class MenuLogin {
     String entrada;
     int numero;
 
+    
     public void menuPrincipal() {
 
         while (!salir) {
@@ -138,19 +144,28 @@ public class MenuLogin {
                         System.out.println("Ha finalizado el registro de la Direccion.");
                         break;
                     case 3:
-                        System.out.println("----------[TOP 10]---------- ");
-                        //Aqui pondremos un metodo que será una consulta de la tabla monedas
+                        menuMetodoPago();
                         break;
                     case 4:
-                        System.out.println("Listado de las monedas:  ");
-                        //Aqui pondremos un metodo que realice una consulta con X monedas que introduzca el usuario
+                        System.out.println("Este es el estado actual de tu registro: ");
+                        System.out.println(usuario.toString());
+                        System.out.println(direccion.toString());
+                        System.out.println(cuentaBancaria.toString());
+                        System.out.println(tarjeta.toString());
                         break;
                     case 5:
+                        System.out.println("Guardando en nuestra base de datos . . .");
+                        usuarioController.insertar(usuario);
+                        direccionController.insertar(direccion);
+                        tarjetaController.insertar(tarjeta);
+                        cuentaBancariaController.insertar(cuentaBancaria);
+                        break;
+                    case 6:
                         System.out.println("Muchas gracias por utilizar nuestra aplicacion. Esperamos que haya sido de su agrado.");
                         salir = true;
                         break;
                     default:
-                        System.out.println("Solo números entre 1 y 5");
+                        System.out.println("Solo números entre 1 y 6");
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Debes insertar un número");
@@ -159,4 +174,75 @@ public class MenuLogin {
         }
 
     }
+
+    public Object menuMetodoPago(){
+        tarjeta = null;
+        cuentaBancaria = null;
+
+        while (!salir) {
+
+            System.out.println("Elige un metodo de pago");
+            System.out.println("¿Cual deseas?");
+            System.out.println("1. Tarjeta.");
+            System.out.println("2. Cuenta bancaria.");
+            System.out.println("3. Salir.");
+
+            try {
+
+                System.out.println("Escribe una de las opciones");
+                opcion = scan.nextInt();
+
+                switch (opcion) {
+                    case 1:
+                        System.out.println("Has elegido hacer tus transacciones por tarjeta.");
+                        System.out.println("Introduzca el titular: ");
+                        entrada = scan.nextLine();
+                        tarjeta.setTitular(entrada);
+                        System.out.println("Introduce el numero de cuenta: ");
+                        entrada = scan.nextLine();
+                        tarjeta.setNumeroCuenta(entrada);
+                        System.out.println("Introduce el CVV: ");
+                        numero = scan.nextInt();
+                        tarjeta.setCvv(numero);
+                        System.out.println("Introduce la fecha de caducidad: ");
+                        entrada = scan.nextLine();
+                        tarjeta.setFechaCaducidad(entrada);
+                        if (validar(tarjeta)){//hacer metodo validar
+                            System.out.println("Ha finalizado el registro de su metodo de pago correctamente.");
+                            System.out.println(REGRESANDO_AL_MENU_ANTERIOR);
+                            return tarjeta;
+                            }
+                        break;
+                    case 2:
+                        System.out.println("Has elegido hacer tus transacciones por Cuenta Bancaria.");
+                        System.out.println("Introduzca el titular: ");
+                        entrada = scan.nextLine();
+                        cuentaBancaria.setTitular(entrada);
+                        System.out.println("Introduce el numero de cuenta: ");
+                        entrada = scan.nextLine();
+                        cuentaBancaria.setNumeroCuenta(entrada);
+                        System.out.println("Introduce ");
+                        entrada = scan.nextLine();
+                        cuentaBancaria.setIban(entrada);
+                        if (validar(cuentaBancaria)){//hacer metodo validar
+                            System.out.println("Ha finalizado el registro de su metodo de pago correctamente.");
+                            System.out.println(REGRESANDO_AL_MENU_ANTERIOR);
+                            return cuentaBancaria;
+                            }
+                        
+                        break;
+                    case 3:
+                        System.out.println(REGRESANDO_AL_MENU_ANTERIOR);
+                        salir = true;
+                        break;
+                    default:
+                        System.out.println("Solo números entre 1 y 3");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Debes insertar un número");
+                scan.next();
+            }
+        }
+    }
+
 }

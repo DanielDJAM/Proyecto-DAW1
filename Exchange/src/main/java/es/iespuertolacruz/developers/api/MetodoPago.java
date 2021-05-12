@@ -1,6 +1,6 @@
 package es.iespuertolacruz.developers.api;
 
-public class MetodoPago {
+abstract class MetodoPago {
 
     String titular;
     String numeroCuenta;
@@ -10,25 +10,17 @@ public class MetodoPago {
      * @param titular tarjeta/cuenta bancaria
      * @param numeroCuenta tarjeta/cuenta bancaria 
      */
-    public MetodoPago(String titular, String numeroCuenta) {
+    protected MetodoPago(String titular, String numeroCuenta) {
         this.titular = titular;
         this.numeroCuenta = numeroCuenta;
     }
 
-    public String getTitular() {
-        return titular;
-    }
+    public abstract String getTitular();
 
-    public void setTitular(String titular) {
-        this.titular = titular;
-    }
+    public abstract void setTitular(String titular);
 
-    public String getNumeroCuenta() {
-        return numeroCuenta;
-    }
+    public abstract String getNumeroCuenta();
 
-    public void setNumeroCuenta(String numeroCuenta) {
-        this.numeroCuenta = numeroCuenta;
-    }
+    public abstract void setNumeroCuenta(String numeroCuenta);
 
 }
