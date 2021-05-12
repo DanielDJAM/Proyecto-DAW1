@@ -38,19 +38,43 @@ public class Bbdd {
     }
 
     // CRUD
-    public void insertar(Usuario usuario) {
+    public void insertar(Usuario usuario) throws BbddException {
+        String sql = "INSER INTO Usuario (uid, dni, nombre, apellidos, edad)" +
+        " VALUES ('"+usuario.getUid()+"', '"+usuario.getDni()+"',"
+        +"'"+usuario.getNombre()+"', '"+usuario.getApellidos()+"')";
+        actualizar(sql);
+    }
 
-
+    public void eliminar(Usuario usuario) throws BbddException {
+        String sql = "DELETE from Usuario WHERE uid ='"+usuario.getUid()+"'";
+        actualizar(sql);
 
     }
 
-    public void eliminar(Usuario usuario) {
-
+    public void modificar(Usuario usuario) throws BbddException {
+        String sql = "UPDATE Usuario SET nombre ='"+usuario.getNombre();
+        actualizar(sql);
     }
 
-    public void modificar(Usuario usuario) {
-
+    /**
+ * Metodo encargado de realizar la actualizacion de la BBDD
+ * @param sql a ejecutar
+ * @throws ExceptionException error controlado
+ */
+   private void actualizar(String sql) throws BbddException {
+    Statement statement = null;
+    Connection connection = null;
+    try {
+       connection = getConnection();
+       statement = connection.createStatement();
+       statement.executeUpdate(sql);  // actualiza la base de datos con la sentencia sql
+    } catch (Exception exception) {
+      throw new BbddException("Se ha producido un error realizando la consulta", exception);
+    } finally {
+       closeConecction(connection, statement, null);
     }
+ 
+ }
 
     /**
      * Funcion que realiza la consulta sobre la BBDD y la tabla Usuario

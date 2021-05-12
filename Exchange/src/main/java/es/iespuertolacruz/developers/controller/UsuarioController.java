@@ -1,7 +1,7 @@
 package es.iespuertolacruz.developers.controller;
 
 import es.iespuertolacruz.developers.api.Usuario;
-import es.iespuertolacruz.developers.excepcion.FicheroException;
+import es.iespuertolacruz.developers.excepcion.BbddException;
 import es.iespuertolacruz.developers.excepcion.UsuarioException;
 import es.iespuertolacruz.developers.modelo.UsuarioModelo;
 
@@ -55,12 +55,14 @@ public class UsuarioController {
      * @param usuario a insertar
      * @throws UsuarioException
      * @throws FicheroException
+     * @throws BbddException
      */
-    public void insertar(Usuario usuario) throws UsuarioException, FicheroException {
+    public void insertar(Usuario usuario) throws UsuarioException, BbddException {
         validar(usuario);
-        if(!existe(usuario.getUid())) {
-            usuarioModelo.insertar(usuario);
+        if(existe(usuario)) {
+            throw new UsuarioException("El usuario ya existe");
         }
+        usuarioModelo.insertar(usuario);
     }
 
     /**
@@ -68,12 +70,14 @@ public class UsuarioController {
      * @param usuario a eliminar
      * @throws FicheroException
      * @throws UsuarioException
+     * @throws BbddException
      */
-    public void eliminar(Usuario usuario) throws FicheroException, UsuarioException{
+    public void eliminar(Usuario usuario) throws  UsuarioException, BbddException{
         validar(usuario);
-        if (existe(usuario.getUid())) {
-            usuarioModelo.eliminar(usuario);
+        if (!existe(usuario)) {
+          throw new UsuarioException("El usuario no existe");
         }
+        usuarioModelo.eliminar(usuario);
     }
 
     /**
@@ -82,9 +86,15 @@ public class UsuarioController {
      * @param usuario  a modificar.
      * @param usuario2 usuario con modificaciones.
      * @throws FicheroException
+     * @throws BbddException
+     * @throws UsuarioException
      */
-    public void modificar(Usuario usuario, Usuario usuario2) throws FicheroException {
-        usuarioModelo.modificar(usuario, usuario2);
+    public void modificar(Usuario usuario) throws  BbddException, UsuarioException{
+        validar(usuario);
+        if(!existe(usuario)){
+            throw new UsuarioException("El usuario no existe");
+        }
+        usuarioModelo.modificar(usuario);
     }
 
     /**
@@ -93,8 +103,9 @@ public class UsuarioController {
      * @return un usuario
      * @throws UsuarioException
      * @throws FicheroException
+     * @throws BbddException
      */
-    public Usuario buscar(String uid) throws UsuarioException, FicheroException {
+    public Usuario buscar(String uid) throws UsuarioException, BbddException {
         Usuario usuario = null;
         if (uid == null || uid.isEmpty()) {
             throw new UsuarioException(EL_UID_ESTA_VACIO);
@@ -109,13 +120,13 @@ public class UsuarioController {
      * @return True/false si se ha encontrado
      * @throws UsuarioException
      * @throws FicheroException
+     * @throws BbddException
      */
-    public boolean existe(String uid) throws UsuarioException, FicheroException {
+    public boolean existe(Usuario usuario) throws UsuarioException, BbddException {
         boolean encontrado = false;
-        Usuario usuario = null;
-
-        usuario = buscar(uid);
-        if (usuario != null) {
+        Usuario usuarioEncontrado;
+        usuarioEncontrado = buscar(usuario.getUid());
+        if (usuarioEncontrado != null) {
             encontrado = true;
         }
         return encontrado;

@@ -1,37 +1,38 @@
 package es.iespuertolacruz.developers.modelo;
 
 import es.iespuertolacruz.developers.api.Usuario;
-import es.iespuertolacruz.developers.excepcion.FicheroException;
+import es.iespuertolacruz.developers.excepcion.BbddException;
 
 public class UsuarioModelo {
 
-    Fichero fichero;
+    
+    SqliteDb persistencia;
 
     /**
      * Constructor por defecto de la clase UsuarioModelo
      */
     public UsuarioModelo() {
-        fichero = new Fichero();
+        persistencia = new SqliteDb("jdbc:sqlite:", "url", null, null);
     }
 
     /**
      * Metodo encargado de realizar la insercion de un usuario
      * 
      * @param usuario a insertar
-     * @throws FicheroException controlada
+     * @throws BbddException controlada
      */
-    public void insertar(Usuario usuario) throws FicheroException {
-        fichero.insertar(usuario);
+    public void insertar(Usuario usuario) throws BbddException {
+        persistencia.insertar(usuario);
     }
 
     /**
      * Metodo encargado de realizar la eleminacion de un usuario
      * 
      * @param usuario a eliminar
-     * @throws FicheroException controlada
+     * @throws BbddException controlada
      */
-    public void eliminar(Usuario usuario) throws FicheroException {
-        fichero.eliminar(usuario);
+    public void eliminar(Usuario usuario) throws BbddException {
+        persistencia.eliminar(usuario);
     }
 
     /**
@@ -39,21 +40,20 @@ public class UsuarioModelo {
      * 
      * @param usuario a modificar
      */
-    public void modificar(Usuario usuario, Usuario userMod) throws FicheroException {
-        fichero.modificar(usuario, userMod);
+    public void modificar(Usuario usuario) throws BbddException {
+        persistencia.modificar(usuario);
     }
 
     /**
      * Funcion encargada de realizar la busqueda de un usuario
      * 
-     * @param identificador del usuario
+     * @param uid del usuario
      * @return Usuario a buscar
-     * @throws FicheroException
+     * @throws BbddException
      */
-    public Usuario buscarUsuario(String elemento) throws FicheroException {
-        Usuario usuario = null;
-        usuario = fichero.buscar(elemento);
-        return usuario;
+    public Usuario buscarUsuario(String uid) throws BbddException {
+       return persistencia.obtenerUsuario(uid);
+       
     }
 
 }
