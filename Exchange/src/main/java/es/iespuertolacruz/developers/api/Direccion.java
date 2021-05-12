@@ -12,6 +12,9 @@ public class Direccion {
     String pais;
 
     
+    public Direccion() {
+    }
+
     /**
      * Constructor de la clase Direccion
      * @param codigoPostal del usuario

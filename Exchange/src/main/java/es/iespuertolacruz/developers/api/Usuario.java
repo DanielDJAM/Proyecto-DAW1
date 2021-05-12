@@ -10,8 +10,11 @@ public class Usuario  {
     String uid;
     String nombre;
     String apellidos;
+    String contrasenia;
     int edad;
     String dni;
+    Direccion direccion;
+    String email;
 
     /**
      * Constructor por defecto de la clase Usuario.
@@ -95,6 +98,22 @@ public class Usuario  {
 
     public void setDni(String dni) {
         this.dni = dni;
+    }
+
+    public String getContrasenia() {
+        return contrasenia;
+    }
+
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override
