@@ -147,7 +147,7 @@ public class MenuLogin {
                         System.out.println("Ha finalizado el registro de la Direccion.");
                         break;
                     case 3:
-                        menuMetodoPago();
+                        //menuMetodoPago();
                         break;
                     case 4:
                         System.out.println("Este es el estado actual de tu registro: ");
@@ -158,10 +158,10 @@ public class MenuLogin {
                         break;
                     case 5:
                         System.out.println("Guardando en nuestra base de datos . . .");
-                        usuarioController.insertar(usuario);
+                       /* usuarioController.insertar(usuario);
                         direccionController.insertar(direccion);
                         tarjetaController.insertar(tarjeta);
-                        cuentaBancariaController.insertar(cuentaBancaria);
+                        cuentaBancariaController.insertar(cuentaBancaria);*/
                         break;
                     case 6:
                         System.out.println("Muchas gracias por utilizar nuestra aplicacion. Esperamos que haya sido de su agrado.");
@@ -178,8 +178,8 @@ public class MenuLogin {
 
     }
 
-    public Object menuMetodoPago(){
-        tarjeta = null;
+   // public Object menuMetodoPago(){
+      /*  tarjeta = null;
         cuentaBancaria = null;
 
         while (!salir) {
@@ -246,6 +246,8 @@ public class MenuLogin {
                 scan.next();
             }
         }
+        */
+        
     }
 
-}
+//}
