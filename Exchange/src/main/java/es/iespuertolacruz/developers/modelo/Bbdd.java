@@ -38,7 +38,7 @@ public class Bbdd {
         return connection;
     }
 
-    // CRUD
+    // CRUD Usuario
     public void insertar(Usuario usuario) throws BbddException {
         String sql = "INSER INTO Usuario (uid, dni, nombre, apellidos, edad)" + " VALUES ('" + usuario.getUid() + "', '"
                 + usuario.getDni() + "'," + "'" + usuario.getNombre() + "', '" + usuario.getApellidos() + "')";
@@ -166,7 +166,7 @@ public class Bbdd {
     /**
      * Funcion que obtiene el listado de todas las usuarios
      * 
-     * @return lisa todal
+     * @return lista total
      * @throws BbddException controlado
      */
     public ArrayList<Usuario> obtenerListado() throws BbddException {
@@ -177,7 +177,7 @@ public class Bbdd {
     /**
      * Funcion que obtiene el listado de todas las monedas
      * 
-     * @return lisa todal
+     * @return lista total
      * @throws BbddException controlado
      */
     public ArrayList<Usuario> obtenerListadoMonedas() throws BbddException {
@@ -216,7 +216,7 @@ public class Bbdd {
     public Moneda obtenerMoneda(String ticket) throws BbddException {
         Moneda moneda = null;
         ArrayList<Moneda> listaMonedas = null;
-        String sql = "SELECT * FROM Monedas where identificador = ";
+        String sql = "SELECT * FROM Moneda where identificador = ";
         sql = sql + "'" + ticket + "'";
         listaMonedas = obtenerListadoMoneda(sql);
         if (!listaMonedas.isEmpty()) {
