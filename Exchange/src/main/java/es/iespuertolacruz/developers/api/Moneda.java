@@ -24,38 +24,44 @@ public class Moneda {
     /**
      * GETTERS y Setters de la clase Moneda
      */
-    public String getMoneda() {
+    public String getNombreMoneda() {
         return nombreMoneda;
     }
 
-    public void setMoneda(String nombreMoneda) {
+
+    public void setNombreMoneda(String nombreMoneda) {
         this.nombreMoneda = nombreMoneda;
     }
+
 
     public String getTicket() {
         return ticket;
     }
 
+
     public void setTicket(String ticket) {
         this.ticket = ticket;
     }
+
 
     public double getCantidad() {
         return cantidad;
     }
 
+
     public void setCantidad(double cantidad) {
         this.cantidad = cantidad;
     }
+
 
     public double getValor() {
         return valor;
     }
 
+
     public void setValor(double valor) {
         this.valor = valor;
     }
-
 
     @Override
     public String toString() {

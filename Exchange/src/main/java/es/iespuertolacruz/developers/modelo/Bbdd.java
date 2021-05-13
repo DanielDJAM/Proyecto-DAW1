@@ -3,6 +3,7 @@ package es.iespuertolacruz.developers.modelo;
 import java.sql.*;
 import java.util.ArrayList;
 
+import es.iespuertolacruz.developers.api.Moneda;
 import es.iespuertolacruz.developers.api.Usuario;
 import es.iespuertolacruz.developers.excepcion.BbddException;
 
@@ -53,6 +54,25 @@ public class Bbdd {
 
     public void modificar(Usuario usuario) throws BbddException {
         String sql = "UPDATE Usuario SET nombre ='"+usuario.getNombre();
+        actualizar(sql);
+    }
+
+    // CRUD Moneda
+    public void insertar(Moneda moneda) throws BbddException {
+        String sql = "INSER INTO Moneda (nombreMoneda, ticket, valor)" +
+        " VALUES ('"+moneda.getNombreMoneda()+"', '"+moneda.getTicket()+"',"
+        +"'"+moneda.getValor()+"')";
+        actualizar(sql);
+    }
+
+    public void eliminar(Moneda moneda) throws BbddException {
+        String sql = "DELETE from Moneda WHERE ticket ='"+moneda.getTicket()+"'";
+        actualizar(sql);
+
+    }
+
+    public void modificar(Moneda moneda) throws BbddException {
+        String sql = "UPDATE Moneda SET valor ='"+moneda.getValor();
         actualizar(sql);
     }
 
