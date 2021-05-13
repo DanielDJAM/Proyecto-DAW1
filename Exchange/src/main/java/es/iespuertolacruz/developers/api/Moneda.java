@@ -6,17 +6,15 @@ public class Moneda {
 
     String nombreMoneda;
     String ticket;
-    double cantidad;
     double valor;
     
 
     /**
      * Constructor de la clase Moneda
      */
-    public Moneda(String nombreMoneda, String ticket, double cantidad, double valor) {
+    public Moneda(String nombreMoneda, String ticket, double valor) {
         this.nombreMoneda = nombreMoneda;
         this.ticket = ticket;
-        this.cantidad = cantidad;
         this.valor = valor;
     }
 
@@ -44,16 +42,6 @@ public class Moneda {
     }
 
 
-    public double getCantidad() {
-        return cantidad;
-    }
-
-
-    public void setCantidad(double cantidad) {
-        this.cantidad = cantidad;
-    }
-
-
     public double getValor() {
         return valor;
     }
@@ -65,7 +53,7 @@ public class Moneda {
 
     @Override
     public String toString() {
-        return "Moneda [cantidad=" + cantidad + ", moneda=" + nombreMoneda + ", ticket=" + ticket + ", valor=" + valor + "]";
+        return "Moneda"  + ", moneda=" + nombreMoneda + ", ticket=" + ticket + ", valor=" + valor + "]";
     }
 
     @Override
@@ -76,7 +64,7 @@ public class Moneda {
             return false;
         }
         Moneda moneda = (Moneda) o;
-        return Objects.equals(moneda, moneda.nombreMoneda) && Objects.equals(ticket, moneda.ticket) && cantidad == moneda.cantidad && valor == moneda.valor;
+        return Objects.equals(moneda, moneda.nombreMoneda) && Objects.equals(ticket, moneda.ticket) && valor == moneda.valor;
     }
 
 }

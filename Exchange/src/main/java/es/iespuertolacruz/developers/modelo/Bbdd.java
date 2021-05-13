@@ -26,10 +26,10 @@ public class Bbdd {
 
         try {
             Class.forName(driver);
-            if (usuario == null || password == null) { 
-                connection = DriverManager.getConnection(url); 
+            if (usuario == null || password == null) {
+                connection = DriverManager.getConnection(url);
             } else {
-                DriverManager.getConnection(url, usuario, password); 
+                DriverManager.getConnection(url, usuario, password);
             }
         } catch (Exception exception) {
             throw new BbddException("No se ha podido establecer la coneccion con la BBDD", exception);
@@ -40,61 +40,60 @@ public class Bbdd {
 
     // CRUD
     public void insertar(Usuario usuario) throws BbddException {
-        String sql = "INSER INTO Usuario (uid, dni, nombre, apellidos, edad)" +
-        " VALUES ('"+usuario.getUid()+"', '"+usuario.getDni()+"',"
-        +"'"+usuario.getNombre()+"', '"+usuario.getApellidos()+"')";
+        String sql = "INSER INTO Usuario (uid, dni, nombre, apellidos, edad)" + " VALUES ('" + usuario.getUid() + "', '"
+                + usuario.getDni() + "'," + "'" + usuario.getNombre() + "', '" + usuario.getApellidos() + "')";
         actualizar(sql);
     }
 
     public void eliminar(Usuario usuario) throws BbddException {
-        String sql = "DELETE from Usuario WHERE uid ='"+usuario.getUid()+"'";
+        String sql = "DELETE from Usuario WHERE uid ='" + usuario.getUid() + "'";
         actualizar(sql);
 
     }
 
     public void modificar(Usuario usuario) throws BbddException {
-        String sql = "UPDATE Usuario SET nombre ='"+usuario.getNombre();
+        String sql = "UPDATE Usuario SET nombre ='" + usuario.getNombre();
         actualizar(sql);
     }
 
     // CRUD Moneda
     public void insertar(Moneda moneda) throws BbddException {
-        String sql = "INSER INTO Moneda (nombreMoneda, ticket, valor)" +
-        " VALUES ('"+moneda.getNombreMoneda()+"', '"+moneda.getTicket()+"',"
-        +"'"+moneda.getValor()+"')";
+        String sql = "INSER INTO Moneda (nombreMoneda, ticket, valor)" + " VALUES ('" + moneda.getNombreMoneda()
+                + "', '" + moneda.getTicket() + "'," + "'" + moneda.getValor() + "')";
         actualizar(sql);
     }
 
     public void eliminar(Moneda moneda) throws BbddException {
-        String sql = "DELETE from Moneda WHERE ticket ='"+moneda.getTicket()+"'";
+        String sql = "DELETE from Moneda WHERE ticket ='" + moneda.getTicket() + "'";
         actualizar(sql);
 
     }
 
     public void modificar(Moneda moneda) throws BbddException {
-        String sql = "UPDATE Moneda SET valor ='"+moneda.getValor();
+        String sql = "UPDATE Moneda SET valor ='" + moneda.getValor();
         actualizar(sql);
     }
 
     /**
- * Metodo encargado de realizar la actualizacion de la BBDD
- * @param sql a ejecutar
- * @throws ExceptionException error controlado
- */
-   private void actualizar(String sql) throws BbddException {
-    Statement statement = null;
-    Connection connection = null;
-    try {
-       connection = getConnection();
-       statement = connection.createStatement();
-       statement.executeUpdate(sql);  // actualiza la base de datos con la sentencia sql
-    } catch (Exception exception) {
-      throw new BbddException("Se ha producido un error realizando la consulta", exception);
-    } finally {
-       closeConecction(connection, statement, null);
+     * Metodo encargado de realizar la actualizacion de la BBDD
+     * 
+     * @param sql a ejecutar
+     * @throws ExceptionException error controlado
+     */
+    private void actualizar(String sql) throws BbddException {
+        Statement statement = null;
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            statement = connection.createStatement();
+            statement.executeUpdate(sql); // actualiza la base de datos con la sentencia sql
+        } catch (Exception exception) {
+            throw new BbddException("Se ha producido un error realizando la consulta", exception);
+        } finally {
+            closeConecction(connection, statement, null);
+        }
+
     }
- 
- }
 
     /**
      * Funcion que realiza la consulta sobre la BBDD y la tabla Usuario
@@ -104,7 +103,7 @@ public class Bbdd {
      * @throws BbddException controlado
      */
     private ArrayList<Usuario> obtenerListado(String sql) throws BbddException {
-        ArrayList<Usuario> listaUsuarios = new ArrayList<>(); 
+        ArrayList<Usuario> listaUsuarios = new ArrayList<>();
 
         Usuario usuario = null;
         Statement statement = null;
@@ -132,6 +131,39 @@ public class Bbdd {
     }
 
     /**
+     * Funcion que realiza la consulta sobre la BBDD y la tabla Moneda
+     * 
+     * @param sql de la consulta
+     * @return lista de resultados
+     * @throws BbddException controlado
+     */
+    private ArrayList<Moneda> obtenerListadoMoneda(String sql) throws BbddException {
+        ArrayList<Moneda> listaMonedas = new ArrayList<>();
+
+        Moneda moneda = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                String nombreMoneda = resultSet.getString("nombreMoneda");
+                String ticket = resultSet.getString("ticket");
+                double valor = resultSet.getDouble("valor");
+                moneda = new Moneda(nombreMoneda, ticket, valor);
+                listaMonedas.add(moneda);
+            }
+        } catch (Exception exception) {
+            throw new BbddException("Se ha producido un error realizando la consulta", exception);
+        } finally {
+            closeConecction(connection, statement, resultSet);
+        }
+        return listaMonedas;
+    }
+
+    /**
      * Funcion que obtiene el listado de todas las usuarios
      * 
      * @return lisa todal
@@ -143,10 +175,21 @@ public class Bbdd {
     }
 
     /**
+     * Funcion que obtiene el listado de todas las monedas
+     * 
+     * @return lisa todal
+     * @throws BbddException controlado
+     */
+    public ArrayList<Usuario> obtenerListadoMonedas() throws BbddException {
+        String sql = "SELECT * FROM Moneda";
+        return obtenerListado(sql);
+    }
+
+    /**
      * Funcion que obtiene una usuario
      * 
      * @param
-     * @return lisa todal
+     * @return lista total
      * @throws BbddException controlado
      */
     public Usuario obtenerUsuario(String identificador) throws BbddException {
@@ -160,6 +203,27 @@ public class Bbdd {
         }
 
         return usuario;
+
+    }
+
+    /**
+     * Funcion que obtiene una moneda
+     * 
+     * @param
+     * @return lista total
+     * @throws BbddException controlado
+     */
+    public Moneda obtenerMoneda(String ticket) throws BbddException {
+        Moneda moneda = null;
+        ArrayList<Moneda> listaMonedas = null;
+        String sql = "SELECT * FROM Monedas where identificador = ";
+        sql = sql + "'" + ticket + "'";
+        listaMonedas = obtenerListadoMoneda(sql);
+        if (!listaMonedas.isEmpty()) {
+            moneda = listaMonedas.get(0);
+        }
+
+        return moneda;
 
     }
 
