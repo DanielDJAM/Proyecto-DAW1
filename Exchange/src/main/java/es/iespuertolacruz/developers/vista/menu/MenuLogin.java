@@ -13,15 +13,16 @@ public class MenuLogin {
     private static final String DEBES_INSERTAR_UN_NUMERO = "Debes insertar un numero";
     private static final String ESCRIBE_UNA_DE_LAS_OPCIONES = "Escribe una de las opciones";
     private static final String REGRESANDO_AL_MENU_ANTERIOR = "Regresando al menu anterior.";
+
     Usuario usuario;
     Tarjeta tarjeta;
     CuentaBancaria cuentaBancaria;
-    Direccion direccion = null;
-    UsuarioController usuarioController = null;
+    Direccion direccion;
+    UsuarioController usuarioController;
     Scanner scan = new Scanner(System.in);
     boolean salir = false;
     int opcion;
-    String mensaje;
+    String mensaje = "";
     String entrada;
     int numero;
 
@@ -45,18 +46,18 @@ public class MenuLogin {
 
                 switch (opcion) {
                     case 1:
+                        usuario = new Usuario();
+                        usuarioController = new UsuarioController();
                         System.out.println("Ingrese su ID de usuario o email: ");
-                        mensaje = "Ingresando datos . . . ";
                         entrada = scan.nextLine();
-                        if (!usuario.getUid().equalsIgnoreCase(entrada) || !usuario.getEmail().equalsIgnoreCase(entrada)){//Sustituir por un metodo que busque en la DB
-                            mensaje = "Email/ID erroneo,";
+                        if (entrada.contains("@")){
+                            usuario.setEmail(entrada);
                         }
+                        usuario.setUid(entrada);
                         System.out.println("Ingrese su contrasenia: ");
                         entrada = scan.nextLine();
-                        if(!usuario.getContrasenia().equalsIgnoreCase(entrada)){//Sustituir por un metodo que busque en la DB
-                            mensaje += " Contrasenia incorrecta.";
-                        }
-                        System.out.println(mensaje);
+                        usuario.setContrasenia(entrada);
+                        System.out.println("Comprobando datos introducidos . . . ");
                         break;
                     case 2:
                         menuRegistro();

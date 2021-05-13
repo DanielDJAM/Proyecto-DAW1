@@ -10,6 +10,15 @@ public class Wallet {
     double total;
     int uid;
 
+    /**
+     * Constructor de la clase Wallet
+     * @param ticket de la moneda
+     * @param nombreMoneda de la moneda
+     * @param cantidad a guardar en la wallet
+     * @param total precio total de todas las monedas actualizado.
+     * @param uid del propietario de la cartera.
+     */
+
     public Wallet(String ticket, String nombreMoneda, double cantidad, double total, int uid) {
         this.ticket = ticket;
         this.nombreMoneda = nombreMoneda;
@@ -17,6 +26,10 @@ public class Wallet {
         this.total = total;
         this.uid = uid;
     }
+
+    /**
+     * GETTERS y SETTERS de la clase Wallet.
+     */
 
     public String getTicket() {
         return ticket;
