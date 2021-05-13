@@ -33,32 +33,28 @@ public class CuentaBancaria extends MetodoPago {
 
     @Override
     public String getTitular() {
-        // TODO Auto-generated method stub
-        return null;
+        return titular;
     }
 
     @Override
     public void setTitular(String titular) {
-        // TODO Auto-generated method stub
-        
+        this.titular = titular;
     }
 
     @Override
     public String getNumeroCuenta() {
-        // TODO Auto-generated method stub
-        return null;
+        return numeroCuenta;
     }
 
     @Override
     public void setNumeroCuenta(String numeroCuenta) {
-        // TODO Auto-generated method stub
-        
+        this.numeroCuenta = numeroCuenta;
     }
     
 
     @Override
     public String toString() {
-        return getDni() + getTitular() + getNumeroCuenta() + getIban();
+        return getTitular() + getNumeroCuenta() + getIban();
     }
 
 }
