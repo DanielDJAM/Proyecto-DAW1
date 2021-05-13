@@ -78,7 +78,7 @@ public class Bbdd {
      * Metodo encargado de realizar la actualizacion de la BBDD
      * 
      * @param sql a ejecutar
-     * @throws ExceptionException error controlado
+     * @throws ExceptionException Error controlado
      */
     private void actualizar(String sql) throws BbddException {
         Statement statement = null;
@@ -100,7 +100,7 @@ public class Bbdd {
      * 
      * @param sql de la consulta
      * @return lista de resultados
-     * @throws BbddException controlado
+     * @throws BbddException Error controlado
      */
     private ArrayList<Usuario> obtenerListado(String sql) throws BbddException {
         ArrayList<Usuario> listaUsuarios = new ArrayList<>();
@@ -135,7 +135,7 @@ public class Bbdd {
      * 
      * @param sql de la consulta
      * @return lista de resultados
-     * @throws BbddException controlado
+     * @throws BbddException Error controlado
      */
     private ArrayList<Moneda> obtenerListadoMoneda(String sql) throws BbddException {
         ArrayList<Moneda> listaMonedas = new ArrayList<>();
@@ -167,7 +167,7 @@ public class Bbdd {
      * Funcion que obtiene el listado de todas las usuarios
      * 
      * @return lista total
-     * @throws BbddException controlado
+     * @throws BbddException Error controlado
      */
     public ArrayList<Usuario> obtenerListado() throws BbddException {
         String sql = "SELECT * FROM Usuario";
@@ -178,7 +178,7 @@ public class Bbdd {
      * Funcion que obtiene el listado de todas las monedas
      * 
      * @return lista total
-     * @throws BbddException controlado
+     * @throws BbddException Error controlado
      */
     public ArrayList<Usuario> obtenerListadoMonedas() throws BbddException {
         String sql = "SELECT * FROM Moneda";
@@ -190,7 +190,7 @@ public class Bbdd {
      * 
      * @param
      * @return lista total
-     * @throws BbddException controlado
+     * @throws BbddException Error controlado
      */
     public Usuario obtenerUsuario(String identificador) throws BbddException {
         Usuario usuario = null;
@@ -211,7 +211,7 @@ public class Bbdd {
      * 
      * @param
      * @return lista total
-     * @throws BbddException controlado
+     * @throws BbddException Error controlado
      */
     public Moneda obtenerMoneda(String ticket) throws BbddException {
         Moneda moneda = null;
