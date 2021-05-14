@@ -23,7 +23,7 @@ public class MenuLogin {
     boolean salir = false;
     int opcion;
     String mensaje = "";
-    String entrada;
+    String entrada = "";
     int numero;
 
     
@@ -42,19 +42,17 @@ public class MenuLogin {
             try {
 
                 System.out.println(ESCRIBE_UNA_DE_LAS_OPCIONES);
-                opcion = scan.nextInt();
+                opcion = Integer.parseInt(scan.nextLine());
 
                 switch (opcion) {
                     case 1:
                         usuario = new Usuario();
                         usuarioController = new UsuarioController();
-                        System.out.println("Ingrese su ID de usuario o email: ");
-                        entrada = scan.nextLine();
-                        if (entrada.contains("@")){
-                            usuario.setEmail(entrada);
-                        }
-                        usuario.setUid(entrada);
+                        System.out.println("Ingrese su email: ");
+                        entrada = scan.next();
+                        usuario.setEmail(entrada);
                         System.out.println("Ingrese su contrasenia: ");
+                        scan.nextLine();
                         entrada = scan.nextLine();
                         usuario.setContrasenia(entrada);
                         System.out.println("Comprobando datos introducidos . . . ");
@@ -106,6 +104,7 @@ public class MenuLogin {
 
                 switch (opcion) {
                     case 1:
+                        scan.nextLine();
                         System.out.println("El orden de los datos es el siguiente: nombre, apellidos, edad, dni, contrasenia.");
                         System.out.println("Ingrese su nombre: ");
                         entrada = scan.nextLine();
@@ -116,6 +115,7 @@ public class MenuLogin {
                         System.out.println("Ingrese su edad: ");
                         numero = scan.nextInt();
                         usuario.setEdad(numero);
+                        scan.nextLine();
                         System.out.println("Ingrese su DNI: ");
                         entrada = scan.nextLine();
                         usuario.setDni(entrada);
@@ -125,6 +125,7 @@ public class MenuLogin {
                         System.out.println("Ha finalizado el registro de Datos Personales.");
                         break;
                     case 2:
+                        scan.nextLine();
                         System.out.println("El orden de los datos es el siguiente: CP, calle, numero, puerta, provincia y pais.");
                         System.out.println("Introduzca el codigo postal: ");
                         entrada = scan.nextLine();
@@ -135,6 +136,7 @@ public class MenuLogin {
                         System.out.println("Introduzca el numero del edificio: ");
                         numero = scan.nextInt();
                         direccion.setNumero(numero);
+                        scan.nextLine();
                         System.out.println("Introduzca el piso y puerta: ");
                         entrada = scan.nextLine();
                         direccion.setPuerta(entrada);
@@ -178,6 +180,11 @@ public class MenuLogin {
 
     }
 
+    private String limpiar(String entrada){
+        entrada = entrada.substring(0, entrada.length()-2);
+        return entrada;
+    }
+
    // public Object menuMetodoPago(){
       /*  tarjeta = null;
         cuentaBancaria = null;
@@ -207,6 +214,7 @@ public class MenuLogin {
                         System.out.println("Introduce el CVV: ");
                         numero = scan.nextInt();
                         tarjeta.setCvv(numero);
+                        scan.nextLine();
                         System.out.println("Introduce la fecha de caducidad: ");
                         entrada = scan.nextLine();
                         tarjeta.setFechaCaducidad(entrada);
