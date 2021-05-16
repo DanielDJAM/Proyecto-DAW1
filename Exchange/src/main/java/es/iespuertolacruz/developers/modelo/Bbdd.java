@@ -39,36 +39,74 @@ public class Bbdd {
     }
 
     // CRUD Usuario
+
+    /**
+     * Metodo que permite insertar un usuario en la DB
+     * 
+     * @param usuario a insertar
+     * @throws BbddException controlada
+     */
     public void insertar(Usuario usuario) throws BbddException {
         String sql = "INSER INTO Usuario (uid, dni, nombre, apellidos, edad)" + " VALUES ('" + usuario.getUid() + "', '"
                 + usuario.getDni() + "'," + "'" + usuario.getNombre() + "', '" + usuario.getApellidos() + "')";
         actualizar(sql);
     }
 
+    /**
+     * Metodo que permite eliminar un usuario de la DB
+     * 
+     * @param usuario a eliminar
+     * @throws BbddException controlada
+     */
     public void eliminar(Usuario usuario) throws BbddException {
         String sql = "DELETE from Usuario WHERE uid ='" + usuario.getUid() + "'";
         actualizar(sql);
 
     }
 
+    /**
+     * Metodo que permite modificar un usuario de la DB
+     * 
+     * @param usuario a modificar
+     * @throws BbddException controlada
+     */
     public void modificar(Usuario usuario) throws BbddException {
         String sql = "UPDATE Usuario SET nombre ='" + usuario.getNombre();
         actualizar(sql);
     }
 
     // CRUD Moneda
+
+    /**
+     * Metodo que permiter insertar una moneda en la DB
+     * 
+     * @param moneda a insertar
+     * @throws BbddException controlada
+     */
     public void insertar(Moneda moneda) throws BbddException {
         String sql = "INSER INTO Moneda (nombreMoneda, ticket, valor)" + " VALUES ('" + moneda.getNombreMoneda()
                 + "', '" + moneda.getTicket() + "'," + "'" + moneda.getValor() + "')";
         actualizar(sql);
     }
 
+    /**
+     * Metodo que permite elimnar una moneda de la DB
+     * 
+     * @param moneda a eliminar
+     * @throws BbddException controlada
+     */
     public void eliminar(Moneda moneda) throws BbddException {
         String sql = "DELETE from Moneda WHERE ticket ='" + moneda.getTicket() + "'";
         actualizar(sql);
 
     }
 
+    /**
+     * Metodo que permite modificar una moneda e la DB
+     * 
+     * @param moneda a modificar
+     * @throws BbddException controlada
+     */
     public void modificar(Moneda moneda) throws BbddException {
         String sql = "UPDATE Moneda SET valor ='" + moneda.getValor();
         actualizar(sql);
