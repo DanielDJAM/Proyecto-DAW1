@@ -1,4 +1,4 @@
-# Bienvenidos a Exchange.
+# ¡Bienvenidos a Exchange!
 
 <p align= "center">
 <img src="https://github.com/DanielDJAM/Proyecto-DAW1/blob/main/img/img_crypto1.jpeg"></img>
