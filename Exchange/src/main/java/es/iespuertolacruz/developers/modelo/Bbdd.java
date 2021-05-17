@@ -153,10 +153,11 @@ public class Bbdd {
             resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
                 String uid = resultSet.getString("uid");
+                String dni = resultSet.getString("dni");
                 String nombre = resultSet.getString("nombre");
                 String apellidos = resultSet.getString("apellidos");
                 int edad = resultSet.getInt("edad");
-                String dni = resultSet.getString("dni");
+                
                 usuario = new Usuario(uid, nombre, apellidos, edad, dni);
                 listaUsuarios.add(usuario);
             }
@@ -233,7 +234,7 @@ public class Bbdd {
     public Usuario obtenerUsuario(String identificador) throws BbddException {
         Usuario usuario = null;
         ArrayList<Usuario> listaUsuarios = null;
-        String sql = "SELECT * FROM Usuario where identificador = ";
+        String sql = "SELECT * FROM Usuario where uid = ";
         sql = sql + "'" + identificador + "'";
         listaUsuarios = obtenerListado(sql);
         if (!listaUsuarios.isEmpty()) {
@@ -254,7 +255,7 @@ public class Bbdd {
     public Moneda obtenerMoneda(String ticket) throws BbddException {
         Moneda moneda = null;
         ArrayList<Moneda> listaMonedas = null;
-        String sql = "SELECT * FROM Moneda where identificador = ";
+        String sql = "SELECT * FROM Moneda where ticket = ";
         sql = sql + "'" + ticket + "'";
         listaMonedas = obtenerListadoMoneda(sql);
         if (!listaMonedas.isEmpty()) {

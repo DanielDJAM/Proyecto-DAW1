@@ -1,4 +1,16 @@
 -------------------------------------------------------------------------------
 Test set: es.iespuertolacruz.developers.UsuarioControllerTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.911 s - in es.iespuertolacruz.developers.UsuarioControllerTest
+Tests run: 4, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 0.25 s <<< FAILURE! - in es.iespuertolacruz.developers.UsuarioControllerTest
+buscarTest  Time elapsed: 0.016 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Error de Usuario buscarTest
+	at es.iespuertolacruz.developers.UsuarioControllerTest.buscarTest(UsuarioControllerTest.java:74)
+
+modificarUsuarioTest  Time elapsed: 0.016 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Error UsuarioException
+	at es.iespuertolacruz.developers.UsuarioControllerTest.modificarUsuarioTest(UsuarioControllerTest.java:98)
+
+eliminarTest  Time elapsed: 0 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Fallo en usuarioException
+	at es.iespuertolacruz.developers.UsuarioControllerTest.eliminarTest(UsuarioControllerTest.java:87)
+

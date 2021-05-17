@@ -12,7 +12,7 @@ public class UsuarioModelo {
      * Constructor por defecto de la clase UsuarioModelo
      */
     public UsuarioModelo() {
-        persistencia = new SqliteDb("jdbc:sqlite:", "url", null, null);
+        persistencia = new SqliteDb("org.sqlite.JDBC", "jdbc:sqlite:C:/Users/Pedro/Desktop/Proyecto-DAW1/Exchange/src/main/db/Exchange.db", null, null);
     }
 
     /**

@@ -16,7 +16,7 @@ import es.iespuertolacruz.developers.modelo.UsuarioModelo;
 
 public class UsuarioControllerTest extends UtilidadesTest {
 
-    String nombreFichero = "Fichero-Usuarios.txt";
+    
     UsuarioController usuarioController;
     UsuarioModelo usuarioModelo;
 
@@ -34,13 +34,13 @@ public class UsuarioControllerTest extends UtilidadesTest {
         }
 
         if (usuario == null) {
-            usuario = crearUsuario("aaa123", "dakota", "perra", 50, "11111111A");
+            usuario = crearUsuario("1000","12345678A","daniel","exposito",25);
         }
         if (usuario2 == null) {
-            usuario2 = crearUsuario(null, null, null, 0, null);
+            usuario2 = crearUsuario(null, null, null, null, 0);
         }
         if (usuario3 == null) {
-            usuario3 = crearUsuario("3333CCC", "jonay", "exposito", 26, "33333333c");
+            usuario3 = crearUsuario("3333CCC", "33333333c","jonay", "exposito", 26);
         }
 
         try {

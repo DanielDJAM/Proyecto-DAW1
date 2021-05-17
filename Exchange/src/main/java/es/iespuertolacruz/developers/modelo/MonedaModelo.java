@@ -10,7 +10,7 @@ public class MonedaModelo {
      * Constructor por defecto de la clase MonedaModelo
      */
     public MonedaModelo() {
-        persistencia = new SqliteDb("jdbc:sqlite:", "url", null, null);
+        persistencia = new SqliteDb("jdbc:sqlite:", "db/Exchange.db", null, null);
     }
 
     /**

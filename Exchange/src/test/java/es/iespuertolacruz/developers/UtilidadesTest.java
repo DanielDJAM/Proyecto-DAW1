@@ -11,17 +11,18 @@ public class UtilidadesTest {
     private static final String NOMBRE = "daniel";
     private static final String UID = "1000";
 
-    protected Usuario crearUsuario(String uid, String nombre, String apellidos, int edad, String dni){
+    protected Usuario crearUsuario(String uid,String dni, String nombre, String apellidos, int edad){
         Usuario usuario = null;
-        if (uid != null && nombre != null && apellidos != null && edad != 0 &&dni != null){
+        if (uid != null &&dni != null && nombre != null && apellidos != null && edad != 0 ){
             usuario = new Usuario(uid, nombre, apellidos, edad, dni);
         } else {
             usuario = new Usuario();
             usuario.setUid(UID);
+            usuario.setDni(DNI);
             usuario.setNombre(NOMBRE);
             usuario.setApellidos(APELLIDOS);
             usuario.setEdad(EDAD);
-            usuario.setDni(DNI);
+            
         }
         return usuario;
 
