@@ -57,6 +57,8 @@ public class UsuarioControllerTest extends UtilidadesTest {
 
     }
 
+
+
     @Test
     public void existeTest() {
         try {
@@ -66,6 +68,22 @@ public class UsuarioControllerTest extends UtilidadesTest {
         }
     }
 
+    /**
+     * 
+   
+    @Test
+    public void insertarFailTest() {
+        try {
+            usuarioController.insertar(usuario);
+            assertEquals(usuario, usuarioController.buscar(usuario.getUid()), "No se ha encontrado al usuario");
+        } catch (UsuarioException | BbddException e) {
+           // fail("Error de Usuario buscarTest");
+           fail(e.getMessage());
+
+        }
+    }
+      */
+      
     @Test
     public void buscarTest() {
         try {
@@ -75,12 +93,12 @@ public class UsuarioControllerTest extends UtilidadesTest {
 
         }
     }
-
+    
     @Test
     public void eliminarTest() {
         try {
-            usuarioController.eliminar(usuario3);
-            assertTrue(usuarioController.buscar(usuario3.getUid()) == null,
+            usuarioController.eliminar(usuario);
+            assertTrue(usuarioController.buscar(usuario.getUid()) == null,
                     "El usuario no se ha borrado correctamente");
 
         } catch (UsuarioException | BbddException e) {
@@ -95,7 +113,7 @@ public class UsuarioControllerTest extends UtilidadesTest {
             assertTrue(usuarioController.existe(usuario2), "Los objetos no son iguales.");
 
         } catch (UsuarioException | BbddException e) {
-            fail("Error UsuarioException");
+            fail(e.getMessage());
         }
     }
 

@@ -47,8 +47,8 @@ public class Bbdd {
      * @throws BbddException controlada
      */
     public void insertar(Usuario usuario) throws BbddException {
-        String sql = "INSER INTO Usuario (uid, dni, nombre, apellidos, edad)" + " VALUES ('" + usuario.getUid() + "', '"
-                + usuario.getDni() + "'," + "'" + usuario.getNombre() + "', '" + usuario.getApellidos() + "')";
+        String sql = "INSERT INTO Usuario (uid, dni, nombre, apellidos, edad)" + " VALUES ('" + usuario.getUid() + "', '"
+                + usuario.getDni() + "', '" + usuario.getNombre() + "', '" + usuario.getApellidos() + "', " + usuario.getEdad() + ")";
         actualizar(sql);
     }
 
@@ -71,7 +71,7 @@ public class Bbdd {
      * @throws BbddException controlada
      */
     public void modificar(Usuario usuario) throws BbddException {
-        String sql = "UPDATE Usuario SET nombre ='" + usuario.getNombre();
+        String sql = "UPDATE Usuario SET" + usuario;
         actualizar(sql);
     }
 
@@ -84,7 +84,7 @@ public class Bbdd {
      * @throws BbddException controlada
      */
     public void insertar(Moneda moneda) throws BbddException {
-        String sql = "INSER INTO Moneda (nombreMoneda, ticket, valor)" + " VALUES ('" + moneda.getNombreMoneda()
+        String sql = "INSERT INTO Moneda (nombreMoneda, ticket, valor)" + " VALUES ('" + moneda.getNombreMoneda()
                 + "', '" + moneda.getTicket() + "'," + "'" + moneda.getValor() + "')";
         actualizar(sql);
     }

@@ -1,16 +1,16 @@
 -------------------------------------------------------------------------------
 Test set: es.iespuertolacruz.developers.UsuarioControllerTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 0.25 s <<< FAILURE! - in es.iespuertolacruz.developers.UsuarioControllerTest
-buscarTest  Time elapsed: 0.016 s  <<< FAILURE!
-org.opentest4j.AssertionFailedError: Error de Usuario buscarTest
-	at es.iespuertolacruz.developers.UsuarioControllerTest.buscarTest(UsuarioControllerTest.java:74)
+Tests run: 4, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 1.22 s <<< FAILURE! - in es.iespuertolacruz.developers.UsuarioControllerTest
+buscarTest  Time elapsed: 0.073 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: No se ha encontrado al usuario ==> expected: <1000,daniel,exposito,25,12345678A> but was: <null>
+	at es.iespuertolacruz.developers.UsuarioControllerTest.buscarTest(UsuarioControllerTest.java:72)
 
-modificarUsuarioTest  Time elapsed: 0.016 s  <<< FAILURE!
+modificarUsuarioTest  Time elapsed: 0.012 s  <<< FAILURE!
 org.opentest4j.AssertionFailedError: Error UsuarioException
 	at es.iespuertolacruz.developers.UsuarioControllerTest.modificarUsuarioTest(UsuarioControllerTest.java:98)
 
-eliminarTest  Time elapsed: 0 s  <<< FAILURE!
+eliminarTest  Time elapsed: 0.009 s  <<< FAILURE!
 org.opentest4j.AssertionFailedError: Fallo en usuarioException
 	at es.iespuertolacruz.developers.UsuarioControllerTest.eliminarTest(UsuarioControllerTest.java:87)
 
