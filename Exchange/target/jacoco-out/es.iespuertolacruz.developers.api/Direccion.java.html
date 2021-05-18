@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Direccion.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Exchange</a> &gt; <a href="index.source.html" class="el_package">es.iespuertolacruz.developers.api</a> &gt; <span class="el_source">Direccion.java</span></div><h1>Direccion.java</h1><pre class="source lang-java linenums">package es.iespuertolacruz.developers.api;
+
+import java.util.Objects;
+
+public class Direccion {
+    
+    String codigoPostal;
+    String calle;
+    int numero;
+    String puerta;
+    String provincia;
+    String pais;
+
+    
+<span class="nc" id="L15">    public Direccion() {</span>
+<span class="nc" id="L16">    }</span>
+
+    /**
+     * Constructor de la clase Direccion
+     * @param codigoPostal del usuario
+     * @param calle del domicilio
+     * @param numero de la calle
+     * @param puerta del domicilio
+     * @param provincia del usuario
+     * @param pais del usuario
+     */
+<span class="nc" id="L27">    public Direccion(String codigoPostal, String calle, int numero, String puerta, String provincia, String pais) {</span>
+<span class="nc" id="L28">        this.codigoPostal = codigoPostal;</span>
+<span class="nc" id="L29">        this.calle = calle;</span>
+<span class="nc" id="L30">        this.numero = numero;</span>
+<span class="nc" id="L31">        this.puerta = puerta;</span>
+<span class="nc" id="L32">        this.provincia = provincia;</span>
+<span class="nc" id="L33">        this.pais = pais;</span>
+<span class="nc" id="L34">    }</span>
+
+    /**
+     * GETTERS y SETTERS de la clase Direccion
+     */
+    public String getCodigoPostal() {
+<span class="nc" id="L40">        return this.codigoPostal;</span>
+    }
+
+    public void setCodigoPostal(String codigoPostal) {
+<span class="nc" id="L44">        this.codigoPostal = codigoPostal;</span>
+<span class="nc" id="L45">    }</span>
+
+    public String getCalle() {
+<span class="nc" id="L48">        return this.calle;</span>
+    }
+
+    public void setCalle(String calle) {
+<span class="nc" id="L52">        this.calle = calle;</span>
+<span class="nc" id="L53">    }</span>
+
+    public int getNumero() {
+<span class="nc" id="L56">        return this.numero;</span>
+    }
+
+    public void setNumero(int numero) {
+<span class="nc" id="L60">        this.numero = numero;</span>
+<span class="nc" id="L61">    }</span>
+
+    public String getPuerta() {
+<span class="nc" id="L64">        return this.puerta;</span>
+    }
+
+    public void setPuerta(String puerta) {
+<span class="nc" id="L68">        this.puerta = puerta;</span>
+<span class="nc" id="L69">    }</span>
+
+    public String getProvincia() {
+<span class="nc" id="L72">        return this.provincia;</span>
+    }
+
+    public void setProvincia(String provincia) {
+<span class="nc" id="L76">        this.provincia = provincia;</span>
+<span class="nc" id="L77">    }</span>
+
+    public String getPais() {
+<span class="nc" id="L80">        return this.pais;</span>
+    }
+
+    public void setPais(String pais) {
+<span class="nc" id="L84">        this.pais = pais;</span>
+<span class="nc" id="L85">    }</span>
+
+    
+
+    @Override
+    public String toString() {
+<span class="nc" id="L91">        return &quot;Direccion [calle=&quot; + calle + &quot;, codigoPostal=&quot; + codigoPostal + &quot;, numero=&quot; + numero + &quot;, pais=&quot; + pais</span>
+                + &quot;, provincia=&quot; + provincia + &quot;, puerta=&quot; + puerta + &quot;]&quot;;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+<span class="nc bnc" id="L98" title="All 2 branches missed.">        if (o == this)</span>
+<span class="nc" id="L99">            return true;</span>
+<span class="nc bnc" id="L100" title="All 2 branches missed.">        if (!(o instanceof Direccion)) {</span>
+<span class="nc" id="L101">            return false;</span>
+        }
+<span class="nc" id="L103">        Direccion direccion = (Direccion) o;</span>
+<span class="nc bnc" id="L104" title="All 12 branches missed.">        return Objects.equals(codigoPostal, direccion.codigoPostal) &amp;&amp; Objects.equals(calle, direccion.calle) &amp;&amp; numero == direccion.numero &amp;&amp; Objects.equals(puerta, direccion.puerta) &amp;&amp; Objects.equals(provincia, direccion.provincia) &amp;&amp; Objects.equals(pais, direccion.pais);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

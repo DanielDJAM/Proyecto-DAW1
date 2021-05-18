@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UsuarioModelo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Exchange</a> &gt; <a href="index.source.html" class="el_package">es.iespuertolacruz.developers.modelo</a> &gt; <span class="el_source">UsuarioModelo.java</span></div><h1>UsuarioModelo.java</h1><pre class="source lang-java linenums">package es.iespuertolacruz.developers.modelo;
+
+import es.iespuertolacruz.developers.api.Usuario;
+import es.iespuertolacruz.developers.excepcion.BbddException;
+
+public class UsuarioModelo {
+
+    
+    SqliteDb persistencia;
+
+    /**
+     * Constructor por defecto de la clase UsuarioModelo
+     */
+<span class="fc" id="L14">    public UsuarioModelo() {</span>
+<span class="fc" id="L15">        persistencia = new SqliteDb(&quot;org.sqlite.JDBC&quot;, &quot;jdbc:sqlite:C:/Users/Pedro/Desktop/Proyecto-DAW1/Exchange/src/main/db/Exchange.db&quot;, null, null);</span>
+<span class="fc" id="L16">    }</span>
+
+    /**
+     * Metodo encargado de realizar la insercion de un usuario
+     * 
+     * @param usuario a insertar
+     * @throws BbddException controlada
+     */
+    public void insertar(Usuario usuario) throws BbddException {
+<span class="fc" id="L25">        persistencia.insertar(usuario);</span>
+<span class="fc" id="L26">    }</span>
+
+    /**
+     * Metodo encargado de realizar la eleminacion de un usuario
+     * 
+     * @param usuario a eliminar
+     * @throws BbddException controlada
+     */
+    public void eliminar(Usuario usuario) throws BbddException {
+<span class="fc" id="L35">        persistencia.eliminar(usuario);</span>
+<span class="fc" id="L36">    }</span>
+
+    /**
+     * Metodo encargado de realizar la modificacion de un usuario
+     * 
+     * @param usuario a modificar
+     */
+    public void modificar(Usuario usuario) throws BbddException {
+<span class="nc" id="L44">        persistencia.modificar(usuario);</span>
+<span class="nc" id="L45">    }</span>
+
+    /**
+     * Funcion encargada de realizar la busqueda de un usuario
+     * 
+     * @param uid del usuario
+     * @return Usuario a buscar
+     * @throws BbddException
+     */
+    public Usuario buscarUsuario(String uid) throws BbddException {
+<span class="fc" id="L55">       return persistencia.obtenerUsuario(uid);</span>
+       
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

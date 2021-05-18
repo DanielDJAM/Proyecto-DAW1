@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MonedaModelo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Exchange</a> &gt; <a href="index.source.html" class="el_package">es.iespuertolacruz.developers.modelo</a> &gt; <span class="el_source">MonedaModelo.java</span></div><h1>MonedaModelo.java</h1><pre class="source lang-java linenums">package es.iespuertolacruz.developers.modelo;
+
+import es.iespuertolacruz.developers.api.Moneda;
+import es.iespuertolacruz.developers.excepcion.BbddException;
+
+public class MonedaModelo {
+    SqliteDb persistencia;
+
+    /**
+     * Constructor por defecto de la clase MonedaModelo
+     */
+<span class="nc" id="L12">    public MonedaModelo() {</span>
+<span class="nc" id="L13">        persistencia = new SqliteDb(&quot;jdbc:sqlite:&quot;, &quot;db/Exchange.db&quot;, null, null);</span>
+<span class="nc" id="L14">    }</span>
+
+    /**
+     * Metodo encargado de realizar la insercion de un moneda
+     * 
+     * @param moneda a insertar
+     * @throws BbddException controlada
+     */
+    public void insertar(Moneda moneda) throws BbddException {
+<span class="nc" id="L23">        persistencia.insertar(moneda);</span>
+<span class="nc" id="L24">    }</span>
+
+    /**
+     * Metodo encargado de realizar la eleminacion de un moneda
+     * 
+     * @param moneda a eliminar
+     * @throws BbddException controlada
+     */
+    public void eliminar(Moneda moneda) throws BbddException {
+<span class="nc" id="L33">        persistencia.eliminar(moneda);</span>
+<span class="nc" id="L34">    }</span>
+
+    /**
+     * Metodo encargado de realizar la modificacion de un moneda
+     * 
+     * @param moneda a modificar
+     */
+    public void modificar(Moneda moneda) throws BbddException {
+<span class="nc" id="L42">        persistencia.modificar(moneda);</span>
+<span class="nc" id="L43">    }</span>
+
+    /**
+     * Funcion encargada de realizar la busqueda de un moneda
+     * 
+     * @param uid del moneda
+     * @return Moneda a buscar
+     * @throws BbddException
+     */
+    public Moneda buscarMoneda(String ticket) throws BbddException {
+
+<span class="nc" id="L54">     return persistencia.obtenerMoneda(ticket);</span>
+       
+   }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

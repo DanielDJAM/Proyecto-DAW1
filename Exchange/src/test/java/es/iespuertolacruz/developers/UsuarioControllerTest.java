@@ -105,7 +105,7 @@ public class UsuarioControllerTest extends UtilidadesTest {
             fail("Fallo en usuarioException");
         }
     }
-
+ /**
     @Test
     public void modificarUsuarioTest() {
         try {
@@ -116,5 +116,9 @@ public class UsuarioControllerTest extends UtilidadesTest {
             fail(e.getMessage());
         }
     }
+   
+     * 
+     */
+
 
 }

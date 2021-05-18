@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MenuLogin.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Exchange</a> &gt; <a href="index.source.html" class="el_package">es.iespuertolacruz.developers.vista.menu</a> &gt; <span class="el_source">MenuLogin.java</span></div><h1>MenuLogin.java</h1><pre class="source lang-java linenums">package es.iespuertolacruz.developers.vista.menu;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+import es.iespuertolacruz.developers.api.CuentaBancaria;
+import es.iespuertolacruz.developers.api.Direccion;
+import es.iespuertolacruz.developers.api.Tarjeta;
+import es.iespuertolacruz.developers.api.Usuario;
+import es.iespuertolacruz.developers.controller.UsuarioController;
+
+<span class="nc" id="L12">public class MenuLogin {</span>
+    private static final String DEBES_INSERTAR_UN_NUMERO = &quot;Debes insertar un numero&quot;;
+    private static final String ESCRIBE_UNA_DE_LAS_OPCIONES = &quot;Escribe una de las opciones&quot;;
+    private static final String REGRESANDO_AL_MENU_ANTERIOR = &quot;Regresando al menu anterior.&quot;;
+
+    Usuario usuario;
+    Tarjeta tarjeta;
+    CuentaBancaria cuentaBancaria;
+    Direccion direccion;
+    UsuarioController usuarioController;
+<span class="nc" id="L22">    Scanner scan = new Scanner(System.in);</span>
+<span class="nc" id="L23">    boolean salir = false;</span>
+    int opcion;
+<span class="nc" id="L25">    String mensaje = &quot;&quot;;</span>
+<span class="nc" id="L26">    String entrada = &quot;&quot;;</span>
+    int numero;
+
+    
+    public void menuPrincipal() {
+
+<span class="nc bnc" id="L32" title="All 2 branches missed.">        while (!salir) {</span>
+
+<span class="nc" id="L34">            System.out.println(&quot;Bienvenido, querido trader, a nuestro Exchange.&quot;);</span>
+<span class="nc" id="L35">            System.out.println(&quot;¿Que deseas hacer?&quot;);</span>
+<span class="nc" id="L36">            System.out.println(&quot;1. Log in.&quot;);</span>
+<span class="nc" id="L37">            System.out.println(&quot;2. Registrarse.&quot;);</span>
+<span class="nc" id="L38">            System.out.println(&quot;3. Listar Top 10 criptomonedas.&quot;);</span>
+<span class="nc" id="L39">            System.out.println(&quot;4. Listar criptomonedas.&quot;);</span>
+<span class="nc" id="L40">            System.out.println(&quot;5. Salir.&quot;);</span>
+
+            try {
+
+<span class="nc" id="L44">                System.out.println(ESCRIBE_UNA_DE_LAS_OPCIONES);</span>
+<span class="nc" id="L45">                opcion = Integer.parseInt(scan.nextLine());</span>
+
+<span class="nc bnc" id="L47" title="All 6 branches missed.">                switch (opcion) {</span>
+                    case 1:
+<span class="nc" id="L49">                        usuario = new Usuario();</span>
+<span class="nc" id="L50">                        usuarioController = new UsuarioController();</span>
+<span class="nc" id="L51">                        System.out.println(&quot;Ingrese su email: &quot;);</span>
+<span class="nc" id="L52">                        entrada = scan.next();</span>
+<span class="nc" id="L53">                        usuario.setEmail(entrada);</span>
+<span class="nc" id="L54">                        System.out.println(&quot;Ingrese su contrasenia: &quot;);</span>
+<span class="nc" id="L55">                        scan.nextLine();</span>
+<span class="nc" id="L56">                        entrada = scan.nextLine();</span>
+<span class="nc" id="L57">                        usuario.setContrasenia(entrada);</span>
+<span class="nc" id="L58">                        System.out.println(&quot;Comprobando datos introducidos . . . &quot;);</span>
+<span class="nc" id="L59">                        break;</span>
+                    case 2:
+<span class="nc" id="L61">                        menuRegistro();</span>
+<span class="nc" id="L62">                        break;</span>
+                    case 3:
+<span class="nc" id="L64">                        System.out.println(&quot;----------[TOP 10]---------- &quot;);</span>
+                        //Aqui pondremos un metodo que sera una consulta de la tabla monedas
+<span class="nc" id="L66">                        break;</span>
+                    case 4:
+<span class="nc" id="L68">                        System.out.println(&quot;Listado de las monedas:  &quot;);</span>
+                        //Aqui pondremos un metodo que realice una consulta con X monedas que introduzca el usuario
+<span class="nc" id="L70">                        break;</span>
+                    case 5:
+<span class="nc" id="L72">                        System.out.println(&quot;Muchas gracias por utilizar nuestra aplicacion. Esperamos que haya sido de su agrado.&quot;);</span>
+<span class="nc" id="L73">                        salir = true;</span>
+<span class="nc" id="L74">                        break;</span>
+                    default:
+<span class="nc" id="L76">                        System.out.println(&quot;Solo numeros entre 1 y 5&quot;);</span>
+                }
+<span class="nc" id="L78">            } catch (InputMismatchException e) {</span>
+<span class="nc" id="L79">                System.out.println(DEBES_INSERTAR_UN_NUMERO);</span>
+<span class="nc" id="L80">                scan.next();</span>
+<span class="nc" id="L81">            }</span>
+        }
+<span class="nc" id="L83">    }</span>
+
+    public void menuRegistro(){
+<span class="nc" id="L86">        usuario = new Usuario();</span>
+<span class="nc" id="L87">        direccion = new Direccion();</span>
+
+<span class="nc bnc" id="L89" title="All 2 branches missed.">        while (!salir) {</span>
+
+<span class="nc" id="L91">            System.out.println(&quot;Comencemos con el registro.&quot;);</span>
+<span class="nc" id="L92">            System.out.println(&quot;¿Por donde deseas comenzar?&quot;);</span>
+<span class="nc" id="L93">            System.out.println(&quot;1. Datos del Usuario.&quot;);</span>
+<span class="nc" id="L94">            System.out.println(&quot;2. Direccion.&quot;);</span>
+<span class="nc" id="L95">            System.out.println(&quot;3. Metodo de pago.&quot;);</span>
+<span class="nc" id="L96">            System.out.println(&quot;4. Ver el estado del registro.&quot;);</span>
+<span class="nc" id="L97">            System.out.println(&quot;5. Finalizar Registro.&quot;);</span>
+<span class="nc" id="L98">            System.out.println(&quot;6. Salir sin guardar.&quot;);</span>
+
+            try {
+
+<span class="nc" id="L102">                System.out.println(ESCRIBE_UNA_DE_LAS_OPCIONES);</span>
+<span class="nc" id="L103">                opcion = scan.nextInt();</span>
+
+<span class="nc bnc" id="L105" title="All 7 branches missed.">                switch (opcion) {</span>
+                    case 1:
+<span class="nc" id="L107">                        scan.nextLine();</span>
+<span class="nc" id="L108">                        System.out.println(&quot;El orden de los datos es el siguiente: nombre, apellidos, edad, dni, contrasenia.&quot;);</span>
+<span class="nc" id="L109">                        System.out.println(&quot;Ingrese su nombre: &quot;);</span>
+<span class="nc" id="L110">                        entrada = scan.nextLine();</span>
+<span class="nc" id="L111">                        usuario.setNombre(entrada);</span>
+<span class="nc" id="L112">                        System.out.println(&quot;Ingrese sus apellidos: &quot;);</span>
+<span class="nc" id="L113">                        entrada = scan.nextLine();</span>
+<span class="nc" id="L114">                        usuario.setApellidos(entrada);</span>
+<span class="nc" id="L115">                        System.out.println(&quot;Ingrese su edad: &quot;);</span>
+<span class="nc" id="L116">                        numero = scan.nextInt();</span>
+<span class="nc" id="L117">                        usuario.setEdad(numero);</span>
+<span class="nc" id="L118">                        scan.nextLine();</span>
+<span class="nc" id="L119">                        System.out.println(&quot;Ingrese su DNI: &quot;);</span>
+<span class="nc" id="L120">                        entrada = scan.nextLine();</span>
+<span class="nc" id="L121">                        usuario.setDni(entrada);</span>
+<span class="nc" id="L122">                        System.out.println(&quot;Ingrese una contrasenia: &quot;);</span>
+<span class="nc" id="L123">                        entrada = scan.nextLine();</span>
+<span class="nc" id="L124">                        usuario.setContrasenia(entrada);</span>
+<span class="nc" id="L125">                        System.out.println(&quot;Ha finalizado el registro de Datos Personales.&quot;);</span>
+<span class="nc" id="L126">                        break;</span>
+                    case 2:
+<span class="nc" id="L128">                        scan.nextLine();</span>
+<span class="nc" id="L129">                        System.out.println(&quot;El orden de los datos es el siguiente: CP, calle, numero, puerta, provincia y pais.&quot;);</span>
+<span class="nc" id="L130">                        System.out.println(&quot;Introduzca el codigo postal: &quot;);</span>
+<span class="nc" id="L131">                        entrada = scan.nextLine();</span>
+<span class="nc" id="L132">                        direccion.setCodigoPostal(entrada);</span>
+<span class="nc" id="L133">                        System.out.println(&quot;Introduzca su calle: &quot;);</span>
+<span class="nc" id="L134">                        entrada = scan.nextLine();</span>
+<span class="nc" id="L135">                        direccion.setCalle(entrada);</span>
+<span class="nc" id="L136">                        System.out.println(&quot;Introduzca el numero del edificio: &quot;);</span>
+<span class="nc" id="L137">                        numero = scan.nextInt();</span>
+<span class="nc" id="L138">                        direccion.setNumero(numero);</span>
+<span class="nc" id="L139">                        scan.nextLine();</span>
+<span class="nc" id="L140">                        System.out.println(&quot;Introduzca el piso y puerta: &quot;);</span>
+<span class="nc" id="L141">                        entrada = scan.nextLine();</span>
+<span class="nc" id="L142">                        direccion.setPuerta(entrada);</span>
+<span class="nc" id="L143">                        System.out.println(&quot;Introduzca su Provincia: &quot;);</span>
+<span class="nc" id="L144">                        entrada = scan.nextLine();</span>
+<span class="nc" id="L145">                        direccion.setProvincia(entrada);</span>
+<span class="nc" id="L146">                        System.out.println(&quot;Introduzca su Pais: &quot;);</span>
+<span class="nc" id="L147">                        entrada = scan.nextLine();</span>
+<span class="nc" id="L148">                        direccion.setPais(entrada);</span>
+<span class="nc" id="L149">                        System.out.println(&quot;Ha finalizado el registro de la Direccion.&quot;);</span>
+<span class="nc" id="L150">                        break;</span>
+                    case 3:
+                        //menuMetodoPago();
+<span class="nc" id="L153">                        break;</span>
+                    case 4:
+<span class="nc" id="L155">                        System.out.println(&quot;Este es el estado actual de tu registro: &quot;);</span>
+<span class="nc" id="L156">                        System.out.println(usuario.toString());</span>
+<span class="nc" id="L157">                        System.out.println(direccion.toString());</span>
+<span class="nc" id="L158">                        System.out.println(cuentaBancaria.toString());</span>
+<span class="nc" id="L159">                        System.out.println(tarjeta.toString());</span>
+<span class="nc" id="L160">                        break;</span>
+                    case 5:
+<span class="nc" id="L162">                        System.out.println(&quot;Guardando en nuestra base de datos . . .&quot;);</span>
+                       /* usuarioController.insertar(usuario);
+                        direccionController.insertar(direccion);
+                        tarjetaController.insertar(tarjeta);
+                        cuentaBancariaController.insertar(cuentaBancaria);*/
+<span class="nc" id="L167">                        break;</span>
+                    case 6:
+<span class="nc" id="L169">                        System.out.println(&quot;Muchas gracias por utilizar nuestra aplicacion. Esperamos que haya sido de su agrado.&quot;);</span>
+<span class="nc" id="L170">                        salir = true;</span>
+<span class="nc" id="L171">                        break;</span>
+                    default:
+<span class="nc" id="L173">                        System.out.println(&quot;Solo numeros entre 1 y 6&quot;);</span>
+                }
+<span class="nc" id="L175">            } catch (InputMismatchException e) {</span>
+<span class="nc" id="L176">                System.out.println(DEBES_INSERTAR_UN_NUMERO);</span>
+<span class="nc" id="L177">                scan.next();</span>
+<span class="nc" id="L178">            }</span>
+        }
+
+<span class="nc" id="L181">    }</span>
+
+    private String limpiar(String entrada){
+<span class="nc" id="L184">        entrada = entrada.substring(0, entrada.length()-2);</span>
+<span class="nc" id="L185">        return entrada;</span>
+    }
+
+   // public Object menuMetodoPago(){
+      /*  tarjeta = null;
+        cuentaBancaria = null;
+
+        while (!salir) {
+
+            System.out.println(&quot;Elige un metodo de pago&quot;);
+            System.out.println(&quot;¿Cual deseas?&quot;);
+            System.out.println(&quot;1. Tarjeta.&quot;);
+            System.out.println(&quot;2. Cuenta bancaria.&quot;);
+            System.out.println(&quot;3. Salir.&quot;);
+
+            try {
+
+                System.out.println(ESCRIBE_UNA_DE_LAS_OPCIONES);
+                opcion = scan.nextInt();
+
+                switch (opcion) {
+                    case 1:
+                        System.out.println(&quot;Has elegido hacer tus transacciones por tarjeta.&quot;);
+                        System.out.println(&quot;Introduzca el titular: &quot;);
+                        entrada = scan.nextLine();
+                        tarjeta.setTitular(entrada);
+                        System.out.println(&quot;Introduce el numero de cuenta: &quot;);
+                        entrada = scan.nextLine();
+                        tarjeta.setNumeroCuenta(entrada);
+                        System.out.println(&quot;Introduce el CVV: &quot;);
+                        numero = scan.nextInt();
+                        tarjeta.setCvv(numero);
+                        scan.nextLine();
+                        System.out.println(&quot;Introduce la fecha de caducidad: &quot;);
+                        entrada = scan.nextLine();
+                        tarjeta.setFechaCaducidad(entrada);
+                        if (validar(tarjeta)){//hacer metodo validar
+                            System.out.println(&quot;Ha finalizado el registro de su metodo de pago correctamente.&quot;);
+                            System.out.println(REGRESANDO_AL_MENU_ANTERIOR);
+                            return tarjeta;
+                            }
+                        break;
+                    case 2:
+                        System.out.println(&quot;Has elegido hacer tus transacciones por Cuenta Bancaria.&quot;);
+                        System.out.println(&quot;Introduzca el titular: &quot;);
+                        entrada = scan.nextLine();
+                        cuentaBancaria.setTitular(entrada);
+                        System.out.println(&quot;Introduce el numero de cuenta: &quot;);
+                        entrada = scan.nextLine();
+                        cuentaBancaria.setNumeroCuenta(entrada);
+                        System.out.println(&quot;Introduce &quot;);
+                        entrada = scan.nextLine();
+                        cuentaBancaria.setIban(entrada);
+                        if (validar(cuentaBancaria)){//hacer metodo validar
+                            System.out.println(&quot;Ha finalizado el registro de su metodo de pago correctamente.&quot;);
+                            System.out.println(REGRESANDO_AL_MENU_ANTERIOR);
+                            return cuentaBancaria;
+                            }
+                        
+                        break;
+                    case 3:
+                        System.out.println(REGRESANDO_AL_MENU_ANTERIOR);
+                        salir = true;
+                        break;
+                    default:
+                        System.out.println(&quot;Solo numeros entre 1 y 3&quot;);
+                }
+            } catch (InputMismatchException e) {
+                System.out.println(DEBES_INSERTAR_UN_NUMERO);
+                scan.next();
+            }
+        }
+        */
+        
+    }
+
+//}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
