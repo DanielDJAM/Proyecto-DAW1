@@ -6,10 +6,11 @@ public class UtilidadesTest {
 
 
     private static final String DNI = "12345678A";
+    private static final String UID = "1004";
     private static final int EDAD = 25;
-    private static final String APELLIDOS = "exposito";
-    private static final String NOMBRE = "daniel";
-    private static final String UID = "1000";
+    private static final String APELLIDOS = "algo";
+    private static final String NOMBRE = "algo";
+    
 
     protected Usuario crearUsuario(String uid,String dni, String nombre, String apellidos, int edad){
         Usuario usuario = null;
