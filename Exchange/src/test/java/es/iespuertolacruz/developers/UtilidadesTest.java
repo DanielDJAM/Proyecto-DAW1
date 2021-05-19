@@ -5,11 +5,11 @@ import es.iespuertolacruz.developers.api.Usuario;
 public class UtilidadesTest {
 
 
-    private static final String DNI = "12345678A";
-    private static final String UID = "1004";
-    private static final int EDAD = 25;
-    private static final String APELLIDOS = "algo";
-    private static final String NOMBRE = "algo";
+    private static final String DNI = "12345678D";
+    private static final String UID = "0001";
+    private static final int EDAD = 35;
+    private static final String APELLIDOS = "Exposito";
+    private static final String NOMBRE = "Joatham";
     
 
     protected Usuario crearUsuario(String uid,String dni, String nombre, String apellidos, int edad){

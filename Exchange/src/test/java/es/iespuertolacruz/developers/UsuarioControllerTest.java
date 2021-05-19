@@ -40,21 +40,43 @@ public class UsuarioControllerTest extends UtilidadesTest {
             usuario2 = crearUsuario(null, null, null, null, 0);
         }
         if (usuario3 == null) {
-            usuario3 = crearUsuario("3333CCC", "33333333c","jonay", "exposito", 26);
+            usuario3 = crearUsuario("0002", "12345678C","jonay", "exposito", 26);
         }
 
-        try {
-            usuarioController.insertar(usuario);
-            usuarioController.insertar(usuario2);
-        } catch (UsuarioException | BbddException e) {
-
-        }
+        
+            try {
+                usuarioController.insertar(usuario);
+                usuarioController.insertar(usuario2);
+       
+            } catch (UsuarioException e) {
+               fail("Fallo al insertar usuario");
+            } catch (BbddException e) {
+                fail("fallo al insertar en la DB");
+            }
+            
 
     }
 
     @AfterEach
     public void after() {
+        try {
+            usuarioController.eliminar(usuario);
+            usuarioController.eliminar(usuario2);
+        } catch (UsuarioException e) {
+            fail("Error al eliminar usuario");
+        } catch (BbddException e) {
+            fail("Error al elimanr usuario en la DB");
+        }
+    }
 
+    @Test
+    public void insertartest(){
+        try {
+            usuarioController.insertar(usuario3);
+            assertEquals(usuario3, usuarioController.buscar(usuario3.getUid()), "No se ha encontrado al usuario");
+        } catch (UsuarioException | BbddException e) {
+            fail("Error al insertar usuario");
+        }
     }
 
 
@@ -62,27 +84,28 @@ public class UsuarioControllerTest extends UtilidadesTest {
     @Test
     public void existeTest() {
         try {
-            usuarioController.validar(usuario);
+            usuarioController.validar(usuario3);
         } catch (UsuarioException e) {
             fail("Se ha producido un error validando el usuario no controlado");
         }
     }
 
-    /**
-     * 
+   
    
     @Test
     public void insertarFailTest() {
         try {
-            usuarioController.insertar(usuario);
-            assertEquals(usuario, usuarioController.buscar(usuario.getUid()), "No se ha encontrado al usuario");
-        } catch (UsuarioException | BbddException e) {
-           // fail("Error de Usuario buscarTest");
-           fail(e.getMessage());
+            try {
+                usuarioController.insertar(usuario);
+            } catch (BbddException e) {
+                fail("Error al insertar en la db");
+            }
+        } catch (UsuarioException e) {
+           assertTrue(e.getMessage().contains("ya existe"));
 
         }
     }
-      */
+     
       
     @Test
     public void buscarTest() {
@@ -97,12 +120,15 @@ public class UsuarioControllerTest extends UtilidadesTest {
     @Test
     public void eliminarTest() {
         try {
-            usuarioController.eliminar(usuario);
-            assertTrue(usuarioController.buscar(usuario.getUid()) == null,
+            
+            usuarioController.eliminar(usuario3);
+            assertTrue(usuarioController.buscar(usuario3.getUid()) == null,
                     "El usuario no se ha borrado correctamente");
 
-        } catch (UsuarioException | BbddException e) {
-            fail("Fallo en usuarioException");
+        } catch (UsuarioException  e) {
+            fail("Fallo al eliminar usuario");
+        } catch (BbddException e){
+            fail("Fallo al eliminar usuario de la db");
         }
     }
  /**
