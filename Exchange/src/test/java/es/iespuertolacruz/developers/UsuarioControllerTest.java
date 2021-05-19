@@ -131,20 +131,20 @@ public class UsuarioControllerTest extends UtilidadesTest {
             fail("Fallo al eliminar usuario de la db");
         }
     }
- /**
+ 
     @Test
     public void modificarUsuarioTest() {
+        usuario.setNombre("pepe");
         try {
             usuarioController.modificar(usuario);
-            assertTrue(usuarioController.existe(usuario2), "Los objetos no son iguales.");
+            
 
         } catch (UsuarioException | BbddException e) {
             fail(e.getMessage());
         }
     }
    
-     * 
-     */
+     
 
 
 }

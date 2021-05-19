@@ -1,4 +1,24 @@
 -------------------------------------------------------------------------------
 Test set: es.iespuertolacruz.developers.UsuarioControllerTest
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.096 s - in es.iespuertolacruz.developers.UsuarioControllerTest
+Tests run: 5, Failures: 5, Errors: 0, Skipped: 0, Time elapsed: 1.167 s <<< FAILURE! - in es.iespuertolacruz.developers.UsuarioControllerTest
+existeTest  Time elapsed: 0.44 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: fallo al insertar en la DB
+	at es.iespuertolacruz.developers.UsuarioControllerTest.setUp(UsuarioControllerTest.java:54)
+
+buscarTest  Time elapsed: 0.018 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: fallo al insertar en la DB
+	at es.iespuertolacruz.developers.UsuarioControllerTest.setUp(UsuarioControllerTest.java:54)
+
+eliminarTest  Time elapsed: 0.01 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: fallo al insertar en la DB
+	at es.iespuertolacruz.developers.UsuarioControllerTest.setUp(UsuarioControllerTest.java:54)
+
+insertartest  Time elapsed: 0.008 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: fallo al insertar en la DB
+	at es.iespuertolacruz.developers.UsuarioControllerTest.setUp(UsuarioControllerTest.java:54)
+
+insertarFailTest  Time elapsed: 0.011 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: fallo al insertar en la DB
+	at es.iespuertolacruz.developers.UsuarioControllerTest.setUp(UsuarioControllerTest.java:54)
+

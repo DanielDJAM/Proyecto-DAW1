@@ -71,7 +71,8 @@ public class Bbdd {
      * @throws BbddException controlada
      */
     public void modificar(Usuario usuario) throws BbddException {
-        String sql = "UPDATE Usuario SET" + usuario;
+        String sql = "UPDATE Usuario SET uid = '" + usuario.getUid() + "', dni = '" + usuario.getDni() + "', nombre = '"
+         + usuario.getNombre() + "', apellidos = '" + usuario.getApellidos() + "' , edad = '" + usuario.getEdad() + "' WHERE uid = '" + usuario.getUid()  + "'";
         actualizar(sql);
     }
 
