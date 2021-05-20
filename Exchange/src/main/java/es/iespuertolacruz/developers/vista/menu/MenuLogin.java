@@ -8,6 +8,7 @@ import es.iespuertolacruz.developers.api.Direccion;
 import es.iespuertolacruz.developers.api.Tarjeta;
 import es.iespuertolacruz.developers.api.Usuario;
 import es.iespuertolacruz.developers.controller.UsuarioController;
+import es.iespuertolacruz.developers.excepcion.BbddException;
 
 public class MenuLogin {
     private static final String DEBES_INSERTAR_UN_NUMERO = "Debes insertar un numero";
@@ -27,7 +28,7 @@ public class MenuLogin {
     int numero;
 
     
-    public void menuPrincipal() {
+    public void menuPrincipal() throws BbddException {
 
         while (!salir) {
 

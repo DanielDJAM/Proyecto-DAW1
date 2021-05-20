@@ -11,8 +11,8 @@ public class UsuarioModelo {
     /**
      * Constructor por defecto de la clase UsuarioModelo
      */
-    public UsuarioModelo() {
-        persistencia = new SqliteDb("org.sqlite.JDBC", "jdbc:sqlite:src/main/db/Exchange.db", null, null);
+    public UsuarioModelo() throws BbddException{
+        persistencia = new SqliteDb(null, null);
     }
 
     /**

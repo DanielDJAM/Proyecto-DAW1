@@ -13,8 +13,9 @@ public class UsuarioController {
 
     /**
      * Constructor por defecto de la clase UsuarioController
+     * @throws BbddException
      */
-    public UsuarioController(){
+    public UsuarioController() throws BbddException{
         usuarioModelo = new UsuarioModelo();
     }
 

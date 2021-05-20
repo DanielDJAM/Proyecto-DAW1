@@ -8,9 +8,10 @@ public class MonedaModelo {
 
     /**
      * Constructor por defecto de la clase MonedaModelo
+     * @throws BbddException
      */
-    public MonedaModelo() {
-        persistencia = new SqliteDb("jdbc:sqlite:", "db/Exchange.db", null, null);
+    public MonedaModelo() throws BbddException {
+        persistencia = new SqliteDb(null, null);
     }
 
     /**

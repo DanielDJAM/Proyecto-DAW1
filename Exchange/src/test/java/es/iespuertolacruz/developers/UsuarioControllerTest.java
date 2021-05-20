@@ -25,7 +25,7 @@ public class UsuarioControllerTest extends UtilidadesTest {
     Usuario usuario3;
 
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws BbddException {
         if (usuarioController == null) {
             usuarioController = new UsuarioController();
         }
