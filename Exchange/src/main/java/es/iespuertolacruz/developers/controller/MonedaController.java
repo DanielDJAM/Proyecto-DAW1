@@ -7,7 +7,7 @@ import es.iespuertolacruz.developers.modelo.MonedaModelo;
 public class MonedaController {
     MonedaModelo monedaModelo;
 
-    public MonedaController() {
+    public MonedaController() throws BbddException {
         monedaModelo = new MonedaModelo();
     }
 

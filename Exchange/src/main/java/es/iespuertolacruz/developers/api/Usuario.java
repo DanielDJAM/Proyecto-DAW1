@@ -48,12 +48,15 @@ public class Usuario  {
      * @param edad del usuario
      * @param dni del usuario
      */
-    public Usuario(String uid, String nombre, String apellidos, int edad, String dni) {
+    protected Usuario(String uid, String nombre, String apellidos, int edad, String dni, Direccion direccion, String email, String contrasenia) {
         this.uid = uid;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.edad = edad;
         this.dni = dni;
+        this.direccion = direccion;
+        this.email = email;
+        this.contrasenia = contrasenia;
     }
 
     /**
