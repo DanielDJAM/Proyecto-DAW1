@@ -2,14 +2,17 @@ package es.iespuertolacruz.developers.modelo;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import es.iespuertolacruz.developers.api.Direccion;
 import es.iespuertolacruz.developers.api.Moneda;
 import es.iespuertolacruz.developers.api.Usuario;
 import es.iespuertolacruz.developers.excepcion.BbddException;
 import es.iespuertolacruz.developers.excepcion.FicheroException;
 
 public class Bbdd {
+    Direccion direccion;
     Fichero fichero;
     private static final String NOMBRE_TABLAS = "persona,cliente,empleado,direccion,vehiculo,venta";
     private String driver;
@@ -59,16 +62,16 @@ public class Bbdd {
             }
             for (String tabla : nombreTablas) {
                 if (!listaTablas.contains(tabla)) {
-                    String sqlCrearTabla = fichero.leer(tabla + "_crear.sql");
+                    String sqlCrearTabla = fichero.leer(tabla + "Crear.sql");
                     actualizar(sqlCrearTabla);
-                    String sqlInsertarDatos = fichero.leer(tabla + "_insertar.sql");
+                    String sqlInsertarDatos = fichero.leer(tabla + "Insertar.sql");
                     actualizar(sqlInsertarDatos);
                 }
             }
         } catch (Exception e) {
             throw new FicheroException("Se ha producido un error en la inicializacion de la BBDD", e);
         } finally {
-            closeConnection(connection, null, resultSet);
+            closeConecction(connection, null, resultSet);
         }
 
 
@@ -197,7 +200,7 @@ public class Bbdd {
                 String apellidos = resultSet.getString("apellidos");
                 int edad = resultSet.getInt("edad");
 
-                usuario = new Usuario(uid, nombre, apellidos, edad, dni);
+               // usuario = new Usuario(uid, nombre, apellidos, edad, dni, direccion );  MODIFICAR!!!!!!
                 listaUsuarios.add(usuario);
             }
         } catch (Exception exception) {
