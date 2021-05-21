@@ -1,7 +1,10 @@
 package es.iespuertolacruz.developers.controller;
 
+import java.sql.SQLException;
+
 import es.iespuertolacruz.developers.api.Usuario;
 import es.iespuertolacruz.developers.excepcion.BbddException;
+import es.iespuertolacruz.developers.excepcion.FicheroException;
 import es.iespuertolacruz.developers.excepcion.UsuarioException;
 import es.iespuertolacruz.developers.modelo.UsuarioModelo;
 
@@ -14,8 +17,10 @@ public class UsuarioController {
     /**
      * Constructor por defecto de la clase UsuarioController
      * @throws BbddException
+     * @throws FicheroException
+     * @throws SQLException
      */
-    public UsuarioController() throws BbddException{
+    public UsuarioController() throws BbddException, FicheroException, SQLException{
         usuarioModelo = new UsuarioModelo();
     }
 

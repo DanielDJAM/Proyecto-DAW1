@@ -1,7 +1,10 @@
 package es.iespuertolacruz.developers.modelo;
 
+import java.sql.SQLException;
+
 import es.iespuertolacruz.developers.api.Usuario;
 import es.iespuertolacruz.developers.excepcion.BbddException;
+import es.iespuertolacruz.developers.excepcion.FicheroException;
 
 public class UsuarioModelo {
 
@@ -10,8 +13,10 @@ public class UsuarioModelo {
 
     /**
      * Constructor por defecto de la clase UsuarioModelo
+     * @throws FicheroException
+     * @throws SQLException
      */
-    public UsuarioModelo() throws BbddException{
+    public UsuarioModelo() throws BbddException, FicheroException, SQLException{
         persistencia = new SqliteDb(null, null);
     }
 

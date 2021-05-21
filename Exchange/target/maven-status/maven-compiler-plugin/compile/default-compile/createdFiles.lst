@@ -12,7 +12,9 @@ es\iespuertolacruz\developers\vista\Main.class
 es\iespuertolacruz\developers\excepcion\MonedaException.class
 es\iespuertolacruz\developers\api\CuentaBancaria.class
 es\iespuertolacruz\developers\api\Usuario.class
+es\iespuertolacruz\developers\excepcion\FicheroException.class
 es\iespuertolacruz\developers\api\Wallet.class
+es\iespuertolacruz\developers\modelo\Fichero.class
 es\iespuertolacruz\developers\modelo\MonedaModelo.class
 es\iespuertolacruz\developers\modelo\Bbdd.class
 es\iespuertolacruz\developers\controller\MonedaController.class

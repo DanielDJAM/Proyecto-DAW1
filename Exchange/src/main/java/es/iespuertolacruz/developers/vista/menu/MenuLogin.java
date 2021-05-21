@@ -1,5 +1,6 @@
 package es.iespuertolacruz.developers.vista.menu;
 
+import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -9,6 +10,7 @@ import es.iespuertolacruz.developers.api.Tarjeta;
 import es.iespuertolacruz.developers.api.Usuario;
 import es.iespuertolacruz.developers.controller.UsuarioController;
 import es.iespuertolacruz.developers.excepcion.BbddException;
+import es.iespuertolacruz.developers.excepcion.FicheroException;
 
 public class MenuLogin {
     private static final String DEBES_INSERTAR_UN_NUMERO = "Debes insertar un numero";
@@ -28,7 +30,7 @@ public class MenuLogin {
     int numero;
 
     
-    public void menuPrincipal() throws BbddException {
+    public void menuPrincipal() throws BbddException, FicheroException, SQLException {
 
         while (!salir) {
 

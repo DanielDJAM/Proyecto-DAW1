@@ -1,13 +1,16 @@
 package es.iespuertolacruz.developers.controller;
+import java.sql.SQLException;
+
 import es.iespuertolacruz.developers.api.Moneda;
 import es.iespuertolacruz.developers.excepcion.BbddException;
+import es.iespuertolacruz.developers.excepcion.FicheroException;
 import es.iespuertolacruz.developers.excepcion.MonedaException;
 import es.iespuertolacruz.developers.modelo.MonedaModelo;
 
 public class MonedaController {
     MonedaModelo monedaModelo;
 
-    public MonedaController() throws BbddException {
+    public MonedaController() throws BbddException, FicheroException, SQLException {
         monedaModelo = new MonedaModelo();
     }
 

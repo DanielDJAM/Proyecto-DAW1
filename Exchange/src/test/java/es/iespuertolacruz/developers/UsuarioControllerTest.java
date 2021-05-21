@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.sql.Driver;
+import java.sql.SQLException;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,7 +14,9 @@ import org.junit.jupiter.api.Test;
 import es.iespuertolacruz.developers.api.Usuario;
 import es.iespuertolacruz.developers.controller.UsuarioController;
 import es.iespuertolacruz.developers.excepcion.BbddException;
+import es.iespuertolacruz.developers.excepcion.FicheroException;
 import es.iespuertolacruz.developers.excepcion.UsuarioException;
+import es.iespuertolacruz.developers.modelo.Fichero;
 import es.iespuertolacruz.developers.modelo.UsuarioModelo;
 
 public class UsuarioControllerTest extends UtilidadesTest {
@@ -23,14 +28,19 @@ public class UsuarioControllerTest extends UtilidadesTest {
     Usuario usuario;
     Usuario usuario2;
     Usuario usuario3;
+    Fichero fichero;
 
     @BeforeEach
-    public void setUp() throws BbddException {
+    public void setUp() throws BbddException, FicheroException, SQLException {
         if (usuarioController == null) {
             usuarioController = new UsuarioController();
         }
         if (usuarioModelo == null) {
             usuarioModelo = new UsuarioModelo();
+        }
+
+        if (fichero == null) {
+            fichero = new Fichero();
         }
 
         if (usuario == null) {
@@ -54,7 +64,7 @@ public class UsuarioControllerTest extends UtilidadesTest {
                 fail("fallo al insertar en la DB");
             }
             
-
+           
     }
 
     @AfterEach

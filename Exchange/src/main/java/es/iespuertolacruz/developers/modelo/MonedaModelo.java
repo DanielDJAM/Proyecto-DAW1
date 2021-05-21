@@ -1,7 +1,10 @@
 package es.iespuertolacruz.developers.modelo;
 
+import java.sql.SQLException;
+
 import es.iespuertolacruz.developers.api.Moneda;
 import es.iespuertolacruz.developers.excepcion.BbddException;
+import es.iespuertolacruz.developers.excepcion.FicheroException;
 
 public class MonedaModelo {
     SqliteDb persistencia;
@@ -9,8 +12,10 @@ public class MonedaModelo {
     /**
      * Constructor por defecto de la clase MonedaModelo
      * @throws BbddException
+     * @throws FicheroException
+     * @throws SQLException
      */
-    public MonedaModelo() throws BbddException {
+    public MonedaModelo() throws BbddException, FicheroException, SQLException {
         persistencia = new SqliteDb(null, null);
     }
 

@@ -1,24 +1,40 @@
 -------------------------------------------------------------------------------
 Test set: es.iespuertolacruz.developers.UsuarioControllerTest
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 5, Errors: 0, Skipped: 0, Time elapsed: 1.167 s <<< FAILURE! - in es.iespuertolacruz.developers.UsuarioControllerTest
-existeTest  Time elapsed: 0.44 s  <<< FAILURE!
-org.opentest4j.AssertionFailedError: fallo al insertar en la DB
-	at es.iespuertolacruz.developers.UsuarioControllerTest.setUp(UsuarioControllerTest.java:54)
+Tests run: 6, Failures: 0, Errors: 6, Skipped: 0, Time elapsed: 0.372 s <<< FAILURE! - in es.iespuertolacruz.developers.UsuarioControllerTest
+existeTest  Time elapsed: 0.335 s  <<< ERROR!
+es.iespuertolacruz.developers.excepcion.FicheroException: Se ha producido un error en la inicializacion de la BBDD
+	at es.iespuertolacruz.developers.UsuarioControllerTest.setUp(UsuarioControllerTest.java:36)
+Caused by: java.lang.NullPointerException: Cannot invoke "es.iespuertolacruz.developers.modelo.Fichero.leer(String)" because "this.fichero" is null
+	at es.iespuertolacruz.developers.UsuarioControllerTest.setUp(UsuarioControllerTest.java:36)
 
-buscarTest  Time elapsed: 0.018 s  <<< FAILURE!
-org.opentest4j.AssertionFailedError: fallo al insertar en la DB
-	at es.iespuertolacruz.developers.UsuarioControllerTest.setUp(UsuarioControllerTest.java:54)
+buscarTest  Time elapsed: 0.003 s  <<< ERROR!
+es.iespuertolacruz.developers.excepcion.FicheroException: Se ha producido un error en la inicializacion de la BBDD
+	at es.iespuertolacruz.developers.UsuarioControllerTest.setUp(UsuarioControllerTest.java:36)
+Caused by: java.lang.NullPointerException: Cannot invoke "es.iespuertolacruz.developers.modelo.Fichero.leer(String)" because "this.fichero" is null
+	at es.iespuertolacruz.developers.UsuarioControllerTest.setUp(UsuarioControllerTest.java:36)
 
-eliminarTest  Time elapsed: 0.01 s  <<< FAILURE!
-org.opentest4j.AssertionFailedError: fallo al insertar en la DB
-	at es.iespuertolacruz.developers.UsuarioControllerTest.setUp(UsuarioControllerTest.java:54)
+modificarUsuarioTest  Time elapsed: 0.004 s  <<< ERROR!
+es.iespuertolacruz.developers.excepcion.FicheroException: Se ha producido un error en la inicializacion de la BBDD
+	at es.iespuertolacruz.developers.UsuarioControllerTest.setUp(UsuarioControllerTest.java:36)
+Caused by: java.lang.NullPointerException: Cannot invoke "es.iespuertolacruz.developers.modelo.Fichero.leer(String)" because "this.fichero" is null
+	at es.iespuertolacruz.developers.UsuarioControllerTest.setUp(UsuarioControllerTest.java:36)
 
-insertartest  Time elapsed: 0.008 s  <<< FAILURE!
-org.opentest4j.AssertionFailedError: fallo al insertar en la DB
-	at es.iespuertolacruz.developers.UsuarioControllerTest.setUp(UsuarioControllerTest.java:54)
+eliminarTest  Time elapsed: 0.004 s  <<< ERROR!
+es.iespuertolacruz.developers.excepcion.FicheroException: Se ha producido un error en la inicializacion de la BBDD
+	at es.iespuertolacruz.developers.UsuarioControllerTest.setUp(UsuarioControllerTest.java:36)
+Caused by: java.lang.NullPointerException: Cannot invoke "es.iespuertolacruz.developers.modelo.Fichero.leer(String)" because "this.fichero" is null
+	at es.iespuertolacruz.developers.UsuarioControllerTest.setUp(UsuarioControllerTest.java:36)
 
-insertarFailTest  Time elapsed: 0.011 s  <<< FAILURE!
-org.opentest4j.AssertionFailedError: fallo al insertar en la DB
-	at es.iespuertolacruz.developers.UsuarioControllerTest.setUp(UsuarioControllerTest.java:54)
+insertartest  Time elapsed: 0.005 s  <<< ERROR!
+es.iespuertolacruz.developers.excepcion.FicheroException: Se ha producido un error en la inicializacion de la BBDD
+	at es.iespuertolacruz.developers.UsuarioControllerTest.setUp(UsuarioControllerTest.java:36)
+Caused by: java.lang.NullPointerException: Cannot invoke "es.iespuertolacruz.developers.modelo.Fichero.leer(String)" because "this.fichero" is null
+	at es.iespuertolacruz.developers.UsuarioControllerTest.setUp(UsuarioControllerTest.java:36)
+
+insertarFailTest  Time elapsed: 0.003 s  <<< ERROR!
+es.iespuertolacruz.developers.excepcion.FicheroException: Se ha producido un error en la inicializacion de la BBDD
+	at es.iespuertolacruz.developers.UsuarioControllerTest.setUp(UsuarioControllerTest.java:36)
+Caused by: java.lang.NullPointerException: Cannot invoke "es.iespuertolacruz.developers.modelo.Fichero.leer(String)" because "this.fichero" is null
+	at es.iespuertolacruz.developers.UsuarioControllerTest.setUp(UsuarioControllerTest.java:36)
 

@@ -3,6 +3,7 @@ package es.iespuertolacruz.developers.modelo;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import es.iespuertolacruz.developers.api.Direccion;
@@ -12,21 +13,36 @@ import es.iespuertolacruz.developers.excepcion.BbddException;
 import es.iespuertolacruz.developers.excepcion.FicheroException;
 
 public class Bbdd {
+    private static final String TABLE = "TABLE";
     Direccion direccion;
     Fichero fichero;
-    private static final String NOMBRE_TABLAS = "persona,cliente,empleado,direccion,vehiculo,venta";
+    private static final String NOMBRE_TABLAS = "Usuario,Direccion,Moneda,Wallet,Metodopago,Mercado";
     private String driver;
     private String url;
     private String usuario;
     private String password;
 
-    public Bbdd(String driver, String url, String usuario, String password) {
+    ArrayList<String> listaTablas;
+
+    public Bbdd(String driver, String url, String usuario, String password) throws FicheroException, BbddException, SQLException {
         this.driver = driver;
         this.url = url;
         this.usuario = usuario;
         this.password = password;
+        if(listaTablas == null) {
+            listaTablas = new ArrayList<>();
+            String[] nombresTablas = NOMBRE_TABLAS.split(",");
+            Collections.addAll(listaTablas, nombresTablas);
+        }
+        init();
     }
 
+    /**
+     * Funcion encargada de realizar la conexion con la BBDD
+     * 
+     * @return la conexion
+     * @throws BbddException error controlado
+     */
     private Connection getConnection() throws BbddException {
         Connection connection = null;
 
@@ -44,7 +60,8 @@ public class Bbdd {
         return connection;
     }
 
-    private void init() throws FicheroException, BbddException {
+   
+    private void init() throws FicheroException, BbddException, SQLException  {
         DatabaseMetaData databaseMetaData;
         Connection connection = null;
         ResultSet resultSet = null;
@@ -56,24 +73,23 @@ public class Bbdd {
         try {
             connection = getConnection();
             databaseMetaData = connection.getMetaData();
-            resultSet = databaseMetaData.getTables(null, null, null, new String[] {"TABLE"});
+            resultSet = databaseMetaData.getTables(null, null, null, new String[] { TABLE });
             while (resultSet.next()) {
                 listaTablas.add(resultSet.getString("TABLE_NAME"));
             }
             for (String tabla : nombreTablas) {
                 if (!listaTablas.contains(tabla)) {
-                    String sqlCrearTabla = fichero.leer(tabla + "Crear.sql");
+                    String sqlCrearTabla = fichero.leer("Proyecto-DAW1/Exchange/resources/sqlite" + tabla + "Crear.sql");
                     actualizar(sqlCrearTabla);
-                    String sqlInsertarDatos = fichero.leer(tabla + "Insertar.sql");
+                    String sqlInsertarDatos = fichero.leer("Proyecto-DAW1/Exchange/resources/sqlite" + tabla + "Insertar.sql");
                     actualizar(sqlInsertarDatos);
                 }
             }
         } catch (Exception e) {
             throw new FicheroException("Se ha producido un error en la inicializacion de la BBDD", e);
         } finally {
-            closeConecction(connection, null, resultSet);
+            closeConnection(connection, null, resultSet);
         }
-
 
     }
 
@@ -170,7 +186,7 @@ public class Bbdd {
         } catch (Exception exception) {
             throw new BbddException("Se ha producido un error realizando la consulta", exception);
         } finally {
-            closeConecction(connection, statement, null);
+            closeConnection(connection, statement, null);
         }
 
     }
@@ -200,13 +216,14 @@ public class Bbdd {
                 String apellidos = resultSet.getString("apellidos");
                 int edad = resultSet.getInt("edad");
 
-               // usuario = new Usuario(uid, nombre, apellidos, edad, dni, direccion );  MODIFICAR!!!!!!
+                // usuario = new Usuario(uid, nombre, apellidos, edad, dni, direccion );
+                // MODIFICAR!!!!!!
                 listaUsuarios.add(usuario);
             }
         } catch (Exception exception) {
             throw new BbddException("Se ha producido un error realizando la consulta", exception);
         } finally {
-            closeConecction(connection, statement, resultSet);
+            closeConnection(connection, statement, resultSet);
         }
         return listaUsuarios;
     }
@@ -239,7 +256,7 @@ public class Bbdd {
         } catch (Exception exception) {
             throw new BbddException("Se ha producido un error realizando la consulta", exception);
         } finally {
-            closeConecction(connection, statement, resultSet);
+            closeConnection(connection, statement, resultSet);
         }
         return listaMonedas;
     }
@@ -308,7 +325,7 @@ public class Bbdd {
 
     }
 
-    private void closeConecction(Connection connection, Statement statement, ResultSet resultSet) throws BbddException {
+    private void closeConnection(Connection connection, Statement statement, ResultSet resultSet) throws BbddException {
         try {
             if (resultSet != null) {
                 resultSet.close();
