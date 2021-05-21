@@ -1,4 +1,4 @@
-CREATE TABLE "Direccion" (
+CREATE TABLE Direccion (
 id_direccion VARCHAR(12) NOT NULL PRIMARY KEY,
 codigoPostal VARCHAR(50),
 calle VARCHAR(50),
