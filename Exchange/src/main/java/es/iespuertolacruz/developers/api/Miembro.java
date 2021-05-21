@@ -8,7 +8,6 @@ public class Miembro extends Visitante {
 
     public static final String DELIMITADOR = ",";
 
-    String uid;
     DatosPersonales datosPersonales;
     String email;
     String contrasenia;
@@ -27,7 +26,7 @@ public class Miembro extends Visitante {
         while (tokenizer.hasMoreElements()) {
             elementos.add(tokenizer.nextToken());
         }
-        
+        this.uid = (String) elementos.get(0);
         this.datosPersonales = (DatosPersonales) elementos.get(1);
         this.email = (String) elementos.get(2);
         this.contrasenia = (String) elementos.get(3);
@@ -35,10 +34,6 @@ public class Miembro extends Visitante {
         this.wallet = (Wallet) elementos.get(5);
         this.tarjeta = (Tarjeta) elementos.get(6);
     }
-
-    
-
-    
 
     /**
      * Constructor con todos los parametros de la clase Miembro
@@ -65,10 +60,12 @@ public class Miembro extends Visitante {
      * Getters y Setters de la clase Miembro
      */
 
+    @Override
     public String getUid() {
         return this.uid;
     }
 
+    @Override
     public void setUid(String uid) {
         this.uid = uid;
     }
@@ -121,12 +118,14 @@ public class Miembro extends Visitante {
         this.tarjeta = tarjeta;
     }
 
+   
+
+
     @Override
     public String toString() {
         return "Miembro [contrasenia=" + contrasenia + ", datosPersonales=" + datosPersonales + ", direccion="
-                + direccion + ", email=" + email + ", tarjeta=" + tarjeta + ", uid=" + uid + ", wallet=" + wallet + "]";
+                + direccion + ", email=" + email + ", tarjeta=" + tarjeta + ", wallet=" + wallet + "]";
     }
-
 
     @Override
     public boolean equals(Object o) {
