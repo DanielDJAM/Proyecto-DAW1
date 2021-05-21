@@ -17,12 +17,12 @@ public class Direccion {
 
     /**
      * Constructor de la clase Direccion
-     * @param codigoPostal del usuario
+     * @param codigoPostal del miembro
      * @param calle del domicilio
      * @param numero de la calle
      * @param puerta del domicilio
-     * @param provincia del usuario
-     * @param pais del usuario
+     * @param provincia del miembro
+     * @param pais del miembro
      */
     public Direccion(String codigoPostal, String calle, int numero, String puerta, String provincia, String pais) {
         this.codigoPostal = codigoPostal;

@@ -7,8 +7,8 @@ import java.util.Scanner;
 import es.iespuertolacruz.developers.api.CuentaBancaria;
 import es.iespuertolacruz.developers.api.Direccion;
 import es.iespuertolacruz.developers.api.Tarjeta;
-import es.iespuertolacruz.developers.api.Usuario;
-import es.iespuertolacruz.developers.controller.UsuarioController;
+import es.iespuertolacruz.developers.api.Miembro;
+import es.iespuertolacruz.developers.controller.MiembroController;
 import es.iespuertolacruz.developers.excepcion.BbddException;
 import es.iespuertolacruz.developers.excepcion.FicheroException;
 
@@ -17,11 +17,11 @@ public class MenuLogin {
     private static final String ESCRIBE_UNA_DE_LAS_OPCIONES = "Escribe una de las opciones";
     private static final String REGRESANDO_AL_MENU_ANTERIOR = "Regresando al menu anterior.";
 
-    Usuario usuario;
+    Miembro miembro;
     Tarjeta tarjeta;
     CuentaBancaria cuentaBancaria;
     Direccion direccion;
-    UsuarioController usuarioController;
+    MiembroController miembroController;
     Scanner scan = new Scanner(System.in);
     boolean salir = false;
     int opcion;
@@ -49,15 +49,15 @@ public class MenuLogin {
 
                 switch (opcion) {
                     case 1:
-                        usuario = new Usuario();
-                        usuarioController = new UsuarioController();
+                        miembro = new Miembro();
+                        miembroController = new MiembroController();
                         System.out.println("Ingrese su email: ");
                         entrada = scan.next();
-                        usuario.setEmail(entrada);
+                        miembro.setEmail(entrada);
                         System.out.println("Ingrese su contrasenia: ");
                         scan.nextLine();
                         entrada = scan.nextLine();
-                        usuario.setContrasenia(entrada);
+                        miembro.setContrasenia(entrada);
                         System.out.println("Comprobando datos introducidos . . . ");
                         break;
                     case 2:
@@ -69,7 +69,7 @@ public class MenuLogin {
                         break;
                     case 4:
                         System.out.println("Listado de las monedas:  ");
-                        //Aqui pondremos un metodo que realice una consulta con X monedas que introduzca el usuario
+                        //Aqui pondremos un metodo que realice una consulta con X monedas que introduzca el miembro
                         break;
                     case 5:
                         System.out.println("Muchas gracias por utilizar nuestra aplicacion. Esperamos que haya sido de su agrado.");
@@ -86,14 +86,14 @@ public class MenuLogin {
     }
 
     public void menuRegistro(){
-        usuario = new Usuario();
+        miembro = new Miembro();
         direccion = new Direccion();
 
         while (!salir) {
 
             System.out.println("Comencemos con el registro.");
             System.out.println("¿Por donde deseas comenzar?");
-            System.out.println("1. Datos del Usuario.");
+            System.out.println("1. Datos del Miembro.");
             System.out.println("2. Direccion.");
             System.out.println("3. Metodo de pago.");
             System.out.println("4. Ver el estado del registro.");
@@ -111,20 +111,20 @@ public class MenuLogin {
                         System.out.println("El orden de los datos es el siguiente: nombre, apellidos, edad, dni, contrasenia.");
                         System.out.println("Ingrese su nombre: ");
                         entrada = scan.nextLine();
-                        usuario.setNombre(entrada);
+                        miembro.setNombre(entrada);
                         System.out.println("Ingrese sus apellidos: ");
                         entrada = scan.nextLine();
-                        usuario.setApellidos(entrada);
+                        miembro.setApellidos(entrada);
                         System.out.println("Ingrese su edad: ");
                         numero = scan.nextInt();
-                        usuario.setEdad(numero);
+                        miembro.setEdad(numero);
                         scan.nextLine();
                         System.out.println("Ingrese su DNI: ");
                         entrada = scan.nextLine();
-                        usuario.setDni(entrada);
+                        miembro.setDni(entrada);
                         System.out.println("Ingrese una contrasenia: ");
                         entrada = scan.nextLine();
-                        usuario.setContrasenia(entrada);
+                        miembro.setContrasenia(entrada);
                         System.out.println("Ha finalizado el registro de Datos Personales.");
                         break;
                     case 2:
@@ -156,14 +156,14 @@ public class MenuLogin {
                         break;
                     case 4:
                         System.out.println("Este es el estado actual de tu registro: ");
-                        System.out.println(usuario.toString());
+                        System.out.println(miembro.toString());
                         System.out.println(direccion.toString());
                         System.out.println(cuentaBancaria.toString());
                         System.out.println(tarjeta.toString());
                         break;
                     case 5:
                         System.out.println("Guardando en nuestra base de datos . . .");
-                       /* usuarioController.insertar(usuario);
+                       /* miembroController.insertar(miembro);
                         direccionController.insertar(direccion);
                         tarjetaController.insertar(tarjeta);
                         cuentaBancariaController.insertar(cuentaBancaria);*/

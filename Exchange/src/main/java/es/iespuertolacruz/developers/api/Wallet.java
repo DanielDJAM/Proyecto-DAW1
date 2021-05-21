@@ -19,7 +19,7 @@ public class Wallet {
      * @param uid del propietario de la cartera.
      */
 
-    public Wallet(String ticket, String nombreMoneda, double cantidad, double total, int uid) {
+    public Wallet(String ticket, String nombreMoneda, double cantidad, double total, String uid) {
         this.ticket = ticket;
         this.nombreMoneda = nombreMoneda;
         this.cantidad = cantidad;
@@ -63,11 +63,11 @@ public class Wallet {
         this.total = total;
     }
 
-    public int getUid() {
+    public String getUid() {
         return uid;
     }
 
-    public void setUid(int uid) {
+    public void setUid(String uid) {
         this.uid = uid;
     }
 

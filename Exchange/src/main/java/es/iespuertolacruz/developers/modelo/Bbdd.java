@@ -16,17 +16,17 @@ public class Bbdd {
     private static final String TABLE = "TABLE";
     Direccion direccion;
     
-    private static final String NOMBRE_TABLAS = "Usuario,Direccion,Moneda,Wallet,Mercado";
+    private static final String NOMBRE_TABLAS = "Miembro,Direccion,Moneda,Wallet,Mercado";
     private String driver;
     private String url;
-    private String usuario;
+    private String miembro;
     private String password;
     ArrayList<String> listaTablas;
 
-    public Bbdd(String driver, String url, String usuario, String password) throws FicheroException, BbddException, SQLException {
+    public Bbdd(String driver, String url, String miembro, String password) throws FicheroException, BbddException, SQLException {
         this.driver = driver;
         this.url = url;
-        this.usuario = usuario;
+        this.miembro = miembro;
         this.password = password;
         if(listaTablas == null) {
             listaTablas = new ArrayList<>();
@@ -47,10 +47,10 @@ public class Bbdd {
 
         try {
             Class.forName(driver);
-            if (usuario == null || password == null) {
+            if (miembro == null || password == null) {
                 connection = DriverManager.getConnection(url);
             } else {
-                DriverManager.getConnection(url, usuario, password);
+                DriverManager.getConnection(url, miembro, password);
             }
         } catch (Exception exception) {
             throw new BbddException("No se ha podido establecer la coneccion con la BBDD", exception);
@@ -92,44 +92,44 @@ public class Bbdd {
 
     }
 
-    // CRUD Usuario
+    // CRUD Miembro
 
     /**
-     * Metodo que permite insertar un usuario en la DB
+     * Metodo que permite insertar un miembro en la DB
      * 
-     * @param usuario a insertar
+     * @param miembro a insertar
      * @throws BbddException controlada
      */
-    public void insertar(Usuario usuario) throws BbddException {
-        String sql = "INSERT INTO Usuario (uid, dni, nombre, apellidos, edad, email, contrasenia,id_direccion)" + " VALUES ('" + usuario.getUid()
-                + "', '" + usuario.getDni() + "', '" + usuario.getNombre() + "', '" + usuario.getApellidos() + "', "
-                + usuario.getEdad() +"','" + usuario.getEmail() +"','"+ 
-                usuario.getContrasenia()+"','"+ usuario.getDireccion() +"')";
+    public void insertar(Miembro miembro) throws BbddException {
+        String sql = "INSERT INTO Miembro (uid, dni, nombre, apellidos, edad, email, contrasenia,id_direccion)" + " VALUES ('" + miembro.getUid()
+                + "', '" + miembro.getDni() + "', '" + miembro.getNombre() + "', '" + miembro.getApellidos() + "', "
+                + miembro.getEdad() +"','" + miembro.getEmail() +"','"+ 
+                miembro.getContrasenia()+"','"+ miembro.getDireccion() +"')";
         actualizar(sql);
     }
 
     /**
-     * Metodo que permite eliminar un usuario de la DB
+     * Metodo que permite eliminar un miembro de la DB
      * 
-     * @param usuario a eliminar
+     * @param miembro a eliminar
      * @throws BbddException controlada
      */
-    public void eliminar(Usuario usuario) throws BbddException {
-        String sql = "DELETE from Usuario WHERE uid ='" + usuario.getUid() + "'";
+    public void eliminar(Miembro miembro) throws BbddException {
+        String sql = "DELETE from Miembro WHERE uid ='" + miembro.getUid() + "'";
         actualizar(sql);
 
     }
 
     /**
-     * Metodo que permite modificar un usuario de la DB
+     * Metodo que permite modificar un miembro de la DB
      * 
-     * @param usuario a modificar
+     * @param miembro a modificar
      * @throws BbddException controlada
      */
-    public void modificar(Usuario usuario) throws BbddException {
-        String sql = "UPDATE Usuario SET uid = '" + usuario.getUid() + "', dni = '" + usuario.getDni() + "', nombre = '"
-                + usuario.getNombre() + "', apellidos = '" + usuario.getApellidos() + "' , edad = '" + usuario.getEdad()
-                + "' WHERE uid = '" + usuario.getUid() + "'";
+    public void modificar(Miembro miembro) throws BbddException {
+        String sql = "UPDATE Miembro SET uid = '" + miembro.getUid() + "', dni = '" + miembro.getDni() + "', nombre = '"
+                + miembro.getNombre() + "', apellidos = '" + miembro.getApellidos() + "' , edad = '" + miembro.getEdad()
+                + "' WHERE uid = '" + miembro.getUid() + "'";
         actualizar(sql);
     }
 
@@ -192,16 +192,16 @@ public class Bbdd {
     }
 
     /**
-     * Funcion que realiza la consulta sobre la BBDD y la tabla Usuario
+     * Funcion que realiza la consulta sobre la BBDD y la tabla Miembro
      * 
      * @param sql de la consulta
      * @return lista de resultados
      * @throws BbddException Error controlado
      */
-    private ArrayList<Usuario> obtenerListado(String sql) throws BbddException {
-        ArrayList<Usuario> listaUsuarios = new ArrayList<>();
+    private ArrayList<Miembro> obtenerListado(String sql) throws BbddException {
+        ArrayList<Miembro> listaMiembros = new ArrayList<>();
 
-        Usuario usuario = null;
+        Miembro miembro = null;
         Statement statement = null;
         ResultSet resultSet = null;
         Connection connection = null;
@@ -216,16 +216,16 @@ public class Bbdd {
                 String apellidos = resultSet.getString("apellidos");
                 int edad = resultSet.getInt("edad");
 
-                // usuario = new Usuario(uid, nombre, apellidos, edad, dni, direccion );
+                // miembro = new Miembro(uid, nombre, apellidos, edad, dni, direccion );
                 // MODIFICAR!!!!!!
-                listaUsuarios.add(usuario);
+                listaMiembros.add(miembro);
             }
         } catch (Exception exception) {
             throw new BbddException("Se ha producido un error realizando la consulta", exception);
         } finally {
             closeConnection(connection, statement, resultSet);
         }
-        return listaUsuarios;
+        return listaMiembros;
     }
 
     /**
@@ -262,13 +262,13 @@ public class Bbdd {
     }
 
     /**
-     * Funcion que obtiene el listado de todas las usuarios
+     * Funcion que obtiene el listado de todas las miembros
      * 
      * @return lista total
      * @throws BbddException Error controlado
      */
-    public ArrayList<Usuario> obtenerListado() throws BbddException {
-        String sql = "SELECT * FROM Usuario";
+    public ArrayList<Miembro> obtenerListado() throws BbddException {
+        String sql = "SELECT * FROM Miembro";
         return obtenerListado(sql);
     }
 
@@ -278,29 +278,29 @@ public class Bbdd {
      * @return lista total
      * @throws BbddException Error controlado
      */
-    public ArrayList<Usuario> obtenerListadoMonedas() throws BbddException {
+    public ArrayList<Miembro> obtenerListadoMonedas() throws BbddException {
         String sql = "SELECT * FROM Moneda";
         return obtenerListado(sql);
     }
 
     /**
-     * Funcion que obtiene una usuario
+     * Funcion que obtiene una miembro
      * 
      * @param
      * @return lista total
      * @throws BbddException Error controlado
      */
-    public Usuario obtenerUsuario(String identificador) throws BbddException {
-        Usuario usuario = null;
-        ArrayList<Usuario> listaUsuarios = null;
-        String sql = "SELECT * FROM Usuario where uid = ";
+    public Miembro obtenerMiembro(String identificador) throws BbddException {
+        Miembro miembro = null;
+        ArrayList<Miembro> listaMiembros = null;
+        String sql = "SELECT * FROM Miembro where uid = ";
         sql = sql + "'" + identificador + "'";
-        listaUsuarios = obtenerListado(sql);
-        if (!listaUsuarios.isEmpty()) {
-            usuario = listaUsuarios.get(0);
+        listaMiembros = obtenerListado(sql);
+        if (!listaMiembros.isEmpty()) {
+            miembro = listaMiembros.get(0);
         }
 
-        return usuario;
+        return miembro;
 
     }
 

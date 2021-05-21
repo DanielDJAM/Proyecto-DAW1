@@ -1,6 +1,6 @@
 package es.iespuertolacruz.developers;
 
-import es.iespuertolacruz.developers.api.Usuario;
+import es.iespuertolacruz.developers.api.Miembro;
 
 public class UtilidadesTest {
 
@@ -12,20 +12,20 @@ public class UtilidadesTest {
     private static final String NOMBRE = "Joatham";
     
 
-    protected Usuario crearUsuario(String uid,String dni, String nombre, String apellidos, int edad){
-        Usuario usuario = null;
+    protected Miembro crearMiembro(String uid,String dni, String nombre, String apellidos, int edad){
+        Miembro miembro = null;
         if (uid != null &&dni != null && nombre != null && apellidos != null && edad != 0 ){
-          //  usuario = new Usuario(uid, nombre, apellidos, edad, dni); MODIFICAR!!!!!!!!!!!
+          //  miembro = new Miembro(uid, nombre, apellidos, edad, dni); MODIFICAR!!!!!!!!!!!
         } else {
-            usuario = new Usuario();
-            usuario.setUid(UID);
-            usuario.setDni(DNI);
-            usuario.setNombre(NOMBRE);
-            usuario.setApellidos(APELLIDOS);
-            usuario.setEdad(EDAD);
+            miembro = new Miembro();
+            miembro.setUid(UID);
+            miembro.setDni(DNI);
+            miembro.setNombre(NOMBRE);
+            miembro.setApellidos(APELLIDOS);
+            miembro.setEdad(EDAD);
             
         }
-        return usuario;
+        return miembro;
 
     }
     

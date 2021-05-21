@@ -1,13 +1,13 @@
 package es.iespuertolacruz.developers.excepcion;
 
-public class UsuarioException extends Exception {
+public class MiembroException extends Exception {
 
     /**
      * Constructor de la exception con el parametro mensaje
      * 
      * @param mensaje descriptivo del error
      */
-    public UsuarioException(String mensaje) {
+    public MiembroException(String mensaje) {
         super(mensaje);
     }
 
@@ -18,7 +18,7 @@ public class UsuarioException extends Exception {
      * @param exception que produce el error
      */
 
-    public UsuarioException(String mensaje, Exception exception) {
+    public MiembroException(String mensaje, Exception exception) {
         super(mensaje, exception);
     }
 
