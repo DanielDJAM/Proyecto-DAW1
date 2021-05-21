@@ -8,20 +8,19 @@ import java.util.List;
 
 import es.iespuertolacruz.developers.api.Direccion;
 import es.iespuertolacruz.developers.api.Moneda;
-import es.iespuertolacruz.developers.api.Usuario;
+import es.iespuertolacruz.developers.api.Miembro;
 import es.iespuertolacruz.developers.excepcion.BbddException;
 import es.iespuertolacruz.developers.excepcion.FicheroException;
 
 public class Bbdd {
     private static final String TABLE = "TABLE";
     Direccion direccion;
-    Fichero fichero;
-    private static final String NOMBRE_TABLAS = "Usuario,Direccion,Moneda,Wallet,Metodopago,Mercado";
+    
+    private static final String NOMBRE_TABLAS = "Usuario,Direccion,Moneda,Wallet,Mercado";
     private String driver;
     private String url;
     private String usuario;
     private String password;
-
     ArrayList<String> listaTablas;
 
     public Bbdd(String driver, String url, String usuario, String password) throws FicheroException, BbddException, SQLException {
@@ -79,9 +78,9 @@ public class Bbdd {
             }
             for (String tabla : nombreTablas) {
                 if (!listaTablas.contains(tabla)) {
-                    String sqlCrearTabla = fichero.leer("Proyecto-DAW1/Exchange/resources/sqlite" + tabla + "Crear.sql");
+                    String sqlCrearTabla = new Fichero().leer("resources/sqlite/" + tabla + "Crear.sql");
                     actualizar(sqlCrearTabla);
-                    String sqlInsertarDatos = fichero.leer("Proyecto-DAW1/Exchange/resources/sqlite" + tabla + "Insertar.sql");
+                    String sqlInsertarDatos = new Fichero().leer("resources/sqlite/" + tabla + "-insertar.sql");
                     actualizar(sqlInsertarDatos);
                 }
             }
@@ -102,9 +101,10 @@ public class Bbdd {
      * @throws BbddException controlada
      */
     public void insertar(Usuario usuario) throws BbddException {
-        String sql = "INSERT INTO Usuario (uid, dni, nombre, apellidos, edad)" + " VALUES ('" + usuario.getUid()
+        String sql = "INSERT INTO Usuario (uid, dni, nombre, apellidos, edad, email, contrasenia,id_direccion)" + " VALUES ('" + usuario.getUid()
                 + "', '" + usuario.getDni() + "', '" + usuario.getNombre() + "', '" + usuario.getApellidos() + "', "
-                + usuario.getEdad() + ")";
+                + usuario.getEdad() +"','" + usuario.getEmail() +"','"+ 
+                usuario.getContrasenia()+"','"+ usuario.getDireccion() +"')";
         actualizar(sql);
     }
 

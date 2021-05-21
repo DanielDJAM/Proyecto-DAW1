@@ -21,12 +21,13 @@ public class Miembro extends Visitante {
     * @param cadena con la informacion
     */
     public Miembro(String cadena) {
+        super();
         ArrayList<Object> elementos = new ArrayList<>();
         StringTokenizer tokenizer = new StringTokenizer(cadena, DELIMITADOR);
         while (tokenizer.hasMoreElements()) {
             elementos.add(tokenizer.nextToken());
         }
-        this.uid = (String) elementos.get(0);
+        
         this.datosPersonales = (DatosPersonales) elementos.get(1);
         this.email = (String) elementos.get(2);
         this.contrasenia = (String) elementos.get(3);
@@ -34,6 +35,10 @@ public class Miembro extends Visitante {
         this.wallet = (Wallet) elementos.get(5);
         this.tarjeta = (Tarjeta) elementos.get(6);
     }
+
+    
+
+    
 
     /**
      * Constructor con todos los parametros de la clase Miembro
@@ -46,7 +51,7 @@ public class Miembro extends Visitante {
      * @param tarjeta del miembro
     */
     public Miembro(String uid, DatosPersonales datosPersonales, String email, String contrasenia, Direccion direccion, Wallet wallet, Tarjeta tarjeta) {
-        this.uid = uid;
+        super(uid);
         this.datosPersonales = datosPersonales;
         this.email = email;
         this.contrasenia = contrasenia;

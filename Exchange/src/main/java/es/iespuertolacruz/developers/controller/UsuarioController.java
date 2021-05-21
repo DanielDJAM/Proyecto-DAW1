@@ -2,7 +2,7 @@ package es.iespuertolacruz.developers.controller;
 
 import java.sql.SQLException;
 
-import es.iespuertolacruz.developers.api.Usuario;
+import es.iespuertolacruz.developers.api.Miembro;
 import es.iespuertolacruz.developers.excepcion.BbddException;
 import es.iespuertolacruz.developers.excepcion.FicheroException;
 import es.iespuertolacruz.developers.excepcion.UsuarioException;

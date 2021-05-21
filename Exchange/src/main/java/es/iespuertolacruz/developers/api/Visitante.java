@@ -11,6 +11,9 @@ public class Visitante {
      * @param uid del visitante
      */
 
+    public Visitante() {
+    }
+    
     public Visitante(String uid) {
         this.uid = uid;
     }

@@ -1,7 +1,10 @@
 package es.iespuertolacruz.developers.api;
 
-public class Tarjeta extends MetodoPago {
+import java.util.Objects;
 
+public class Tarjeta  {
+    String id_tarjeta;
+    String titular;
     String fechaCaducidad;
     int cvv;
 
@@ -12,16 +15,30 @@ public class Tarjeta extends MetodoPago {
      * @param fechaCaducidad de la tarjeta
      * @param cvv de la tarjeta
      */
-    public Tarjeta(String titular, String numeroCuenta, String fechaCaducidad,int cvv) {
-        super(titular, numeroCuenta);
+
+    public Tarjeta(String id_tarjeta, String titular, String fechaCaducidad, int cvv) {
+        this.id_tarjeta = id_tarjeta;
+        this.titular = titular;
         this.fechaCaducidad = fechaCaducidad;
         this.cvv = cvv;
     }
 
-    /**
-     * Getters y Setters de la clase Tarjeta
-     */
-     
+    public String getId_tarjeta() {
+        return id_tarjeta;
+    }
+
+    public void setId_tarjeta(String id_tarjeta) {
+        this.id_tarjeta = id_tarjeta;
+    }
+
+    public String getTitular() {
+        return titular;
+    }
+
+    public void setTitular(String titular) {
+        this.titular = titular;
+    }
+
     public String getFechaCaducidad() {
         return fechaCaducidad;
     }
@@ -38,34 +55,25 @@ public class Tarjeta extends MetodoPago {
         this.cvv = cvv;
     }
 
-    /**
-     * Getters y Setters extendidos de la clase MetodoPago
-     */
+
 
     @Override
-    public String getTitular() {
-        return titular;
-    }
-
-    @Override
-    public void setTitular(String titular) {
-        this.titular = titular;
-    }
-
-    @Override
-    public String getNumeroCuenta() {
-        return numeroCuenta;
-    }
-
-    @Override
-    public void setNumeroCuenta(String numeroCuenta) {
-        this.numeroCuenta = numeroCuenta;
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Tarjeta)) {
+            return false;
+        }
+        Tarjeta tarjeta = (Tarjeta) o;
+        return Objects.equals(id_tarjeta, tarjeta.id_tarjeta) && Objects.equals(titular, tarjeta.titular) && Objects.equals(fechaCaducidad, tarjeta.fechaCaducidad) && cvv == tarjeta.cvv;
     }
 
     @Override
     public String toString() {
-        return getTitular() + getNumeroCuenta() + getFechaCaducidad() + getCvv();
+        return "Tarjeta [cvv=" + cvv + ", fechaCaducidad=" + fechaCaducidad + ", id_tarjeta=" + id_tarjeta
+                + ", titular=" + titular + "]";
     }
+
 
    
 }

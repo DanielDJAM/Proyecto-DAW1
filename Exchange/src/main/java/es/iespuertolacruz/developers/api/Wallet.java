@@ -8,7 +8,7 @@ public class Wallet {
     String nombreMoneda;
     double cantidad;
     double total;
-    int uid;
+    String uid;
 
     /**
      * Constructor de la clase Wallet
