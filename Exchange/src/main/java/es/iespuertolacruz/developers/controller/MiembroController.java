@@ -39,17 +39,20 @@ public class MiembroController {
         if(miembro.getUid() == null || miembro.getUid().isEmpty()) {
             mensaje = "El UID es nulo o vacio,";
         }
-        if (miembro.getNombre() == null || miembro.getNombre().isEmpty()) {
+        if (miembro.getEmail() == null || miembro.getEmail().isEmpty()) {
             mensaje += "El nombre es nulo o vacio,";
         }
-        if (miembro.getApellidos() == null || miembro.getApellidos().isEmpty()) {
+        if (miembro.getContrasenia() == null || miembro.getContrasenia().isEmpty()) {
             mensaje += "Los apellidos son nulos o vacios,";
         }
-        if (miembro.getEdad() < EDAD_MINIMA) {
-            mensaje += "La edad minima (" + EDAD_MINIMA + ") no se cumple,";
+        if (miembro.getDireccion() == null ) {
+            mensaje += "Los datos de direccion estan vacios";
         }
-        if (miembro.getDni() == null || miembro.getDni().isEmpty()) {
-            mensaje += "El DNI es nulo o vacio";
+        if (miembro.getWallet() == null) {
+            mensaje += "Los datos de la cartera estan vacios ";
+        }
+        if (miembro.getTarjeta() == null) {
+            mensaje += "Los datos de la tarjeta estan vacios";
         }
         if(!mensaje.isEmpty()) {
             throw new MiembroException(mensaje);

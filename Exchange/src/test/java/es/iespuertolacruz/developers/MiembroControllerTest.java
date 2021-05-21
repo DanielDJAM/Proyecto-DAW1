@@ -11,6 +11,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import es.iespuertolacruz.developers.api.DatosPersonales;
 import es.iespuertolacruz.developers.api.Miembro;
 import es.iespuertolacruz.developers.controller.MiembroController;
 import es.iespuertolacruz.developers.excepcion.BbddException;
@@ -144,7 +145,7 @@ public class MiembroControllerTest extends UtilidadesTest {
  
     @Test
     public void modificarMiembroTest() {
-        miembro.setNombre("pepe");
+        
         try {
             miembroController.modificar(miembro);
             

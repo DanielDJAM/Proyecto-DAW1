@@ -13,6 +13,7 @@ import es.iespuertolacruz.developers.excepcion.BbddException;
 import es.iespuertolacruz.developers.excepcion.FicheroException;
 
 public class Bbdd {
+    
     private static final String TABLE = "TABLE";
     Direccion direccion;
     

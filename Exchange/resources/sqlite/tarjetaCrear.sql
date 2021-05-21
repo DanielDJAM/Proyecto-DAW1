@@ -1,4 +1,4 @@
-CREATE TABLE tarjeta (
+CREATE TABLE Tarjeta (
   id_tarjeta VARCHAR(16) NOT NULL PRIMARY Key,
   titular VARCHAR(50) NOT NULL,
   fechaCaducidad VARCHAR(50) NOT NULL,
