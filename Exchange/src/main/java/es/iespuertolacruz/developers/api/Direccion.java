@@ -3,7 +3,7 @@ package es.iespuertolacruz.developers.api;
 import java.util.Objects;
 
 public class Direccion {
-    
+    String id_direccion;
     String codigoPostal;
     String calle;
     int numero;
@@ -11,20 +11,22 @@ public class Direccion {
     String provincia;
     String pais;
 
-    
     public Direccion() {
     }
 
     /**
      * Constructor de la clase Direccion
+     * 
      * @param codigoPostal del miembro
-     * @param calle del domicilio
-     * @param numero de la calle
-     * @param puerta del domicilio
-     * @param provincia del miembro
-     * @param pais del miembro
+     * @param calle        del domicilio
+     * @param numero       de la calle
+     * @param puerta       del domicilio
+     * @param provincia    del miembro
+     * @param pais         del miembro
      */
-    public Direccion(String codigoPostal, String calle, int numero, String puerta, String provincia, String pais) {
+    public Direccion(String id_direccion, String codigoPostal, String calle, int numero, String puerta,
+            String provincia, String pais) {
+        this.id_direccion = id_direccion;
         this.codigoPostal = codigoPostal;
         this.calle = calle;
         this.numero = numero;
@@ -36,8 +38,17 @@ public class Direccion {
     /**
      * GETTERS y SETTERS de la clase Direccion
      */
+
+    public String getId_direccion() {
+        return id_direccion;
+    }
+
+    public void setId_direccion(String id_direccion) {
+        this.id_direccion = id_direccion;
+    }
+
     public String getCodigoPostal() {
-        return this.codigoPostal;
+        return codigoPostal;
     }
 
     public void setCodigoPostal(String codigoPostal) {
@@ -45,7 +56,7 @@ public class Direccion {
     }
 
     public String getCalle() {
-        return this.calle;
+        return calle;
     }
 
     public void setCalle(String calle) {
@@ -53,7 +64,7 @@ public class Direccion {
     }
 
     public int getNumero() {
-        return this.numero;
+        return numero;
     }
 
     public void setNumero(int numero) {
@@ -61,7 +72,7 @@ public class Direccion {
     }
 
     public String getPuerta() {
-        return this.puerta;
+        return puerta;
     }
 
     public void setPuerta(String puerta) {
@@ -69,7 +80,7 @@ public class Direccion {
     }
 
     public String getProvincia() {
-        return this.provincia;
+        return provincia;
     }
 
     public void setProvincia(String provincia) {
@@ -77,19 +88,17 @@ public class Direccion {
     }
 
     public String getPais() {
-        return this.pais;
+        return pais;
     }
 
     public void setPais(String pais) {
         this.pais = pais;
     }
 
-    
-
     @Override
     public String toString() {
-        return "Direccion [calle=" + calle + ", codigoPostal=" + codigoPostal + ", numero=" + numero + ", pais=" + pais
-                + ", provincia=" + provincia + ", puerta=" + puerta + "]";
+        return "Direccion"  + id_direccion + "Calle ="
+        + calle + ", codigoPostal=" + codigoPostal + ", numero=" + numero + ", pais=" + pais + ", provincia=" + provincia + ", puerta=" + puerta + "]";
     }
 
 
@@ -101,7 +110,11 @@ public class Direccion {
             return false;
         }
         Direccion direccion = (Direccion) o;
-        return Objects.equals(codigoPostal, direccion.codigoPostal) && Objects.equals(calle, direccion.calle) && numero == direccion.numero && Objects.equals(puerta, direccion.puerta) && Objects.equals(provincia, direccion.provincia) && Objects.equals(pais, direccion.pais);
+        return Objects.equals(id_direccion, direccion.id_direccion) && Objects.equals(codigoPostal, direccion.codigoPostal) && Objects.equals(calle, direccion.calle) && numero == direccion.numero && Objects.equals(puerta, direccion.puerta) && Objects.equals(provincia, direccion.provincia) && Objects.equals(pais, direccion.pais);
     }
+
+
+    
+
 
 }

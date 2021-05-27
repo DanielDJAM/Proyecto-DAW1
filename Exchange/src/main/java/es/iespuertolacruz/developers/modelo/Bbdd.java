@@ -95,19 +95,7 @@ public class Bbdd {
 
     // CRUD Miembro
 
-    /**
-     * Metodo que permite insertar un miembro en la DB
-     * 
-     * @param miembro a insertar
-     * @throws BbddException controlada
-     */
-    public void insertar(Miembro miembro) throws BbddException {
-        String sql = "INSERT INTO Miembro (uid, dni, nombre, apellidos, edad, email, contrasenia,id_direccion)" + " VALUES ('" + miembro.getUid()
-                + "', '" + miembro.getDni() + "', '" + miembro.getNombre() + "', '" + miembro.getApellidos() + "', "
-                + miembro.getEdad() +"','" + miembro.getEmail() +"','"+ 
-                miembro.getContrasenia()+"','"+ miembro.getDireccion() +"')";
-        actualizar(sql);
-    }
+ 
 
     /**
      * Metodo que permite eliminar un miembro de la DB
@@ -177,7 +165,7 @@ public class Bbdd {
      * @param sql a ejecutar
      * @throws ExceptionException Error controlado
      */
-    private void actualizar(String sql) throws BbddException {
+    protected void actualizar(String sql) throws BbddException {
         Statement statement = null;
         Connection connection = null;
         try {

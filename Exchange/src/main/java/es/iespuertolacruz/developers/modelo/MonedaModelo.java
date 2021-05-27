@@ -19,33 +19,39 @@ public class MonedaModelo {
         persistencia = new SqliteDb(null, null);
     }
 
-    /**
-     * Metodo encargado de realizar la insercion de un moneda
+      /**
+     * Metodo que permiter insertar una moneda en la DB
      * 
      * @param moneda a insertar
      * @throws BbddException controlada
      */
     public void insertar(Moneda moneda) throws BbddException {
-        persistencia.insertar(moneda);
+        String sql = "INSERT INTO Moneda (nombreMoneda, ticket, valor)" + " VALUES ('" + moneda.getNombreMoneda()
+                + "', '" + moneda.getTicket() + "'," + "'" + moneda.getValor() + "')";
+        persistencia.actualizar(sql);
     }
 
     /**
-     * Metodo encargado de realizar la eleminacion de un moneda
+     * Metodo que permite elimnar una moneda de la DB
      * 
      * @param moneda a eliminar
      * @throws BbddException controlada
      */
     public void eliminar(Moneda moneda) throws BbddException {
-        persistencia.eliminar(moneda);
+        String sql = "DELETE from Moneda WHERE ticket ='" + moneda.getTicket() + "'";
+        persistencia.actualizar(sql);
+
     }
 
     /**
-     * Metodo encargado de realizar la modificacion de un moneda
+     * Metodo que permite modificar una moneda e la DB
      * 
      * @param moneda a modificar
+     * @throws BbddException controlada
      */
     public void modificar(Moneda moneda) throws BbddException {
-        persistencia.modificar(moneda);
+        String sql = "UPDATE Moneda SET valor ='" + moneda.getValor();
+        persistencia.actualizar(sql);
     }
 
     /**

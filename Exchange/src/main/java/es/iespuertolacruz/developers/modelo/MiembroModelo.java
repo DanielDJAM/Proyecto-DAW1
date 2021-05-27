@@ -8,45 +8,59 @@ import es.iespuertolacruz.developers.excepcion.FicheroException;
 
 public class MiembroModelo {
 
-    
     SqliteDb persistencia;
 
     /**
      * Constructor por defecto de la clase MiembroModelo
+     * 
      * @throws FicheroException
      * @throws SQLException
      */
-    public MiembroModelo() throws BbddException, FicheroException, SQLException{
+    public MiembroModelo() throws BbddException, FicheroException, SQLException {
         persistencia = new SqliteDb(null, null);
     }
 
     /**
-     * Metodo encargado de realizar la insercion de un miembro
+     * Metodo que permite insertar un miembro en la DB
      * 
      * @param miembro a insertar
      * @throws BbddException controlada
      */
     public void insertar(Miembro miembro) throws BbddException {
-        persistencia.insertar(miembro);
+        String sql = "INSERT INTO Miembro (uid, dni, email, contrasenia,id_direccion, id_wallet, id_tarjeta)"
+                + " VALUES ('" + miembro.getUid()
+                + "', '" + miembro.getDatosPersonales().getDni()
+                + "', '" + miembro.getEmail() 
+                + "', '" + miembro.getContrasenia()
+                + "', '" + miembro.getDireccion() 
+                + "', '" + miembro.getWallet() 
+                + "','" + miembro.getTarjeta() 
+                + "')";
+        persistencia.actualizar(sql);
     }
 
     /**
-     * Metodo encargado de realizar la eleminacion de un miembro
+     * Metodo que permite eliminar un miembro de la DB
      * 
      * @param miembro a eliminar
      * @throws BbddException controlada
      */
     public void eliminar(Miembro miembro) throws BbddException {
-        persistencia.eliminar(miembro);
+        String sql = "DELETE from Miembro WHERE uid ='" + miembro.getUid() + "'";
+        persistencia.actualizar(sql);
+
     }
 
     /**
-     * Metodo encargado de realizar la modificacion de un miembro
+     * Metodo que permite modificar un miembro de la DB
      * 
      * @param miembro a modificar
+     * @throws BbddException controlada
      */
     public void modificar(Miembro miembro) throws BbddException {
-        persistencia.modificar(miembro);
+        String sql = "UPDATE Miembro SET email = '" + miembro.getEmail() + "', contrasenia = '" + miembro.getContrasenia() 
+                + "' WHERE uid = '" + miembro.getUid() + "'";
+        persistencia.actualizar(sql);
     }
 
     /**
@@ -57,8 +71,8 @@ public class MiembroModelo {
      * @throws BbddException
      */
     public Miembro buscarMiembro(String uid) throws BbddException {
-       return persistencia.obtenerMiembro(uid);
-       
+        return persistencia.obtenerMiembro(uid);
+
     }
 
 }
