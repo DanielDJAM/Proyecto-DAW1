@@ -12,7 +12,6 @@ public class Miembro extends Visitante {
     String email;
     String contrasenia;
     Direccion direccion;
-    Wallet wallet;
     Tarjeta tarjeta;
 
     /**
@@ -31,8 +30,7 @@ public class Miembro extends Visitante {
         this.email = (String) elementos.get(2);
         this.contrasenia = (String) elementos.get(3);
         this.direccion = (Direccion) elementos.get(4);
-        this.wallet = (Wallet) elementos.get(5);
-        this.tarjeta = (Tarjeta) elementos.get(6);
+        this.tarjeta = (Tarjeta) elementos.get(5);
     }
 
     /**
@@ -45,13 +43,12 @@ public class Miembro extends Visitante {
      * @param wallet del miembro
      * @param tarjeta del miembro
     */
-    public Miembro(String uid, DatosPersonales datosPersonales, String email, String contrasenia, Direccion direccion, Wallet wallet, Tarjeta tarjeta) {
+    public Miembro(String uid, DatosPersonales datosPersonales, String email, String contrasenia, Direccion direccion, Tarjeta tarjeta) {
         super(uid);
         this.datosPersonales = datosPersonales;
         this.email = email;
         this.contrasenia = contrasenia;
         this.direccion = direccion;
-        this.wallet = wallet;
         this.tarjeta = tarjeta;
     }
 
@@ -102,13 +99,7 @@ public class Miembro extends Visitante {
         this.direccion = direccion;
     }
 
-    public Wallet getWallet() {
-        return this.wallet;
-    }
-
-    public void setWallet(Wallet wallet) {
-        this.wallet = wallet;
-    }
+   
 
     public Tarjeta getTarjeta() {
         return this.tarjeta;
@@ -124,8 +115,9 @@ public class Miembro extends Visitante {
     @Override
     public String toString() {
         return "Miembro [contrasenia=" + contrasenia + ", datosPersonales=" + datosPersonales + ", direccion="
-                + direccion + ", email=" + email + ", tarjeta=" + tarjeta + ", wallet=" + wallet + "]";
+                + direccion + ", email=" + email + ", tarjeta=" + tarjeta + "]";
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -135,8 +127,9 @@ public class Miembro extends Visitante {
             return false;
         }
         Miembro miembro = (Miembro) o;
-        return Objects.equals(uid, miembro.uid) && Objects.equals(datosPersonales, miembro.datosPersonales) && Objects.equals(email, miembro.email) && Objects.equals(contrasenia, miembro.contrasenia) && Objects.equals(direccion, miembro.direccion) && Objects.equals(wallet, miembro.wallet) && Objects.equals(tarjeta, miembro.tarjeta);
+        return Objects.equals(datosPersonales, miembro.datosPersonales) && Objects.equals(email, miembro.email) && Objects.equals(contrasenia, miembro.contrasenia) && Objects.equals(direccion, miembro.direccion) && Objects.equals(tarjeta, miembro.tarjeta);
     }
+    
 
     
 }

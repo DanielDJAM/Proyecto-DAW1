@@ -130,6 +130,7 @@ public class DireccionModelo {
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
+                direccion = new Direccion();
                 direccion.setIdDireccion(resultSet.getString("idDireccion"));
                 direccion.setCodigoPostal(resultSet.getString("codigoPostal"));
                 direccion.setCalle(resultSet.getString("calle")); 

@@ -48,9 +48,7 @@ public class MiembroController {
         if (miembro.getDireccion() == null ) {
             mensaje += "Los datos de direccion estan vacios";
         }
-        if (miembro.getWallet() == null) {
-            mensaje += "Los datos de la cartera estan vacios ";
-        }
+       
         if (miembro.getTarjeta() == null) {
             mensaje += "Los datos de la tarjeta estan vacios";
         }
