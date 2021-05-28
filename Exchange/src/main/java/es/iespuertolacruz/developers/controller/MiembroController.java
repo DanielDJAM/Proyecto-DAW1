@@ -11,7 +11,7 @@ import es.iespuertolacruz.developers.modelo.MiembroModelo;
 public class MiembroController {
 
     private static final String EL_UID_ESTA_VACIO = "El UID esta vacio";
-    private static final int EDAD_MINIMA = 18;
+  
     MiembroModelo miembroModelo;
 
     /**
@@ -91,7 +91,6 @@ public class MiembroController {
      * Metodo para modificar de la clase MiembroController.
      * 
      * @param miembro  a modificar.
-     * @param miembro2 miembro con modificaciones.
      * @throws FicheroException
      * @throws BbddException
      * @throws MiembroException

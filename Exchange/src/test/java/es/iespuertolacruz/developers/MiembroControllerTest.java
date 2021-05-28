@@ -12,7 +12,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import es.iespuertolacruz.developers.api.DatosPersonales;
+import es.iespuertolacruz.developers.api.Direccion;
 import es.iespuertolacruz.developers.api.Miembro;
+import es.iespuertolacruz.developers.api.Tarjeta;
 import es.iespuertolacruz.developers.controller.MiembroController;
 import es.iespuertolacruz.developers.excepcion.BbddException;
 import es.iespuertolacruz.developers.excepcion.FicheroException;
@@ -30,6 +32,8 @@ public class MiembroControllerTest extends UtilidadesTest {
     Miembro miembro2;
     Miembro miembro3;
     DatosPersonales datosPersonales;
+    Direccion direccion;
+    Tarjeta tarjeta;
     Fichero fichero;
 
     @BeforeEach
@@ -46,7 +50,7 @@ public class MiembroControllerTest extends UtilidadesTest {
         }
 
         if (miembro == null) {
-            miembro = crearMiembro("1000","12345678A","daniel","exposito",25);
+            miembro = crearMiembro(null, null, null, null, null, null);
         }
         if (miembro2 == null) {
             miembro2 = crearMiembro(null, null, null, null, 0);
@@ -71,7 +75,7 @@ public class MiembroControllerTest extends UtilidadesTest {
 
     @AfterEach
     public void after() {
-        try {miembro.setNombre("pepe");
+        try {
             miembroController.eliminar(miembro);
             miembroController.eliminar(miembro2);
         } catch (MiembroException e) {

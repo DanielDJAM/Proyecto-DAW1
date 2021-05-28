@@ -70,7 +70,7 @@ public class DatosPersonalesModelo {
      * @return datos personales del miembro
      * @throws BbddException
      */
-    public DatosPersonales buscarMoneda(String dni) throws BbddException {
+    public DatosPersonales buscarDatosPersonales(String dni) throws BbddException {
 
         return obtenerDatosPersonales(dni);
           
