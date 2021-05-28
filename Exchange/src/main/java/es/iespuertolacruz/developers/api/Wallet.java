@@ -4,26 +4,17 @@ import java.util.Objects;
 
 public class Wallet {
 
-    String ticket;
-    String nombreMoneda;
-    double cantidad;
-    double total;
+    String idWallet;
     String uid;
 
     /**
      * Constructor de la clase Wallet
-     * @param ticket de la moneda
-     * @param nombreMoneda de la moneda
-     * @param cantidad a guardar en la wallet
-     * @param total precio total de todas las monedas actualizado.
+     * @param idWallet de la moneda
      * @param uid del propietario de la cartera.
      */
 
-    public Wallet(String ticket, String nombreMoneda, double cantidad, double total, String uid) {
-        this.ticket = ticket;
-        this.nombreMoneda = nombreMoneda;
-        this.cantidad = cantidad;
-        this.total = total;
+    public Wallet(String idWallet, String uid) {
+        this.idWallet = idWallet;
         this.uid = uid;
     }
 
@@ -31,36 +22,12 @@ public class Wallet {
      * GETTERS y SETTERS de la clase Wallet.
      */
 
-    public String getTicket() {
-        return ticket;
+    public String getIdWallet() {
+        return idWallet;
     }
 
-    public void setTicket(String ticket) {
-        this.ticket = ticket;
-    }
-
-    public String getNombreMoneda() {
-        return nombreMoneda;
-    }
-
-    public void setNombreMoneda(String nombreMoneda) {
-        this.nombreMoneda = nombreMoneda;
-    }
-
-    public double getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(double cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    public double getTotal() {
-        return total;
-    }
-
-    public void setTotal(double total) {
-        this.total = total;
+    public void setIdWallet(String idWallet) {
+        this.idWallet = idWallet;
     }
 
     public String getUid() {
@@ -71,10 +38,12 @@ public class Wallet {
         this.uid = uid;
     }
 
+    
+
+
     @Override
     public String toString() {
-        return "Wallet [cantidad=" + cantidad + ", nombreMoneda=" + nombreMoneda + 
-        ", ticket=" + ticket + ", total="+ total + ", uid=" + uid + "]";
+        return "Wallet [idWallet=" + idWallet + ", uid=" + uid + "]";
     }
 
 
@@ -86,7 +55,6 @@ public class Wallet {
             return false;
         }
         Wallet wallet = (Wallet) o;
-        return Objects.equals(ticket, wallet.ticket) && Objects.equals(nombreMoneda, wallet.nombreMoneda) && cantidad == wallet.cantidad && total == wallet.total && uid == wallet.uid;
+        return Objects.equals(idWallet, wallet.idWallet) && Objects.equals(uid, wallet.uid);
     }
-
 }

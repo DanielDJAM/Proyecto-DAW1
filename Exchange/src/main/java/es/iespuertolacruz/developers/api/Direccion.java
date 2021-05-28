@@ -6,7 +6,6 @@ public class Direccion {
     String idDireccion;
     String codigoPostal;
     String calle;
-    int numero;
     String puerta;
     String provincia;
     String pais;
@@ -19,17 +18,15 @@ public class Direccion {
      * 
      * @param codigoPostal del miembro
      * @param calle        del domicilio
-     * @param numero       de la calle
      * @param puerta       del domicilio
      * @param provincia    del miembro
      * @param pais         del miembro
      */
-    public Direccion(String idDireccion, String codigoPostal, String calle, int numero, String puerta,
+    public Direccion(String idDireccion, String codigoPostal, String calle, String puerta,
             String provincia, String pais) {
         this.idDireccion = idDireccion;
         this.codigoPostal = codigoPostal;
         this.calle = calle;
-        this.numero = numero;
         this.puerta = puerta;
         this.provincia = provincia;
         this.pais = pais;
@@ -39,11 +36,11 @@ public class Direccion {
      * GETTERS y SETTERS de la clase Direccion
      */
 
-    public String getidDireccion() {
+    public String getIdDireccion() {
         return idDireccion;
     }
 
-    public void setidDireccion(String idDireccion) {
+    public void setIdDireccion(String idDireccion) {
         this.idDireccion = idDireccion;
     }
 
@@ -61,14 +58,6 @@ public class Direccion {
 
     public void setCalle(String calle) {
         this.calle = calle;
-    }
-
-    public int getNumero() {
-        return numero;
-    }
-
-    public void setNumero(int numero) {
-        this.numero = numero;
     }
 
     public String getPuerta() {
@@ -98,7 +87,7 @@ public class Direccion {
     @Override
     public String toString() {
         return "Direccion"  + idDireccion + "Calle ="
-        + calle + ", codigoPostal=" + codigoPostal + ", numero=" + numero + ", pais=" + pais + ", provincia=" + provincia + ", puerta=" + puerta + "]";
+        + calle + ", codigoPostal=" + codigoPostal +  ", pais=" + pais + ", provincia=" + provincia + ", puerta=" + puerta + "]";
     }
 
 
@@ -110,7 +99,7 @@ public class Direccion {
             return false;
         }
         Direccion direccion = (Direccion) o;
-        return Objects.equals(idDireccion, direccion.idDireccion) && Objects.equals(codigoPostal, direccion.codigoPostal) && Objects.equals(calle, direccion.calle) && numero == direccion.numero && Objects.equals(puerta, direccion.puerta) && Objects.equals(provincia, direccion.provincia) && Objects.equals(pais, direccion.pais);
+        return Objects.equals(idDireccion, direccion.idDireccion) && Objects.equals(codigoPostal, direccion.codigoPostal) && Objects.equals(calle, direccion.calle) && Objects.equals(puerta, direccion.puerta) && Objects.equals(provincia, direccion.provincia) && Objects.equals(pais, direccion.pais);
     }
 
 

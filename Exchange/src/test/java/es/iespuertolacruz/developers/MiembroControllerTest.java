@@ -29,6 +29,7 @@ public class MiembroControllerTest extends UtilidadesTest {
     Miembro miembro;
     Miembro miembro2;
     Miembro miembro3;
+    DatosPersonales datosPersonales;
     Fichero fichero;
 
     @BeforeEach
@@ -70,7 +71,7 @@ public class MiembroControllerTest extends UtilidadesTest {
 
     @AfterEach
     public void after() {
-        try {
+        try {miembro.setNombre("pepe");
             miembroController.eliminar(miembro);
             miembroController.eliminar(miembro2);
         } catch (MiembroException e) {
@@ -145,7 +146,12 @@ public class MiembroControllerTest extends UtilidadesTest {
  
     @Test
     public void modificarMiembroTest() {
-        
+        datosPersonales = null;
+        datosPersonales.setDni("12345678A");
+        datosPersonales.setNombre("Sergio");
+        datosPersonales.setApellidos("yoquese");
+        datosPersonales.setEdad(20);
+        miembro.setDatosPersonales(datosPersonales);
         try {
             miembroController.modificar(miembro);
             
