@@ -19,11 +19,7 @@ public class UtilidadesTest {
         } else {
             miembro = new Miembro();
             miembro.setUid(UID);
-            miembro.setDni(DNI);
-            miembro.setNombre(NOMBRE);
-            miembro.setApellidos(APELLIDOS);
-            miembro.setEdad(EDAD);
-            
+            miembro.getDatosPersonales().getDni();
         }
         return miembro;
 
