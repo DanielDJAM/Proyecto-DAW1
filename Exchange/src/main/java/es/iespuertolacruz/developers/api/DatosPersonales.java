@@ -4,10 +4,11 @@ import java.util.Objects;
 
 public class DatosPersonales {
 
+    String dni;
     String nombre;
     String apellidos;
     int edad;
-    String dni;
+  
 
     
     public DatosPersonales() {
@@ -21,11 +22,12 @@ public class DatosPersonales {
      * @param dni de miembro
      */
 
-    public DatosPersonales(String nombre, String apellidos, int edad, String dni) {
+    public DatosPersonales(String dni, String nombre, String apellidos, int edad) {
+        this.dni = dni;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.edad = edad;
-        this.dni = dni;
+        
     }
 
     /**

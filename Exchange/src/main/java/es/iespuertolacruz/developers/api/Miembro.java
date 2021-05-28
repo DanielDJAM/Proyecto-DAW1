@@ -43,23 +43,12 @@ public class Miembro extends Visitante {
      * 
      * @param uid             del miembro
      * @param datosPersonales del miembro
-<<<<<<< HEAD
      * @param email del miembro
      * @param contrasenia del miembro
      * @param direccion del miembro
      * @param tarjeta del miembro
     */
     public Miembro(String uid, DatosPersonales datosPersonales, String email, String contrasenia, Direccion direccion, Tarjeta tarjeta) {
-=======
-     * @param email           del miembro
-     * @param contrasenia     del miembro
-     * @param direccion       del miembro
-     * @param wallet          del miembro
-     * @param tarjeta         del miembro
-     */
-    public Miembro(String uid, DatosPersonales datosPersonales, String email, String contrasenia, Direccion direccion,
-            Tarjeta tarjeta) {
->>>>>>> 320c403f5c7e1e408ca7ee79e86bc2b45d530883
         super(uid);
         this.datosPersonales = datosPersonales;
         this.email = email;
