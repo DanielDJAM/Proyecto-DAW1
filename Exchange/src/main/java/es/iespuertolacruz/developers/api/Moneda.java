@@ -9,6 +9,10 @@ public class Moneda {
     double valor;
     
 
+
+    public Moneda() {
+    }
+
     /**
      * Constructor de la clase Moneda
      */

@@ -91,10 +91,10 @@ public class MonedaModelo {
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
-                String nombreMoneda = resultSet.getString("nombreMoneda");
-                String ticket = resultSet.getString("ticket");
-                double valor = resultSet.getDouble("valor");
-                moneda = new Moneda(nombreMoneda, ticket, valor);
+                moneda = new Moneda();
+                moneda.setTicket(resultSet.getString("ticket"));
+                moneda.setNombreMoneda(resultSet.getString("nombreMoneda"));
+                moneda.setValor(resultSet.getDouble("valor"));
                 listaMonedas.add(moneda);
             }
         } catch (Exception exception) {

@@ -110,10 +110,11 @@ public class WalletModelo {
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
-                String idWallet = resultSet.getString("idWallet");
-                String uid = resultSet.getString("uid");
+                wallet = new Wallet();
 
-                wallet = new Wallet(idWallet, uid);
+                wallet.setIdWallet(resultSet.getString("idWallet"));
+                wallet.setUid(resultSet.getString("uid"));
+
                 listaWalletes.add(wallet);
             }
         } catch (Exception exception) {

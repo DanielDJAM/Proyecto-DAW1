@@ -7,6 +7,10 @@ public class Wallet {
     String idWallet;
     String uid;
 
+
+    public Wallet() {
+    }
+
     /**
      * Constructor de la clase Wallet
      * @param idWallet de la moneda
