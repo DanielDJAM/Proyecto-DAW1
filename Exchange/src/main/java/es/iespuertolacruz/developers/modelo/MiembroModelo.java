@@ -37,7 +37,6 @@ public class MiembroModelo {
                 + "', '" + miembro.getEmail() 
                 + "', '" + miembro.getContrasenia()
                 + "', '" + miembro.getDireccion() 
-                + "', '" + miembro.getWallet() 
                 + "','" + miembro.getTarjeta() 
                 + "')";
         persistencia.actualizar(sql);
