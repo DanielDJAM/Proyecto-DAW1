@@ -3,7 +3,7 @@ package es.iespuertolacruz.developers.api;
 import java.util.Objects;
 
 public class Direccion {
-    String id_direccion;
+    String idDireccion;
     String codigoPostal;
     String calle;
     int numero;
@@ -24,9 +24,9 @@ public class Direccion {
      * @param provincia    del miembro
      * @param pais         del miembro
      */
-    public Direccion(String id_direccion, String codigoPostal, String calle, int numero, String puerta,
+    public Direccion(String idDireccion, String codigoPostal, String calle, int numero, String puerta,
             String provincia, String pais) {
-        this.id_direccion = id_direccion;
+        this.idDireccion = idDireccion;
         this.codigoPostal = codigoPostal;
         this.calle = calle;
         this.numero = numero;
@@ -39,12 +39,12 @@ public class Direccion {
      * GETTERS y SETTERS de la clase Direccion
      */
 
-    public String getId_direccion() {
-        return id_direccion;
+    public String getidDireccion() {
+        return idDireccion;
     }
 
-    public void setId_direccion(String id_direccion) {
-        this.id_direccion = id_direccion;
+    public void setidDireccion(String idDireccion) {
+        this.idDireccion = idDireccion;
     }
 
     public String getCodigoPostal() {
@@ -97,7 +97,7 @@ public class Direccion {
 
     @Override
     public String toString() {
-        return "Direccion"  + id_direccion + "Calle ="
+        return "Direccion"  + idDireccion + "Calle ="
         + calle + ", codigoPostal=" + codigoPostal + ", numero=" + numero + ", pais=" + pais + ", provincia=" + provincia + ", puerta=" + puerta + "]";
     }
 
@@ -110,7 +110,7 @@ public class Direccion {
             return false;
         }
         Direccion direccion = (Direccion) o;
-        return Objects.equals(id_direccion, direccion.id_direccion) && Objects.equals(codigoPostal, direccion.codigoPostal) && Objects.equals(calle, direccion.calle) && numero == direccion.numero && Objects.equals(puerta, direccion.puerta) && Objects.equals(provincia, direccion.provincia) && Objects.equals(pais, direccion.pais);
+        return Objects.equals(idDireccion, direccion.idDireccion) && Objects.equals(codigoPostal, direccion.codigoPostal) && Objects.equals(calle, direccion.calle) && numero == direccion.numero && Objects.equals(puerta, direccion.puerta) && Objects.equals(provincia, direccion.provincia) && Objects.equals(pais, direccion.pais);
     }
 
 

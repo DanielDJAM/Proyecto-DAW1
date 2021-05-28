@@ -3,7 +3,8 @@ package es.iespuertolacruz.developers.api;
 import java.util.Objects;
 
 public class Tarjeta  {
-    String id_tarjeta;
+
+    String idTarjeta;
     String titular;
     String fechaCaducidad;
     int cvv;
@@ -16,19 +17,19 @@ public class Tarjeta  {
      * @param cvv de la tarjeta
      */
 
-    public Tarjeta(String id_tarjeta, String titular, String fechaCaducidad, int cvv) {
-        this.id_tarjeta = id_tarjeta;
+    public Tarjeta(String idTarjeta, String titular, String fechaCaducidad, int cvv) {
+        this.idTarjeta = idTarjeta;
         this.titular = titular;
         this.fechaCaducidad = fechaCaducidad;
         this.cvv = cvv;
     }
 
-    public String getId_tarjeta() {
-        return id_tarjeta;
+    public String getidTarjeta() {
+        return idTarjeta;
     }
 
-    public void setId_tarjeta(String id_tarjeta) {
-        this.id_tarjeta = id_tarjeta;
+    public void setidTarjeta(String idTarjeta) {
+        this.idTarjeta = idTarjeta;
     }
 
     public String getTitular() {
@@ -65,12 +66,12 @@ public class Tarjeta  {
             return false;
         }
         Tarjeta tarjeta = (Tarjeta) o;
-        return Objects.equals(id_tarjeta, tarjeta.id_tarjeta) && Objects.equals(titular, tarjeta.titular) && Objects.equals(fechaCaducidad, tarjeta.fechaCaducidad) && cvv == tarjeta.cvv;
+        return Objects.equals(idTarjeta, tarjeta.idTarjeta) && Objects.equals(titular, tarjeta.titular) && Objects.equals(fechaCaducidad, tarjeta.fechaCaducidad) && cvv == tarjeta.cvv;
     }
 
     @Override
     public String toString() {
-        return "Tarjeta [cvv=" + cvv + ", fechaCaducidad=" + fechaCaducidad + ", id_tarjeta=" + id_tarjeta
+        return "Tarjeta [cvv=" + cvv + ", fechaCaducidad=" + fechaCaducidad + ", idTarjeta=" + idTarjeta
                 + ", titular=" + titular + "]";
     }
 
