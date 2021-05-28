@@ -26,12 +26,13 @@ public class MonedaController {
             mensaje = "El moneda es nulo";
             throw new MonedaException(mensaje);
         }
-        if(moneda.getNombreMoneda() == null || moneda.getNombreMoneda().isEmpty()) {
-            mensaje = "El nomrbe de la moneda es nulo o vacio,";
-        }
         if (moneda.getTicket() == null || moneda.getTicket().isEmpty()) {
             mensaje += "El ticket es nulo o vacio,";
         }
+        if(moneda.getNombreMoneda() == null || moneda.getNombreMoneda().isEmpty()) {
+            mensaje = "El nomrbe de la moneda es nulo o vacio,";
+        }
+       
         if (moneda.getValor() < 0 ) {
             mensaje += "El valor de la moneda es menor que 0";
         }
