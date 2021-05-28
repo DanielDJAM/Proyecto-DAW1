@@ -3,6 +3,7 @@ package es.iespuertolacruz.developers.api;
 import java.util.Objects;
 
 public class Direccion {
+    
     String idDireccion;
     String codigoPostal;
     String calle;

@@ -14,10 +14,15 @@ public class Miembro extends Visitante {
     Direccion direccion;
     Tarjeta tarjeta;
 
+    public Miembro() {
+
+    }
+
     /**
-    * Constructor que recibe una cadena de text
-    * @param cadena con la informacion
-    */
+     * Constructor que recibe una cadena de text
+     * 
+     * @param cadena con la informacion
+     */
     public Miembro(String cadena) {
         super();
         ArrayList<Object> elementos = new ArrayList<>();
@@ -35,14 +40,26 @@ public class Miembro extends Visitante {
 
     /**
      * Constructor con todos los parametros de la clase Miembro
-     * @param uid del miembro
+     * 
+     * @param uid             del miembro
      * @param datosPersonales del miembro
+<<<<<<< HEAD
      * @param email del miembro
      * @param contrasenia del miembro
      * @param direccion del miembro
      * @param tarjeta del miembro
     */
     public Miembro(String uid, DatosPersonales datosPersonales, String email, String contrasenia, Direccion direccion, Tarjeta tarjeta) {
+=======
+     * @param email           del miembro
+     * @param contrasenia     del miembro
+     * @param direccion       del miembro
+     * @param wallet          del miembro
+     * @param tarjeta         del miembro
+     */
+    public Miembro(String uid, DatosPersonales datosPersonales, String email, String contrasenia, Direccion direccion,
+            Tarjeta tarjeta) {
+>>>>>>> 320c403f5c7e1e408ca7ee79e86bc2b45d530883
         super(uid);
         this.datosPersonales = datosPersonales;
         this.email = email;
@@ -50,7 +67,6 @@ public class Miembro extends Visitante {
         this.direccion = direccion;
         this.tarjeta = tarjeta;
     }
-
 
     /**
      * Getters y Setters de la clase Miembro
@@ -98,8 +114,6 @@ public class Miembro extends Visitante {
         this.direccion = direccion;
     }
 
-   
-
     public Tarjeta getTarjeta() {
         return this.tarjeta;
     }
@@ -108,15 +122,11 @@ public class Miembro extends Visitante {
         this.tarjeta = tarjeta;
     }
 
-   
-
-
     @Override
     public String toString() {
         return "Miembro [contrasenia=" + contrasenia + ", datosPersonales=" + datosPersonales + ", direccion="
                 + direccion + ", email=" + email + ", tarjeta=" + tarjeta + "]";
     }
-
 
     @Override
     public boolean equals(Object o) {
@@ -126,9 +136,9 @@ public class Miembro extends Visitante {
             return false;
         }
         Miembro miembro = (Miembro) o;
-        return Objects.equals(datosPersonales, miembro.datosPersonales) && Objects.equals(email, miembro.email) && Objects.equals(contrasenia, miembro.contrasenia) && Objects.equals(direccion, miembro.direccion) && Objects.equals(tarjeta, miembro.tarjeta);
+        return Objects.equals(datosPersonales, miembro.datosPersonales) && Objects.equals(email, miembro.email)
+                && Objects.equals(contrasenia, miembro.contrasenia) && Objects.equals(direccion, miembro.direccion)
+                && Objects.equals(tarjeta, miembro.tarjeta);
     }
-    
 
-    
 }

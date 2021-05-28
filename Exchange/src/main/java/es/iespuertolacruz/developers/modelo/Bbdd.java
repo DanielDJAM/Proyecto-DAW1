@@ -15,7 +15,7 @@ public class Bbdd {
     private static final String TABLE = "TABLE";
     Direccion direccion;
 
-    private static final String NOMBRE_TABLAS = "Miembro,Direccion,Moneda,Wallet,Mercado";
+    private static final String NOMBRE_TABLAS = "Direccion,DatosPersonales,Tarjeta,Miembro,Wallet,Moneda,Mercado,";
     private String driver;
     private String url;
     private String miembro;
