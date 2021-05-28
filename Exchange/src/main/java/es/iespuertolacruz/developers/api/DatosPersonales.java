@@ -9,6 +9,10 @@ public class DatosPersonales {
     int edad;
     String dni;
 
+    
+    public DatosPersonales() {
+    }
+
     /**
      * Constructor de la clase DatosPersonales
      * @param nombre de miembro

@@ -9,6 +9,11 @@ public class Tarjeta  {
     String fechaCaducidad;
     int cvv;
 
+
+    
+    public Tarjeta() {
+    }
+
     /**
      * Constructor de la clase Tarjeta
      * @param titular de la tarjeta

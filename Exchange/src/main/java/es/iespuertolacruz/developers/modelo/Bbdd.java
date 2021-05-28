@@ -7,8 +7,6 @@ import java.util.Collections;
 import java.util.List;
 
 import es.iespuertolacruz.developers.api.Direccion;
-import es.iespuertolacruz.developers.api.Moneda;
-import es.iespuertolacruz.developers.api.Miembro;
 import es.iespuertolacruz.developers.excepcion.BbddException;
 import es.iespuertolacruz.developers.excepcion.FicheroException;
 
@@ -92,6 +90,22 @@ public class Bbdd {
         }
 
     }
+
+    public ResultSet buscarElemento(String sql) throws BbddException{
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+            resultSet = preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            throw new BbddException("Se ha producido un error al buscar elemento Bbdd", e);
+        } 
+         
+         
+         return resultSet;
+     }
 
     /**
      * Metodo encargado de realizar la actualizacion de la BBDD
