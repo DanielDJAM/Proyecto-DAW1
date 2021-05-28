@@ -15,6 +15,7 @@ public class MonedaModelo {
 
     /**
      * Constructor por defecto de la clase MonedaModelo
+     * 
      * @throws BbddException
      * @throws FicheroException
      * @throws SQLException
@@ -23,15 +24,15 @@ public class MonedaModelo {
         persistencia = new SqliteDb(null, null);
     }
 
-      /**
+    /**
      * Metodo que permiter insertar una moneda en la DB
      * 
      * @param moneda a insertar
      * @throws BbddException controlada
      */
     public void insertar(Moneda moneda) throws BbddException {
-        String sql = "INSERT INTO Moneda (nombreMoneda, ticket, valor)" + " VALUES ('" + moneda.getNombreMoneda()
-                + "', '" + moneda.getTicket() + "'," + "'" + moneda.getValor() + "')";
+        String sql = "INSERT INTO Moneda (ticket, nombreMoneda, valor)" + " VALUES ('" + moneda.getTicket() + "', '"
+                + moneda.getNombreMoneda() + "', '" + moneda.getValor() + "')";
         persistencia.actualizar(sql);
     }
 
@@ -67,10 +68,9 @@ public class MonedaModelo {
      */
     public Moneda buscarMoneda(String ticket) throws BbddException {
 
-     return obtenerMoneda(ticket);
-       
-   }
+        return obtenerMoneda(ticket);
 
+    }
 
     /**
      * Funcion que realiza la consulta sobre la BBDD y la tabla Moneda
@@ -105,8 +105,6 @@ public class MonedaModelo {
         return listaMonedas;
     }
 
-  
-
     /**
      * Funcion que obtiene el listado de todas las monedas
      * 
@@ -118,8 +116,6 @@ public class MonedaModelo {
         return obtenerListadoMoneda(sql);
     }
 
-    
-
     /**
      * Funcion que obtiene una moneda
      * 
@@ -130,14 +126,11 @@ public class MonedaModelo {
     public Moneda obtenerMoneda(String ticket) throws BbddException {
         Moneda moneda = null;
         ArrayList<Moneda> listaMonedas = null;
-        String sql = "SELECT * FROM Moneda where ticket = ";
-        sql = sql + "'" + ticket + "'";
+        String sql = "SELECT * FROM Moneda where ticket = '" + ticket + "'";
         listaMonedas = obtenerListadoMoneda(sql);
         if (!listaMonedas.isEmpty()) {
             moneda = listaMonedas.get(0);
         }
-
         return moneda;
-
     }
 }
