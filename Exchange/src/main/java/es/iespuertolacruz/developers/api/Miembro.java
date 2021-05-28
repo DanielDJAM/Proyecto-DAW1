@@ -40,7 +40,6 @@ public class Miembro extends Visitante {
      * @param email del miembro
      * @param contrasenia del miembro
      * @param direccion del miembro
-     * @param wallet del miembro
      * @param tarjeta del miembro
     */
     public Miembro(String uid, DatosPersonales datosPersonales, String email, String contrasenia, Direccion direccion, Tarjeta tarjeta) {

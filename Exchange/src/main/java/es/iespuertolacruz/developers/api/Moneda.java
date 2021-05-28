@@ -4,8 +4,8 @@ import java.util.Objects;
 
 public class Moneda {
 
-    String nombreMoneda;
     String ticket;
+    String nombreMoneda;
     double valor;
     
 
@@ -16,9 +16,9 @@ public class Moneda {
     /**
      * Constructor de la clase Moneda
      */
-    public Moneda(String nombreMoneda, String ticket, double valor) {
-        this.nombreMoneda = nombreMoneda;
+    public Moneda(String ticket, String nombreMoneda, double valor) {
         this.ticket = ticket;
+        this.nombreMoneda = nombreMoneda;
         this.valor = valor;
     }
 

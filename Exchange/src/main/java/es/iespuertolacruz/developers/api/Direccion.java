@@ -22,8 +22,7 @@ public class Direccion {
      * @param provincia    del miembro
      * @param pais         del miembro
      */
-    public Direccion(String idDireccion, String codigoPostal, String calle, String puerta,
-            String provincia, String pais) {
+    public Direccion(String idDireccion, String codigoPostal, String calle, String puerta,String provincia, String pais) {
         this.idDireccion = idDireccion;
         this.codigoPostal = codigoPostal;
         this.calle = calle;
