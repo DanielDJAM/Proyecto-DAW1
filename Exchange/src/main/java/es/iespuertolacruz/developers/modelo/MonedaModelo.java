@@ -1,6 +1,10 @@
 package es.iespuertolacruz.developers.modelo;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 import es.iespuertolacruz.developers.api.Moneda;
 import es.iespuertolacruz.developers.excepcion.BbddException;
@@ -63,7 +67,77 @@ public class MonedaModelo {
      */
     public Moneda buscarMoneda(String ticket) throws BbddException {
 
-     return persistencia.obtenerMoneda(ticket);
+     return obtenerMoneda(ticket);
        
    }
+
+
+    /**
+     * Funcion que realiza la consulta sobre la BBDD y la tabla Moneda
+     * 
+     * @param sql de la consulta
+     * @return lista de resultados
+     * @throws BbddException Error controlado
+     */
+    private ArrayList<Moneda> obtenerListadoMoneda(String sql) throws BbddException {
+        ArrayList<Moneda> listaMonedas = new ArrayList<>();
+
+        Moneda moneda = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+        Connection connection = null;
+        try {
+            connection = persistencia.getConnection();
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                String nombreMoneda = resultSet.getString("nombreMoneda");
+                String ticket = resultSet.getString("ticket");
+                double valor = resultSet.getDouble("valor");
+                moneda = new Moneda(nombreMoneda, ticket, valor);
+                listaMonedas.add(moneda);
+            }
+        } catch (Exception exception) {
+            throw new BbddException("Se ha producido un error realizando la consulta", exception);
+        } finally {
+            persistencia.closeConnection(connection, statement, resultSet);
+        }
+        return listaMonedas;
+    }
+
+  
+
+    /**
+     * Funcion que obtiene el listado de todas las monedas
+     * 
+     * @return lista total
+     * @throws BbddException Error controlado
+     */
+    public ArrayList<Moneda> obtenerListadoMonedas() throws BbddException {
+        String sql = "SELECT * FROM Moneda";
+        return obtenerListadoMoneda(sql);
+    }
+
+    
+
+    /**
+     * Funcion que obtiene una moneda
+     * 
+     * @param
+     * @return lista total
+     * @throws BbddException Error controlado
+     */
+    public Moneda obtenerMoneda(String ticket) throws BbddException {
+        Moneda moneda = null;
+        ArrayList<Moneda> listaMonedas = null;
+        String sql = "SELECT * FROM Moneda where ticket = ";
+        sql = sql + "'" + ticket + "'";
+        listaMonedas = obtenerListadoMoneda(sql);
+        if (!listaMonedas.isEmpty()) {
+            moneda = listaMonedas.get(0);
+        }
+
+        return moneda;
+
+    }
 }
