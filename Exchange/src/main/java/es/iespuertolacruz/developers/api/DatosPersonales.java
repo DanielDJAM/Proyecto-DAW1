@@ -8,6 +8,10 @@ public class DatosPersonales {
     String nombre;
     String apellidos;
     int edad;
+<<<<<<< HEAD
+=======
+  
+>>>>>>> e5cac44f3de73e7f22d621142f11fc78c48385a7
 
     
     public DatosPersonales() {
@@ -26,6 +30,10 @@ public class DatosPersonales {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.edad = edad;
+<<<<<<< HEAD
+=======
+        
+>>>>>>> e5cac44f3de73e7f22d621142f11fc78c48385a7
     }
 
     /**
