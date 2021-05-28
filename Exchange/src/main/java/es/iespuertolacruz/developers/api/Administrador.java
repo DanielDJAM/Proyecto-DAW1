@@ -9,6 +9,20 @@ public class Administrador extends Visitante{
     String email;
     String contrasenia;
 
+
+    /**
+     * Constructor por defecto de la clase Administrador
+     */
+    public Administrador() {
+    }
+
+    /**
+     * Constructor con todos los parametros de la clase Administrador
+     * @param uid del admin
+     * @param datosPersonales del admin
+     * @param email del admin
+     * @param contrasenia del admin
+     */
     public Administrador(String uid, DatosPersonales datosPersonales, String email, String contrasenia) {
         super(uid);
         this.datosPersonales = datosPersonales;

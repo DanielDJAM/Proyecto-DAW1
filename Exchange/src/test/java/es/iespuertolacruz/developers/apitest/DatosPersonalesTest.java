@@ -1,6 +1,10 @@
 package es.iespuertolacruz.developers.apitest;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import es.iespuertolacruz.developers.api.DatosPersonales;
 
@@ -11,24 +15,26 @@ public class DatosPersonalesTest {
 
     @BeforeEach
     public void setUp(){
-        datosPersonales = new DatosPersonales("daniel", "apellidos", 56, "12345678A");
+        datosPersonales = new DatosPersonales("12345678A", "daniel", "apellidos", 56);
     }
 
     @Test
     public void validarTest(){
         datosPersonales = new DatosPersonales();
-        datosPersonales.setTicket("BBB");
-        datosPersonales.setNombreDatosPersonales("Bebeboin");
-        datosPersonales.setValor(546);
+        datosPersonales.setDni("98787978U");
+        datosPersonales.setNombre("Yisus");
+        datosPersonales.setApellidos("ramos");
+        datosPersonales.setEdad(98);
 
-        assertEquals(datosPersonales.getTicket(), "BBB", "El ticket de la datosPersonales no coincide");
-        assertEquals(datosPersonales.getNombreDatosPersonales(), "Bebeboin", "El nombre de la datosPersonales no coincide");
-        assertEquals(datosPersonales.getValor(), 546, "el precio no coincide");
+        assertEquals(datosPersonales.getDni(), "98787978U", "El campo no coincide");
+        assertEquals(datosPersonales.getNombre(), "Yisus", "El campo no coincide");
+        assertEquals(datosPersonales.getApellidos(), "ramos", "El campo no coincide");
+        assertEquals(datosPersonales.getEdad(), 98, "El campo no coincide");
     }
 
     @Test
     public void listarTest(){
-        assertTrue(datosPersonales.toString().contains("AAA"), "No ha listado correctamente");
+        assertTrue(datosPersonales.toString().contains("12345678A"), "No ha listado correctamente");
     }
 
     @Test
@@ -40,9 +46,10 @@ public class DatosPersonalesTest {
     @Test
     public void equalErrorTest(){
         datosPersonales2 = datosPersonales;
-        datosPersonales.setTicket("BBB");
-        datosPersonales.setNombreDatosPersonales("Bebeboin");
-        datosPersonales.setValor(546);
+        datosPersonales.setDni("98787978U");
+        datosPersonales.setNombre("Yisus");
+        datosPersonales.setApellidos("ramos");
+        datosPersonales.setEdad(98);
 
         assertTrue(datosPersonales.equals(datosPersonales2), "Los objetos no deben ser iguales");
     }
