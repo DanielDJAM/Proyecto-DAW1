@@ -10,18 +10,19 @@ public class Tarjeta  {
     int cvv;
 
 
-    
+    /**
+     * Constructor por defecto de la clase Tarjeta
+     */
     public Tarjeta() {
     }
 
     /**
-     * Constructor de la clase Tarjeta
+     * Constructor con todos los parametros de la clase Tarjeta
+     * @param idTarjeta de la tarjeta
      * @param titular de la tarjeta
-     * @param numeroCuenta de la tarjeta
      * @param fechaCaducidad de la tarjeta
      * @param cvv de la tarjeta
      */
-
     public Tarjeta(String idTarjeta, String titular, String fechaCaducidad, int cvv) {
         this.idTarjeta = idTarjeta;
         this.titular = titular;
