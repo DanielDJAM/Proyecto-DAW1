@@ -10,7 +10,8 @@ import es.iespuertolacruz.developers.excepcion.FicheroException;
 public class DireccionModelo {
 
     SqliteDb persistencia;
-
+    private static final String TABLA = "Direccion";
+    
     /**
      * Constructor por defecto de la clase DireccionModelo
      * 
@@ -18,7 +19,7 @@ public class DireccionModelo {
      * @throws SQLException
      */
     public DireccionModelo() throws BbddException, FicheroException, SQLException {
-        persistencia = new SqliteDb(null, null);
+        persistencia = new SqliteDb(TABLA,null, null);
     }
 
     /**

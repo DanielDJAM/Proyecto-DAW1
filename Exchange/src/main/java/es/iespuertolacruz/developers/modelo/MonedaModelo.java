@@ -12,6 +12,7 @@ import es.iespuertolacruz.developers.excepcion.FicheroException;
 
 public class MonedaModelo {
     SqliteDb persistencia;
+    private static final String TABLA = "Moneda";
 
     /**
      * Constructor por defecto de la clase MonedaModelo
@@ -21,7 +22,7 @@ public class MonedaModelo {
      * @throws SQLException
      */
     public MonedaModelo() throws BbddException, FicheroException, SQLException {
-        persistencia = new SqliteDb(null, null);
+        persistencia = new SqliteDb(TABLA, null, null);
     }
 
     /**

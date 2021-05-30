@@ -1,4 +1,4 @@
-CREATE TABLE Mercado (
+CREATE TABLE Mercado(
   idMoneda VARCHAR(6) NOT NULL,
   idWallet VARCHAR(12) NOT NULL,
   cantidad DOUBLE(50),

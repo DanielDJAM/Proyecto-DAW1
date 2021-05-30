@@ -15,148 +15,140 @@ import es.iespuertolacruz.developers.api.DatosPersonales;
 import es.iespuertolacruz.developers.api.Direccion;
 import es.iespuertolacruz.developers.api.Miembro;
 import es.iespuertolacruz.developers.api.Tarjeta;
+import es.iespuertolacruz.developers.controller.DatosPersonalesController;
+import es.iespuertolacruz.developers.controller.DireccionController;
 import es.iespuertolacruz.developers.controller.MiembroController;
+import es.iespuertolacruz.developers.controller.MonedaController;
+import es.iespuertolacruz.developers.controller.TarjetaController;
 import es.iespuertolacruz.developers.excepcion.BbddException;
+import es.iespuertolacruz.developers.excepcion.DatosPersonalesException;
+import es.iespuertolacruz.developers.excepcion.DireccionException;
 import es.iespuertolacruz.developers.excepcion.FicheroException;
 import es.iespuertolacruz.developers.excepcion.MiembroException;
-import es.iespuertolacruz.developers.modelo.Fichero;
+import es.iespuertolacruz.developers.excepcion.TarjetaException;
+
 import es.iespuertolacruz.developers.modelo.MiembroModelo;
 
 public class MiembroControllerTest extends UtilidadesTest {
 
-    
     MiembroController miembroController;
     MiembroModelo miembroModelo;
+    DireccionController direccionController;
+    TarjetaController tarjetaController;
+    DatosPersonalesController datosPersonalesController;
+    MonedaController monedaController;
 
     Miembro miembro;
-    Miembro miembro2;
-    Miembro miembro3;
     DatosPersonales datosPersonales;
     Direccion direccion;
     Tarjeta tarjeta;
-    Fichero fichero;
 
     @BeforeEach
     public void setUp() throws BbddException, FicheroException, SQLException {
+        if (datosPersonalesController == null) {
+            datosPersonalesController = new DatosPersonalesController();
+        }
+
+        if (direccionController == null) {
+            direccionController = new DireccionController();
+        }
+
+        if (tarjetaController == null) {
+            tarjetaController = new TarjetaController();
+        }
+
         if (miembroController == null) {
             miembroController = new MiembroController();
         }
-        if (miembroModelo == null) {
-            miembroModelo = new MiembroModelo();
+
+        if (monedaController == null) {
+            monedaController = new MonedaController();
         }
 
-        if (fichero == null) {
-            fichero = new Fichero();
-        }
 
-        if (miembro == null) {
-            miembro = crearMiembro(null, null, null, null, null, null);
-        }
-        
-
-        
-            try {
-                miembroController.insertar(miembro);
-               
-       
-            } catch (MiembroException e) {
-               fail("Fallo al insertar miembro");
-            } catch (BbddException e) {
-                fail("fallo al insertar en la DB");
-            }
-            
-           
     }
 
     @AfterEach
     public void after() {
+
         try {
-           
-           
-    
-    }
-
-    @Test
-    public void insertartest(){
-        try {
-            miembroController.insertar(miembro3);
-            assertEquals(miembro3, miembroController.buscar(miembro3.getUid()), "No se ha encontrado al miembro");
-        } catch (MiembroException | BbddException e) {
-            fail("Error al insertar miembro");
-        }
-    }
-
-
-
-    @Test
-    public void existeTest() {
-        try {
-            miembroController.validar(miembro3);
-        } catch (MiembroException e) {
-            fail("Se ha producido un error validando el miembro no controlado");
-        }
-    }
-
-   
-   
-    @Test
-    public void insertarFailTest() {
-        try {
-            try {
-                miembroController.insertar(miembro);
-            } catch (BbddException e) {
-                fail("Error al insertar en la db");
-            }
-        } catch (MiembroException e) {
-           assertTrue(e.getMessage().contains("ya existe"));
-
-        }
-    }
-     
-      
-    @Test
-    public void buscarTest() {
-        try {
-            assertEquals(miembro, miembroController.buscar(miembro.getUid()), "No se ha encontrado al miembro");
-        } catch (MiembroException | BbddException e) {
-            fail("Error de Miembro buscarTest");
-
-        }
-    }
-    
-    @Test
-    public void eliminarTest() {
-        try {
-            
-            miembroController.eliminar(miembro3);
-            assertTrue(miembroController.buscar(miembro3.getUid()) == null,
-                    "El miembro no se ha borrado correctamente");
-
-        } catch (MiembroException  e) {
-            fail("Fallo al eliminar miembro");
-        } catch (BbddException e){
-            fail("Fallo al eliminar miembro de la db");
-        }
-    }
- 
-    @Test
-    public void modificarMiembroTest() {
-        datosPersonales = null;
-        datosPersonales.setDni("12345678A");
-        datosPersonales.setNombre("Sergio");
-        datosPersonales.setApellidos("yoquese");
-        datosPersonales.setEdad(20);
-        miembro.setDatosPersonales(datosPersonales);
-        try {
-            miembroController.modificar(miembro);
-            
-
-        } catch (MiembroException | BbddException e) {
+            direccionController.eliminar(direccion);
+            tarjetaController.eliminar(tarjeta);
+            datosPersonalesController.eliminar(datosPersonales);
+            miembroController.eliminar(miembro);
+        } catch (DireccionException e) {
             fail(e.getMessage());
-        }
-    }
-   
-     
+        } catch (BbddException e) {
+            fail(e.getMessage());
+        } catch (TarjetaException e) {
+            fail(e.getMessage());
+        } catch (DatosPersonalesException e) {
+            fail(e.getMessage());
+        } catch (MiembroException e) {
+            fail(e.getMessage());
 
+        }
+
+    }
+
+    @Test
+    public void insertarTest() {
+        try {
+            tarjeta = crearTarjeta();
+            tarjetaController.insertar(tarjeta);
+            direccion = crearDireccion();
+            direccionController.insertar(direccion);
+            datosPersonales = crearDatosPersonales();
+            datosPersonalesController.insertar(datosPersonales);
+            miembro = crearMiembro();
+
+            miembroController.insertar(miembro);
+
+        } catch (MiembroException e) {
+            fail(e.getMessage());
+        } catch (BbddException e) {
+            fail(e.getMessage());
+        } catch (DatosPersonalesException e) {
+            fail("datospersonales");
+        } catch (TarjetaException e) {
+            fail("tarjeta");
+        } catch (DireccionException e) {
+            fail("direccion");
+        }
+
+    }
+
+
+    @Test
+    public void insertarMonedaTest() {
+        moneda = crearMoneda();
+       monedaController.insertar(moneda);
+
+    }
+
+
+
+
+    private Object crearMoneda() {
+        return null;
+    }
+
+    private Direccion crearDireccion() {
+        return new Direccion("1111e", "38400", "La laja", "a45", "SC/ Tenerife", "Espania");
+    }
+
+    private DatosPersonales crearDatosPersonales() {
+        return new DatosPersonales("11111111B", "Borja", "Devora", 25);
+
+    }
+
+    private Tarjeta crearTarjeta() {
+        return new Tarjeta("1111e-aaaa", "Borja", "20/5/2090", 108);
+    }
+
+    private Miembro crearMiembro() {
+        return new Miembro("10000", "admin", crearDatosPersonales(), "es@email.com", "1234", crearDireccion(),
+                crearTarjeta());
+    }
 
 }

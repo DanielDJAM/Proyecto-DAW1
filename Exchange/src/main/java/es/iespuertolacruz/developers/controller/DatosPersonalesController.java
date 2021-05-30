@@ -31,7 +31,7 @@ public class DatosPersonalesController {
         String mensaje = "";
 
         if (datosPersonales == null){
-            mensaje = "Los datosPersonales  son nulos";
+            mensaje = "Los datosPersonales son nulos";
             throw new DatosPersonalesException(mensaje);
         }
         if(datosPersonales.getDni() == null || datosPersonales.getDni().isEmpty()) {

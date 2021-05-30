@@ -1,21 +1,25 @@
 package es.iespuertolacruz.developers.modelo;
 
-import java.sql.Connection;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+
 import java.util.ArrayList;
 
-import es.iespuertolacruz.developers.api.Direccion;
+
 import es.iespuertolacruz.developers.api.Miembro;
 import es.iespuertolacruz.developers.excepcion.BbddException;
 import es.iespuertolacruz.developers.excepcion.FicheroException;
 
 public class MiembroModelo {
-
+    private static final String TABLA = "Miembro";
     SqliteDb persistencia;
     DireccionModelo direccionModelo;
+    TarjetaModelo tarjetaModelo;
+    DatosPersonalesModelo datosPersonalesModelo;
 
+
+    
     /**
      * Constructor por defecto de la clase MiembroModelo
      * 
@@ -23,8 +27,11 @@ public class MiembroModelo {
      * @throws SQLException
      */
     public MiembroModelo() throws BbddException, FicheroException, SQLException {
-        persistencia = new SqliteDb(null, null);
+        persistencia = new SqliteDb(TABLA,null, null);
         direccionModelo = new DireccionModelo();
+        tarjetaModelo = new TarjetaModelo();
+        datosPersonalesModelo = new DatosPersonalesModelo();
+
     }
 
     /**
@@ -34,14 +41,14 @@ public class MiembroModelo {
      * @throws BbddException controlada
      */
     public void insertar(Miembro miembro) throws BbddException {
-        String sql = "INSERT INTO Miembro (uid, dni,tipo, email, contrasenia,id_direccion, id_wallet, id_tarjeta)"
+        String sql = "INSERT INTO Miembro (uid, dni,tipo, email, contrasenia,idDireccion,idTarjeta)"
                 + " VALUES ('" + miembro.getUid()
                 + "', '" + miembro.getDatosPersonales().getDni()
                 + "', '" + miembro.getTipoUsuario()
                 + "', '" + miembro.getEmail() 
                 + "', '" + miembro.getContrasenia()
-                + "', '" + miembro.getDireccion() 
-                + "','" + miembro.getTarjeta() 
+                + "', '" + miembro.getDireccion().getIdDireccion() 
+                + "','" + miembro.getTarjeta().getidTarjeta() 
                 + "')";
         persistencia.actualizar(sql);
     }

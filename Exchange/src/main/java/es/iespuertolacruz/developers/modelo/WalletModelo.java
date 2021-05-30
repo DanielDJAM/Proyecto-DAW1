@@ -10,6 +10,7 @@ import es.iespuertolacruz.developers.excepcion.FicheroException;
 public class WalletModelo {
 
     SqliteDb persistencia;
+    private static final String TABLA = "Wallet";
 
     /**
      * Constructor por defecto de la clase WalletModelo
@@ -18,7 +19,7 @@ public class WalletModelo {
      * @throws SQLException
      */
     public WalletModelo() throws BbddException, FicheroException, SQLException {
-        persistencia = new SqliteDb(null, null);
+        persistencia = new SqliteDb(TABLA, null, null);
     }
 
     /**
@@ -28,10 +29,8 @@ public class WalletModelo {
      * @throws BbddException controlada
      */
     public void insertar(Wallet wallet) throws BbddException {
-        String sql = "INSERT INTO Wallet (idWallet, uid)"
-                + " VALUES ('" + wallet.getIdWallet()
-                + "', '" + wallet.getUid()
-                + "')";
+        String sql = "INSERT INTO Wallet (idWallet, uid)" + " VALUES ('" + wallet.getIdWallet() + "', '"
+                + wallet.getUid() + "')";
         persistencia.actualizar(sql);
     }
 
@@ -59,7 +58,7 @@ public class WalletModelo {
 
     }
 
-      /**
+    /**
      * Funcion que obtiene el listado de todas las wallets
      * 
      * @return lista total
@@ -91,7 +90,7 @@ public class WalletModelo {
 
     }
 
-      /**
+    /**
      * Funcion que realiza la consulta sobre la BBDD y la tabla Wallet
      * 
      * @param sql de la consulta
@@ -124,5 +123,5 @@ public class WalletModelo {
         }
         return listaWalletes;
     }
-    
+
 }

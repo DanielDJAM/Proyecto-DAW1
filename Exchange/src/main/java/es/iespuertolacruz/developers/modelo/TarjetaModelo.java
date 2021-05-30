@@ -12,6 +12,7 @@ import es.iespuertolacruz.developers.excepcion.FicheroException;
 
 public class TarjetaModelo {
     SqliteDb persistencia;
+    private static final String TABLA = "Tarjeta";
 
     /**
      * Constructor por defecto de la clase TarjetaModelo
@@ -21,7 +22,7 @@ public class TarjetaModelo {
      * @throws SQLException
      */
     public TarjetaModelo() throws BbddException, FicheroException, SQLException {
-        persistencia = new SqliteDb(null, null);
+        persistencia = new SqliteDb(TABLA, null, null);
     }
 
     /**
@@ -31,7 +32,7 @@ public class TarjetaModelo {
      * @throws BbddException controlada
      */
     public void insertar(Tarjeta tarjeta) throws BbddException {
-        String sql = "INSERT INTO Tarjeta (id_tarjeta, titular, fechaCaducidad, cvv)" + " VALUES ('"
+        String sql = "INSERT INTO Tarjeta (idTarjeta, titular, fechaCaducidad, cvv)" + " VALUES ('"
                 + tarjeta.getidTarjeta() + "', '" + tarjeta.getTitular() + "', '" + tarjeta.getFechaCaducidad() + "', '"
                 + tarjeta.getCvv() + "')";
         persistencia.actualizar(sql);
@@ -44,7 +45,7 @@ public class TarjetaModelo {
      * @throws BbddException controlada
      */
     public void eliminar(Tarjeta tarjeta) throws BbddException {
-        String sql = "DELETE from Tarjeta WHERE id_tarjeta ='" + tarjeta.getidTarjeta() + "'";
+        String sql = "DELETE from Tarjeta WHERE idTarjeta ='" + tarjeta.getidTarjeta() + "'";
         persistencia.actualizar(sql);
 
     }
@@ -82,7 +83,7 @@ public class TarjetaModelo {
             resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
                 tarjeta = new Tarjeta();
-                tarjeta.setidTarjeta(resultSet.getString("id_tarjeta"));
+                tarjeta.setidTarjeta(resultSet.getString("idTarjeta"));
                 tarjeta.setTitular(resultSet.getString("titular"));
                 tarjeta.setFechaCaducidad(resultSet.getString("fechaCaducidad"));
                 tarjeta.setCvv(resultSet.getInt("cvv"));
@@ -97,7 +98,7 @@ public class TarjetaModelo {
         return listaTarjetas;
     }
 
-     /**
+    /**
      * Funcion que obtiene el listado de todas las tarjetas
      * 
      * @return lista total
@@ -118,7 +119,7 @@ public class TarjetaModelo {
     public Tarjeta obtenerTarjeta(String idTarjeta) throws BbddException {
         Tarjeta tarjeta = null;
         ArrayList<Tarjeta> listaTarjetas = null;
-        String sql = "SELECT * FROM Tarjeta where id_tarjeta = ";
+        String sql = "SELECT * FROM Tarjeta where idTarjeta = ";
         sql = sql + "'" + idTarjeta + "'";
         listaTarjetas = obtenerListadoTarjeta(sql);
         if (!listaTarjetas.isEmpty()) {

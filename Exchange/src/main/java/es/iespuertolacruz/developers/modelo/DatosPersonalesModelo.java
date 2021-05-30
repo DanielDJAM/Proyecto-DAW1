@@ -13,6 +13,7 @@ import es.iespuertolacruz.developers.excepcion.FicheroException;
 public class DatosPersonalesModelo {
 
     SqliteDb persistencia;
+    private static final String TABLA = "DatosPersonales";
 
     /**
      * Constructor por defecto de la clase DatosPersonalesModelo
@@ -21,7 +22,7 @@ public class DatosPersonalesModelo {
      * @throws SQLException
      */
     public DatosPersonalesModelo() throws BbddException, FicheroException, SQLException {
-        persistencia = new SqliteDb(null, null);
+        persistencia = new SqliteDb(TABLA, null, null);
     }
 
     /**
@@ -73,8 +74,8 @@ public class DatosPersonalesModelo {
     public DatosPersonales buscarDatosPersonales(String dni) throws BbddException {
 
         return obtenerDatosPersonales(dni);
-          
-      }
+
+    }
 
     /**
      * Funcion que realiza la consulta sobre la BBDD y la tabla DatosPersonales
@@ -133,7 +134,7 @@ public class DatosPersonalesModelo {
     public DatosPersonales obtenerDatosPersonales(String dni) throws BbddException {
         DatosPersonales datosPersonales = null;
         ArrayList<DatosPersonales> listaDatosPersonales = null;
-        String sql = "SELECT * FROM Miembro where uid = ";
+        String sql = "SELECT * FROM DatosPersonales where dni = ";
         sql = sql + "'" + dni + "'";
         listaDatosPersonales = obtenerListadoDatosPersonales(sql);
         if (!listaDatosPersonales.isEmpty()) {
