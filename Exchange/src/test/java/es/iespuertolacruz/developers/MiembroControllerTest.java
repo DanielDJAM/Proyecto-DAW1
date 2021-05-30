@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import es.iespuertolacruz.developers.api.DatosPersonales;
 import es.iespuertolacruz.developers.api.Direccion;
 import es.iespuertolacruz.developers.api.Miembro;
+import es.iespuertolacruz.developers.api.Moneda;
 import es.iespuertolacruz.developers.api.Tarjeta;
 import es.iespuertolacruz.developers.controller.DatosPersonalesController;
 import es.iespuertolacruz.developers.controller.DireccionController;
@@ -25,6 +26,7 @@ import es.iespuertolacruz.developers.excepcion.DatosPersonalesException;
 import es.iespuertolacruz.developers.excepcion.DireccionException;
 import es.iespuertolacruz.developers.excepcion.FicheroException;
 import es.iespuertolacruz.developers.excepcion.MiembroException;
+import es.iespuertolacruz.developers.excepcion.MonedaException;
 import es.iespuertolacruz.developers.excepcion.TarjetaException;
 
 import es.iespuertolacruz.developers.modelo.MiembroModelo;
@@ -42,6 +44,7 @@ public class MiembroControllerTest extends UtilidadesTest {
     DatosPersonales datosPersonales;
     Direccion direccion;
     Tarjeta tarjeta;
+    Moneda moneda;
 
     @BeforeEach
     public void setUp() throws BbddException, FicheroException, SQLException {
@@ -122,15 +125,22 @@ public class MiembroControllerTest extends UtilidadesTest {
     @Test
     public void insertarMonedaTest() {
         moneda = crearMoneda();
-       monedaController.insertar(moneda);
+       try {
+        monedaController.insertar(moneda);
+    } catch (MonedaException e) {
+        fail();
+    } catch (BbddException e) {
+        fail();
+    }
 
     }
 
 
 
 
-    private Object crearMoneda() {
-        return null;
+    private Moneda crearMoneda() {
+
+        return new Moneda("");
     }
 
     private Direccion crearDireccion() {
