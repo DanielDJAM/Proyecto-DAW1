@@ -2,37 +2,31 @@ package es.iespuertolacruz.developers.modelo;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
-import es.iespuertolacruz.developers.api.Direccion;
+
 import es.iespuertolacruz.developers.excepcion.BbddException;
 import es.iespuertolacruz.developers.excepcion.FicheroException;
 
 public class Bbdd {
 
     private static final String TABLE = "TABLE";
-   
-
-    private static final String NOMBRE_TABLAS = "Direccion,DatosPersonales,Tarjeta,Wallet,Moneda,Mercado,Miembro";
-    private String driver;
-    private String url;
-    private String miembro;
-    private String password;
+    protected String nombreTabla;
+    protected String driver;
+    protected String url;
+    protected String miembro;
+    protected String password;
     ArrayList<String> listaTablas;
 
-    public Bbdd(String driver, String url, String miembro, String password)
+
+
+    public Bbdd(String nombreTabla, String driver, String url, String miembro, String password)
             throws FicheroException, BbddException, SQLException {
+        this.nombreTabla = nombreTabla;
         this.driver = driver;
         this.url = url;
         this.miembro = miembro;
         this.password = password;
-        if (listaTablas == null) {
-            listaTablas = new ArrayList<>();
-            String[] nombresTablas = NOMBRE_TABLAS.split(",");
-            Collections.addAll(listaTablas, nombresTablas);
-        }
+
         init();
     }
 
@@ -65,8 +59,6 @@ public class Bbdd {
         ResultSet resultSet = null;
         ArrayList<String> listaTablas = new ArrayList<>();
 
-        String[] convertir = NOMBRE_TABLAS.split(",");
-        List<String> nombreTablas = Arrays.asList(convertir);
 
         try {
             connection = getConnection();
@@ -75,14 +67,14 @@ public class Bbdd {
             while (resultSet.next()) {
                 listaTablas.add(resultSet.getString("TABLE_NAME"));
             }
-            for (String tabla : nombreTablas) {
-                if (!listaTablas.contains(tabla)) {
-                    String sqlCrearTabla = new Fichero().leer("resources/sqlite/" + tabla + "Crear.sql");
+            
+                if (!listaTablas.contains(nombreTabla)) {
+                    String sqlCrearTabla = new Fichero().leer("resources/sqlite/" + nombreTabla + "Crear.sql");
                     actualizar(sqlCrearTabla);
-                    String sqlInsertarDatos = new Fichero().leer("resources/sqlite/" + tabla + "-insertar.sql");
+                    String sqlInsertarDatos = new Fichero().leer("resources/sqlite/" + nombreTabla + "-insertar.sql");
                     actualizar(sqlInsertarDatos);
                 }
-            }
+           
         } catch (Exception e) {
             throw new FicheroException("Se ha producido un error en la inicializacion de la BBDD", e);
         } finally {
@@ -91,7 +83,7 @@ public class Bbdd {
 
     }
 
-    public ResultSet buscarElemento(String sql) throws BbddException{
+    public ResultSet buscarElemento(String sql) throws BbddException {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         Connection connection = null;
@@ -101,11 +93,10 @@ public class Bbdd {
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e) {
             throw new BbddException("Se ha producido un error al buscar elemento Bbdd", e);
-        } 
-         
-         
-         return resultSet;
-     }
+        }
+
+        return resultSet;
+    }
 
     /**
      * Metodo encargado de realizar la actualizacion de la BBDD
@@ -121,14 +112,12 @@ public class Bbdd {
             statement = connection.createStatement();
             statement.executeUpdate(sql); // actualiza la base de datos con la sentencia sql
         } catch (Exception exception) {
-            throw new BbddException("Se ha producido un error realizando la consulta", exception);
+            throw new BbddException("Se ha producido un error realizando la consulta - insertar", exception);
         } finally {
             closeConnection(connection, statement, null);
         }
 
     }
-
-   
 
     protected void closeConnection(Connection connection, Statement statement, ResultSet resultSet)
             throws BbddException {

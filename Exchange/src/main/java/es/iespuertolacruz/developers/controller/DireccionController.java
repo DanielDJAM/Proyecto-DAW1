@@ -75,6 +75,22 @@ public class DireccionController {
         direccionModelo.insertar(direccion);
     }
 
+
+     /**
+     * Metodo para eliminar un miembro
+     * @param miembro a eliminar
+     * @throws FicheroException
+     * @throws MiembroException
+     * @throws BbddException
+     */
+    public void eliminar(Direccion direccion) throws  DireccionException, BbddException{
+        validar(direccion);
+        if (!existe(direccion)) {
+          throw new DireccionException("El miembro no existe");
+        }
+        direccionModelo.eliminar(direccion);
+    }
+
      /**
      * Metodo para modificar de la clase MiembroController.
      * 
