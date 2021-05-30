@@ -39,6 +39,10 @@ public class MiembroController {
         if(miembro.getUid() == null || miembro.getUid().isEmpty()) {
             mensaje = "El UID es nulo o vacio,";
         }
+
+        if(miembro.getTipoUsuario() == null || miembro.getTipoUsuario().isEmpty()) {
+            mensaje = "El tipo usuario es nulo o vacio,";
+        }
         if (miembro.getEmail() == null || miembro.getEmail().isEmpty()) {
             mensaje += "El nombre es nulo o vacio,";
         }

@@ -2,7 +2,7 @@ package es.iespuertolacruz.developers.api;
 
 import java.util.Objects;
 
-public class Administrador extends Visitante{
+public class Administrador extends Usuario{
 
    
     DatosPersonales datosPersonales;
@@ -23,8 +23,9 @@ public class Administrador extends Visitante{
      * @param email del admin
      * @param contrasenia del admin
      */
-    public Administrador(String uid, DatosPersonales datosPersonales, String email, String contrasenia) {
-        super(uid);
+    public Administrador(String uid, String tipoUsuario, DatosPersonales datosPersonales, String email,
+            String contrasenia) {
+        super(uid, tipoUsuario);
         this.datosPersonales = datosPersonales;
         this.email = email;
         this.contrasenia = contrasenia;
@@ -37,6 +38,8 @@ public class Administrador extends Visitante{
     public DatosPersonales getDatosPersonales() {
         return this.datosPersonales;
     }
+
+  
 
     public void setDatosPersonales(DatosPersonales datosPersonales) {
         this.datosPersonales = datosPersonales;

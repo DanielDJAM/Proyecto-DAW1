@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import es.iespuertolacruz.developers.api.Direccion;
 import es.iespuertolacruz.developers.api.Miembro;
 import es.iespuertolacruz.developers.excepcion.BbddException;
 import es.iespuertolacruz.developers.excepcion.FicheroException;
@@ -13,6 +14,7 @@ import es.iespuertolacruz.developers.excepcion.FicheroException;
 public class MiembroModelo {
 
     SqliteDb persistencia;
+    DireccionModelo direccionModelo;
 
     /**
      * Constructor por defecto de la clase MiembroModelo
@@ -22,6 +24,7 @@ public class MiembroModelo {
      */
     public MiembroModelo() throws BbddException, FicheroException, SQLException {
         persistencia = new SqliteDb(null, null);
+        direccionModelo = new DireccionModelo();
     }
 
     /**
@@ -31,9 +34,10 @@ public class MiembroModelo {
      * @throws BbddException controlada
      */
     public void insertar(Miembro miembro) throws BbddException {
-        String sql = "INSERT INTO Miembro (uid, dni, email, contrasenia,id_direccion, id_wallet, id_tarjeta)"
+        String sql = "INSERT INTO Miembro (uid, dni,tipo, email, contrasenia,id_direccion, id_wallet, id_tarjeta)"
                 + " VALUES ('" + miembro.getUid()
                 + "', '" + miembro.getDatosPersonales().getDni()
+                + "', '" + miembro.getTipoUsuario()
                 + "', '" + miembro.getEmail() 
                 + "', '" + miembro.getContrasenia()
                 + "', '" + miembro.getDireccion() 
@@ -119,30 +123,23 @@ public class MiembroModelo {
      */
     private ArrayList<Miembro> obtenerListadoMiembro(String sql) throws BbddException {
         ArrayList<Miembro> listaMiembros = new ArrayList<>();
-
-        Miembro miembro = null;
-        Statement statement = null;
         ResultSet resultSet = null;
-        Connection connection = null;
+        Miembro miembro = null;
+       
         try {
-            connection = persistencia.getConnection();
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery(sql);
+            
+            resultSet = persistencia.buscarElemento(sql);
             while (resultSet.next()) {
-                String uid = resultSet.getString("uid");
-                String dni = resultSet.getString("dni");
-                String nombre = resultSet.getString("nombre");
-                String apellidos = resultSet.getString("apellidos");
-                int edad = resultSet.getInt("edad");
+                miembro = new Miembro();
 
-                // miembro = new Miembro(uid, nombre, apellidos, edad, dni, direccion );
-                // MODIFICAR!!!!!!
+
+
                 listaMiembros.add(miembro);
             }
         } catch (Exception exception) {
             throw new BbddException("Se ha producido un error realizando la consulta", exception);
         } finally {
-            persistencia.closeConnection(connection, statement, resultSet);
+            persistencia.closeConnection(null, null, resultSet);
         }
         return listaMiembros;
     }

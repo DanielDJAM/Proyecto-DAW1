@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import es.iespuertolacruz.developers.api.CuentaBancaria;
+
 import es.iespuertolacruz.developers.api.Direccion;
 import es.iespuertolacruz.developers.api.Tarjeta;
 import es.iespuertolacruz.developers.api.Miembro;
@@ -19,7 +19,6 @@ public class MenuLogin {
 
     Miembro miembro;
     Tarjeta tarjeta;
-    CuentaBancaria cuentaBancaria;
     Direccion direccion;
     MiembroController miembroController;
     Scanner scan = new Scanner(System.in);

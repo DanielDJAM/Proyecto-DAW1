@@ -52,17 +52,12 @@ public class MiembroControllerTest extends UtilidadesTest {
         if (miembro == null) {
             miembro = crearMiembro(null, null, null, null, null, null);
         }
-        if (miembro2 == null) {
-            miembro2 = crearMiembro(null, null, null, null, 0);
-        }
-        if (miembro3 == null) {
-            miembro3 = crearMiembro("0002", "12345678C","jonay", "exposito", 26);
-        }
+        
 
         
             try {
                 miembroController.insertar(miembro);
-                miembroController.insertar(miembro2);
+               
        
             } catch (MiembroException e) {
                fail("Fallo al insertar miembro");
@@ -76,13 +71,9 @@ public class MiembroControllerTest extends UtilidadesTest {
     @AfterEach
     public void after() {
         try {
-            miembroController.eliminar(miembro);
-            miembroController.eliminar(miembro2);
-        } catch (MiembroException e) {
-            fail("Error al eliminar miembro");
-        } catch (BbddException e) {
-            fail("Error al elimanr miembro en la DB");
-        }
+           
+           
+    
     }
 
     @Test

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.StringTokenizer;
 
-public class Miembro extends Visitante {
+public class Miembro extends Usuario {
 
     public static final String DELIMITADOR = ",";
 
@@ -43,36 +43,27 @@ public class Miembro extends Visitante {
      * 
      * @param uid             del miembro
      * @param datosPersonales del miembro
-     * @param email del miembro
-     * @param contrasenia del miembro
-     * @param direccion del miembro
-     * @param tarjeta del miembro
-    */
-    public Miembro(String uid, DatosPersonales datosPersonales, String email, String contrasenia, Direccion direccion, Tarjeta tarjeta) {
-        super(uid);
+     * @param email           del miembro
+     * @param contrasenia     del miembro
+     * @param direccion       del miembro
+     * @param tarjeta         del miembro
+     */
+    public Miembro(String uid, String tipoUsuario, DatosPersonales datosPersonales, String email, String contrasenia,
+            Direccion direccion, Tarjeta tarjeta) {
+        super(uid, tipoUsuario);
         this.datosPersonales = datosPersonales;
         this.email = email;
         this.contrasenia = contrasenia;
         this.direccion = direccion;
         this.tarjeta = tarjeta;
+        
     }
 
     /**
      * Getters y Setters de la clase Miembro
      */
-
-    @Override
-    public String getUid() {
-        return this.uid;
-    }
-
-    @Override
-    public void setUid(String uid) {
-        this.uid = uid;
-    }
-
     public DatosPersonales getDatosPersonales() {
-        return this.datosPersonales;
+        return datosPersonales;
     }
 
     public void setDatosPersonales(DatosPersonales datosPersonales) {
@@ -80,7 +71,7 @@ public class Miembro extends Visitante {
     }
 
     public String getEmail() {
-        return this.email;
+        return email;
     }
 
     public void setEmail(String email) {
@@ -88,7 +79,7 @@ public class Miembro extends Visitante {
     }
 
     public String getContrasenia() {
-        return this.contrasenia;
+        return contrasenia;
     }
 
     public void setContrasenia(String contrasenia) {
@@ -96,7 +87,7 @@ public class Miembro extends Visitante {
     }
 
     public Direccion getDireccion() {
-        return this.direccion;
+        return direccion;
     }
 
     public void setDireccion(Direccion direccion) {
@@ -104,18 +95,22 @@ public class Miembro extends Visitante {
     }
 
     public Tarjeta getTarjeta() {
-        return this.tarjeta;
+        return tarjeta;
     }
 
     public void setTarjeta(Tarjeta tarjeta) {
         this.tarjeta = tarjeta;
     }
 
+     
+
     @Override
     public String toString() {
         return "Miembro [contrasenia=" + contrasenia + ", datosPersonales=" + datosPersonales + ", direccion="
                 + direccion + ", email=" + email + ", tarjeta=" + tarjeta + "]";
     }
+
+  
 
     @Override
     public boolean equals(Object o) {
