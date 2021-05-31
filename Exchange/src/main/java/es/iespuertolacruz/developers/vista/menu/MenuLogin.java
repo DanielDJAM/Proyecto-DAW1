@@ -14,6 +14,7 @@ public class MenuLogin {
 
     Miembro miembro;
     Miembro miembro2;
+    Moneda moneda;
     DatosPersonalesController datosPersonalesController;
     DireccionController direccionController;
     TarjetaController tarjetaController;
@@ -333,7 +334,7 @@ public class MenuLogin {
 
                         break;
                     case 2:
-                        menuRegistro();
+
                         break;
                     case 3:
                         System.out.println("----------[TOP 10]---------- ");
@@ -355,6 +356,26 @@ public class MenuLogin {
                 scan.next();
             }
         }
+    }
+
+    /**
+     * Funcion que realiza la accion de comprar
+     * @return la moneda comprada
+     */
+    public Moneda comprarCase() {
+        moneda = new Moneda();
+        System.out.println("Introduzca el ticket de la moneda a comprar: ");
+        scan.nextLine();
+        entrada = scan.nextLine();
+        miembro.setEmail(entrada);
+        System.out.println("Introduzca una contraseña: ");
+        entrada = scan.nextLine();
+        miembro.setContrasenia(entrada);
+        System.out.println("Vuelva a introducir su contraseña: ");
+        entrada = scan.nextLine();
+        miembro.setContrasenia(entrada);
+        scan.nextLine();
+        return moneda;
     }
 
     /**
@@ -417,6 +438,7 @@ public class MenuLogin {
 
     /**
      * Funcion que pregunta al usuario
+     * 
      * @return True o en caso contrario, false.
      */
     public boolean decision() {
