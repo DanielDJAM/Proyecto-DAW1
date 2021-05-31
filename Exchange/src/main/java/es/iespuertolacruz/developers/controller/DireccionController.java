@@ -86,7 +86,7 @@ public class DireccionController {
     public void eliminar(Direccion direccion) throws  DireccionException, BbddException{
         validar(direccion);
         if (!existe(direccion)) {
-          throw new DireccionException("El miembro no existe");
+          throw new DireccionException("La direccion no existe");
         }
         direccionModelo.eliminar(direccion);
     }

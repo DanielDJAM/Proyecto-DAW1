@@ -1,13 +1,13 @@
 package es.iespuertolacruz.developers;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 
 import java.sql.SQLException;
-import java.util.ArrayList;
+
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -138,13 +138,14 @@ public class MiembroControllerTest {
         String mensaje = "existe";
         try {
             miembroController.insertar(miembro);
-            fail("No deberia llegar aqui");
+            fail("se ha insertado");
         } catch (BbddException e) {
             assertTrue(e.getMessage().contains(mensaje));
         } catch (MiembroException e) {
-            
+           
         }
     }
+
 
    
 
@@ -168,7 +169,7 @@ public class MiembroControllerTest {
         try {
             miembroController.modificar(miembro);
             miembroModificar = miembroController.buscar("10000");
-            assertEquals(miembro, miembroModificar, "Los productos deberian ser iguales");
+            assertEquals(miembro, miembroModificar, "Los miembros deberian ser iguales");
         } catch (BbddException e) {
             fail(e.getMessage());
         } catch (MiembroException e) {
@@ -177,40 +178,46 @@ public class MiembroControllerTest {
     }
 
 
-    
+    @Test
+    public void validarErrorNullTest() {
+        try {
+            Miembro miembro2 = null;
+            miembroController.validar(miembro2);
+        } catch (MiembroException e) {
+            assertTrue(e.getMessage().contains("nulo"));
 
-    private Direccion crearDireccion() {
-        return new Direccion("1111e", "38400", "La laja", "a45", "SC/ Tenerife", "Espania");
+        }
     }
 
-    private Direccion crearDireccion2() {
-        return new Direccion("1111h", "38400", "Tamaimo", "a556", "SC/ Tenerife", "Espania");
+    @Test
+    public void validarErrorTest() {
+        try {
+            Miembro miembro2 = null;
+            miembro2 = new Miembro();
+            miembro2.setUid("");
+            miembro2.setTipoUsuario("");
+            miembro2.setContrasenia("");
+            miembro2.setDireccion(null);
+            miembro2.setTarjeta(null);
+            miembroController.validar(miembro2);
+        } catch (MiembroException e) {
+            assertTrue(e.getMessage().contains("nulo o vacio"));
+
+        }
     }
 
-    private DatosPersonales crearDatosPersonales() {
-        return new DatosPersonales("11111111B", "Borja", "Devora", 25);
+    @Test
+    public void mostrarContenidoDBTest() {
+        String contenido;
+        try {
+            contenido = miembroController.obtenerListado().toString();
+            assertTrue(contenido.contains("1001"));
+        } catch (BbddException e) {
+            fail("Error al visualizar el contenido de la db");
+        }
     }
 
-    private DatosPersonales crearDatosPersonales2() {
-        return new DatosPersonales("11111111C", "Pepe", "Devora", 27);
-    }
+   
 
-    private Tarjeta crearTarjeta() {
-        return new Tarjeta("1111e-aaaa", "Borja", "20/5/2090", 108);
-    }
-
-    private Tarjeta crearTarjeta2() {
-        return new Tarjeta("1111e-bbb", "Pepe", "20/5/2090", 107);
-    }
-
-    private Miembro crearMiembro() {
-        return new Miembro("10000", "admin", crearDatosPersonales(), "es@email.com", "1234", crearDireccion(),
-                crearTarjeta());
-    }
-
-    private Miembro crearMiembro2() {
-        return new Miembro("10003", "miembro", crearDatosPersonales2(), "er@email.com", "1234", crearDireccion2(),
-                crearTarjeta2());
-    }
 
 }

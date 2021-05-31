@@ -1,6 +1,7 @@
 package es.iespuertolacruz.developers.controller;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import es.iespuertolacruz.developers.api.Miembro;
 import es.iespuertolacruz.developers.excepcion.BbddException;
@@ -91,6 +92,10 @@ public class MiembroController {
         miembroModelo.eliminar(miembro);
     }
 
+    public ArrayList<Miembro> obtenerListado() throws BbddException {
+        return miembroModelo.obtenerListado();
+    }
+
     /**
      * Metodo para modificar de la clase MiembroController.
      * 
@@ -124,22 +129,7 @@ public class MiembroController {
         return miembro;
     }
 
-    /**
-     * Funcion que busca un miembro por su dni
-     * @param uid del miembro a buscar
-     * @return un miembro
-     * @throws MiembroException
-     * @throws FicheroException
-     * @throws BbddException
-     */
-    public Miembro buscarDni(String dni) throws MiembroException, BbddException {
-        Miembro miembro = null;
-        if (dni == null || dni.isEmpty()) {
-            throw new MiembroException(EL_UID_ESTA_VACIO);
-        }
-        miembro = miembroModelo.obtenerMiembroUid(dni);
-        return miembro;
-    }
+    
 
 
     /**

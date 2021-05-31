@@ -99,6 +99,10 @@ public class MonedaController {
         return moneda;
     }
 
+    public ArrayList<Moneda> obtenerListado() throws BbddException {
+        return monedaModelo.obtenerListadoMonedas();
+    }
+
       /**
      * Funcion que verifica si una moneda existe
      * @param ticket por el que se busca

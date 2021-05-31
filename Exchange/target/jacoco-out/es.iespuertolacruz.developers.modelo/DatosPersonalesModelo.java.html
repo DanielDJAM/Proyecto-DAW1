@@ -58,11 +58,11 @@ public class DatosPersonalesModelo {
      * @throws BbddException controlada
      */
     public void modificar(DatosPersonales datosPersonales) throws BbddException {
-<span class="nc" id="L61">        String sql = &quot;UPDATE DatosPersonales SET nombre ='&quot; + datosPersonales.getNombre() + &quot;', apellidos = '&quot;</span>
-<span class="nc" id="L62">                + datosPersonales.getApellidos() + &quot;', edad = '&quot; + datosPersonales.getEdad() + &quot;' WHERE dni = '&quot;</span>
-<span class="nc" id="L63">                + datosPersonales.getDni() + &quot;'&quot;;</span>
-<span class="nc" id="L64">        persistencia.actualizar(sql);</span>
-<span class="nc" id="L65">    }</span>
+<span class="fc" id="L61">        String sql = &quot;UPDATE DatosPersonales SET nombre ='&quot; + datosPersonales.getNombre() + &quot;', apellidos = '&quot;</span>
+<span class="fc" id="L62">                + datosPersonales.getApellidos() + &quot;', edad = '&quot; + datosPersonales.getEdad() + &quot;' WHERE dni = '&quot;</span>
+<span class="fc" id="L63">                + datosPersonales.getDni() + &quot;'&quot;;</span>
+<span class="fc" id="L64">        persistencia.actualizar(sql);</span>
+<span class="fc" id="L65">    }</span>
 
     /**
      * Funcion encargada de realizar la busqueda de los datos personales
