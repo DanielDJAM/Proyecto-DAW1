@@ -493,7 +493,7 @@ public class MenuLogin {
         System.out.println("Por favor, introduzca su dni: ");
         entrada = scan.nextLine();
         try {
-            miembro = miembroController.buscar(entrada);
+            miembro = miembroController.buscarDni(entrada);
             System.out.println("¿Es usted este usuario? ");
             decision();
             System.out.println("Para borrar definitivamente su cuenta escriba: 'Confirmar' .");

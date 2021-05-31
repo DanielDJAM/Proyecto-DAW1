@@ -155,7 +155,7 @@ public class MiembroControllerTest {
 
         try {
             
-            Buscado = miembroController.buscar("10000");
+            Buscado = miembroController.buscarUid("10000");
             assertEquals(miembro, Buscado, "Los usuario deberian ser iguales");
         } catch (Exception e) {
             fail(e.getMessage());
@@ -168,7 +168,7 @@ public class MiembroControllerTest {
         miembro.setEmail("ee@gmail.com");
         try {
             miembroController.modificar(miembro);
-            miembroModificar = miembroController.buscar("10000");
+            miembroModificar = miembroController.buscarUid("10000");
             assertEquals(miembro, miembroModificar, "Los miembros deberian ser iguales");
         } catch (BbddException e) {
             fail(e.getMessage());

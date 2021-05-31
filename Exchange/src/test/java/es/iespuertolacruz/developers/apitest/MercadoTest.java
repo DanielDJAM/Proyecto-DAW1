@@ -7,7 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import es.iespuertolacruz.developers.api.Mercado;
-
+/** 
 public class MercadoTest {
 
     Mercado mercado;
@@ -21,7 +21,7 @@ public class MercadoTest {
     @Test
     public void validarTest(){
         mercado = new Mercado();
-        mercado.setIdMoneda("AAA");
+        mercado.setMoneda("aaaa");
         mercado.setIdWallet("987456");
         mercado.setCantidad(546.0);
 
@@ -52,3 +52,4 @@ public class MercadoTest {
     }
     
 }
+*/

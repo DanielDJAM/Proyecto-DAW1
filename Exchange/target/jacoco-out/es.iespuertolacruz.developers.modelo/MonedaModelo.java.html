@@ -63,19 +63,7 @@ public class MonedaModelo {
 <span class="fc" id="L63">        persistencia.actualizar(sql);</span>
 <span class="fc" id="L64">    }</span>
 
-    /**
-     * Funcion encargada de realizar la busqueda de un moneda
-     * 
-     * @param uid del moneda
-     * @return Moneda a buscar
-     * @throws BbddException
-     */
-    public Moneda buscarMoneda(String ticket) throws BbddException {
-
-<span class="fc" id="L75">        return obtenerMoneda(ticket);</span>
-
-    }
-
+   
     /**
      * Funcion que realiza la consulta sobre la BBDD y la tabla Moneda
      * 
@@ -84,29 +72,29 @@ public class MonedaModelo {
      * @throws BbddException Error controlado
      */
     private ArrayList&lt;Moneda&gt; obtenerListadoMoneda(String sql) throws BbddException {
-<span class="fc" id="L87">        ArrayList&lt;Moneda&gt; listaMonedas = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L75">        ArrayList&lt;Moneda&gt; listaMonedas = new ArrayList&lt;&gt;();</span>
 
-<span class="fc" id="L89">        Moneda moneda = null;</span>
-<span class="fc" id="L90">        Statement statement = null;</span>
-<span class="fc" id="L91">        ResultSet resultSet = null;</span>
-<span class="fc" id="L92">        Connection connection = null;</span>
+<span class="fc" id="L77">        Moneda moneda = null;</span>
+<span class="fc" id="L78">        Statement statement = null;</span>
+<span class="fc" id="L79">        ResultSet resultSet = null;</span>
+<span class="fc" id="L80">        Connection connection = null;</span>
         try {
-<span class="fc" id="L94">            connection = persistencia.getConnection();</span>
-<span class="fc" id="L95">            statement = connection.createStatement();</span>
-<span class="fc" id="L96">            resultSet = statement.executeQuery(sql);</span>
-<span class="fc bfc" id="L97" title="All 2 branches covered.">            while (resultSet.next()) {</span>
-<span class="fc" id="L98">                moneda = new Moneda();</span>
-<span class="fc" id="L99">                moneda.setTicket(resultSet.getString(&quot;ticket&quot;));</span>
-<span class="fc" id="L100">                moneda.setNombreMoneda(resultSet.getString(&quot;nombreMoneda&quot;));</span>
-<span class="fc" id="L101">                moneda.setValor(resultSet.getDouble(&quot;valor&quot;));</span>
-<span class="fc" id="L102">                listaMonedas.add(moneda);</span>
+<span class="fc" id="L82">            connection = persistencia.getConnection();</span>
+<span class="fc" id="L83">            statement = connection.createStatement();</span>
+<span class="fc" id="L84">            resultSet = statement.executeQuery(sql);</span>
+<span class="fc bfc" id="L85" title="All 2 branches covered.">            while (resultSet.next()) {</span>
+<span class="fc" id="L86">                moneda = new Moneda();</span>
+<span class="fc" id="L87">                moneda.setTicket(resultSet.getString(&quot;ticket&quot;));</span>
+<span class="fc" id="L88">                moneda.setNombreMoneda(resultSet.getString(&quot;nombreMoneda&quot;));</span>
+<span class="fc" id="L89">                moneda.setValor(resultSet.getDouble(&quot;valor&quot;));</span>
+<span class="fc" id="L90">                listaMonedas.add(moneda);</span>
             }
-<span class="nc" id="L104">        } catch (Exception exception) {</span>
-<span class="nc" id="L105">            throw new BbddException(&quot;Se ha producido un error realizando la consulta&quot;, exception);</span>
+<span class="nc" id="L92">        } catch (Exception exception) {</span>
+<span class="nc" id="L93">            throw new BbddException(&quot;Se ha producido un error realizando la consulta&quot;, exception);</span>
         } finally {
-<span class="fc" id="L107">            persistencia.closeConnection(connection, statement, resultSet);</span>
+<span class="fc" id="L95">            persistencia.closeConnection(connection, statement, resultSet);</span>
         }
-<span class="fc" id="L109">        return listaMonedas;</span>
+<span class="fc" id="L97">        return listaMonedas;</span>
     }
 
     /**
@@ -116,8 +104,8 @@ public class MonedaModelo {
      * @throws BbddException Error controlado
      */
     public ArrayList&lt;Moneda&gt; obtenerListadoMonedas() throws BbddException {
-<span class="fc" id="L119">        String sql = &quot;SELECT * FROM Moneda&quot;;</span>
-<span class="fc" id="L120">        return obtenerListadoMoneda(sql);</span>
+<span class="fc" id="L107">        String sql = &quot;SELECT * FROM Moneda&quot;;</span>
+<span class="fc" id="L108">        return obtenerListadoMoneda(sql);</span>
     }
 
     /**
@@ -128,18 +116,52 @@ public class MonedaModelo {
      * @throws BbddException Error controlado
      */
     public Moneda obtenerMoneda(String ticket) throws BbddException {
-<span class="fc" id="L131">        Moneda moneda = null;</span>
-<span class="fc" id="L132">        ArrayList&lt;Moneda&gt; listaMonedas = null;</span>
-<span class="fc" id="L133">        String sql = &quot;SELECT * FROM Moneda where ticket = '&quot; + ticket + &quot;'&quot;;</span>
-<span class="fc" id="L134">        listaMonedas = obtenerListadoMoneda(sql);</span>
-<span class="fc bfc" id="L135" title="All 2 branches covered.">        if (!listaMonedas.isEmpty()) {</span>
-<span class="fc" id="L136">            moneda = listaMonedas.get(0);</span>
+<span class="fc" id="L119">        Moneda moneda = null;</span>
+<span class="fc" id="L120">        ArrayList&lt;Moneda&gt; listaMonedas = null;</span>
+<span class="fc" id="L121">        String sql = &quot;SELECT * FROM Moneda where ticket = '&quot; + ticket + &quot;'&quot;;</span>
+<span class="fc" id="L122">        listaMonedas = obtenerListadoMoneda(sql);</span>
+<span class="fc bfc" id="L123" title="All 2 branches covered.">        if (!listaMonedas.isEmpty()) {</span>
+<span class="fc" id="L124">            moneda = listaMonedas.get(0);</span>
         }
-<span class="fc" id="L138">        return moneda;</span>
+<span class="fc" id="L126">        return moneda;</span>
     }
 
+    /**
+     * Funcion que lista Top 10 monedas
+     * @return las monedas listadas
+     * @throws BbddException error
+     */
+    public Moneda listarTop10() throws BbddException {
+<span class="nc" id="L135">        Moneda moneda = null;</span>
+<span class="nc" id="L136">        ArrayList&lt;Moneda&gt; listaMonedas = null;</span>
+<span class="nc" id="L137">        String sql = &quot;SELECT * FROM Moneda order by valor DESC limit 10&quot;;</span>
+<span class="nc" id="L138">        listaMonedas = obtenerListadoMoneda(sql);</span>
+<span class="nc bnc" id="L139" title="All 2 branches missed.">        if (!listaMonedas.isEmpty()) {</span>
+<span class="nc" id="L140">            moneda = listaMonedas.get(0);</span>
+        }
+<span class="nc" id="L142">        return moneda;</span>
+    }
 
-     
+    /**
+     * Funcion que lista por un numero determinado de monedas
+     * @param limite numero de monedas a listar
+     * @return lista de monedas 
+     * @throws BbddException error
+     */
+    public ArrayList&lt;Moneda&gt; listarMonedas(int limite) throws BbddException {
+<span class="nc" id="L152">        ArrayList&lt;Moneda&gt; listaMonedas = null;</span>
+<span class="nc" id="L153">        String sql = &quot;SELECT * FROM Moneda order by valor DESC limit '&quot; + limite + &quot;'&quot;;</span>
+<span class="nc" id="L154">        listaMonedas = obtenerListadoMoneda(sql);</span>
+<span class="nc" id="L155">        return listaMonedas;</span>
+    }
+
+    public int contarTodo() throws BbddException {
+<span class="nc" id="L159">        Integer cuenta = 0;</span>
+<span class="nc" id="L160">        String sql = &quot;SELECT count(*) FROM Moneda&quot;;</span>
+<span class="nc" id="L161">        cuenta = obtenerListadoMoneda(sql).indexOf(0);</span>
+<span class="nc" id="L162">        return cuenta;</span>
+
+    }
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

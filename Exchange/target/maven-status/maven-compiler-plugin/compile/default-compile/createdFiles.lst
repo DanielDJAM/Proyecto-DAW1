@@ -1,4 +1,5 @@
 es\iespuertolacruz\developers\api\Moneda.class
+es\iespuertolacruz\developers\modelo\MercadoModelo.class
 es\iespuertolacruz\developers\excepcion\WalletException.class
 es\iespuertolacruz\developers\excepcion\DireccionException.class
 es\iespuertolacruz\developers\excepcion\BbddException.class
@@ -21,6 +22,7 @@ es\iespuertolacruz\developers\api\Visitante.class
 es\iespuertolacruz\developers\api\Administrador.class
 es\iespuertolacruz\developers\controller\DatosPersonalesController.class
 es\iespuertolacruz\developers\controller\WalletController.class
+es\iespuertolacruz\developers\controller\MercadoController.class
 es\iespuertolacruz\developers\excepcion\TarjetaException.class
 es\iespuertolacruz\developers\api\Mercado.class
 es\iespuertolacruz\developers\modelo\WalletModelo.class
