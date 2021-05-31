@@ -1,8 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: es.iespuertolacruz.developers.MonedaControllerTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.151 s <<< FAILURE! - in es.iespuertolacruz.developers.MonedaControllerTest
-modificarCuentaTest  Time elapsed: 0.065 s  <<< FAILURE!
-org.opentest4j.AssertionFailedError: No se ha encontrado lo esperado ==> expected: es.iespuertolacruz.developers.api.Moneda@74cadd41<Moneda, moneda=PTD, ticket=PRTD, valor=1000.0]> but was: es.iespuertolacruz.developers.api.Moneda@2e54db99<Moneda, moneda=PTD, ticket=PRTD, valor=1000.0]>
-	at es.iespuertolacruz.developers.MonedaControllerTest.modificarCuentaTest(MonedaControllerTest.java:96)
-
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.164 s - in es.iespuertolacruz.developers.MonedaControllerTest

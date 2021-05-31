@@ -60,6 +60,7 @@ public class Moneda {
         return "Moneda"  + ", moneda=" + nombreMoneda + ", ticket=" + ticket + ", valor=" + valor + "]";
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -68,7 +69,10 @@ public class Moneda {
             return false;
         }
         Moneda moneda = (Moneda) o;
-        return Objects.equals(moneda, moneda.nombreMoneda) && Objects.equals(ticket, moneda.ticket) && valor == moneda.valor;
+        return Objects.equals(ticket, moneda.ticket) && Objects.equals(nombreMoneda, moneda.nombreMoneda) && valor == moneda.valor;
     }
+
+    
+  
 
 }

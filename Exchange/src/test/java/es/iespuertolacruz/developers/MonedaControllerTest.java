@@ -40,7 +40,9 @@ public class MonedaControllerTest {
             }
 
             moneda = crearMoneda();
+            moneda2 = crearMoneda2();
             monedaController.insertar(moneda);
+            monedaController.insertar(moneda2);
         } catch (BbddException e) {
             fail(e.getMessage());
         } catch (FicheroException e) {
@@ -58,6 +60,7 @@ public class MonedaControllerTest {
         try {
 
             monedaController.eliminar(moneda);
+            monedaController.eliminar(moneda2);
 
         } catch (MonedaException e) {
             fail(e.getMessage());
@@ -67,20 +70,7 @@ public class MonedaControllerTest {
 
     }
 
-    @Test
-    public void modificarMonedaTest() {
-        moneda2 = crearMoneda2();
-        try {
-            monedaController.insertar(moneda2);
-            moneda2.setValor(230);
-            monedaController.modificar(moneda2);
-            monedaController.eliminar(moneda2);
-        } catch (BbddException e) {
-            fail(e.getMessage());
-        } catch (MonedaException e) {
-            fail(e.getMessage());
-        }
-    }
+    
 
 
     @Test
@@ -88,7 +78,7 @@ public class MonedaControllerTest {
         try {
             Moneda monedaEncontrada;
             try {
-                monedaEncontrada = monedaController.buscar(moneda.getTicket());
+                monedaEncontrada = monedaController.buscar(moneda2.getTicket());
                 assertNotNull(monedaEncontrada, "No se debe de obtener un elemento nulo");
                 monedaEncontrada.setValor(1000);
                 monedaController.modificar(monedaEncontrada);
