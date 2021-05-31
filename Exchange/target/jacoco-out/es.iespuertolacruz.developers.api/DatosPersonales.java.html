@@ -74,13 +74,13 @@ public class DatosPersonales {
 
     @Override
     public boolean equals(Object o) {
-<span class="pc bpc" id="L77" title="1 of 2 branches missed.">        if (o == this)</span>
+<span class="fc bfc" id="L77" title="All 2 branches covered.">        if (o == this)</span>
 <span class="fc" id="L78">            return true;</span>
-<span class="nc bnc" id="L79" title="All 2 branches missed.">        if (!(o instanceof DatosPersonales)) {</span>
+<span class="pc bpc" id="L79" title="1 of 2 branches missed.">        if (!(o instanceof DatosPersonales)) {</span>
 <span class="nc" id="L80">            return false;</span>
         }
-<span class="nc" id="L82">        DatosPersonales datosPersonales = (DatosPersonales) o;</span>
-<span class="nc bnc" id="L83" title="All 8 branches missed.">        return Objects.equals(nombre, datosPersonales.nombre) &amp;&amp; Objects.equals(apellidos, datosPersonales.apellidos) &amp;&amp; edad == datosPersonales.edad &amp;&amp; Objects.equals(dni, datosPersonales.dni);</span>
+<span class="fc" id="L82">        DatosPersonales datosPersonales = (DatosPersonales) o;</span>
+<span class="pc bpc" id="L83" title="4 of 8 branches missed.">        return Objects.equals(nombre, datosPersonales.nombre) &amp;&amp; Objects.equals(apellidos, datosPersonales.apellidos) &amp;&amp; edad == datosPersonales.edad &amp;&amp; Objects.equals(dni, datosPersonales.dni);</span>
     }
 
    

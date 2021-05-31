@@ -70,8 +70,8 @@ public class MiembroController {
      */
     public void insertar(Miembro miembro) throws MiembroException, BbddException {
 <span class="fc" id="L72">        validar(miembro);</span>
-<span class="pc bpc" id="L73" title="1 of 2 branches missed.">        if(existe(miembro)) {</span>
-<span class="nc" id="L74">            throw new MiembroException(&quot;El miembro ya existe&quot;);</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">        if(existe(miembro)) {</span>
+<span class="fc" id="L74">            throw new MiembroException(&quot;El miembro ya existe&quot;);</span>
         }
 <span class="fc" id="L76">        miembroModelo.insertar(miembro);</span>
 <span class="fc" id="L77">    }</span>
@@ -120,9 +120,27 @@ public class MiembroController {
 <span class="pc bpc" id="L120" title="2 of 4 branches missed.">        if (uid == null || uid.isEmpty()) {</span>
 <span class="nc" id="L121">            throw new MiembroException(EL_UID_ESTA_VACIO);</span>
         }
-<span class="fc" id="L123">        miembro = miembroModelo.buscarMiembro(uid);</span>
+<span class="fc" id="L123">        miembro = miembroModelo.obtenerMiembroUid(uid);</span>
 <span class="fc" id="L124">        return miembro;</span>
     }
+
+    /**
+     * Funcion que busca un miembro por su dni
+     * @param uid del miembro a buscar
+     * @return un miembro
+     * @throws MiembroException
+     * @throws FicheroException
+     * @throws BbddException
+     */
+    public Miembro buscarDni(String dni) throws MiembroException, BbddException {
+<span class="nc" id="L136">        Miembro miembro = null;</span>
+<span class="nc bnc" id="L137" title="All 4 branches missed.">        if (dni == null || dni.isEmpty()) {</span>
+<span class="nc" id="L138">            throw new MiembroException(EL_UID_ESTA_VACIO);</span>
+        }
+<span class="nc" id="L140">        miembro = miembroModelo.obtenerMiembroUid(dni);</span>
+<span class="nc" id="L141">        return miembro;</span>
+    }
+
 
     /**
      * Funcion que verifica si existe un miembro
@@ -133,13 +151,13 @@ public class MiembroController {
      * @throws BbddException
      */
     public boolean existe(Miembro miembro) throws MiembroException, BbddException {
-<span class="fc" id="L136">        boolean encontrado = false;</span>
+<span class="fc" id="L154">        boolean encontrado = false;</span>
         Miembro miembroEncontrado;
-<span class="fc" id="L138">        miembroEncontrado = buscar(miembro.getUid());</span>
-<span class="fc bfc" id="L139" title="All 2 branches covered.">        if (miembroEncontrado != null) {</span>
-<span class="fc" id="L140">            encontrado = true;</span>
+<span class="fc" id="L156">        miembroEncontrado = buscar(miembro.getUid());</span>
+<span class="fc bfc" id="L157" title="All 2 branches covered.">        if (miembroEncontrado != null) {</span>
+<span class="fc" id="L158">            encontrado = true;</span>
         }
-<span class="fc" id="L142">        return encontrado;</span>
+<span class="fc" id="L160">        return encontrado;</span>
     }
     
 }

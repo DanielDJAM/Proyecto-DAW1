@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -45,7 +46,6 @@ public class MiembroControllerTest {
     DatosPersonales datosPersonales;
     DatosPersonales datosPersonales2;
     Direccion direccion;
-    Direccion direccion2;
     Tarjeta tarjeta;
     Tarjeta tarjeta2;
 
@@ -78,26 +78,32 @@ public class MiembroControllerTest {
         }
 
         try {
-            tarjeta = crearTarjeta();
-            tarjetaController.insertar(tarjeta);
-            direccion = crearDireccion();
-            direccionController.insertar(direccion);
-            datosPersonales = crearDatosPersonales();
-            datosPersonalesController.insertar(datosPersonales);
-            miembro = crearMiembro();
+           tarjeta =  new Tarjeta("1111e-aaaa", "Borja", "20/5/2090", 108);
+            
+           direccion =  new Direccion ("1111e", "38400", "La laja", "a45", "SC/ Tenerife", "Espania");
+            
+           datosPersonales = new DatosPersonales("11111111C", "Pepe", "Devora", 27);
+           
+            miembro = new Miembro("10000", "admin", datosPersonales, "es@email.com", "1234", direccion,
+            tarjeta);
 
+            tarjetaController.insertar(tarjeta);
+            direccionController.insertar(direccion);
+            datosPersonalesController.insertar(datosPersonales);
             miembroController.insertar(miembro);
+            
+
 
         } catch (MiembroException e) {
             fail(e.getMessage());
         } catch (BbddException e) {
             fail(e.getMessage());
-        } catch (DatosPersonalesException e) {
-            fail("datospersonales");
         } catch (TarjetaException e) {
             fail(e.getMessage());
         } catch (DireccionException e) {
-            fail("direccion");
+            fail(e.getMessage());
+        } catch (DatosPersonalesException e) {
+            fail(e.getMessage());
         }
 
     }
@@ -107,13 +113,10 @@ public class MiembroControllerTest {
 
         try {
             direccionController.eliminar(direccion);
-            direccionController.eliminar(direccion2);
-            tarjetaController.eliminar(tarjeta2);
             tarjetaController.eliminar(tarjeta);
             datosPersonalesController.eliminar(datosPersonales);
-            datosPersonalesController.eliminar(datosPersonales2);
             miembroController.eliminar(miembro);
-            miembroController.eliminar(miembro2);
+            
 
         } catch (DireccionException e) {
             fail(e.getMessage());
@@ -128,36 +131,50 @@ public class MiembroControllerTest {
 
         }
 
+    }
+
+    @Test 
+    public void insertarErrorTest() {
+        String mensaje = "existe";
+        try {
+            miembroController.insertar(miembro);
+            fail("No deberia llegar aqui");
+        } catch (BbddException e) {
+            assertTrue(e.getMessage().contains(mensaje));
+        } catch (MiembroException e) {
+            
+        }
+    }
+
+   
+
+    @Test
+    public void buscarPorIdTest() {
+        Miembro Buscado;
+
+        try {
+            
+            Buscado = miembroController.buscar("10000");
+            assertEquals(miembro, Buscado, "Los usuario deberian ser iguales");
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
     }
 
     @Test
-    public void modificarMiembroTest() {
+    public void modificarTest() {
+        Miembro miembroModificar;
+        miembro.setEmail("ee@gmail.com");
         try {
-            tarjeta2 = crearTarjeta2();
-            tarjetaController.insertar(tarjeta2);
-            direccion2 = crearDireccion2();
-            direccionController.insertar(direccion2);
-            datosPersonales2 = crearDatosPersonales2();
-            datosPersonalesController.insertar(datosPersonales2);
-            miembro2 = crearMiembro2();
-            miembroController.insertar(miembro2);
-            miembro2.setTipoUsuario("admin");
-            miembroController.modificar(miembro2);
-
+            miembroController.modificar(miembro);
+            miembroModificar = miembroController.buscar("10000");
+            assertEquals(miembro, miembroModificar, "Los productos deberian ser iguales");
         } catch (BbddException e) {
             fail(e.getMessage());
         } catch (MiembroException e) {
-            fail(e.getMessage());
-        } catch (TarjetaException e) {
-            fail(e.getMessage());
-        } catch (DireccionException e) {
-            fail(e.getMessage());
-        } catch (DatosPersonalesException e) {
-            fail(e.getMessage());
+            fail();
         }
     }
-
-  
 
 
     

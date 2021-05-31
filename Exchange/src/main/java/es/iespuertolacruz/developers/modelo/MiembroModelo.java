@@ -6,8 +6,10 @@ import java.sql.SQLException;
 
 import java.util.ArrayList;
 
-
+import es.iespuertolacruz.developers.api.DatosPersonales;
+import es.iespuertolacruz.developers.api.Direccion;
 import es.iespuertolacruz.developers.api.Miembro;
+import es.iespuertolacruz.developers.api.Tarjeta;
 import es.iespuertolacruz.developers.excepcion.BbddException;
 import es.iespuertolacruz.developers.excepcion.FicheroException;
 
@@ -77,17 +79,7 @@ public class MiembroModelo {
         persistencia.actualizar(sql);
     }
 
-    /**
-     * Funcion encargada de realizar la busqueda de un miembro
-     * 
-     * @param uid del miembro
-     * @return Miembro a buscar
-     * @throws BbddException
-     */
-    public Miembro buscarMiembro(String uid) throws BbddException {
-        return obtenerMiembro(uid);
-
-    }
+  
 
       /**
      * Funcion que obtiene el listado de todas las miembros
@@ -107,7 +99,7 @@ public class MiembroModelo {
      * @return lista total
      * @throws BbddException Error controlado
      */
-    public Miembro obtenerMiembro(String identificador) throws BbddException {
+    public Miembro obtenerMiembroUid(String identificador) throws BbddException {
         Miembro miembro = null;
         ArrayList<Miembro> listaMiembros = null;
         String sql = "SELECT * FROM Miembro where uid = ";
@@ -121,6 +113,17 @@ public class MiembroModelo {
 
     }
 
+    public Miembro obtenerMiembroDni(String identificador) throws BbddException {
+        Miembro miembro = null;
+        ArrayList<Miembro> listaMiembros = null;
+        String sql = "SELECT * FROM Miembro where dni = '" + identificador + "'";
+        listaMiembros = obtenerListadoMiembro(sql);
+        if (!listaMiembros.isEmpty()) {
+            miembro = listaMiembros.get(0);
+        }
+        return miembro;
+    }
+
     /**
      * Funcion que realiza la consulta sobre la BBDD y la tabla Miembro
      * 
@@ -132,23 +135,22 @@ public class MiembroModelo {
         ArrayList<Miembro> listaMiembros = new ArrayList<>();
         ResultSet resultSet = null;
         Miembro miembro = null;
-       
+
+        resultSet = persistencia.buscarElemento(sql);
         try {
-            
-            resultSet = persistencia.buscarElemento(sql);
             while (resultSet.next()) {
-                miembro = new Miembro();
+                String uid = resultSet.getString("uid");
+                String tipoUsuario = resultSet.getString("tipo");
                 String dni = resultSet.getString("dni");
+                String email = resultSet.getString("email");
+                String contrasenia = resultSet.getString("contrasenia");
                 String idDireccion = resultSet.getString("idDireccion");
                 String idTarjeta = resultSet.getString("idTarjeta");
-                miembro.setUid(resultSet.getString("uid"));
-                miembro.setDatosPersonales(datosPersonalesModelo.buscarDatosPersonales(dni));
-                miembro.setTipoUsuario(resultSet.getString("tipo"));
-                miembro.setEmail(resultSet.getString("email"));
-                miembro.setContrasenia(resultSet.getString("contrasenia"));
-                miembro.setDireccion(direccionModelo.buscarDireccion(idDireccion));
-                miembro.setTarjeta(tarjetaModelo.buscartTarjeta(idTarjeta));
-                
+
+                Direccion direccion = direccionModelo.buscarDireccion(idDireccion);
+                DatosPersonales datosPersonales = datosPersonalesModelo.buscarDatosPersonales(dni);
+                Tarjeta tarjeta = tarjetaModelo.buscartTarjeta(idTarjeta);
+                miembro = new Miembro(uid, tipoUsuario, datosPersonales, email, contrasenia, direccion, tarjeta);
                 listaMiembros.add(miembro);
             }
         } catch (Exception exception) {

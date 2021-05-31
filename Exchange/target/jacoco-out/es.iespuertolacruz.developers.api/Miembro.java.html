@@ -14,9 +14,9 @@ public class Miembro extends Usuario {
     Direccion direccion;
     Tarjeta tarjeta;
 
-<span class="fc" id="L17">    public Miembro() {</span>
+<span class="nc" id="L17">    public Miembro() {</span>
 
-<span class="fc" id="L19">    }</span>
+<span class="nc" id="L19">    }</span>
 
     /**
      * Constructor que recibe una cadena de text
@@ -67,8 +67,8 @@ public class Miembro extends Usuario {
     }
 
     public void setDatosPersonales(DatosPersonales datosPersonales) {
-<span class="fc" id="L70">        this.datosPersonales = datosPersonales;</span>
-<span class="fc" id="L71">    }</span>
+<span class="nc" id="L70">        this.datosPersonales = datosPersonales;</span>
+<span class="nc" id="L71">    }</span>
 
     public String getEmail() {
 <span class="fc" id="L74">        return email;</span>
@@ -83,24 +83,24 @@ public class Miembro extends Usuario {
     }
 
     public void setContrasenia(String contrasenia) {
-<span class="fc" id="L86">        this.contrasenia = contrasenia;</span>
-<span class="fc" id="L87">    }</span>
+<span class="nc" id="L86">        this.contrasenia = contrasenia;</span>
+<span class="nc" id="L87">    }</span>
 
     public Direccion getDireccion() {
 <span class="fc" id="L90">        return direccion;</span>
     }
 
     public void setDireccion(Direccion direccion) {
-<span class="fc" id="L94">        this.direccion = direccion;</span>
-<span class="fc" id="L95">    }</span>
+<span class="nc" id="L94">        this.direccion = direccion;</span>
+<span class="nc" id="L95">    }</span>
 
     public Tarjeta getTarjeta() {
 <span class="fc" id="L98">        return tarjeta;</span>
     }
 
     public void setTarjeta(Tarjeta tarjeta) {
-<span class="fc" id="L102">        this.tarjeta = tarjeta;</span>
-<span class="fc" id="L103">    }</span>
+<span class="nc" id="L102">        this.tarjeta = tarjeta;</span>
+<span class="nc" id="L103">    }</span>
 
      
 
@@ -114,15 +114,15 @@ public class Miembro extends Usuario {
 
     @Override
     public boolean equals(Object o) {
-<span class="nc bnc" id="L117" title="All 2 branches missed.">        if (o == this)</span>
+<span class="pc bpc" id="L117" title="1 of 2 branches missed.">        if (o == this)</span>
 <span class="nc" id="L118">            return true;</span>
-<span class="nc bnc" id="L119" title="All 2 branches missed.">        if (!(o instanceof Miembro)) {</span>
+<span class="pc bpc" id="L119" title="1 of 2 branches missed.">        if (!(o instanceof Miembro)) {</span>
 <span class="nc" id="L120">            return false;</span>
         }
-<span class="nc" id="L122">        Miembro miembro = (Miembro) o;</span>
-<span class="nc bnc" id="L123" title="All 4 branches missed.">        return Objects.equals(datosPersonales, miembro.datosPersonales) &amp;&amp; Objects.equals(email, miembro.email)</span>
-<span class="nc bnc" id="L124" title="All 4 branches missed.">                &amp;&amp; Objects.equals(contrasenia, miembro.contrasenia) &amp;&amp; Objects.equals(direccion, miembro.direccion)</span>
-<span class="nc bnc" id="L125" title="All 2 branches missed.">                &amp;&amp; Objects.equals(tarjeta, miembro.tarjeta);</span>
+<span class="fc" id="L122">        Miembro miembro = (Miembro) o;</span>
+<span class="pc bpc" id="L123" title="2 of 4 branches missed.">        return Objects.equals(datosPersonales, miembro.datosPersonales) &amp;&amp; Objects.equals(email, miembro.email)</span>
+<span class="pc bpc" id="L124" title="2 of 4 branches missed.">                &amp;&amp; Objects.equals(contrasenia, miembro.contrasenia) &amp;&amp; Objects.equals(direccion, miembro.direccion)</span>
+<span class="pc bpc" id="L125" title="1 of 2 branches missed.">                &amp;&amp; Objects.equals(tarjeta, miembro.tarjeta);</span>
     }
 
 }

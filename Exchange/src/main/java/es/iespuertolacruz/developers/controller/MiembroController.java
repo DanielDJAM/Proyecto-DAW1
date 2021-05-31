@@ -120,9 +120,27 @@ public class MiembroController {
         if (uid == null || uid.isEmpty()) {
             throw new MiembroException(EL_UID_ESTA_VACIO);
         }
-        miembro = miembroModelo.buscarMiembro(uid);
+        miembro = miembroModelo.obtenerMiembroUid(uid);
         return miembro;
     }
+
+    /**
+     * Funcion que busca un miembro por su dni
+     * @param uid del miembro a buscar
+     * @return un miembro
+     * @throws MiembroException
+     * @throws FicheroException
+     * @throws BbddException
+     */
+    public Miembro buscarDni(String dni) throws MiembroException, BbddException {
+        Miembro miembro = null;
+        if (dni == null || dni.isEmpty()) {
+            throw new MiembroException(EL_UID_ESTA_VACIO);
+        }
+        miembro = miembroModelo.obtenerMiembroUid(dni);
+        return miembro;
+    }
+
 
     /**
      * Funcion que verifica si existe un miembro
