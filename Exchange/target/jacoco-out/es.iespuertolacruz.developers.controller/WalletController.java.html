@@ -13,10 +13,10 @@ public class WalletController {
     WalletModelo walletModelo;
     MiembroModelo miembroModelo;
 
-<span class="nc" id="L16">    public WalletController() throws BbddException, FicheroException, SQLException {</span>
-<span class="nc" id="L17">        walletModelo = new WalletModelo();</span>
-<span class="nc" id="L18">        miembroModelo = new MiembroModelo();</span>
-<span class="nc" id="L19">    }</span>
+<span class="fc" id="L16">    public WalletController() throws BbddException, FicheroException, SQLException {</span>
+<span class="fc" id="L17">        walletModelo = new WalletModelo();</span>
+<span class="fc" id="L18">        miembroModelo = new MiembroModelo();</span>
+<span class="fc" id="L19">    }</span>
 
     /**
      * Metodo para validar wallets
@@ -25,23 +25,23 @@ public class WalletController {
      * @throws walletException
      */
     public void validar(Wallet wallet) throws WalletException {
-<span class="nc" id="L28">        String mensaje = &quot;&quot;;</span>
+<span class="fc" id="L28">        String mensaje = &quot;&quot;;</span>
 
-<span class="nc bnc" id="L30" title="All 2 branches missed.">        if (wallet == null) {</span>
-<span class="nc" id="L31">            mensaje = &quot;Los wallet  son nulos&quot;;</span>
-<span class="nc" id="L32">            throw new WalletException(mensaje);</span>
+<span class="fc bfc" id="L30" title="All 2 branches covered.">        if (wallet == null) {</span>
+<span class="fc" id="L31">            mensaje = &quot;Los wallet  son nulos&quot;;</span>
+<span class="fc" id="L32">            throw new WalletException(mensaje);</span>
         }
-<span class="nc bnc" id="L34" title="All 4 branches missed.">        if (wallet.getIdWallet() == null || wallet.getIdWallet().isEmpty()) {</span>
-<span class="nc" id="L35">            mensaje = &quot;El id es nulo o vacio,&quot;;</span>
+<span class="pc bpc" id="L34" title="1 of 4 branches missed.">        if (wallet.getIdWallet() == null || wallet.getIdWallet().isEmpty()) {</span>
+<span class="fc" id="L35">            mensaje = &quot;El id es nulo o vacio,&quot;;</span>
         }
-<span class="nc bnc" id="L37" title="All 4 branches missed.">        if (wallet.getUid() == null || wallet.getUid().isEmpty()) {</span>
-<span class="nc" id="L38">            mensaje += &quot;El nombre es nulo o vacio,&quot;;</span>
+<span class="pc bpc" id="L37" title="1 of 4 branches missed.">        if (wallet.getUid() == null || wallet.getUid().isEmpty()) {</span>
+<span class="fc" id="L38">            mensaje += &quot;El nombre es nulo o vacio,&quot;;</span>
         }
 
-<span class="nc bnc" id="L41" title="All 2 branches missed.">        if (!mensaje.isEmpty()) {</span>
-<span class="nc" id="L42">            throw new WalletException(mensaje);</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        if (!mensaje.isEmpty()) {</span>
+<span class="fc" id="L42">            throw new WalletException(mensaje);</span>
         }
-<span class="nc" id="L44">    }</span>
+<span class="fc" id="L44">    }</span>
 
     /**
      * Metodo para insertar un wallet
@@ -52,12 +52,12 @@ public class WalletController {
      * @throws BbddException
      */
     public void insertar(Wallet wallet) throws WalletException, BbddException {
-<span class="nc" id="L55">        validar(wallet);</span>
-<span class="nc bnc" id="L56" title="All 2 branches missed.">        if (existe(wallet)) {</span>
-<span class="nc" id="L57">            throw new WalletException(&quot;Los wallet ya existe&quot;);</span>
+<span class="fc" id="L55">        validar(wallet);</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">        if (existe(wallet)) {</span>
+<span class="fc" id="L57">            throw new WalletException(&quot;Los wallet ya existe&quot;);</span>
         }
-<span class="nc" id="L59">        walletModelo.insertar(wallet);</span>
-<span class="nc" id="L60">    }</span>
+<span class="fc" id="L59">        walletModelo.insertar(wallet);</span>
+<span class="fc" id="L60">    }</span>
 
     /**
      * Metodo para eliminar un wallet
@@ -68,12 +68,12 @@ public class WalletController {
      * @throws BbddException
      */
     public void eliminar(Wallet wallet) throws WalletException, BbddException {
-<span class="nc" id="L71">        validar(wallet);</span>
-<span class="nc bnc" id="L72" title="All 2 branches missed.">        if (!existe(wallet)) {</span>
-<span class="nc" id="L73">            throw new WalletException(&quot;Los wallet no existe&quot;);</span>
+<span class="fc" id="L71">        validar(wallet);</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">        if (!existe(wallet)) {</span>
+<span class="fc" id="L73">            throw new WalletException(&quot;Los wallet no existe&quot;);</span>
         }
-<span class="nc" id="L75">        walletModelo.eliminar(wallet);</span>
-<span class="nc" id="L76">    }</span>
+<span class="fc" id="L75">        walletModelo.eliminar(wallet);</span>
+<span class="fc" id="L76">    }</span>
 
     /**
      * Funcion que busca un wallet por su id
@@ -85,12 +85,12 @@ public class WalletController {
      * @throws BbddException
      */
     public Wallet buscarId(String idWallet) throws WalletException, BbddException {
-<span class="nc" id="L88">        Wallet wallet = null;</span>
-<span class="nc bnc" id="L89" title="All 4 branches missed.">        if (idWallet == null || idWallet.isEmpty()) {</span>
-<span class="nc" id="L90">            throw new WalletException(&quot;El idWallet está vacio&quot;);</span>
+<span class="fc" id="L88">        Wallet wallet = null;</span>
+<span class="pc bpc" id="L89" title="1 of 4 branches missed.">        if (idWallet == null || idWallet.isEmpty()) {</span>
+<span class="fc" id="L90">            throw new WalletException(&quot;El idWallet está vacio&quot;);</span>
         }
-<span class="nc" id="L92">        wallet = walletModelo.obtenerWalletId(idWallet);</span>
-<span class="nc" id="L93">        return wallet;</span>
+<span class="fc" id="L92">        wallet = walletModelo.obtenerWalletId(idWallet);</span>
+<span class="fc" id="L93">        return wallet;</span>
     }
 
     /**
@@ -121,13 +121,13 @@ public class WalletController {
      * @throws BbddException
      */
     public boolean existe(Wallet wallet) throws WalletException, BbddException {
-<span class="nc" id="L124">        boolean encontrado = false;</span>
+<span class="fc" id="L124">        boolean encontrado = false;</span>
         Wallet walletEncontrado;
-<span class="nc" id="L126">        walletEncontrado = buscarId(wallet.getIdWallet());</span>
-<span class="nc bnc" id="L127" title="All 2 branches missed.">        if (walletEncontrado != null) {</span>
-<span class="nc" id="L128">            encontrado = true;</span>
+<span class="fc" id="L126">        walletEncontrado = buscarId(wallet.getIdWallet());</span>
+<span class="fc bfc" id="L127" title="All 2 branches covered.">        if (walletEncontrado != null) {</span>
+<span class="fc" id="L128">            encontrado = true;</span>
         }
-<span class="nc" id="L130">        return encontrado;</span>
+<span class="fc" id="L130">        return encontrado;</span>
     }
 
 }

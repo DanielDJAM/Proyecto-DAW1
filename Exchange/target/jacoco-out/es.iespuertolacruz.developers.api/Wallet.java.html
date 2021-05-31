@@ -53,13 +53,13 @@ public class Wallet {
 
     @Override
     public boolean equals(Object o) {
-<span class="pc bpc" id="L56" title="1 of 2 branches missed.">        if (o == this)</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">        if (o == this)</span>
 <span class="fc" id="L57">            return true;</span>
-<span class="nc bnc" id="L58" title="All 2 branches missed.">        if (!(o instanceof Wallet)) {</span>
+<span class="pc bpc" id="L58" title="1 of 2 branches missed.">        if (!(o instanceof Wallet)) {</span>
 <span class="nc" id="L59">            return false;</span>
         }
-<span class="nc" id="L61">        Wallet wallet = (Wallet) o;</span>
-<span class="nc bnc" id="L62" title="All 4 branches missed.">        return Objects.equals(idWallet, wallet.idWallet) &amp;&amp; Objects.equals(uid, wallet.uid);</span>
+<span class="fc" id="L61">        Wallet wallet = (Wallet) o;</span>
+<span class="pc bpc" id="L62" title="2 of 4 branches missed.">        return Objects.equals(idWallet, wallet.idWallet) &amp;&amp; Objects.equals(uid, wallet.uid);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

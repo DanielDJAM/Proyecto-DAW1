@@ -18,9 +18,9 @@ public class WalletModelo {
      * @throws FicheroException
      * @throws SQLException
      */
-<span class="nc" id="L21">    public WalletModelo() throws BbddException, FicheroException, SQLException {</span>
-<span class="nc" id="L22">        persistencia = new SqliteDb(TABLA, null, null);</span>
-<span class="nc" id="L23">    }</span>
+<span class="fc" id="L21">    public WalletModelo() throws BbddException, FicheroException, SQLException {</span>
+<span class="fc" id="L22">        persistencia = new SqliteDb(TABLA, null, null);</span>
+<span class="fc" id="L23">    }</span>
 
     /**
      * Metodo que permite insertar un wallet en la DB
@@ -29,10 +29,10 @@ public class WalletModelo {
      * @throws BbddException controlada
      */
     public void insertar(Wallet wallet) throws BbddException {
-<span class="nc" id="L32">        String sql = &quot;INSERT INTO Wallet (idWallet, uid)&quot; + &quot; VALUES ('&quot; + wallet.getIdWallet() + &quot;', '&quot;</span>
-<span class="nc" id="L33">                + wallet.getUid() + &quot;')&quot;;</span>
-<span class="nc" id="L34">        persistencia.actualizar(sql);</span>
-<span class="nc" id="L35">    }</span>
+<span class="fc" id="L32">        String sql = &quot;INSERT INTO Wallet (idWallet, uid)&quot; + &quot; VALUES ('&quot; + wallet.getIdWallet() + &quot;', '&quot;</span>
+<span class="fc" id="L33">                + wallet.getUid() + &quot;')&quot;;</span>
+<span class="fc" id="L34">        persistencia.actualizar(sql);</span>
+<span class="fc" id="L35">    }</span>
 
     /**
      * Metodo que permite eliminar un wallet de la DB
@@ -41,10 +41,10 @@ public class WalletModelo {
      * @throws BbddException controlada
      */
     public void eliminar(Wallet wallet) throws BbddException {
-<span class="nc" id="L44">        String sql = &quot;DELETE from Wallet WHERE idWallet ='&quot; + wallet.getIdWallet() + &quot;'&quot;;</span>
-<span class="nc" id="L45">        persistencia.actualizar(sql);</span>
+<span class="fc" id="L44">        String sql = &quot;DELETE from Wallet WHERE idWallet ='&quot; + wallet.getIdWallet() + &quot;'&quot;;</span>
+<span class="fc" id="L45">        persistencia.actualizar(sql);</span>
 
-<span class="nc" id="L47">    }</span>
+<span class="fc" id="L47">    }</span>
 
     /**
      * Funcion que obtiene el listado de todas las wallets
@@ -65,15 +65,15 @@ public class WalletModelo {
      * @throws BbddException Error controlado
      */
     public Wallet obtenerWalletId(String identificador) throws BbddException {
-<span class="nc" id="L68">        Wallet wallet = null;</span>
-<span class="nc" id="L69">        ArrayList&lt;Wallet&gt; listaWalletes = null;</span>
-<span class="nc" id="L70">        String sql = &quot;SELECT * FROM Wallet where idWallet = '&quot; + identificador + &quot;'&quot;;</span>
-<span class="nc" id="L71">        listaWalletes = obtenerListadoWallet(sql);</span>
-<span class="nc bnc" id="L72" title="All 2 branches missed.">        if (!listaWalletes.isEmpty()) {</span>
-<span class="nc" id="L73">            wallet = listaWalletes.get(0);</span>
+<span class="fc" id="L68">        Wallet wallet = null;</span>
+<span class="fc" id="L69">        ArrayList&lt;Wallet&gt; listaWalletes = null;</span>
+<span class="fc" id="L70">        String sql = &quot;SELECT * FROM Wallet where idWallet = '&quot; + identificador + &quot;'&quot;;</span>
+<span class="fc" id="L71">        listaWalletes = obtenerListadoWallet(sql);</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">        if (!listaWalletes.isEmpty()) {</span>
+<span class="fc" id="L73">            wallet = listaWalletes.get(0);</span>
         }
 
-<span class="nc" id="L76">        return wallet;</span>
+<span class="fc" id="L76">        return wallet;</span>
 
     }
 
@@ -105,30 +105,30 @@ public class WalletModelo {
      * @throws BbddException Error controlado
      */
     private ArrayList&lt;Wallet&gt; obtenerListadoWallet(String sql) throws BbddException {
-<span class="nc" id="L108">        ArrayList&lt;Wallet&gt; listaWalletes = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L108">        ArrayList&lt;Wallet&gt; listaWalletes = new ArrayList&lt;&gt;();</span>
 
-<span class="nc" id="L110">        Wallet wallet = null;</span>
-<span class="nc" id="L111">        Statement statement = null;</span>
-<span class="nc" id="L112">        ResultSet resultSet = null;</span>
-<span class="nc" id="L113">        Connection connection = null;</span>
+<span class="fc" id="L110">        Wallet wallet = null;</span>
+<span class="fc" id="L111">        Statement statement = null;</span>
+<span class="fc" id="L112">        ResultSet resultSet = null;</span>
+<span class="fc" id="L113">        Connection connection = null;</span>
         try {
-<span class="nc" id="L115">            connection = persistencia.getConnection();</span>
-<span class="nc" id="L116">            statement = connection.createStatement();</span>
-<span class="nc" id="L117">            resultSet = statement.executeQuery(sql);</span>
-<span class="nc bnc" id="L118" title="All 2 branches missed.">            while (resultSet.next()) {</span>
-<span class="nc" id="L119">                wallet = new Wallet();</span>
+<span class="fc" id="L115">            connection = persistencia.getConnection();</span>
+<span class="fc" id="L116">            statement = connection.createStatement();</span>
+<span class="fc" id="L117">            resultSet = statement.executeQuery(sql);</span>
+<span class="fc bfc" id="L118" title="All 2 branches covered.">            while (resultSet.next()) {</span>
+<span class="fc" id="L119">                wallet = new Wallet();</span>
 
-<span class="nc" id="L121">                wallet.setIdWallet(resultSet.getString(&quot;idWallet&quot;));</span>
-<span class="nc" id="L122">                wallet.setUid(resultSet.getString(&quot;uid&quot;));</span>
+<span class="fc" id="L121">                wallet.setIdWallet(resultSet.getString(&quot;idWallet&quot;));</span>
+<span class="fc" id="L122">                wallet.setUid(resultSet.getString(&quot;uid&quot;));</span>
 
-<span class="nc" id="L124">                listaWalletes.add(wallet);</span>
+<span class="fc" id="L124">                listaWalletes.add(wallet);</span>
             }
 <span class="nc" id="L126">        } catch (Exception exception) {</span>
 <span class="nc" id="L127">            throw new BbddException(&quot;Se ha producido un error realizando la consulta&quot;, exception);</span>
         } finally {
-<span class="nc" id="L129">            persistencia.closeConnection(connection, statement, resultSet);</span>
+<span class="fc" id="L129">            persistencia.closeConnection(connection, statement, resultSet);</span>
         }
-<span class="nc" id="L131">        return listaWalletes;</span>
+<span class="fc" id="L131">        return listaWalletes;</span>
     }
 
 }

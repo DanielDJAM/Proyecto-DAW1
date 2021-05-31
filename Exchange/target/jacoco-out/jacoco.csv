@@ -8,12 +8,12 @@ Exchange,es.iespuertolacruz.developers.modelo,MonedaModelo,54,129,2,4,17,40,4,9,
 Exchange,es.iespuertolacruz.developers.modelo,MercadoModelo,148,0,4,0,44,0,9,0,7,0
 Exchange,es.iespuertolacruz.developers.modelo,SqliteDb,0,8,0,0,0,2,0,1,0,1
 Exchange,es.iespuertolacruz.developers.modelo,DatosPersonalesModelo,13,141,0,4,4,42,1,9,1,7
-Exchange,es.iespuertolacruz.developers.modelo,WalletModelo,139,0,6,0,43,0,10,0,7,0
+Exchange,es.iespuertolacruz.developers.modelo,WalletModelo,34,105,2,4,11,32,3,7,2,5
 Exchange,es.iespuertolacruz.developers.controller,MiembroController,34,150,12,28,8,45,11,18,1,8
 Exchange,es.iespuertolacruz.developers.controller,MonedaController,46,115,10,18,10,36,11,13,2,8
 Exchange,es.iespuertolacruz.developers.controller,MercadoController,35,0,0,0,10,0,2,0,2,0
 Exchange,es.iespuertolacruz.developers.controller,DireccionController,15,155,10,30,3,44,10,17,0,7
-Exchange,es.iespuertolacruz.developers.controller,WalletController,137,0,26,0,40,0,20,0,7,0
+Exchange,es.iespuertolacruz.developers.controller,WalletController,19,118,7,19,5,35,6,14,1,6
 Exchange,es.iespuertolacruz.developers.controller,TarjetaController,13,116,7,21,3,35,7,13,0,6
 Exchange,es.iespuertolacruz.developers.controller,DatosPersonalesController,15,132,7,23,3,40,7,15,0,7
 Exchange,es.iespuertolacruz.developers.vista.menu,MenuLogin,1087,0,42,0,328,0,54,0,25,0
@@ -22,7 +22,7 @@ Exchange,es.iespuertolacruz.developers.api,DatosPersonales,3,93,5,7,1,26,5,13,0,
 Exchange,es.iespuertolacruz.developers.api,Miembro,67,108,9,7,16,29,10,13,2,13
 Exchange,es.iespuertolacruz.developers.api,Tarjeta,3,93,5,7,1,26,5,13,0,12
 Exchange,es.iespuertolacruz.developers.api,Moneda,3,76,4,6,1,22,4,11,0,10
-Exchange,es.iespuertolacruz.developers.api,Wallet,24,37,7,1,4,15,4,8,0,8
+Exchange,es.iespuertolacruz.developers.api,Wallet,3,58,3,5,1,18,3,9,0,8
 Exchange,es.iespuertolacruz.developers.api,Direccion,3,130,7,9,1,34,7,17,0,16
 Exchange,es.iespuertolacruz.developers.api,Administrador,81,0,10,0,23,0,15,0,10,0
 Exchange,es.iespuertolacruz.developers.api,Visitante,8,0,0,0,4,0,2,0,2,0
