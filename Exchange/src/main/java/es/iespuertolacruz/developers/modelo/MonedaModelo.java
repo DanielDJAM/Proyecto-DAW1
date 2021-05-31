@@ -32,8 +32,10 @@ public class MonedaModelo {
      * @throws BbddException controlada
      */
     public void insertar(Moneda moneda) throws BbddException {
-        String sql = "INSERT INTO Moneda (ticket, nombreMoneda, valor)" + " VALUES ('" + moneda.getTicket() + "', '"
-                + moneda.getNombreMoneda() + "', '" + moneda.getValor() + "')";
+        String sql = "INSERT INTO Moneda (ticket, nombreMoneda, valor) VALUES ('" + moneda.getTicket() 
+        + "', '" + moneda.getNombreMoneda() 
+        + "', '" + moneda.getValor() 
+        + "')";
         persistencia.actualizar(sql);
     }
 
@@ -134,4 +136,5 @@ public class MonedaModelo {
         }
         return moneda;
     }
+
 }
