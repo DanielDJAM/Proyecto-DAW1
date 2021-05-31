@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TarjetaController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Exchange</a> &gt; <a href="index.source.html" class="el_package">es.iespuertolacruz.developers.controller</a> &gt; <span class="el_source">TarjetaController.java</span></div><h1>TarjetaController.java</h1><pre class="source lang-java linenums">package es.iespuertolacruz.developers.controller;
+
+import java.sql.SQLException;
+
+import es.iespuertolacruz.developers.api.Tarjeta;
+import es.iespuertolacruz.developers.excepcion.BbddException;
+import es.iespuertolacruz.developers.excepcion.FicheroException;
+import es.iespuertolacruz.developers.excepcion.TarjetaException;
+import es.iespuertolacruz.developers.modelo.TarjetaModelo;
+
+public class TarjetaController {
+
+    TarjetaModelo tarjetaModelo;
+
+     /**
+     * Constructor por defecto de la clase TarjetaController
+     * 
+     * @throws BbddException
+     * @throws FicheroException
+     * @throws SQLException
+     */
+<span class="fc" id="L22">    public TarjetaController() throws BbddException, FicheroException, SQLException {</span>
+<span class="fc" id="L23">        tarjetaModelo = new TarjetaModelo();</span>
+<span class="fc" id="L24">    }</span>
+
+    /**
+     * Metodo para validar tarjetas
+     * 
+     * @param tarjeta a validar
+     * @throws tarjetaException
+     */
+    public void validar(Tarjeta tarjeta) throws TarjetaException {
+<span class="fc" id="L33">        String mensaje = &quot;&quot;;</span>
+
+<span class="pc bpc" id="L35" title="1 of 2 branches missed.">        if (tarjeta == null) {</span>
+<span class="nc" id="L36">            mensaje = &quot;Los tarjeta  son nulos&quot;;</span>
+<span class="nc" id="L37">            throw new TarjetaException(mensaje);</span>
+        }
+<span class="pc bpc" id="L39" title="2 of 4 branches missed.">        if (tarjeta.getidTarjeta() == null || tarjeta.getidTarjeta().isEmpty()) {</span>
+<span class="nc" id="L40">            mensaje = &quot;El ID es nulo o vacio,&quot;;</span>
+        }
+<span class="pc bpc" id="L42" title="2 of 4 branches missed.">        if (tarjeta.getTitular() == null || tarjeta.getTitular().isEmpty()) {</span>
+<span class="nc" id="L43">            mensaje += &quot;El Titular es nulo o vacio,&quot;;</span>
+        }
+<span class="pc bpc" id="L45" title="2 of 4 branches missed.">        if (tarjeta.getFechaCaducidad() == null || tarjeta.getFechaCaducidad().isEmpty()) {</span>
+<span class="nc" id="L46">            mensaje += &quot;La fecha es nula o  está vacio,&quot;;</span>
+        }
+<span class="pc bpc" id="L48" title="1 of 2 branches missed.">        if (tarjeta.getCvv() &lt; 0) {</span>
+<span class="nc" id="L49">            mensaje += &quot;El cvv no tiene que tener numeros negativos&quot;;</span>
+        }
+
+<span class="pc bpc" id="L52" title="1 of 2 branches missed.">        if (!mensaje.isEmpty()) {</span>
+<span class="nc" id="L53">            throw new TarjetaException(mensaje);</span>
+        }
+<span class="fc" id="L55">    }</span>
+
+    /**
+     * Metodo para insertar una tarjeta
+     * 
+     * @param tarjeta a insertar
+     * @throws tarjetaException
+     * @throws FicheroException
+     * @throws BbddException
+     */
+    public void insertar(Tarjeta tarjeta) throws TarjetaException, BbddException {
+<span class="fc" id="L66">        validar(tarjeta);</span>
+<span class="pc bpc" id="L67" title="1 of 2 branches missed.">        if (existe(tarjeta)) {</span>
+<span class="nc" id="L68">            throw new TarjetaException(&quot;Los tarjeta ya existe&quot;);</span>
+        }
+<span class="fc" id="L70">        tarjetaModelo.insertar(tarjeta);</span>
+<span class="fc" id="L71">    }</span>
+
+     /**
+     * Metodo para eliminar una tarjeta
+     * 
+     * @param tarjeta a eliminar
+     * @throws FicheroException
+     * @throws tarjetaException
+     * @throws BbddException
+     */
+    public void eliminar(Tarjeta tarjeta) throws TarjetaException, BbddException {
+<span class="fc" id="L82">        validar(tarjeta);</span>
+<span class="pc bpc" id="L83" title="1 of 2 branches missed.">        if (!existe(tarjeta)) {</span>
+<span class="nc" id="L84">            throw new TarjetaException(&quot;Los tarjeta no existe&quot;);</span>
+        }
+<span class="fc" id="L86">        tarjetaModelo.eliminar(tarjeta);</span>
+<span class="fc" id="L87">    }</span>
+
+  
+
+    /**
+     * Funcion que busca un tarjeta por su id
+     * 
+     * @param id del tarjeta a buscar
+     * @return un tarjeta
+     * @throws tarjetaException
+     * @throws FicheroException
+     * @throws BbddException
+     */
+    public Tarjeta buscar(String idTarjeta) throws TarjetaException, BbddException {
+<span class="fc" id="L101">        Tarjeta tarjeta = null;</span>
+<span class="pc bpc" id="L102" title="2 of 4 branches missed.">        if (idTarjeta == null || idTarjeta.isEmpty()) {</span>
+<span class="nc" id="L103">            throw new TarjetaException(&quot;El id de la tarjeta está vacio o es nulo&quot;);</span>
+        }
+<span class="fc" id="L105">        tarjeta = tarjetaModelo.obtenerTarjeta(idTarjeta);</span>
+<span class="fc" id="L106">        return tarjeta;</span>
+    }
+
+     /**
+     * Funcion que verifica si existe un tarjeta
+     * 
+     * @param dni por el que se busca
+     * @return True/false si se ha encontrado
+     * @throws tarjetaException
+     * @throws FicheroException
+     * @throws BbddException
+     */
+    public boolean existe(Tarjeta tarjeta) throws TarjetaException, BbddException {
+<span class="fc" id="L119">        boolean encontrado = false;</span>
+        Tarjeta tarjetaEncontrado;
+<span class="fc" id="L121">        tarjetaEncontrado = buscar(tarjeta.getidTarjeta());</span>
+<span class="fc bfc" id="L122" title="All 2 branches covered.">        if (tarjetaEncontrado != null) {</span>
+<span class="fc" id="L123">            encontrado = true;</span>
+        }
+<span class="fc" id="L125">        return encontrado;</span>
+    }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

@@ -7,7 +7,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import es.iespuertolacruz.developers.api.Miembro;
-
+/**
+ * 
+ 
 public class MiembroTest {
 
     Miembro miembro;
@@ -61,3 +63,4 @@ public class MiembroTest {
     }
     
 }
+*/

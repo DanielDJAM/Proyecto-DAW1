@@ -10,7 +10,9 @@ import es.iespuertolacruz.developers.api.Administrador;
 import es.iespuertolacruz.developers.api.DatosPersonales;
 import es.iespuertolacruz.developers.api.Direccion;
 import es.iespuertolacruz.developers.api.Tarjeta;
-
+/**
+ * 
+ 
 public class AdministradorTest {
 
     Administrador administrador;
@@ -64,3 +66,4 @@ public class AdministradorTest {
     }
     
 }
+*/

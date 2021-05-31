@@ -96,7 +96,7 @@ public class MenuLogin {
 
         try {
             miembroController = new MiembroController();
-            miembroController.buscar(uid);
+        //    miembroController.buscar(uid);
         } catch (BbddException e) {
             System.out.println("Ha ocurrido un error inesperado al trabajar con la base de datos.");
         } catch (FicheroException e) {
