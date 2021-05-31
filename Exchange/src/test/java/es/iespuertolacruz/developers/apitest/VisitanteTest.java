@@ -7,7 +7,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import es.iespuertolacruz.developers.api.Visitante;
-
+/**
+ * 
+ 
 public class VisitanteTest {
 
     Visitante visitante;
@@ -40,3 +42,4 @@ public class VisitanteTest {
     }
 
 }
+*/
