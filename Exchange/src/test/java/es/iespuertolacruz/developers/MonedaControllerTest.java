@@ -1,5 +1,7 @@
 package es.iespuertolacruz.developers;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.sql.SQLException;
@@ -77,6 +79,26 @@ public class MonedaControllerTest {
             fail(e.getMessage());
         } catch (MonedaException e) {
             fail(e.getMessage());
+        }
+    }
+
+
+    @Test
+    public void modificarCuentaTest() {
+        try {
+            Moneda monedaEncontrada;
+            try {
+                monedaEncontrada = monedaController.buscar(moneda.getTicket());
+                assertNotNull(monedaEncontrada, "No se debe de obtener un elemento nulo");
+                monedaEncontrada.setValor(1000);
+                monedaController.modificar(monedaEncontrada);
+                Moneda monedaActualziada = monedaController.buscar(monedaEncontrada.getTicket());
+                assertEquals(monedaActualziada, monedaEncontrada, "No se ha encontrado lo esperado");
+            } catch (MonedaException e) {
+                fail("Error a la hora de modificar en censo de un habitante");
+            }
+        } catch (BbddException e) {
+            fail("Se ha producido un error al consultar la tabla censo" + e.getMessage());
         }
     }
 
