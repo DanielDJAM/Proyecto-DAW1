@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import java.sql.Driver;
+
 import java.sql.SQLException;
 
 import org.junit.jupiter.api.AfterEach;
@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 import es.iespuertolacruz.developers.api.DatosPersonales;
 import es.iespuertolacruz.developers.api.Direccion;
 import es.iespuertolacruz.developers.api.Miembro;
-import es.iespuertolacruz.developers.api.Moneda;
+
 import es.iespuertolacruz.developers.api.Tarjeta;
 import es.iespuertolacruz.developers.controller.DatosPersonalesController;
 import es.iespuertolacruz.developers.controller.DireccionController;
@@ -27,7 +27,6 @@ import es.iespuertolacruz.developers.excepcion.DatosPersonalesException;
 import es.iespuertolacruz.developers.excepcion.DireccionException;
 import es.iespuertolacruz.developers.excepcion.FicheroException;
 import es.iespuertolacruz.developers.excepcion.MiembroException;
-import es.iespuertolacruz.developers.excepcion.MonedaException;
 import es.iespuertolacruz.developers.excepcion.TarjetaException;
 
 import es.iespuertolacruz.developers.modelo.MiembroModelo;
@@ -157,6 +156,8 @@ public class MiembroControllerTest {
             fail(e.getMessage());
         }
     }
+
+  
 
 
     

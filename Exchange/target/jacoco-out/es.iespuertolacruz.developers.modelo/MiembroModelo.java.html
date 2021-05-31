@@ -138,17 +138,25 @@ public class MiembroModelo {
 <span class="fc" id="L138">            resultSet = persistencia.buscarElemento(sql);</span>
 <span class="fc bfc" id="L139" title="All 2 branches covered.">            while (resultSet.next()) {</span>
 <span class="fc" id="L140">                miembro = new Miembro();</span>
-
-
-
-<span class="fc" id="L144">                listaMiembros.add(miembro);</span>
-            }
-<span class="nc" id="L146">        } catch (Exception exception) {</span>
-<span class="nc" id="L147">            throw new BbddException(&quot;Se ha producido un error realizando la consulta&quot;, exception);</span>
+<span class="fc" id="L141">                String dni = resultSet.getString(&quot;dni&quot;);</span>
+<span class="fc" id="L142">                String idDireccion = resultSet.getString(&quot;idDireccion&quot;);</span>
+<span class="fc" id="L143">                String idTarjeta = resultSet.getString(&quot;idTarjeta&quot;);</span>
+<span class="fc" id="L144">                miembro.setUid(resultSet.getString(&quot;uid&quot;));</span>
+<span class="fc" id="L145">                miembro.setDatosPersonales(datosPersonalesModelo.buscarDatosPersonales(dni));</span>
+<span class="fc" id="L146">                miembro.setTipoUsuario(resultSet.getString(&quot;tipo&quot;));</span>
+<span class="fc" id="L147">                miembro.setEmail(resultSet.getString(&quot;email&quot;));</span>
+<span class="fc" id="L148">                miembro.setContrasenia(resultSet.getString(&quot;contrasenia&quot;));</span>
+<span class="fc" id="L149">                miembro.setDireccion(direccionModelo.buscarDireccion(idDireccion));</span>
+<span class="fc" id="L150">                miembro.setTarjeta(tarjetaModelo.buscartTarjeta(idTarjeta));</span>
+                
+<span class="fc" id="L152">                listaMiembros.add(miembro);</span>
+<span class="fc" id="L153">            }</span>
+<span class="nc" id="L154">        } catch (Exception exception) {</span>
+<span class="nc" id="L155">            throw new BbddException(&quot;Se ha producido un error realizando la consulta&quot;, exception);</span>
         } finally {
-<span class="fc" id="L149">            persistencia.closeConnection(null, null, resultSet);</span>
+<span class="fc" id="L157">            persistencia.closeConnection(null, null, resultSet);</span>
         }
-<span class="fc" id="L151">        return listaMiembros;</span>
+<span class="fc" id="L159">        return listaMiembros;</span>
     }
 
 

@@ -58,7 +58,8 @@ public class MonedaModelo {
      * @throws BbddException controlada
      */
     public void modificar(Moneda moneda) throws BbddException {
-        String sql = "UPDATE Moneda SET valor ='" + moneda.getValor()+"'";
+        String sql = "UPDATE Moneda SET valor ='" + moneda.getValor()+
+        "' where ticket = '" +moneda.getTicket() + "'";
         persistencia.actualizar(sql);
     }
 

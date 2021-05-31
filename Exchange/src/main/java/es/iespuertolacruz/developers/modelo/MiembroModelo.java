@@ -138,9 +138,17 @@ public class MiembroModelo {
             resultSet = persistencia.buscarElemento(sql);
             while (resultSet.next()) {
                 miembro = new Miembro();
-
-
-
+                String dni = resultSet.getString("dni");
+                String idDireccion = resultSet.getString("idDireccion");
+                String idTarjeta = resultSet.getString("idTarjeta");
+                miembro.setUid(resultSet.getString("uid"));
+                miembro.setDatosPersonales(datosPersonalesModelo.buscarDatosPersonales(dni));
+                miembro.setTipoUsuario(resultSet.getString("tipo"));
+                miembro.setEmail(resultSet.getString("email"));
+                miembro.setContrasenia(resultSet.getString("contrasenia"));
+                miembro.setDireccion(direccionModelo.buscarDireccion(idDireccion));
+                miembro.setTarjeta(tarjetaModelo.buscartTarjeta(idTarjeta));
+                
                 listaMiembros.add(miembro);
             }
         } catch (Exception exception) {

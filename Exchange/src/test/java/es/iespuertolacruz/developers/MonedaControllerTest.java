@@ -74,7 +74,7 @@ public class MonedaControllerTest {
 
 
     @Test
-    public void modificarCuentaTest() {
+    public void modificarMonedaTest() {
         try {
             Moneda monedaEncontrada;
             try {
