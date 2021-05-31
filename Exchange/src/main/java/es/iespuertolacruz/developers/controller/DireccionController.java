@@ -32,7 +32,7 @@ public class DireccionController {
         String mensaje = "";
 
         if (direccion == null){
-            mensaje = "El direccion es nulo";
+            mensaje = "La direccion es nula";
             throw new DireccionException(mensaje);
         }
         if(direccion.getIdDireccion() == null || direccion.getIdDireccion().isEmpty()) {
