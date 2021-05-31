@@ -126,7 +126,6 @@ public class MonedaModelo {
         return moneda;
     }
 
-<<<<<<< HEAD
     /**
      * Funcion que lista Top 10 monedas
      * @return las monedas listadas
@@ -163,9 +162,5 @@ public class MonedaModelo {
         return cuenta;
 
     }
-=======
-
-     
->>>>>>> 03d3faf504214d760971231a48e1187bb8f24b09
 
 }
