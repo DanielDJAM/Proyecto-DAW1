@@ -4,39 +4,51 @@ import java.util.Objects;
 
 public class Mercado {
    
-    String idMoneda;
-    String idWallet;
+    Moneda moneda;
+    Wallet wallet;
     Double cantidad;
 
     
-
+    /**
+     * Constructor vacio
+     */
     public Mercado() {
     }
 
-    public Mercado(String idMoneda, String idWallet, Double cantidad) {
-        this.idMoneda = idMoneda;
-        this.idWallet = idWallet;
+    /**
+     * Constructor con todos los parametros de Mercado
+     * @param moneda
+     * @param wallet
+     * @param cantidad
+     */
+    public Mercado(Moneda moneda, Wallet wallet, Double cantidad) {
+        this.moneda = moneda;
+        this.wallet = wallet;
         this.cantidad = cantidad;
     }
+    
+    /**
+     * Getters y Setters
+     */
 
-    public String getIdMoneda() {
-        return idMoneda;
+    public Moneda getMoneda() {
+        return this.moneda;
     }
 
-    public void setIdMoneda(String idMoneda) {
-        this.idMoneda = idMoneda;
+    public void setMoneda(Moneda moneda) {
+        this.moneda = moneda;
     }
 
-    public String getIdWallet() {
-        return idWallet;
+    public Wallet getWallet() {
+        return this.wallet;
     }
 
-    public void setIdWallet(String idWallet) {
-        this.idWallet = idWallet;
+    public void setWallet(Wallet wallet) {
+        this.wallet = wallet;
     }
 
     public Double getCantidad() {
-        return cantidad;
+        return this.cantidad;
     }
 
     public void setCantidad(Double cantidad) {
@@ -45,9 +57,8 @@ public class Mercado {
 
     @Override
     public String toString() {
-        return "Mercado [cantidad=" + cantidad + ", idMoneda=" + idMoneda + ", idWallet=" + idWallet + "]";
+        return "Mercado [cantidad=" + cantidad + ", moneda=" + moneda + ", wallet=" + wallet + "]";
     }
-
 
     @Override
     public boolean equals(Object o) {
@@ -57,10 +68,7 @@ public class Mercado {
             return false;
         }
         Mercado mercado = (Mercado) o;
-        return Objects.equals(idMoneda, mercado.idMoneda) && Objects.equals(idWallet, mercado.idWallet) && Objects.equals(cantidad, mercado.cantidad);
+        return Objects.equals(moneda, mercado.moneda) && Objects.equals(wallet, mercado.wallet) && Objects.equals(cantidad, mercado.cantidad);
     }
 
-   
-
-    
 }

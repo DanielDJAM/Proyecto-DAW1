@@ -15,9 +15,13 @@ public class MenuLogin {
     Miembro miembro;
     Miembro miembro2;
     Moneda moneda;
+    Wallet wallet;
+    MonedaController monedaController;
     DatosPersonalesController datosPersonalesController;
     DireccionController direccionController;
     TarjetaController tarjetaController;
+    WalletController walletController;
+    MercadoController mercadoController;
     Tarjeta tarjeta;
     Direccion direccion;
     MiembroController miembroController;
@@ -29,11 +33,30 @@ public class MenuLogin {
     String entrada = "";
     int numero;
 
+    public void crearTodo() {
+        try {
+            datosPersonalesController = new DatosPersonalesController();
+            direccionController = new DireccionController();
+            tarjetaController = new TarjetaController();
+            miembroController = new MiembroController();
+            walletController = new WalletController();
+            monedaController = new MonedaController();
+            mercadoController = new MercadoController();
+        } catch (BbddException e) {
+            System.out.println("Ha ocurrido un error inesperado");
+        } catch (FicheroException e) {
+            System.out.println("Ha ocurrido un error inesperado");
+        } catch (SQLException e) {
+            System.out.println("Ha ocurrido un error inesperado");
+        }
+    }
+
     /**
      * Menu principal de la aplicacion
      */
     public void menuPrincipal() {
         while (!salir) {
+            crearTodo();
             printMenuPrincipal();
             try {
                 System.out.println(ESCRIBE_UNA_DE_LAS_OPCIONES);
@@ -46,13 +69,10 @@ public class MenuLogin {
                         menuRegistro();
                         break;
                     case 3:
-                        System.out.println("----------[TOP 10]---------- ");
-                        // Aqui pondremos un metodo que sera una consulta de la tabla monedas
+                        listar10Case();
                         break;
                     case 4:
-                        System.out.println("Listado de las monedas:  ");
-                        // Aqui pondremos un metodo que realice una consulta con X monedas que
-                        // introduzca el miembro
+                        listarMonedasCase();
                         break;
                     case 5:
                         salirCase();
@@ -64,6 +84,32 @@ public class MenuLogin {
                 System.out.println(DEBES_INSERTAR_UN_NUMERO);
                 scan.next();
             }
+        }
+    }
+
+    /**
+     * Metodo que lista por un determinado numero de monedas
+     */
+    public void listarMonedasCase() {
+        System.out.println("Ingrese el numero de monedas que desea ver: ");
+        numero = scan.nextInt();
+        System.out.println("Listado de las monedas:  ");
+        try {
+            System.out.println(monedaController.listarMonedas(numero).toString());
+        } catch (BbddException e) {
+            System.out.println("Ha ocurrido un error inesperado al listar por las monedas.");
+        }
+    }
+
+    /**
+     * Metodo que lista las Top 10 monedas
+     */
+    public void listar10Case() {
+        System.out.println("----------[TOP 10]---------- ");
+        try {
+            System.out.println(monedaController.listar10());
+        } catch (BbddException e) {
+            System.out.println("Ha ocurrido un error inesperado al listar Top 10 monedas.");
         }
     }
 
@@ -96,7 +142,7 @@ public class MenuLogin {
 
         try {
             miembroController = new MiembroController();
-        //    miembroController.buscar(uid);
+            // miembroController.buscar(uid);
         } catch (BbddException e) {
             System.out.println("Ha ocurrido un error inesperado al trabajar con la base de datos.");
         } catch (FicheroException e) {
@@ -323,6 +369,9 @@ public class MenuLogin {
         return entrada;
     }
 
+    /**
+     * Menu del mercado
+     */
     public void menuMercado() {
         while (!salir) {
             printMercado();
@@ -337,8 +386,7 @@ public class MenuLogin {
 
                         break;
                     case 3:
-                        System.out.println("----------[TOP 10]---------- ");
-                        // Aqui pondremos un metodo que sera una consulta de la tabla monedas
+                        listarCarteraCase();
                         break;
                     case 4:
                         System.out.println("Listado de las monedas:  ");
@@ -359,7 +407,32 @@ public class MenuLogin {
     }
 
     /**
+     * Funcion que lista el contenido de una cartera
+     * @return una cartera
+     */
+    public String listarCarteraCase() {
+        miembro = new Miembro();
+        wallet = new Wallet();
+        System.out.println("Introduzca su dni para comprobar su cartera: ");
+        scan.nextLine();
+        entrada = scan.nextLine();
+        try {
+            miembro = miembroController.buscarDni(entrada);
+            wallet = walletController.buscarUid(miembro.getUid());
+        } catch (WalletException e) {
+            System.out.println("Ha ocurrido un error inesperado");
+        } catch (BbddException e) {
+            System.out.println("Ha ocurrido un error inesperado");
+        } catch (MiembroException e) {
+            System.out.println("Ha ocurrido un error inesperado");
+        }
+        System.out.println("Su cartera contiene: ");
+        return mercadoController.listarMercadoWallet(wallet);
+    }
+
+    /**
      * Funcion que realiza la accion de comprar
+     * 
      * @return la moneda comprada
      */
     public Moneda comprarCase() {

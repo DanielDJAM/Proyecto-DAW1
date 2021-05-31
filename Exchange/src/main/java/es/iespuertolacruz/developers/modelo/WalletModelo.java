@@ -47,18 +47,6 @@ public class WalletModelo {
     }
 
     /**
-     * Funcion encargada de realizar la busqueda de un wallet
-     * 
-     * @param uid del wallet
-     * @return Wallet a buscar
-     * @throws BbddException
-     */
-    public Wallet buscarWallet(String uid) throws BbddException {
-        return obtenerWallet(uid);
-
-    }
-
-    /**
      * Funcion que obtiene el listado de todas las wallets
      * 
      * @return lista total
@@ -76,11 +64,30 @@ public class WalletModelo {
      * @return lista total
      * @throws BbddException Error controlado
      */
-    public Wallet obtenerWallet(String identificador) throws BbddException {
+    public Wallet obtenerWalletId(String identificador) throws BbddException {
         Wallet wallet = null;
         ArrayList<Wallet> listaWalletes = null;
-        String sql = "SELECT * FROM Wallet where idWallet = ";
-        sql = sql + "'" + identificador + "'";
+        String sql = "SELECT * FROM Wallet where idWallet = '" + identificador + "'";
+        listaWalletes = obtenerListadoWallet(sql);
+        if (!listaWalletes.isEmpty()) {
+            wallet = listaWalletes.get(0);
+        }
+
+        return wallet;
+
+    }
+
+    /**
+     * Funcion que obtiene una wallet
+     * 
+     * @param
+     * @return lista total
+     * @throws BbddException Error controlado
+     */
+    public Wallet obtenerWalletUid(String uid) throws BbddException {
+        Wallet wallet = null;
+        ArrayList<Wallet> listaWalletes = null;
+        String sql = "SELECT * FROM Wallet where uid = '" + uid + "'";
         listaWalletes = obtenerListadoWallet(sql);
         if (!listaWalletes.isEmpty()) {
             wallet = listaWalletes.get(0);

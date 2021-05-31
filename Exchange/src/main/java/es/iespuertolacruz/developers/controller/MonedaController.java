@@ -1,5 +1,6 @@
 package es.iespuertolacruz.developers.controller;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import es.iespuertolacruz.developers.api.Moneda;
 import es.iespuertolacruz.developers.excepcion.BbddException;
@@ -94,7 +95,7 @@ public class MonedaController {
         if (ticket == null || ticket.isEmpty()) {
             throw new MonedaException("El ticket no corresponde");
         }
-        moneda = monedaModelo.buscarMoneda(ticket);
+        moneda = monedaModelo.obtenerMoneda(ticket);
         return moneda;
     }
 
@@ -113,6 +114,28 @@ public class MonedaController {
             encontrado = true;
         }
         return encontrado;
+    }
+
+    /**
+     * Funcion que lista Top 10 monedas
+     * @return monedas
+     * @throws BbddException error
+     */
+    public String listar10() throws BbddException{
+        return monedaModelo.listarTop10().toString();
+    }
+
+    /**
+     * Funcion que lista por un numero determinado de monedas
+     * @param limite numero de monedas a listar
+     * @return lista de monedas 
+     * @throws BbddException error
+     */
+    public ArrayList<Moneda> listarMonedas(int limite) throws BbddException {
+        if (limite > monedaModelo.contarTodo()) {
+            limite = monedaModelo.contarTodo();
+        }
+        return monedaModelo.listarMonedas(limite);
     }
 
 

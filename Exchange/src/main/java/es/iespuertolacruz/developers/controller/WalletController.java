@@ -6,13 +6,16 @@ import es.iespuertolacruz.developers.api.Wallet;
 import es.iespuertolacruz.developers.excepcion.BbddException;
 import es.iespuertolacruz.developers.excepcion.FicheroException;
 import es.iespuertolacruz.developers.excepcion.WalletException;
+import es.iespuertolacruz.developers.modelo.MiembroModelo;
 import es.iespuertolacruz.developers.modelo.WalletModelo;
 
 public class WalletController {
     WalletModelo walletModelo;
+    MiembroModelo miembroModelo;
 
     public WalletController() throws BbddException, FicheroException, SQLException {
         walletModelo = new WalletModelo();
+        miembroModelo = new MiembroModelo();
     }
 
     /**
@@ -81,12 +84,30 @@ public class WalletController {
      * @throws FicheroException
      * @throws BbddException
      */
-    public Wallet buscar(String idWallet) throws WalletException, BbddException {
+    public Wallet buscarId(String idWallet) throws WalletException, BbddException {
         Wallet wallet = null;
         if (idWallet == null || idWallet.isEmpty()) {
             throw new WalletException("El idWallet está vacio");
         }
-        wallet = walletModelo.buscarWallet(idWallet);
+        wallet = walletModelo.obtenerWalletId(idWallet);
+        return wallet;
+    }
+
+    /**
+     * Funcion que busca un wallet por su uid
+     * 
+     * @param uid del wallet a buscar
+     * @return un wallet
+     * @throws walletException
+     * @throws FicheroException
+     * @throws BbddException
+     */
+    public Wallet buscarUid(String uid) throws WalletException, BbddException {
+        Wallet wallet = null;
+        if (uid == null || uid.isEmpty()) {
+            throw new WalletException("El idWallet está vacio");
+        }
+        wallet = walletModelo.obtenerWalletId(uid);
         return wallet;
     }
 
@@ -102,7 +123,7 @@ public class WalletController {
     public boolean existe(Wallet wallet) throws WalletException, BbddException {
         boolean encontrado = false;
         Wallet walletEncontrado;
-        walletEncontrado = buscar(wallet.getIdWallet());
+        walletEncontrado = buscarId(wallet.getIdWallet());
         if (walletEncontrado != null) {
             encontrado = true;
         }

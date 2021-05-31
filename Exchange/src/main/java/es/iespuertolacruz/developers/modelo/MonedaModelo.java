@@ -63,19 +63,7 @@ public class MonedaModelo {
         persistencia.actualizar(sql);
     }
 
-    /**
-     * Funcion encargada de realizar la busqueda de un moneda
-     * 
-     * @param uid del moneda
-     * @return Moneda a buscar
-     * @throws BbddException
-     */
-    public Moneda buscarMoneda(String ticket) throws BbddException {
-
-        return obtenerMoneda(ticket);
-
-    }
-
+   
     /**
      * Funcion que realiza la consulta sobre la BBDD y la tabla Moneda
      * 
@@ -136,6 +124,43 @@ public class MonedaModelo {
             moneda = listaMonedas.get(0);
         }
         return moneda;
+    }
+
+    /**
+     * Funcion que lista Top 10 monedas
+     * @return las monedas listadas
+     * @throws BbddException error
+     */
+    public Moneda listarTop10() throws BbddException {
+        Moneda moneda = null;
+        ArrayList<Moneda> listaMonedas = null;
+        String sql = "SELECT * FROM Moneda order by valor DESC limit 10";
+        listaMonedas = obtenerListadoMoneda(sql);
+        if (!listaMonedas.isEmpty()) {
+            moneda = listaMonedas.get(0);
+        }
+        return moneda;
+    }
+
+    /**
+     * Funcion que lista por un numero determinado de monedas
+     * @param limite numero de monedas a listar
+     * @return lista de monedas 
+     * @throws BbddException error
+     */
+    public ArrayList<Moneda> listarMonedas(int limite) throws BbddException {
+        ArrayList<Moneda> listaMonedas = null;
+        String sql = "SELECT * FROM Moneda order by valor DESC limit '" + limite + "'";
+        listaMonedas = obtenerListadoMoneda(sql);
+        return listaMonedas;
+    }
+
+    public int contarTodo() throws BbddException {
+        Integer cuenta = 0;
+        String sql = "SELECT count(*) FROM Moneda";
+        cuenta = obtenerListadoMoneda(sql).indexOf(0);
+        return cuenta;
+
     }
 
 }
