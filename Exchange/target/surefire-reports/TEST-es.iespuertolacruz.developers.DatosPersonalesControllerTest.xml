@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="es.iespuertolacruz.developers.apitest.WalletTest" time="0.003" tests="4" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="es.iespuertolacruz.developers.DatosPersonalesControllerTest" time="0.494" tests="6" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="15"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -55,8 +55,10 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="59.0"/>
   </properties>
-  <testcase name="validarTest" classname="es.iespuertolacruz.developers.apitest.WalletTest" time="0"/>
-  <testcase name="equalErrorTest" classname="es.iespuertolacruz.developers.apitest.WalletTest" time="0"/>
-  <testcase name="listarTest" classname="es.iespuertolacruz.developers.apitest.WalletTest" time="0"/>
-  <testcase name="equalTest" classname="es.iespuertolacruz.developers.apitest.WalletTest" time="0"/>
+  <testcase name="buscarPorIdDatosPersonalesTest" classname="es.iespuertolacruz.developers.DatosPersonalesControllerTest" time="0.297"/>
+  <testcase name="validarErrorTest" classname="es.iespuertolacruz.developers.DatosPersonalesControllerTest" time="0.036"/>
+  <testcase name="insertarErrorTest" classname="es.iespuertolacruz.developers.DatosPersonalesControllerTest" time="0.038"/>
+  <testcase name="validarErrorNullTest" classname="es.iespuertolacruz.developers.DatosPersonalesControllerTest" time="0.034"/>
+  <testcase name="existeTest" classname="es.iespuertolacruz.developers.DatosPersonalesControllerTest" time="0.032"/>
+  <testcase name="modificarTest" classname="es.iespuertolacruz.developers.DatosPersonalesControllerTest" time="0.051"/>
 </testsuite>

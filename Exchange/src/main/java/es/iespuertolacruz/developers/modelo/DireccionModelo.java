@@ -47,7 +47,7 @@ public class DireccionModelo {
      * @throws BbddException controlada
      */
     public void eliminar(Direccion direccion) throws BbddException {
-        String sql = "DELETE from Direccion WHERE idDireccion ='" + direccion.getIdDireccion() + "'";
+        String sql = "DELETE from Direccion WHERE idDireccion = '" + direccion.getIdDireccion() + "'";
         persistencia.actualizar(sql);
 
     }
@@ -64,7 +64,7 @@ public class DireccionModelo {
         + "', puerta = '" + direccion.getPuerta()
         + "', provincia = '" + direccion.getProvincia()
         + "', pais = '" + direccion.getPais() 
-        + "' WHERE uid = '" + direccion.getIdDireccion() + "'";
+        + "' WHERE idDireccion = '" + direccion.getIdDireccion() + "'";
         persistencia.actualizar(sql);
     }
 

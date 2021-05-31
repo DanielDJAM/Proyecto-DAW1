@@ -47,7 +47,7 @@ public class DireccionModelo {
      * @throws BbddException controlada
      */
     public void eliminar(Direccion direccion) throws BbddException {
-<span class="fc" id="L50">        String sql = &quot;DELETE from Direccion WHERE idDireccion ='&quot; + direccion.getIdDireccion() + &quot;'&quot;;</span>
+<span class="fc" id="L50">        String sql = &quot;DELETE from Direccion WHERE idDireccion = '&quot; + direccion.getIdDireccion() + &quot;'&quot;;</span>
 <span class="fc" id="L51">        persistencia.actualizar(sql);</span>
 
 <span class="fc" id="L53">    }</span>
@@ -59,14 +59,14 @@ public class DireccionModelo {
      * @throws BbddException controlada
      */
     public void modificar(Direccion direccion) throws BbddException {
-<span class="nc" id="L62">        String sql = &quot;UPDATE Direccion SET codigoPostal = '&quot; + direccion.getCodigoPostal() </span>
-<span class="nc" id="L63">        + &quot;', calle = '&quot; + direccion.getCalle()</span>
-<span class="nc" id="L64">        + &quot;', puerta = '&quot; + direccion.getPuerta()</span>
-<span class="nc" id="L65">        + &quot;', provincia = '&quot; + direccion.getProvincia()</span>
-<span class="nc" id="L66">        + &quot;', pais = '&quot; + direccion.getPais() </span>
-<span class="nc" id="L67">        + &quot;' WHERE uid = '&quot; + direccion.getIdDireccion() + &quot;'&quot;;</span>
-<span class="nc" id="L68">        persistencia.actualizar(sql);</span>
-<span class="nc" id="L69">    }</span>
+<span class="fc" id="L62">        String sql = &quot;UPDATE Direccion SET codigoPostal = '&quot; + direccion.getCodigoPostal() </span>
+<span class="fc" id="L63">        + &quot;', calle = '&quot; + direccion.getCalle()</span>
+<span class="fc" id="L64">        + &quot;', puerta = '&quot; + direccion.getPuerta()</span>
+<span class="fc" id="L65">        + &quot;', provincia = '&quot; + direccion.getProvincia()</span>
+<span class="fc" id="L66">        + &quot;', pais = '&quot; + direccion.getPais() </span>
+<span class="fc" id="L67">        + &quot;' WHERE idDireccion = '&quot; + direccion.getIdDireccion() + &quot;'&quot;;</span>
+<span class="fc" id="L68">        persistencia.actualizar(sql);</span>
+<span class="fc" id="L69">    }</span>
 
     /**
      * Funcion encargada de realizar la busqueda de un direccion

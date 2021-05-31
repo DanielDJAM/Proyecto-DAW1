@@ -31,31 +31,31 @@ public class DireccionController {
     public void validar(Direccion direccion) throws DireccionException{
 <span class="fc" id="L32">        String mensaje = &quot;&quot;;</span>
 
-<span class="pc bpc" id="L34" title="1 of 2 branches missed.">        if (direccion == null){</span>
-<span class="nc" id="L35">            mensaje = &quot;La direccion es nula&quot;;</span>
-<span class="nc" id="L36">            throw new DireccionException(mensaje);</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        if (direccion == null){</span>
+<span class="fc" id="L35">            mensaje = &quot;La direccion es nula&quot;;</span>
+<span class="fc" id="L36">            throw new DireccionException(mensaje);</span>
         }
-<span class="pc bpc" id="L38" title="2 of 4 branches missed.">        if(direccion.getIdDireccion() == null || direccion.getIdDireccion().isEmpty()) {</span>
-<span class="nc" id="L39">            mensaje = &quot;El IdDireccion es nulo o vacio,&quot;;</span>
+<span class="pc bpc" id="L38" title="1 of 4 branches missed.">        if(direccion.getIdDireccion() == null || direccion.getIdDireccion().isEmpty()) {</span>
+<span class="fc" id="L39">            mensaje = &quot;El IdDireccion es nulo o vacio,&quot;;</span>
         }
-<span class="pc bpc" id="L41" title="2 of 4 branches missed.">        if (direccion.getCodigoPostal() == null || direccion.getCodigoPostal().isEmpty()) {</span>
-<span class="nc" id="L42">            mensaje += &quot;El Codigo postal es nulo o vacio,&quot;;</span>
+<span class="pc bpc" id="L41" title="1 of 4 branches missed.">        if (direccion.getCodigoPostal() == null || direccion.getCodigoPostal().isEmpty()) {</span>
+<span class="fc" id="L42">            mensaje += &quot;El Codigo postal es nulo o vacio,&quot;;</span>
         }
-<span class="pc bpc" id="L44" title="2 of 4 branches missed.">        if (direccion.getCalle() == null || direccion.getCalle().isEmpty()) {</span>
-<span class="nc" id="L45">            mensaje += &quot;La calle es nula o vacia,&quot;;</span>
+<span class="pc bpc" id="L44" title="1 of 4 branches missed.">        if (direccion.getCalle() == null || direccion.getCalle().isEmpty()) {</span>
+<span class="fc" id="L45">            mensaje += &quot;La calle es nula o vacia,&quot;;</span>
         }
-<span class="pc bpc" id="L47" title="2 of 4 branches missed.">        if (direccion.getPuerta() == null || direccion.getPuerta().isEmpty() ) {</span>
-<span class="nc" id="L48">            mensaje += &quot;Los datos de la puerta estan vacios o son nulos&quot;;</span>
+<span class="pc bpc" id="L47" title="1 of 4 branches missed.">        if (direccion.getPuerta() == null || direccion.getPuerta().isEmpty() ) {</span>
+<span class="fc" id="L48">            mensaje += &quot;Los datos de la puerta estan vacios o son nulos&quot;;</span>
         }
        
-<span class="pc bpc" id="L51" title="2 of 4 branches missed.">        if (direccion.getProvincia() == null || direccion.getPuerta().isEmpty()) {</span>
-<span class="nc" id="L52">            mensaje += &quot;Los datos de la provincia estan vacios o son nulos&quot;;</span>
+<span class="pc bpc" id="L51" title="1 of 4 branches missed.">        if (direccion.getProvincia() == null || direccion.getPuerta().isEmpty()) {</span>
+<span class="fc" id="L52">            mensaje += &quot;Los datos de la provincia estan vacios o son nulos&quot;;</span>
         }
-<span class="pc bpc" id="L54" title="2 of 4 branches missed.">        if (direccion.getPais() == null || direccion.getPais().isEmpty()) {</span>
-<span class="nc" id="L55">            mensaje += &quot;Los datos del pais estan vacios o son nulos&quot;;</span>
+<span class="pc bpc" id="L54" title="1 of 4 branches missed.">        if (direccion.getPais() == null || direccion.getPais().isEmpty()) {</span>
+<span class="fc" id="L55">            mensaje += &quot;Los datos del pais estan vacios o son nulos&quot;;</span>
         }
-<span class="pc bpc" id="L57" title="1 of 2 branches missed.">        if(!mensaje.isEmpty()) {</span>
-<span class="nc" id="L58">            throw new DireccionException(mensaje);</span>
+<span class="fc bfc" id="L57" title="All 2 branches covered.">        if(!mensaje.isEmpty()) {</span>
+<span class="fc" id="L58">            throw new DireccionException(mensaje);</span>
         }
 <span class="fc" id="L60">    }</span>
 
@@ -69,8 +69,8 @@ public class DireccionController {
      */
     public void insertar(Direccion direccion) throws DireccionException, BbddException {
 <span class="fc" id="L71">        validar(direccion);</span>
-<span class="pc bpc" id="L72" title="1 of 2 branches missed.">        if(existe(direccion)) {</span>
-<span class="nc" id="L73">            throw new DireccionException(&quot;La direccion ya existe&quot;);</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">        if(existe(direccion)) {</span>
+<span class="fc" id="L73">            throw new DireccionException(&quot;La direccion ya existe&quot;);</span>
         }
 <span class="fc" id="L75">        direccionModelo.insertar(direccion);</span>
 <span class="fc" id="L76">    }</span>
@@ -86,7 +86,7 @@ public class DireccionController {
     public void eliminar(Direccion direccion) throws  DireccionException, BbddException{
 <span class="fc" id="L87">        validar(direccion);</span>
 <span class="pc bpc" id="L88" title="1 of 2 branches missed.">        if (!existe(direccion)) {</span>
-<span class="nc" id="L89">          throw new DireccionException(&quot;El miembro no existe&quot;);</span>
+<span class="nc" id="L89">          throw new DireccionException(&quot;La direccion no existe&quot;);</span>
         }
 <span class="fc" id="L91">        direccionModelo.eliminar(direccion);</span>
 <span class="fc" id="L92">    }</span>
@@ -100,12 +100,12 @@ public class DireccionController {
      * @throws MiembroException
      */
     public void modificar(Direccion direccion) throws  BbddException, DireccionException{
-<span class="nc" id="L103">        validar(direccion);</span>
-<span class="nc bnc" id="L104" title="All 2 branches missed.">        if(!existe(direccion)){</span>
+<span class="fc" id="L103">        validar(direccion);</span>
+<span class="pc bpc" id="L104" title="1 of 2 branches missed.">        if(!existe(direccion)){</span>
 <span class="nc" id="L105">            throw new DireccionException(&quot;El direccion no existe&quot;);</span>
         }
-<span class="nc" id="L107">        direccionModelo.modificar(direccion);</span>
-<span class="nc" id="L108">    }</span>
+<span class="fc" id="L107">        direccionModelo.modificar(direccion);</span>
+<span class="fc" id="L108">    }</span>
 
     /**
      * Funcion que busca un direccion por su idDireccion

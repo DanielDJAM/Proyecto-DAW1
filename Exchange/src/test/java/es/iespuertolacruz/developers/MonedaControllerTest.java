@@ -2,6 +2,7 @@ package es.iespuertolacruz.developers;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.sql.SQLException;
@@ -93,7 +94,59 @@ public class MonedaControllerTest {
     }
 
 
-    
+    @Test
+    public void existeTest() {
+        try {
+            monedaController.validar(moneda);
+        } catch (MonedaException e) {
+            fail("Se ha producido un error validando el habitante no controlado");
+        }
+    }
+
+    @Test
+    public void buscarPorTicketTest() {
+        Moneda Buscado;
+
+        try {
+            
+            Buscado = monedaController.buscar("PRTD");
+            assertEquals(moneda, Buscado, "Los usuario deberian ser iguales");
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
+    }
+
+
+    @Test
+    public void mostrarContenidoDBTest() {
+        String contenido;
+        try {
+            contenido = monedaController.obtenerListado().toString();
+            assertTrue(contenido.contains("BTC"));
+        } catch (BbddException e) {
+            fail("Error al visualizar el contenido de la db");
+        }
+    }
+
+    @Test
+    public void validarErrorTest() {
+        try {
+            Moneda moneda5 = null;
+            moneda5 = new Moneda();
+            moneda5.setTicket("");
+            moneda5.setNombreMoneda("");;
+            moneda5.setValor(-2);
+            
+            monedaController.validar(moneda5);
+        } catch (MonedaException e) {
+            assertTrue(e.getMessage().contains("nulo o vacio"));
+
+        }
+    }
+
+
+
+
 
     private Moneda crearMoneda() {
         return new Moneda("PRTD", "PTD", 12);

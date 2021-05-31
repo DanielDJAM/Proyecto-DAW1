@@ -1,5 +1,6 @@
 package es.iespuertolacruz.developers.controller;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import es.iespuertolacruz.developers.api.Moneda;
 import es.iespuertolacruz.developers.excepcion.BbddException;
@@ -96,6 +97,10 @@ public class MonedaController {
         }
         moneda = monedaModelo.buscarMoneda(ticket);
         return moneda;
+    }
+
+    public ArrayList<Moneda> obtenerListado() throws BbddException {
+        return monedaModelo.obtenerListadoMonedas();
     }
 
       /**
