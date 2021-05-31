@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import es.iespuertolacruz.developers.api.Mercado;
-import es.iespuertolacruz.developers.api.Moneda;
 import es.iespuertolacruz.developers.api.Wallet;
 import es.iespuertolacruz.developers.excepcion.BbddException;
 import es.iespuertolacruz.developers.excepcion.FicheroException;
@@ -26,9 +25,11 @@ public class MercadoController {
     }
 
 
-    public String listarMercadoWallet(Wallet wallet){
+    public String listarMercadoWallet(Wallet wallet) throws BbddException{
+        Mercado mercado = null;
         ArrayList<Mercado> listaMercado = null;
-        listaMercado = mercadoModelo.obtenerMercado(wallet.getIdWallet());
+        mercado = mercadoModelo.obtenerMercado(wallet.getIdWallet());
+        listaMercado.add(mercado);
         return listaMercado.toString();
     }
 

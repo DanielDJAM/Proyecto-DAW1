@@ -15,6 +15,7 @@ public class MenuLogin {
     Miembro miembro;
     Miembro miembro2;
     Moneda moneda;
+    Mercado mercado;
     Wallet wallet;
     MonedaController monedaController;
     DatosPersonalesController datosPersonalesController;
@@ -413,12 +414,14 @@ public class MenuLogin {
     public String listarCarteraCase() {
         miembro = new Miembro();
         wallet = new Wallet();
+        String listado = "";
         System.out.println("Introduzca su dni para comprobar su cartera: ");
         scan.nextLine();
         entrada = scan.nextLine();
         try {
             miembro = miembroController.buscarDni(entrada);
             wallet = walletController.buscarUid(miembro.getUid());
+            listado = mercadoController.listarMercadoWallet(wallet);
         } catch (WalletException e) {
             System.out.println("Ha ocurrido un error inesperado");
         } catch (BbddException e) {
@@ -427,7 +430,7 @@ public class MenuLogin {
             System.out.println("Ha ocurrido un error inesperado");
         }
         System.out.println("Su cartera contiene: ");
-        return mercadoController.listarMercadoWallet(wallet);
+        return listado;
     }
 
     /**
@@ -490,7 +493,7 @@ public class MenuLogin {
         System.out.println("Por favor, introduzca su dni: ");
         entrada = scan.nextLine();
         try {
-            miembro = miembroController.buscar(entrada);
+            miembro = miembroController.buscarDni(entrada);
             System.out.println("¿Es usted este usuario? ");
             decision();
             System.out.println("Para borrar definitivamente su cuenta escriba: 'Confirmar' .");

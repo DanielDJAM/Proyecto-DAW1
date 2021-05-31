@@ -2,6 +2,7 @@ C:\Users\SYSADMIN\Desktop\Proyecto-DAW1\Exchange\src\main\java\es\iespuertolacru
 C:\Users\SYSADMIN\Desktop\Proyecto-DAW1\Exchange\src\main\java\es\iespuertolacruz\developers\api\Visitante.java
 C:\Users\SYSADMIN\Desktop\Proyecto-DAW1\Exchange\src\main\java\es\iespuertolacruz\developers\api\Tarjeta.java
 C:\Users\SYSADMIN\Desktop\Proyecto-DAW1\Exchange\src\main\java\es\iespuertolacruz\developers\modelo\MonedaModelo.java
+C:\Users\SYSADMIN\Desktop\Proyecto-DAW1\Exchange\src\main\java\es\iespuertolacruz\developers\controller\MercadoController.java
 C:\Users\SYSADMIN\Desktop\Proyecto-DAW1\Exchange\src\main\java\es\iespuertolacruz\developers\excepcion\DireccionException.java
 C:\Users\SYSADMIN\Desktop\Proyecto-DAW1\Exchange\src\main\java\es\iespuertolacruz\developers\vista\Main.java
 C:\Users\SYSADMIN\Desktop\Proyecto-DAW1\Exchange\src\main\java\es\iespuertolacruz\developers\controller\DatosPersonalesController.java
@@ -23,6 +24,7 @@ C:\Users\SYSADMIN\Desktop\Proyecto-DAW1\Exchange\src\main\java\es\iespuertolacru
 C:\Users\SYSADMIN\Desktop\Proyecto-DAW1\Exchange\src\main\java\es\iespuertolacruz\developers\api\Miembro.java
 C:\Users\SYSADMIN\Desktop\Proyecto-DAW1\Exchange\src\main\java\es\iespuertolacruz\developers\excepcion\BbddException.java
 C:\Users\SYSADMIN\Desktop\Proyecto-DAW1\Exchange\src\main\java\es\iespuertolacruz\developers\excepcion\DatosPersonalesException.java
+C:\Users\SYSADMIN\Desktop\Proyecto-DAW1\Exchange\src\main\java\es\iespuertolacruz\developers\modelo\MercadoModelo.java
 C:\Users\SYSADMIN\Desktop\Proyecto-DAW1\Exchange\src\main\java\es\iespuertolacruz\developers\modelo\Bbdd.java
 C:\Users\SYSADMIN\Desktop\Proyecto-DAW1\Exchange\src\main\java\es\iespuertolacruz\developers\api\Wallet.java
 C:\Users\SYSADMIN\Desktop\Proyecto-DAW1\Exchange\src\main\java\es\iespuertolacruz\developers\api\Usuario.java

@@ -47,26 +47,14 @@ public class WalletModelo {
 <span class="nc" id="L47">    }</span>
 
     /**
-     * Funcion encargada de realizar la busqueda de un wallet
-     * 
-     * @param uid del wallet
-     * @return Wallet a buscar
-     * @throws BbddException
-     */
-    public Wallet buscarWallet(String uid) throws BbddException {
-<span class="nc" id="L57">        return obtenerWallet(uid);</span>
-
-    }
-
-    /**
      * Funcion que obtiene el listado de todas las wallets
      * 
      * @return lista total
      * @throws BbddException Error controlado
      */
     public ArrayList&lt;Wallet&gt; obtenerListado() throws BbddException {
-<span class="nc" id="L68">        String sql = &quot;SELECT * FROM Wallet&quot;;</span>
-<span class="nc" id="L69">        return obtenerListadoWallet(sql);</span>
+<span class="nc" id="L56">        String sql = &quot;SELECT * FROM Wallet&quot;;</span>
+<span class="nc" id="L57">        return obtenerListadoWallet(sql);</span>
     }
 
     /**
@@ -76,17 +64,36 @@ public class WalletModelo {
      * @return lista total
      * @throws BbddException Error controlado
      */
-    public Wallet obtenerWallet(String identificador) throws BbddException {
-<span class="nc" id="L80">        Wallet wallet = null;</span>
-<span class="nc" id="L81">        ArrayList&lt;Wallet&gt; listaWalletes = null;</span>
-<span class="nc" id="L82">        String sql = &quot;SELECT * FROM Wallet where idWallet = &quot;;</span>
-<span class="nc" id="L83">        sql = sql + &quot;'&quot; + identificador + &quot;'&quot;;</span>
-<span class="nc" id="L84">        listaWalletes = obtenerListadoWallet(sql);</span>
-<span class="nc bnc" id="L85" title="All 2 branches missed.">        if (!listaWalletes.isEmpty()) {</span>
-<span class="nc" id="L86">            wallet = listaWalletes.get(0);</span>
+    public Wallet obtenerWalletId(String identificador) throws BbddException {
+<span class="nc" id="L68">        Wallet wallet = null;</span>
+<span class="nc" id="L69">        ArrayList&lt;Wallet&gt; listaWalletes = null;</span>
+<span class="nc" id="L70">        String sql = &quot;SELECT * FROM Wallet where idWallet = '&quot; + identificador + &quot;'&quot;;</span>
+<span class="nc" id="L71">        listaWalletes = obtenerListadoWallet(sql);</span>
+<span class="nc bnc" id="L72" title="All 2 branches missed.">        if (!listaWalletes.isEmpty()) {</span>
+<span class="nc" id="L73">            wallet = listaWalletes.get(0);</span>
         }
 
-<span class="nc" id="L89">        return wallet;</span>
+<span class="nc" id="L76">        return wallet;</span>
+
+    }
+
+    /**
+     * Funcion que obtiene una wallet
+     * 
+     * @param
+     * @return lista total
+     * @throws BbddException Error controlado
+     */
+    public Wallet obtenerWalletUid(String uid) throws BbddException {
+<span class="nc" id="L88">        Wallet wallet = null;</span>
+<span class="nc" id="L89">        ArrayList&lt;Wallet&gt; listaWalletes = null;</span>
+<span class="nc" id="L90">        String sql = &quot;SELECT * FROM Wallet where uid = '&quot; + uid + &quot;'&quot;;</span>
+<span class="nc" id="L91">        listaWalletes = obtenerListadoWallet(sql);</span>
+<span class="nc bnc" id="L92" title="All 2 branches missed.">        if (!listaWalletes.isEmpty()) {</span>
+<span class="nc" id="L93">            wallet = listaWalletes.get(0);</span>
+        }
+
+<span class="nc" id="L96">        return wallet;</span>
 
     }
 
@@ -98,30 +105,30 @@ public class WalletModelo {
      * @throws BbddException Error controlado
      */
     private ArrayList&lt;Wallet&gt; obtenerListadoWallet(String sql) throws BbddException {
-<span class="nc" id="L101">        ArrayList&lt;Wallet&gt; listaWalletes = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L108">        ArrayList&lt;Wallet&gt; listaWalletes = new ArrayList&lt;&gt;();</span>
 
-<span class="nc" id="L103">        Wallet wallet = null;</span>
-<span class="nc" id="L104">        Statement statement = null;</span>
-<span class="nc" id="L105">        ResultSet resultSet = null;</span>
-<span class="nc" id="L106">        Connection connection = null;</span>
+<span class="nc" id="L110">        Wallet wallet = null;</span>
+<span class="nc" id="L111">        Statement statement = null;</span>
+<span class="nc" id="L112">        ResultSet resultSet = null;</span>
+<span class="nc" id="L113">        Connection connection = null;</span>
         try {
-<span class="nc" id="L108">            connection = persistencia.getConnection();</span>
-<span class="nc" id="L109">            statement = connection.createStatement();</span>
-<span class="nc" id="L110">            resultSet = statement.executeQuery(sql);</span>
-<span class="nc bnc" id="L111" title="All 2 branches missed.">            while (resultSet.next()) {</span>
-<span class="nc" id="L112">                wallet = new Wallet();</span>
+<span class="nc" id="L115">            connection = persistencia.getConnection();</span>
+<span class="nc" id="L116">            statement = connection.createStatement();</span>
+<span class="nc" id="L117">            resultSet = statement.executeQuery(sql);</span>
+<span class="nc bnc" id="L118" title="All 2 branches missed.">            while (resultSet.next()) {</span>
+<span class="nc" id="L119">                wallet = new Wallet();</span>
 
-<span class="nc" id="L114">                wallet.setIdWallet(resultSet.getString(&quot;idWallet&quot;));</span>
-<span class="nc" id="L115">                wallet.setUid(resultSet.getString(&quot;uid&quot;));</span>
+<span class="nc" id="L121">                wallet.setIdWallet(resultSet.getString(&quot;idWallet&quot;));</span>
+<span class="nc" id="L122">                wallet.setUid(resultSet.getString(&quot;uid&quot;));</span>
 
-<span class="nc" id="L117">                listaWalletes.add(wallet);</span>
+<span class="nc" id="L124">                listaWalletes.add(wallet);</span>
             }
-<span class="nc" id="L119">        } catch (Exception exception) {</span>
-<span class="nc" id="L120">            throw new BbddException(&quot;Se ha producido un error realizando la consulta&quot;, exception);</span>
+<span class="nc" id="L126">        } catch (Exception exception) {</span>
+<span class="nc" id="L127">            throw new BbddException(&quot;Se ha producido un error realizando la consulta&quot;, exception);</span>
         } finally {
-<span class="nc" id="L122">            persistencia.closeConnection(connection, statement, resultSet);</span>
+<span class="nc" id="L129">            persistencia.closeConnection(connection, statement, resultSet);</span>
         }
-<span class="nc" id="L124">        return listaWalletes;</span>
+<span class="nc" id="L131">        return listaWalletes;</span>
     }
 
 }

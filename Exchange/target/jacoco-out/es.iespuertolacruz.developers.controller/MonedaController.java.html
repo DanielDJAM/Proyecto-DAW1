@@ -95,7 +95,7 @@ public class MonedaController {
 <span class="pc bpc" id="L95" title="2 of 4 branches missed.">        if (ticket == null || ticket.isEmpty()) {</span>
 <span class="nc" id="L96">            throw new MonedaException(&quot;El ticket no corresponde&quot;);</span>
         }
-<span class="fc" id="L98">        moneda = monedaModelo.buscarMoneda(ticket);</span>
+<span class="fc" id="L98">        moneda = monedaModelo.obtenerMoneda(ticket);</span>
 <span class="fc" id="L99">        return moneda;</span>
     }
 
@@ -118,6 +118,28 @@ public class MonedaController {
 <span class="fc" id="L118">            encontrado = true;</span>
         }
 <span class="fc" id="L120">        return encontrado;</span>
+    }
+
+    /**
+     * Funcion que lista Top 10 monedas
+     * @return monedas
+     * @throws BbddException error
+     */
+    public String listar10() throws BbddException{
+<span class="nc" id="L129">        return monedaModelo.listarTop10().toString();</span>
+    }
+
+    /**
+     * Funcion que lista por un numero determinado de monedas
+     * @param limite numero de monedas a listar
+     * @return lista de monedas 
+     * @throws BbddException error
+     */
+    public ArrayList&lt;Moneda&gt; listarMonedas(int limite) throws BbddException {
+<span class="nc bnc" id="L139" title="All 2 branches missed.">        if (limite &gt; monedaModelo.contarTodo()) {</span>
+<span class="nc" id="L140">            limite = monedaModelo.contarTodo();</span>
+        }
+<span class="nc" id="L142">        return monedaModelo.listarMonedas(limite);</span>
     }
 
 

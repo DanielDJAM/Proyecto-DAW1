@@ -15,158 +15,205 @@ import es.iespuertolacruz.developers.excepcion.*;
     Miembro miembro;
     Miembro miembro2;
     Moneda moneda;
+    Mercado mercado;
+    Wallet wallet;
+    MonedaController monedaController;
     DatosPersonalesController datosPersonalesController;
     DireccionController direccionController;
     TarjetaController tarjetaController;
+    WalletController walletController;
+    MercadoController mercadoController;
     Tarjeta tarjeta;
     Direccion direccion;
     MiembroController miembroController;
     DatosPersonales datosPersonales;
-<span class="nc" id="L25">    Scanner scan = new Scanner(System.in);</span>
-<span class="nc" id="L26">    boolean salir = false;</span>
+<span class="nc" id="L30">    Scanner scan = new Scanner(System.in);</span>
+<span class="nc" id="L31">    boolean salir = false;</span>
     int opcion;
-<span class="nc" id="L28">    String mensaje = &quot;&quot;;</span>
-<span class="nc" id="L29">    String entrada = &quot;&quot;;</span>
+<span class="nc" id="L33">    String mensaje = &quot;&quot;;</span>
+<span class="nc" id="L34">    String entrada = &quot;&quot;;</span>
     int numero;
+
+    public void crearTodo() {
+        try {
+<span class="nc" id="L39">            datosPersonalesController = new DatosPersonalesController();</span>
+<span class="nc" id="L40">            direccionController = new DireccionController();</span>
+<span class="nc" id="L41">            tarjetaController = new TarjetaController();</span>
+<span class="nc" id="L42">            miembroController = new MiembroController();</span>
+<span class="nc" id="L43">            walletController = new WalletController();</span>
+<span class="nc" id="L44">            monedaController = new MonedaController();</span>
+<span class="nc" id="L45">            mercadoController = new MercadoController();</span>
+<span class="nc" id="L46">        } catch (BbddException e) {</span>
+<span class="nc" id="L47">            System.out.println(&quot;Ha ocurrido un error inesperado&quot;);</span>
+<span class="nc" id="L48">        } catch (FicheroException e) {</span>
+<span class="nc" id="L49">            System.out.println(&quot;Ha ocurrido un error inesperado&quot;);</span>
+<span class="nc" id="L50">        } catch (SQLException e) {</span>
+<span class="nc" id="L51">            System.out.println(&quot;Ha ocurrido un error inesperado&quot;);</span>
+<span class="nc" id="L52">        }</span>
+<span class="nc" id="L53">    }</span>
 
     /**
      * Menu principal de la aplicacion
      */
     public void menuPrincipal() {
-<span class="nc bnc" id="L36" title="All 2 branches missed.">        while (!salir) {</span>
-<span class="nc" id="L37">            printMenuPrincipal();</span>
+<span class="nc bnc" id="L59" title="All 2 branches missed.">        while (!salir) {</span>
+<span class="nc" id="L60">            crearTodo();</span>
+<span class="nc" id="L61">            printMenuPrincipal();</span>
             try {
-<span class="nc" id="L39">                System.out.println(ESCRIBE_UNA_DE_LAS_OPCIONES);</span>
-<span class="nc" id="L40">                opcion = Integer.parseInt(scan.nextLine());</span>
-<span class="nc bnc" id="L41" title="All 6 branches missed.">                switch (opcion) {</span>
+<span class="nc" id="L63">                System.out.println(ESCRIBE_UNA_DE_LAS_OPCIONES);</span>
+<span class="nc" id="L64">                opcion = Integer.parseInt(scan.nextLine());</span>
+<span class="nc bnc" id="L65" title="All 6 branches missed.">                switch (opcion) {</span>
                     case 1:
-<span class="nc" id="L43">                        loginCase();</span>
-<span class="nc" id="L44">                        break;</span>
+<span class="nc" id="L67">                        loginCase();</span>
+<span class="nc" id="L68">                        break;</span>
                     case 2:
-<span class="nc" id="L46">                        menuRegistro();</span>
-<span class="nc" id="L47">                        break;</span>
+<span class="nc" id="L70">                        menuRegistro();</span>
+<span class="nc" id="L71">                        break;</span>
                     case 3:
-<span class="nc" id="L49">                        System.out.println(&quot;----------[TOP 10]---------- &quot;);</span>
-                        // Aqui pondremos un metodo que sera una consulta de la tabla monedas
-<span class="nc" id="L51">                        break;</span>
+<span class="nc" id="L73">                        listar10Case();</span>
+<span class="nc" id="L74">                        break;</span>
                     case 4:
-<span class="nc" id="L53">                        System.out.println(&quot;Listado de las monedas:  &quot;);</span>
-                        // Aqui pondremos un metodo que realice una consulta con X monedas que
-                        // introduzca el miembro
-<span class="nc" id="L56">                        break;</span>
+<span class="nc" id="L76">                        listarMonedasCase();</span>
+<span class="nc" id="L77">                        break;</span>
                     case 5:
-<span class="nc" id="L58">                        salirCase();</span>
-<span class="nc" id="L59">                        break;</span>
+<span class="nc" id="L79">                        salirCase();</span>
+<span class="nc" id="L80">                        break;</span>
                     default:
-<span class="nc" id="L61">                        System.out.println(&quot;Solo numeros entre 1 y 5&quot;);</span>
+<span class="nc" id="L82">                        System.out.println(&quot;Solo numeros entre 1 y 5&quot;);</span>
                 }
-<span class="nc" id="L63">            } catch (InputMismatchException e) {</span>
-<span class="nc" id="L64">                System.out.println(DEBES_INSERTAR_UN_NUMERO);</span>
-<span class="nc" id="L65">                scan.next();</span>
-<span class="nc" id="L66">            }</span>
+<span class="nc" id="L84">            } catch (InputMismatchException e) {</span>
+<span class="nc" id="L85">                System.out.println(DEBES_INSERTAR_UN_NUMERO);</span>
+<span class="nc" id="L86">                scan.next();</span>
+<span class="nc" id="L87">            }</span>
         }
-<span class="nc" id="L68">    }</span>
+<span class="nc" id="L89">    }</span>
+
+    /**
+     * Metodo que lista por un determinado numero de monedas
+     */
+    public void listarMonedasCase() {
+<span class="nc" id="L95">        System.out.println(&quot;Ingrese el numero de monedas que desea ver: &quot;);</span>
+<span class="nc" id="L96">        numero = scan.nextInt();</span>
+<span class="nc" id="L97">        System.out.println(&quot;Listado de las monedas:  &quot;);</span>
+        try {
+<span class="nc" id="L99">            System.out.println(monedaController.listarMonedas(numero).toString());</span>
+<span class="nc" id="L100">        } catch (BbddException e) {</span>
+<span class="nc" id="L101">            System.out.println(&quot;Ha ocurrido un error inesperado al listar por las monedas.&quot;);</span>
+<span class="nc" id="L102">        }</span>
+<span class="nc" id="L103">    }</span>
+
+    /**
+     * Metodo que lista las Top 10 monedas
+     */
+    public void listar10Case() {
+<span class="nc" id="L109">        System.out.println(&quot;----------[TOP 10]---------- &quot;);</span>
+        try {
+<span class="nc" id="L111">            System.out.println(monedaController.listar10());</span>
+<span class="nc" id="L112">        } catch (BbddException e) {</span>
+<span class="nc" id="L113">            System.out.println(&quot;Ha ocurrido un error inesperado al listar Top 10 monedas.&quot;);</span>
+<span class="nc" id="L114">        }</span>
+<span class="nc" id="L115">    }</span>
 
     /**
      * Metodo que imprime en pantalla las opciones del menu principal
      */
     public void printMenuPrincipal() {
-<span class="nc" id="L74">        System.out.println(&quot;Bienvenido, querido trader, a nuestro Exchange.&quot;);</span>
-<span class="nc" id="L75">        System.out.println(&quot;¿Que deseas hacer?&quot;);</span>
-<span class="nc" id="L76">        System.out.println(&quot;1. Log in.&quot;);</span>
-<span class="nc" id="L77">        System.out.println(&quot;2. Registrarse.&quot;);</span>
-<span class="nc" id="L78">        System.out.println(&quot;3. Listar Top 10 criptomonedas.&quot;);</span>
-<span class="nc" id="L79">        System.out.println(&quot;4. Listar criptomonedas.&quot;);</span>
-<span class="nc" id="L80">        System.out.println(&quot;5. Salir.&quot;);</span>
-<span class="nc" id="L81">    }</span>
+<span class="nc" id="L121">        System.out.println(&quot;Bienvenido, querido trader, a nuestro Exchange.&quot;);</span>
+<span class="nc" id="L122">        System.out.println(&quot;¿Que deseas hacer?&quot;);</span>
+<span class="nc" id="L123">        System.out.println(&quot;1. Log in.&quot;);</span>
+<span class="nc" id="L124">        System.out.println(&quot;2. Registrarse.&quot;);</span>
+<span class="nc" id="L125">        System.out.println(&quot;3. Listar Top 10 criptomonedas.&quot;);</span>
+<span class="nc" id="L126">        System.out.println(&quot;4. Listar criptomonedas.&quot;);</span>
+<span class="nc" id="L127">        System.out.println(&quot;5. Salir.&quot;);</span>
+<span class="nc" id="L128">    }</span>
 
     /**
      * Metodo para logear a un miembro
      */
     public void loginCase() {
-<span class="nc" id="L87">        miembro = new Miembro();</span>
-<span class="nc" id="L88">        System.out.println(&quot;Ingrese su email: &quot;);</span>
-<span class="nc" id="L89">        entrada = scan.next();</span>
-<span class="nc" id="L90">        miembro.setEmail(entrada);</span>
-<span class="nc" id="L91">        System.out.println(&quot;Ingrese su contrasenia: &quot;);</span>
-<span class="nc" id="L92">        scan.nextLine();</span>
-<span class="nc" id="L93">        entrada = scan.nextLine();</span>
-<span class="nc" id="L94">        miembro.setContrasenia(entrada);</span>
-<span class="nc" id="L95">        System.out.println(&quot;Comprobando datos introducidos . . . &quot;);</span>
+<span class="nc" id="L134">        miembro = new Miembro();</span>
+<span class="nc" id="L135">        System.out.println(&quot;Ingrese su email: &quot;);</span>
+<span class="nc" id="L136">        entrada = scan.next();</span>
+<span class="nc" id="L137">        miembro.setEmail(entrada);</span>
+<span class="nc" id="L138">        System.out.println(&quot;Ingrese su contrasenia: &quot;);</span>
+<span class="nc" id="L139">        scan.nextLine();</span>
+<span class="nc" id="L140">        entrada = scan.nextLine();</span>
+<span class="nc" id="L141">        miembro.setContrasenia(entrada);</span>
+<span class="nc" id="L142">        System.out.println(&quot;Comprobando datos introducidos . . . &quot;);</span>
 
         try {
-<span class="nc" id="L98">            miembroController = new MiembroController();</span>
-        //    miembroController.buscar(uid);
-<span class="nc" id="L100">        } catch (BbddException e) {</span>
-<span class="nc" id="L101">            System.out.println(&quot;Ha ocurrido un error inesperado al trabajar con la base de datos.&quot;);</span>
-<span class="nc" id="L102">        } catch (FicheroException e) {</span>
-<span class="nc" id="L103">            System.out.println(&quot;Ha ocurrido un error inesperado al trabajar con ficheros.&quot;);</span>
-<span class="nc" id="L104">        } catch (SQLException e) {</span>
-<span class="nc" id="L105">            System.out.println(&quot;Ha ocurrido un error inesperado de consultas SQL.&quot;);</span>
-<span class="nc" id="L106">        }</span>
+<span class="nc" id="L145">            miembroController = new MiembroController();</span>
+            // miembroController.buscar(uid);
+<span class="nc" id="L147">        } catch (BbddException e) {</span>
+<span class="nc" id="L148">            System.out.println(&quot;Ha ocurrido un error inesperado al trabajar con la base de datos.&quot;);</span>
+<span class="nc" id="L149">        } catch (FicheroException e) {</span>
+<span class="nc" id="L150">            System.out.println(&quot;Ha ocurrido un error inesperado al trabajar con ficheros.&quot;);</span>
+<span class="nc" id="L151">        } catch (SQLException e) {</span>
+<span class="nc" id="L152">            System.out.println(&quot;Ha ocurrido un error inesperado de consultas SQL.&quot;);</span>
+<span class="nc" id="L153">        }</span>
 
-<span class="nc" id="L108">    }</span>
+<span class="nc" id="L155">    }</span>
 
     /**
      * Menu de registro de un miembro.
      */
     public void menuRegistro() {
-<span class="nc" id="L114">        datosPersonales = new DatosPersonales();</span>
-<span class="nc" id="L115">        miembro = new Miembro();</span>
-<span class="nc" id="L116">        direccion = new Direccion();</span>
-<span class="nc" id="L117">        tarjeta = new Tarjeta();</span>
+<span class="nc" id="L161">        datosPersonales = new DatosPersonales();</span>
+<span class="nc" id="L162">        miembro = new Miembro();</span>
+<span class="nc" id="L163">        direccion = new Direccion();</span>
+<span class="nc" id="L164">        tarjeta = new Tarjeta();</span>
 
-<span class="nc bnc" id="L119" title="All 2 branches missed.">        while (!salir) {</span>
-<span class="nc" id="L120">            printRegistro();</span>
+<span class="nc bnc" id="L166" title="All 2 branches missed.">        while (!salir) {</span>
+<span class="nc" id="L167">            printRegistro();</span>
             try {
-<span class="nc" id="L122">                System.out.println(ESCRIBE_UNA_DE_LAS_OPCIONES);</span>
-<span class="nc" id="L123">                opcion = scan.nextInt();</span>
-<span class="nc bnc" id="L124" title="All 8 branches missed.">                switch (opcion) {</span>
+<span class="nc" id="L169">                System.out.println(ESCRIBE_UNA_DE_LAS_OPCIONES);</span>
+<span class="nc" id="L170">                opcion = scan.nextInt();</span>
+<span class="nc bnc" id="L171" title="All 8 branches missed.">                switch (opcion) {</span>
                     case 1:
-<span class="nc" id="L126">                        datosPersonales = datosPersonalesCase();</span>
-<span class="nc" id="L127">                        break;</span>
+<span class="nc" id="L173">                        datosPersonales = datosPersonalesCase();</span>
+<span class="nc" id="L174">                        break;</span>
                     case 2:
-<span class="nc" id="L129">                        direccion = direccionCase();</span>
-<span class="nc" id="L130">                        break;</span>
+<span class="nc" id="L176">                        direccion = direccionCase();</span>
+<span class="nc" id="L177">                        break;</span>
                     case 3:
-<span class="nc" id="L132">                        tarjeta = tarjetaCase();</span>
-<span class="nc" id="L133">                        break;</span>
+<span class="nc" id="L179">                        tarjeta = tarjetaCase();</span>
+<span class="nc" id="L180">                        break;</span>
                     case 4:
-<span class="nc" id="L135">                        miembro = miembroCase();</span>
-<span class="nc" id="L136">                        break;</span>
+<span class="nc" id="L182">                        miembro = miembroCase();</span>
+<span class="nc" id="L183">                        break;</span>
                     case 5:
-<span class="nc" id="L138">                        listarCase();</span>
-<span class="nc" id="L139">                        break;</span>
+<span class="nc" id="L185">                        listarCase();</span>
+<span class="nc" id="L186">                        break;</span>
                     case 6:
-<span class="nc" id="L141">                        finalizarCase();</span>
-<span class="nc" id="L142">                        break;</span>
+<span class="nc" id="L188">                        finalizarCase();</span>
+<span class="nc" id="L189">                        break;</span>
                     case 7:
-<span class="nc" id="L144">                        salirCase();</span>
-<span class="nc" id="L145">                        break;</span>
+<span class="nc" id="L191">                        salirCase();</span>
+<span class="nc" id="L192">                        break;</span>
                     default:
-<span class="nc" id="L147">                        System.out.println(&quot;Solo numeros entre 1 y 7&quot;);</span>
+<span class="nc" id="L194">                        System.out.println(&quot;Solo numeros entre 1 y 7&quot;);</span>
                 }
-<span class="nc" id="L149">            } catch (InputMismatchException e) {</span>
-<span class="nc" id="L150">                System.out.println(DEBES_INSERTAR_UN_NUMERO);</span>
-<span class="nc" id="L151">                scan.next();</span>
-<span class="nc" id="L152">            }</span>
+<span class="nc" id="L196">            } catch (InputMismatchException e) {</span>
+<span class="nc" id="L197">                System.out.println(DEBES_INSERTAR_UN_NUMERO);</span>
+<span class="nc" id="L198">                scan.next();</span>
+<span class="nc" id="L199">            }</span>
         }
-<span class="nc" id="L154">    }</span>
+<span class="nc" id="L201">    }</span>
 
     /**
      * Metodo que imprime en pantalla las opciones del menu de registro.
      */
     public void printRegistro() {
-<span class="nc" id="L160">        System.out.println(&quot;Comencemos con el registro.&quot;);</span>
-<span class="nc" id="L161">        System.out.println(&quot;¿Por donde deseas comenzar?&quot;);</span>
-<span class="nc" id="L162">        System.out.println(&quot;1. Datos Personales.&quot;);</span>
-<span class="nc" id="L163">        System.out.println(&quot;2. Direccion.&quot;);</span>
-<span class="nc" id="L164">        System.out.println(&quot;3. Metodo de pago.&quot;);</span>
-<span class="nc" id="L165">        System.out.println(&quot;4. Datos de Miembro.&quot;);</span>
-<span class="nc" id="L166">        System.out.println(&quot;5. Ver el estado del registro.&quot;);</span>
-<span class="nc" id="L167">        System.out.println(&quot;6. Finalizar Registro.&quot;);</span>
-<span class="nc" id="L168">        System.out.println(&quot;7. Salir sin guardar.&quot;);</span>
-<span class="nc" id="L169">    }</span>
+<span class="nc" id="L207">        System.out.println(&quot;Comencemos con el registro.&quot;);</span>
+<span class="nc" id="L208">        System.out.println(&quot;¿Por donde deseas comenzar?&quot;);</span>
+<span class="nc" id="L209">        System.out.println(&quot;1. Datos Personales.&quot;);</span>
+<span class="nc" id="L210">        System.out.println(&quot;2. Direccion.&quot;);</span>
+<span class="nc" id="L211">        System.out.println(&quot;3. Metodo de pago.&quot;);</span>
+<span class="nc" id="L212">        System.out.println(&quot;4. Datos de Miembro.&quot;);</span>
+<span class="nc" id="L213">        System.out.println(&quot;5. Ver el estado del registro.&quot;);</span>
+<span class="nc" id="L214">        System.out.println(&quot;6. Finalizar Registro.&quot;);</span>
+<span class="nc" id="L215">        System.out.println(&quot;7. Salir sin guardar.&quot;);</span>
+<span class="nc" id="L216">    }</span>
 
     /**
      * Funcion que pregunta al usuario por sus datos
@@ -174,25 +221,25 @@ import es.iespuertolacruz.developers.excepcion.*;
      * @return devuelve los datos personales.
      */
     public DatosPersonales datosPersonalesCase() {
-<span class="nc" id="L177">        datosPersonales = new DatosPersonales();</span>
+<span class="nc" id="L224">        datosPersonales = new DatosPersonales();</span>
 
-<span class="nc" id="L179">        scan.nextLine();</span>
-<span class="nc" id="L180">        System.out.println(&quot;El orden de los datos es el siguiente: nombre, apellidos, edad, dni, contrasenia.&quot;);</span>
-<span class="nc" id="L181">        System.out.println(&quot;Ingrese su dni: &quot;);</span>
-<span class="nc" id="L182">        entrada = scan.nextLine();</span>
-<span class="nc" id="L183">        datosPersonales.setDni(entrada);</span>
-<span class="nc" id="L184">        System.out.println(&quot;Ingrese su nombre: &quot;);</span>
-<span class="nc" id="L185">        entrada = scan.nextLine();</span>
-<span class="nc" id="L186">        datosPersonales.setNombre(entrada);</span>
-<span class="nc" id="L187">        System.out.println(&quot;Ingrese sus apellidos: &quot;);</span>
-<span class="nc" id="L188">        entrada = scan.nextLine();</span>
-<span class="nc" id="L189">        datosPersonales.setApellidos(entrada);</span>
-<span class="nc" id="L190">        System.out.println(&quot;Ingrese su edad: &quot;);</span>
-<span class="nc" id="L191">        numero = scan.nextInt();</span>
-<span class="nc" id="L192">        datosPersonales.setEdad(numero);</span>
-<span class="nc" id="L193">        scan.nextLine();</span>
-<span class="nc" id="L194">        System.out.println(&quot;Ha finalizado el registro de Datos Personales.&quot;);</span>
-<span class="nc" id="L195">        return datosPersonales;</span>
+<span class="nc" id="L226">        scan.nextLine();</span>
+<span class="nc" id="L227">        System.out.println(&quot;El orden de los datos es el siguiente: nombre, apellidos, edad, dni, contrasenia.&quot;);</span>
+<span class="nc" id="L228">        System.out.println(&quot;Ingrese su dni: &quot;);</span>
+<span class="nc" id="L229">        entrada = scan.nextLine();</span>
+<span class="nc" id="L230">        datosPersonales.setDni(entrada);</span>
+<span class="nc" id="L231">        System.out.println(&quot;Ingrese su nombre: &quot;);</span>
+<span class="nc" id="L232">        entrada = scan.nextLine();</span>
+<span class="nc" id="L233">        datosPersonales.setNombre(entrada);</span>
+<span class="nc" id="L234">        System.out.println(&quot;Ingrese sus apellidos: &quot;);</span>
+<span class="nc" id="L235">        entrada = scan.nextLine();</span>
+<span class="nc" id="L236">        datosPersonales.setApellidos(entrada);</span>
+<span class="nc" id="L237">        System.out.println(&quot;Ingrese su edad: &quot;);</span>
+<span class="nc" id="L238">        numero = scan.nextInt();</span>
+<span class="nc" id="L239">        datosPersonales.setEdad(numero);</span>
+<span class="nc" id="L240">        scan.nextLine();</span>
+<span class="nc" id="L241">        System.out.println(&quot;Ha finalizado el registro de Datos Personales.&quot;);</span>
+<span class="nc" id="L242">        return datosPersonales;</span>
     }
 
     /**
@@ -201,27 +248,27 @@ import es.iespuertolacruz.developers.excepcion.*;
      * @return todos los datos de direccion
      */
     public Direccion direccionCase() {
-<span class="nc" id="L204">        direccion = new Direccion();</span>
-<span class="nc" id="L205">        scan.nextLine();</span>
-<span class="nc" id="L206">        System.out.println(&quot;El orden de los datos es el siguiente: CP, calle, numero, puerta, provincia y pais.&quot;);</span>
-<span class="nc" id="L207">        System.out.println(&quot;Introduzca el codigo postal: &quot;);</span>
-<span class="nc" id="L208">        entrada = scan.nextLine();</span>
-<span class="nc" id="L209">        direccion.setCodigoPostal(entrada);</span>
-<span class="nc" id="L210">        System.out.println(&quot;Introduzca su calle: &quot;);</span>
-<span class="nc" id="L211">        entrada = scan.nextLine();</span>
-<span class="nc" id="L212">        direccion.setCalle(entrada);</span>
-<span class="nc" id="L213">        scan.nextLine();</span>
-<span class="nc" id="L214">        System.out.println(&quot;Introduzca el piso y puerta: &quot;);</span>
-<span class="nc" id="L215">        entrada = scan.nextLine();</span>
-<span class="nc" id="L216">        direccion.setPuerta(entrada);</span>
-<span class="nc" id="L217">        System.out.println(&quot;Introduzca su Provincia: &quot;);</span>
-<span class="nc" id="L218">        entrada = scan.nextLine();</span>
-<span class="nc" id="L219">        direccion.setProvincia(entrada);</span>
-<span class="nc" id="L220">        System.out.println(&quot;Introduzca su Pais: &quot;);</span>
-<span class="nc" id="L221">        entrada = scan.nextLine();</span>
-<span class="nc" id="L222">        direccion.setPais(entrada);</span>
-<span class="nc" id="L223">        System.out.println(&quot;Ha finalizado el registro de la Direccion.&quot;);</span>
-<span class="nc" id="L224">        return direccion;</span>
+<span class="nc" id="L251">        direccion = new Direccion();</span>
+<span class="nc" id="L252">        scan.nextLine();</span>
+<span class="nc" id="L253">        System.out.println(&quot;El orden de los datos es el siguiente: CP, calle, numero, puerta, provincia y pais.&quot;);</span>
+<span class="nc" id="L254">        System.out.println(&quot;Introduzca el codigo postal: &quot;);</span>
+<span class="nc" id="L255">        entrada = scan.nextLine();</span>
+<span class="nc" id="L256">        direccion.setCodigoPostal(entrada);</span>
+<span class="nc" id="L257">        System.out.println(&quot;Introduzca su calle: &quot;);</span>
+<span class="nc" id="L258">        entrada = scan.nextLine();</span>
+<span class="nc" id="L259">        direccion.setCalle(entrada);</span>
+<span class="nc" id="L260">        scan.nextLine();</span>
+<span class="nc" id="L261">        System.out.println(&quot;Introduzca el piso y puerta: &quot;);</span>
+<span class="nc" id="L262">        entrada = scan.nextLine();</span>
+<span class="nc" id="L263">        direccion.setPuerta(entrada);</span>
+<span class="nc" id="L264">        System.out.println(&quot;Introduzca su Provincia: &quot;);</span>
+<span class="nc" id="L265">        entrada = scan.nextLine();</span>
+<span class="nc" id="L266">        direccion.setProvincia(entrada);</span>
+<span class="nc" id="L267">        System.out.println(&quot;Introduzca su Pais: &quot;);</span>
+<span class="nc" id="L268">        entrada = scan.nextLine();</span>
+<span class="nc" id="L269">        direccion.setPais(entrada);</span>
+<span class="nc" id="L270">        System.out.println(&quot;Ha finalizado el registro de la Direccion.&quot;);</span>
+<span class="nc" id="L271">        return direccion;</span>
     }
 
     /**
@@ -230,24 +277,24 @@ import es.iespuertolacruz.developers.excepcion.*;
      * @return datos de la tarjeta
      */
     public Tarjeta tarjetaCase() {
-<span class="nc" id="L233">        tarjeta = new Tarjeta();</span>
-<span class="nc" id="L234">        scan.nextLine();</span>
-<span class="nc" id="L235">        System.out.println(&quot;El orden de los datos es el siguiente: numero Tarjeta, titular, fecha Caducidad, CVV.&quot;);</span>
-<span class="nc" id="L236">        System.out.println(&quot;Introduzca el numero de Tarjeta: &quot;);</span>
-<span class="nc" id="L237">        entrada = scan.nextLine();</span>
-<span class="nc" id="L238">        tarjeta.setidTarjeta(entrada);</span>
-<span class="nc" id="L239">        System.out.println(&quot;Introduzca su titular: &quot;);</span>
-<span class="nc" id="L240">        entrada = scan.nextLine();</span>
-<span class="nc" id="L241">        tarjeta.setTitular(entrada);</span>
-<span class="nc" id="L242">        scan.nextLine();</span>
-<span class="nc" id="L243">        System.out.println(&quot;Introduzca la fecha de Caducidad: &quot;);</span>
-<span class="nc" id="L244">        entrada = scan.nextLine();</span>
-<span class="nc" id="L245">        tarjeta.setFechaCaducidad(entrada);</span>
-<span class="nc" id="L246">        System.out.println(&quot;Introduzca su CVV: &quot;);</span>
-<span class="nc" id="L247">        numero = scan.nextInt();</span>
-<span class="nc" id="L248">        tarjeta.setCvv(numero);</span>
-<span class="nc" id="L249">        System.out.println(&quot;Ha finalizado el registro de la Direccion.&quot;);</span>
-<span class="nc" id="L250">        return tarjeta;</span>
+<span class="nc" id="L280">        tarjeta = new Tarjeta();</span>
+<span class="nc" id="L281">        scan.nextLine();</span>
+<span class="nc" id="L282">        System.out.println(&quot;El orden de los datos es el siguiente: numero Tarjeta, titular, fecha Caducidad, CVV.&quot;);</span>
+<span class="nc" id="L283">        System.out.println(&quot;Introduzca el numero de Tarjeta: &quot;);</span>
+<span class="nc" id="L284">        entrada = scan.nextLine();</span>
+<span class="nc" id="L285">        tarjeta.setidTarjeta(entrada);</span>
+<span class="nc" id="L286">        System.out.println(&quot;Introduzca su titular: &quot;);</span>
+<span class="nc" id="L287">        entrada = scan.nextLine();</span>
+<span class="nc" id="L288">        tarjeta.setTitular(entrada);</span>
+<span class="nc" id="L289">        scan.nextLine();</span>
+<span class="nc" id="L290">        System.out.println(&quot;Introduzca la fecha de Caducidad: &quot;);</span>
+<span class="nc" id="L291">        entrada = scan.nextLine();</span>
+<span class="nc" id="L292">        tarjeta.setFechaCaducidad(entrada);</span>
+<span class="nc" id="L293">        System.out.println(&quot;Introduzca su CVV: &quot;);</span>
+<span class="nc" id="L294">        numero = scan.nextInt();</span>
+<span class="nc" id="L295">        tarjeta.setCvv(numero);</span>
+<span class="nc" id="L296">        System.out.println(&quot;Ha finalizado el registro de la Direccion.&quot;);</span>
+<span class="nc" id="L297">        return tarjeta;</span>
 
     }
 
@@ -255,12 +302,12 @@ import es.iespuertolacruz.developers.excepcion.*;
      * Metodo que lista el miembro
      */
     public void listarCase() {
-<span class="nc" id="L258">        System.out.println(&quot;Este es el estado actual de tu registro: &quot;);</span>
-<span class="nc" id="L259">        System.out.println(miembro.toString());</span>
-<span class="nc" id="L260">        System.out.println(datosPersonales.toString());</span>
-<span class="nc" id="L261">        System.out.println(direccion.toString());</span>
-<span class="nc" id="L262">        System.out.println(tarjeta.toString());</span>
-<span class="nc" id="L263">    }</span>
+<span class="nc" id="L305">        System.out.println(&quot;Este es el estado actual de tu registro: &quot;);</span>
+<span class="nc" id="L306">        System.out.println(miembro.toString());</span>
+<span class="nc" id="L307">        System.out.println(datosPersonales.toString());</span>
+<span class="nc" id="L308">        System.out.println(direccion.toString());</span>
+<span class="nc" id="L309">        System.out.println(tarjeta.toString());</span>
+<span class="nc" id="L310">    }</span>
 
     /**
      * Funcion que pregunta al usuario los datos de miembro
@@ -268,21 +315,21 @@ import es.iespuertolacruz.developers.excepcion.*;
      * @return datos de miembro
      */
     public Miembro miembroCase() {
-<span class="nc" id="L271">        miembro = new Miembro();</span>
-<span class="nc" id="L272">        System.out.println(&quot;Guardando en nuestra base de datos . . .&quot;);</span>
-<span class="nc" id="L273">        scan.nextLine();</span>
-<span class="nc" id="L274">        System.out.println(&quot;El orden de los datos es el siguiente: email, contrasenia.&quot;);</span>
-<span class="nc" id="L275">        System.out.println(&quot;Introduzca su email: &quot;);</span>
-<span class="nc" id="L276">        entrada = scan.nextLine();</span>
-<span class="nc" id="L277">        miembro.setEmail(entrada);</span>
-<span class="nc" id="L278">        System.out.println(&quot;Introduzca una contraseña: &quot;);</span>
-<span class="nc" id="L279">        entrada = scan.nextLine();</span>
-<span class="nc" id="L280">        miembro.setContrasenia(entrada);</span>
-<span class="nc" id="L281">        System.out.println(&quot;Vuelva a introducir su contraseña: &quot;);</span>
-<span class="nc" id="L282">        entrada = scan.nextLine();</span>
-<span class="nc" id="L283">        miembro.setContrasenia(entrada);</span>
-<span class="nc" id="L284">        scan.nextLine();</span>
-<span class="nc" id="L285">        return miembro;</span>
+<span class="nc" id="L318">        miembro = new Miembro();</span>
+<span class="nc" id="L319">        System.out.println(&quot;Guardando en nuestra base de datos . . .&quot;);</span>
+<span class="nc" id="L320">        scan.nextLine();</span>
+<span class="nc" id="L321">        System.out.println(&quot;El orden de los datos es el siguiente: email, contrasenia.&quot;);</span>
+<span class="nc" id="L322">        System.out.println(&quot;Introduzca su email: &quot;);</span>
+<span class="nc" id="L323">        entrada = scan.nextLine();</span>
+<span class="nc" id="L324">        miembro.setEmail(entrada);</span>
+<span class="nc" id="L325">        System.out.println(&quot;Introduzca una contraseña: &quot;);</span>
+<span class="nc" id="L326">        entrada = scan.nextLine();</span>
+<span class="nc" id="L327">        miembro.setContrasenia(entrada);</span>
+<span class="nc" id="L328">        System.out.println(&quot;Vuelva a introducir su contraseña: &quot;);</span>
+<span class="nc" id="L329">        entrada = scan.nextLine();</span>
+<span class="nc" id="L330">        miembro.setContrasenia(entrada);</span>
+<span class="nc" id="L331">        scan.nextLine();</span>
+<span class="nc" id="L332">        return miembro;</span>
     }
 
     /**
@@ -291,114 +338,67 @@ import es.iespuertolacruz.developers.excepcion.*;
      */
     public void finalizarCase() {
         try {
-<span class="nc" id="L294">            datosPersonalesController.insertar(datosPersonales);</span>
-<span class="nc" id="L295">            direccionController.insertar(direccion);</span>
-<span class="nc" id="L296">            tarjetaController.insertar(tarjeta);</span>
-<span class="nc" id="L297">            miembro2 = new Miembro(&quot;00001&quot;, &quot;Miembro&quot;, datosPersonales, miembro.getEmail(), miembro.getContrasenia(),</span>
+<span class="nc" id="L341">            datosPersonalesController.insertar(datosPersonales);</span>
+<span class="nc" id="L342">            direccionController.insertar(direccion);</span>
+<span class="nc" id="L343">            tarjetaController.insertar(tarjeta);</span>
+<span class="nc" id="L344">            miembro2 = new Miembro(&quot;00001&quot;, &quot;Miembro&quot;, datosPersonales, miembro.getEmail(), miembro.getContrasenia(),</span>
                     direccion, tarjeta);
-<span class="nc" id="L299">            miembroController.insertar(miembro2);</span>
-<span class="nc" id="L300">        } catch (DatosPersonalesException e) {</span>
-<span class="nc" id="L301">            System.out.println(&quot;Ha ocurrido un error inesperado al insertar los datos personales.&quot;);</span>
-<span class="nc" id="L302">        } catch (BbddException e) {</span>
-<span class="nc" id="L303">            System.out.println(&quot;Ha ocurrido un error inesperado al usar la base de datos.&quot;);</span>
-<span class="nc" id="L304">        } catch (DireccionException e) {</span>
-<span class="nc" id="L305">            System.out.println(&quot;Ha ocurrido un error inesperado al insertar la direccion.&quot;);</span>
-<span class="nc" id="L306">        } catch (TarjetaException e) {</span>
-<span class="nc" id="L307">            System.out.println(&quot;Ha ocurrido un error inesperado al insertar los datos de la tarjeta.&quot;);</span>
-<span class="nc" id="L308">        } catch (MiembroException e) {</span>
-<span class="nc" id="L309">            System.out.println(&quot;Ha ocurrido un error inesperado al insertar el miembro&quot;);</span>
-<span class="nc" id="L310">        }</span>
-<span class="nc" id="L311">    }</span>
+<span class="nc" id="L346">            miembroController.insertar(miembro2);</span>
+<span class="nc" id="L347">        } catch (DatosPersonalesException e) {</span>
+<span class="nc" id="L348">            System.out.println(&quot;Ha ocurrido un error inesperado al insertar los datos personales.&quot;);</span>
+<span class="nc" id="L349">        } catch (BbddException e) {</span>
+<span class="nc" id="L350">            System.out.println(&quot;Ha ocurrido un error inesperado al usar la base de datos.&quot;);</span>
+<span class="nc" id="L351">        } catch (DireccionException e) {</span>
+<span class="nc" id="L352">            System.out.println(&quot;Ha ocurrido un error inesperado al insertar la direccion.&quot;);</span>
+<span class="nc" id="L353">        } catch (TarjetaException e) {</span>
+<span class="nc" id="L354">            System.out.println(&quot;Ha ocurrido un error inesperado al insertar los datos de la tarjeta.&quot;);</span>
+<span class="nc" id="L355">        } catch (MiembroException e) {</span>
+<span class="nc" id="L356">            System.out.println(&quot;Ha ocurrido un error inesperado al insertar el miembro&quot;);</span>
+<span class="nc" id="L357">        }</span>
+<span class="nc" id="L358">    }</span>
 
     /**
      * Metodo para salir de los menus.
      */
     public void salirCase() {
-<span class="nc" id="L317">        System.out.println(&quot;Muchas gracias por utilizar nuestra aplicacion. Esperamos que haya sido de su agrado.&quot;);</span>
-<span class="nc" id="L318">        salir = true;</span>
-<span class="nc" id="L319">    }</span>
+<span class="nc" id="L364">        System.out.println(&quot;Muchas gracias por utilizar nuestra aplicacion. Esperamos que haya sido de su agrado.&quot;);</span>
+<span class="nc" id="L365">        salir = true;</span>
+<span class="nc" id="L366">    }</span>
 
     private String limpiar(String entrada) {
-<span class="nc" id="L322">        entrada = entrada.substring(0, entrada.length() - 2);</span>
-<span class="nc" id="L323">        return entrada;</span>
+<span class="nc" id="L369">        entrada = entrada.substring(0, entrada.length() - 2);</span>
+<span class="nc" id="L370">        return entrada;</span>
     }
 
+    /**
+     * Menu del mercado
+     */
     public void menuMercado() {
-<span class="nc bnc" id="L327" title="All 2 branches missed.">        while (!salir) {</span>
-<span class="nc" id="L328">            printMercado();</span>
+<span class="nc bnc" id="L377" title="All 2 branches missed.">        while (!salir) {</span>
+<span class="nc" id="L378">            printMercado();</span>
             try {
-<span class="nc" id="L330">                System.out.println(ESCRIBE_UNA_DE_LAS_OPCIONES);</span>
-<span class="nc" id="L331">                opcion = Integer.parseInt(scan.nextLine());</span>
-<span class="nc bnc" id="L332" title="All 6 branches missed.">                switch (opcion) {</span>
+<span class="nc" id="L380">                System.out.println(ESCRIBE_UNA_DE_LAS_OPCIONES);</span>
+<span class="nc" id="L381">                opcion = Integer.parseInt(scan.nextLine());</span>
+<span class="nc bnc" id="L382" title="All 6 branches missed.">                switch (opcion) {</span>
                     case 1:
 
-<span class="nc" id="L335">                        break;</span>
+<span class="nc" id="L385">                        break;</span>
                     case 2:
 
-<span class="nc" id="L338">                        break;</span>
+<span class="nc" id="L388">                        break;</span>
                     case 3:
-<span class="nc" id="L340">                        System.out.println(&quot;----------[TOP 10]---------- &quot;);</span>
-                        // Aqui pondremos un metodo que sera una consulta de la tabla monedas
-<span class="nc" id="L342">                        break;</span>
+<span class="nc" id="L390">                        listarCarteraCase();</span>
+<span class="nc" id="L391">                        break;</span>
                     case 4:
-<span class="nc" id="L344">                        System.out.println(&quot;Listado de las monedas:  &quot;);</span>
+<span class="nc" id="L393">                        System.out.println(&quot;Listado de las monedas:  &quot;);</span>
                         // Aqui pondremos un metodo que realice una consulta con X monedas que
                         // introduzca el miembro
-<span class="nc" id="L347">                        break;</span>
-                    case 5:
-<span class="nc" id="L349">                        salirCase();</span>
-<span class="nc" id="L350">                        break;</span>
-                    default:
-<span class="nc" id="L352">                        System.out.println(&quot;Solo numeros entre 1 y 5&quot;);</span>
-                }
-<span class="nc" id="L354">            } catch (InputMismatchException e) {</span>
-<span class="nc" id="L355">                System.out.println(DEBES_INSERTAR_UN_NUMERO);</span>
-<span class="nc" id="L356">                scan.next();</span>
-<span class="nc" id="L357">            }</span>
-        }
-<span class="nc" id="L359">    }</span>
-
-    /**
-     * Funcion que realiza la accion de comprar
-     * @return la moneda comprada
-     */
-    public Moneda comprarCase() {
-<span class="nc" id="L366">        moneda = new Moneda();</span>
-<span class="nc" id="L367">        System.out.println(&quot;Introduzca el ticket de la moneda a comprar: &quot;);</span>
-<span class="nc" id="L368">        scan.nextLine();</span>
-<span class="nc" id="L369">        entrada = scan.nextLine();</span>
-<span class="nc" id="L370">        miembro.setEmail(entrada);</span>
-<span class="nc" id="L371">        System.out.println(&quot;Introduzca una contraseña: &quot;);</span>
-<span class="nc" id="L372">        entrada = scan.nextLine();</span>
-<span class="nc" id="L373">        miembro.setContrasenia(entrada);</span>
-<span class="nc" id="L374">        System.out.println(&quot;Vuelva a introducir su contraseña: &quot;);</span>
-<span class="nc" id="L375">        entrada = scan.nextLine();</span>
-<span class="nc" id="L376">        miembro.setContrasenia(entrada);</span>
-<span class="nc" id="L377">        scan.nextLine();</span>
-<span class="nc" id="L378">        return moneda;</span>
-    }
-
-    /**
-     * Menu de configuracion
-     */
-    public void menuConfiguracion() {
-<span class="nc bnc" id="L385" title="All 2 branches missed.">        while (!salir) {</span>
-<span class="nc" id="L386">            printMercado();</span>
-            try {
-<span class="nc" id="L388">                System.out.println(ESCRIBE_UNA_DE_LAS_OPCIONES);</span>
-<span class="nc" id="L389">                opcion = Integer.parseInt(scan.nextLine());</span>
-<span class="nc bnc" id="L390" title="All 4 branches missed.">                switch (opcion) {</span>
-                    case 1:
-<span class="nc" id="L392">                        menuRegistro();</span>
-<span class="nc" id="L393">                        break;</span>
-                    case 2:
-<span class="nc" id="L395">                        eliminarCase();</span>
 <span class="nc" id="L396">                        break;</span>
-                    case 3:
+                    case 5:
 <span class="nc" id="L398">                        salirCase();</span>
 <span class="nc" id="L399">                        break;</span>
                     default:
-<span class="nc" id="L401">                        System.out.println(&quot;Solo numeros entre 1 y 3&quot;);</span>
+<span class="nc" id="L401">                        System.out.println(&quot;Solo numeros entre 1 y 5&quot;);</span>
                 }
 <span class="nc" id="L403">            } catch (InputMismatchException e) {</span>
 <span class="nc" id="L404">                System.out.println(DEBES_INSERTAR_UN_NUMERO);</span>
@@ -408,33 +408,109 @@ import es.iespuertolacruz.developers.excepcion.*;
 <span class="nc" id="L408">    }</span>
 
     /**
+     * Funcion que lista el contenido de una cartera
+     * @return una cartera
+     */
+    public String listarCarteraCase() {
+<span class="nc" id="L415">        miembro = new Miembro();</span>
+<span class="nc" id="L416">        wallet = new Wallet();</span>
+<span class="nc" id="L417">        String listado = &quot;&quot;;</span>
+<span class="nc" id="L418">        System.out.println(&quot;Introduzca su dni para comprobar su cartera: &quot;);</span>
+<span class="nc" id="L419">        scan.nextLine();</span>
+<span class="nc" id="L420">        entrada = scan.nextLine();</span>
+        try {
+<span class="nc" id="L422">            miembro = miembroController.buscarDni(entrada);</span>
+<span class="nc" id="L423">            wallet = walletController.buscarUid(miembro.getUid());</span>
+<span class="nc" id="L424">            listado = mercadoController.listarMercadoWallet(wallet);</span>
+<span class="nc" id="L425">        } catch (WalletException e) {</span>
+<span class="nc" id="L426">            System.out.println(&quot;Ha ocurrido un error inesperado&quot;);</span>
+<span class="nc" id="L427">        } catch (BbddException e) {</span>
+<span class="nc" id="L428">            System.out.println(&quot;Ha ocurrido un error inesperado&quot;);</span>
+<span class="nc" id="L429">        } catch (MiembroException e) {</span>
+<span class="nc" id="L430">            System.out.println(&quot;Ha ocurrido un error inesperado&quot;);</span>
+<span class="nc" id="L431">        }</span>
+<span class="nc" id="L432">        System.out.println(&quot;Su cartera contiene: &quot;);</span>
+<span class="nc" id="L433">        return listado;</span>
+    }
+
+    /**
+     * Funcion que realiza la accion de comprar
+     * 
+     * @return la moneda comprada
+     */
+    public Moneda comprarCase() {
+<span class="nc" id="L442">        moneda = new Moneda();</span>
+<span class="nc" id="L443">        System.out.println(&quot;Introduzca el ticket de la moneda a comprar: &quot;);</span>
+<span class="nc" id="L444">        scan.nextLine();</span>
+<span class="nc" id="L445">        entrada = scan.nextLine();</span>
+<span class="nc" id="L446">        miembro.setEmail(entrada);</span>
+<span class="nc" id="L447">        System.out.println(&quot;Introduzca una contraseña: &quot;);</span>
+<span class="nc" id="L448">        entrada = scan.nextLine();</span>
+<span class="nc" id="L449">        miembro.setContrasenia(entrada);</span>
+<span class="nc" id="L450">        System.out.println(&quot;Vuelva a introducir su contraseña: &quot;);</span>
+<span class="nc" id="L451">        entrada = scan.nextLine();</span>
+<span class="nc" id="L452">        miembro.setContrasenia(entrada);</span>
+<span class="nc" id="L453">        scan.nextLine();</span>
+<span class="nc" id="L454">        return moneda;</span>
+    }
+
+    /**
+     * Menu de configuracion
+     */
+    public void menuConfiguracion() {
+<span class="nc bnc" id="L461" title="All 2 branches missed.">        while (!salir) {</span>
+<span class="nc" id="L462">            printMercado();</span>
+            try {
+<span class="nc" id="L464">                System.out.println(ESCRIBE_UNA_DE_LAS_OPCIONES);</span>
+<span class="nc" id="L465">                opcion = Integer.parseInt(scan.nextLine());</span>
+<span class="nc bnc" id="L466" title="All 4 branches missed.">                switch (opcion) {</span>
+                    case 1:
+<span class="nc" id="L468">                        menuRegistro();</span>
+<span class="nc" id="L469">                        break;</span>
+                    case 2:
+<span class="nc" id="L471">                        eliminarCase();</span>
+<span class="nc" id="L472">                        break;</span>
+                    case 3:
+<span class="nc" id="L474">                        salirCase();</span>
+<span class="nc" id="L475">                        break;</span>
+                    default:
+<span class="nc" id="L477">                        System.out.println(&quot;Solo numeros entre 1 y 3&quot;);</span>
+                }
+<span class="nc" id="L479">            } catch (InputMismatchException e) {</span>
+<span class="nc" id="L480">                System.out.println(DEBES_INSERTAR_UN_NUMERO);</span>
+<span class="nc" id="L481">                scan.next();</span>
+<span class="nc" id="L482">            }</span>
+        }
+<span class="nc" id="L484">    }</span>
+
+    /**
      * Metodo que elimina definitivamente al usuario
      */
     public void eliminarCase() {
-<span class="nc" id="L414">        miembro = new Miembro();</span>
-<span class="nc" id="L415">        scan.nextLine();</span>
-<span class="nc" id="L416">        System.out.println(&quot;Procederemos a eliminar su cuenta.&quot;);</span>
-<span class="nc" id="L417">        System.out.println(&quot;Por favor, introduzca su dni: &quot;);</span>
-<span class="nc" id="L418">        entrada = scan.nextLine();</span>
+<span class="nc" id="L490">        miembro = new Miembro();</span>
+<span class="nc" id="L491">        scan.nextLine();</span>
+<span class="nc" id="L492">        System.out.println(&quot;Procederemos a eliminar su cuenta.&quot;);</span>
+<span class="nc" id="L493">        System.out.println(&quot;Por favor, introduzca su dni: &quot;);</span>
+<span class="nc" id="L494">        entrada = scan.nextLine();</span>
         try {
-<span class="nc" id="L420">            miembro = miembroController.buscar(entrada);</span>
-<span class="nc" id="L421">            System.out.println(&quot;¿Es usted este usuario? &quot;);</span>
-<span class="nc" id="L422">            decision();</span>
-<span class="nc" id="L423">            System.out.println(&quot;Para borrar definitivamente su cuenta escriba: 'Confirmar' .&quot;);</span>
-<span class="nc" id="L424">            entrada = scan.nextLine();</span>
-<span class="nc bnc" id="L425" title="All 2 branches missed.">            if (!entrada.equalsIgnoreCase(&quot;confirmar&quot;)) {</span>
-<span class="nc" id="L426">                salirCase();</span>
+<span class="nc" id="L496">            miembro = miembroController.buscarDni(entrada);</span>
+<span class="nc" id="L497">            System.out.println(&quot;¿Es usted este usuario? &quot;);</span>
+<span class="nc" id="L498">            decision();</span>
+<span class="nc" id="L499">            System.out.println(&quot;Para borrar definitivamente su cuenta escriba: 'Confirmar' .&quot;);</span>
+<span class="nc" id="L500">            entrada = scan.nextLine();</span>
+<span class="nc bnc" id="L501" title="All 2 branches missed.">            if (!entrada.equalsIgnoreCase(&quot;confirmar&quot;)) {</span>
+<span class="nc" id="L502">                salirCase();</span>
             }
-<span class="nc" id="L428">            miembroController.eliminar(miembro);</span>
-<span class="nc" id="L429">        } catch (MiembroException e) {</span>
-<span class="nc" id="L430">            System.out.println(&quot;Ha ocurrido un error inesperado al trabajar con los datos del Miembro.&quot;);</span>
-<span class="nc" id="L431">        } catch (BbddException e) {</span>
-<span class="nc" id="L432">            System.out.println(&quot;Ha ocurrido un error inesperado al trabajar con la base de datos.&quot;);</span>
-<span class="nc" id="L433">        }</span>
-<span class="nc" id="L434">        System.out.println(&quot;Eliminando . . . &quot;);</span>
-<span class="nc" id="L435">        System.out.println(&quot;Lamentamos que nos hayas tenido que dejarnos. &quot;);</span>
-<span class="nc" id="L436">        System.out.println(&quot;Gracias por utilizar Exchange. Esperamos que vuelvas pronto.&quot;);</span>
-<span class="nc" id="L437">    }</span>
+<span class="nc" id="L504">            miembroController.eliminar(miembro);</span>
+<span class="nc" id="L505">        } catch (MiembroException e) {</span>
+<span class="nc" id="L506">            System.out.println(&quot;Ha ocurrido un error inesperado al trabajar con los datos del Miembro.&quot;);</span>
+<span class="nc" id="L507">        } catch (BbddException e) {</span>
+<span class="nc" id="L508">            System.out.println(&quot;Ha ocurrido un error inesperado al trabajar con la base de datos.&quot;);</span>
+<span class="nc" id="L509">        }</span>
+<span class="nc" id="L510">        System.out.println(&quot;Eliminando . . . &quot;);</span>
+<span class="nc" id="L511">        System.out.println(&quot;Lamentamos que nos hayas tenido que dejarnos. &quot;);</span>
+<span class="nc" id="L512">        System.out.println(&quot;Gracias por utilizar Exchange. Esperamos que vuelvas pronto.&quot;);</span>
+<span class="nc" id="L513">    }</span>
 
     /**
      * Funcion que pregunta al usuario
@@ -442,12 +518,12 @@ import es.iespuertolacruz.developers.excepcion.*;
      * @return True o en caso contrario, false.
      */
     public boolean decision() {
-<span class="nc" id="L445">        entrada = scan.nextLine();</span>
-<span class="nc bnc" id="L446" title="All 6 branches missed.">        if (entrada.equalsIgnoreCase(&quot;yes&quot;) || entrada.equalsIgnoreCase(&quot;y&quot;) || entrada.equalsIgnoreCase(&quot;si&quot;)</span>
-<span class="nc bnc" id="L447" title="All 2 branches missed.">                || entrada.equalsIgnoreCase(&quot;s&quot;)) {</span>
-<span class="nc" id="L448">            return true;</span>
+<span class="nc" id="L521">        entrada = scan.nextLine();</span>
+<span class="nc bnc" id="L522" title="All 6 branches missed.">        if (entrada.equalsIgnoreCase(&quot;yes&quot;) || entrada.equalsIgnoreCase(&quot;y&quot;) || entrada.equalsIgnoreCase(&quot;si&quot;)</span>
+<span class="nc bnc" id="L523" title="All 2 branches missed.">                || entrada.equalsIgnoreCase(&quot;s&quot;)) {</span>
+<span class="nc" id="L524">            return true;</span>
         }
-<span class="nc" id="L450">        return false;</span>
+<span class="nc" id="L526">        return false;</span>
     }
 
     /**
@@ -455,25 +531,25 @@ import es.iespuertolacruz.developers.excepcion.*;
      */
     public void printConfiguracion() {
 
-<span class="nc" id="L458">        System.out.println(&quot;¿Que desea configurar?&quot;);</span>
-<span class="nc" id="L459">        System.out.println(&quot;1. Cambiar mis datos.&quot;);</span>
-<span class="nc" id="L460">        System.out.println(&quot;2. Eliminar mi cuenta.&quot;);</span>
-<span class="nc" id="L461">        System.out.println(&quot;3. salir.&quot;);</span>
+<span class="nc" id="L534">        System.out.println(&quot;¿Que desea configurar?&quot;);</span>
+<span class="nc" id="L535">        System.out.println(&quot;1. Cambiar mis datos.&quot;);</span>
+<span class="nc" id="L536">        System.out.println(&quot;2. Eliminar mi cuenta.&quot;);</span>
+<span class="nc" id="L537">        System.out.println(&quot;3. salir.&quot;);</span>
 
-<span class="nc" id="L463">    }</span>
+<span class="nc" id="L539">    }</span>
 
     /**
      * Metodo que imprime por pantalla el menu de Mercado
      */
     public void printMercado() {
-<span class="nc" id="L469">        System.out.println(&quot;¿Que desea hacer?&quot;);</span>
-<span class="nc" id="L470">        System.out.println(&quot;1. Comprar.&quot;);</span>
-<span class="nc" id="L471">        System.out.println(&quot;2. Vender.&quot;);</span>
-<span class="nc" id="L472">        System.out.println(&quot;3. Listar mis monedas.&quot;);</span>
-<span class="nc" id="L473">        System.out.println(&quot;4. Listar Top 10 monedas.&quot;);</span>
-<span class="nc" id="L474">        System.out.println(&quot;5. Listar X monedas.&quot;);</span>
-<span class="nc" id="L475">        System.out.println(&quot;6. Salir.&quot;);</span>
-<span class="nc" id="L476">    }</span>
+<span class="nc" id="L545">        System.out.println(&quot;¿Que desea hacer?&quot;);</span>
+<span class="nc" id="L546">        System.out.println(&quot;1. Comprar.&quot;);</span>
+<span class="nc" id="L547">        System.out.println(&quot;2. Vender.&quot;);</span>
+<span class="nc" id="L548">        System.out.println(&quot;3. Listar mis monedas.&quot;);</span>
+<span class="nc" id="L549">        System.out.println(&quot;4. Listar Top 10 monedas.&quot;);</span>
+<span class="nc" id="L550">        System.out.println(&quot;5. Listar X monedas.&quot;);</span>
+<span class="nc" id="L551">        System.out.println(&quot;6. Salir.&quot;);</span>
+<span class="nc" id="L552">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

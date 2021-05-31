@@ -120,12 +120,29 @@ public class MiembroController {
      * @throws FicheroException
      * @throws BbddException
      */
-    public Miembro buscar(String uid) throws MiembroException, BbddException {
+    public Miembro buscarUid(String uid) throws MiembroException, BbddException {
         Miembro miembro = null;
         if (uid == null || uid.isEmpty()) {
             throw new MiembroException(EL_UID_ESTA_VACIO);
         }
         miembro = miembroModelo.obtenerMiembroUid(uid);
+        return miembro;
+    }
+
+    /**
+     * Funcion que busca un miembro por su UID
+     * @param uid del miembro a buscar
+     * @return un miembro
+     * @throws MiembroException
+     * @throws FicheroException
+     * @throws BbddException
+     */
+    public Miembro buscarDni(String dni) throws MiembroException, BbddException {
+        Miembro miembro = null;
+        if (dni == null || dni.isEmpty()) {
+            throw new MiembroException(EL_UID_ESTA_VACIO);
+        }
+        miembro = miembroModelo.obtenerMiembroDni(dni);
         return miembro;
     }
 
@@ -143,7 +160,7 @@ public class MiembroController {
     public boolean existe(Miembro miembro) throws MiembroException, BbddException {
         boolean encontrado = false;
         Miembro miembroEncontrado;
-        miembroEncontrado = buscar(miembro.getUid());
+        miembroEncontrado = buscarUid(miembro.getUid());
         if (miembroEncontrado != null) {
             encontrado = true;
         }

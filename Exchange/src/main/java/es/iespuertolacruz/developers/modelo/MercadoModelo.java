@@ -120,7 +120,7 @@ public class MercadoModelo {
                 String idMoneda = resultSet.getString("idMoneda");
                 Double cantidad = resultSet.getDouble("cantidad");
 
-                Wallet wallet = walletModelo.buscarWallet(idWallet);
+                Wallet wallet = walletModelo.obtenerWalletId(idWallet);
                 Moneda moneda = monedaModelo.obtenerMoneda(idMoneda);
                 mercado = new Mercado(moneda, wallet, cantidad);
                 listaMercados.add(mercado);

@@ -4,64 +4,72 @@ import java.util.Objects;
 
 public class Mercado {
    
-    String idMoneda;
-    String idWallet;
+    Moneda moneda;
+    Wallet wallet;
     Double cantidad;
 
     
+    /**
+     * Constructor vacio
+     */
+<span class="nc" id="L15">    public Mercado() {</span>
+<span class="nc" id="L16">    }</span>
 
-<span class="fc" id="L13">    public Mercado() {</span>
-<span class="fc" id="L14">    }</span>
+    /**
+     * Constructor con todos los parametros de Mercado
+     * @param moneda
+     * @param wallet
+     * @param cantidad
+     */
+<span class="nc" id="L24">    public Mercado(Moneda moneda, Wallet wallet, Double cantidad) {</span>
+<span class="nc" id="L25">        this.moneda = moneda;</span>
+<span class="nc" id="L26">        this.wallet = wallet;</span>
+<span class="nc" id="L27">        this.cantidad = cantidad;</span>
+<span class="nc" id="L28">    }</span>
+    
+    /**
+     * Getters y Setters
+     */
 
-<span class="fc" id="L16">    public Mercado(String idMoneda, String idWallet, Double cantidad) {</span>
-<span class="fc" id="L17">        this.idMoneda = idMoneda;</span>
-<span class="fc" id="L18">        this.idWallet = idWallet;</span>
-<span class="fc" id="L19">        this.cantidad = cantidad;</span>
-<span class="fc" id="L20">    }</span>
-
-    public String getIdMoneda() {
-<span class="fc" id="L23">        return idMoneda;</span>
+    public Moneda getMoneda() {
+<span class="nc" id="L35">        return this.moneda;</span>
     }
 
-    public void setIdMoneda(String idMoneda) {
-<span class="fc" id="L27">        this.idMoneda = idMoneda;</span>
-<span class="fc" id="L28">    }</span>
+    public void setMoneda(Moneda moneda) {
+<span class="nc" id="L39">        this.moneda = moneda;</span>
+<span class="nc" id="L40">    }</span>
 
-    public String getIdWallet() {
-<span class="fc" id="L31">        return idWallet;</span>
+    public Wallet getWallet() {
+<span class="nc" id="L43">        return this.wallet;</span>
     }
 
-    public void setIdWallet(String idWallet) {
-<span class="fc" id="L35">        this.idWallet = idWallet;</span>
-<span class="fc" id="L36">    }</span>
+    public void setWallet(Wallet wallet) {
+<span class="nc" id="L47">        this.wallet = wallet;</span>
+<span class="nc" id="L48">    }</span>
 
     public Double getCantidad() {
-<span class="fc" id="L39">        return cantidad;</span>
+<span class="nc" id="L51">        return this.cantidad;</span>
     }
 
     public void setCantidad(Double cantidad) {
-<span class="fc" id="L43">        this.cantidad = cantidad;</span>
-<span class="fc" id="L44">    }</span>
+<span class="nc" id="L55">        this.cantidad = cantidad;</span>
+<span class="nc" id="L56">    }</span>
 
     @Override
     public String toString() {
-<span class="fc" id="L48">        return &quot;Mercado [cantidad=&quot; + cantidad + &quot;, idMoneda=&quot; + idMoneda + &quot;, idWallet=&quot; + idWallet + &quot;]&quot;;</span>
+<span class="nc" id="L60">        return &quot;Mercado [cantidad=&quot; + cantidad + &quot;, moneda=&quot; + moneda + &quot;, wallet=&quot; + wallet + &quot;]&quot;;</span>
     }
-
 
     @Override
     public boolean equals(Object o) {
-<span class="pc bpc" id="L54" title="1 of 2 branches missed.">        if (o == this)</span>
-<span class="fc" id="L55">            return true;</span>
-<span class="nc bnc" id="L56" title="All 2 branches missed.">        if (!(o instanceof Mercado)) {</span>
-<span class="nc" id="L57">            return false;</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">        if (o == this)</span>
+<span class="nc" id="L66">            return true;</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">        if (!(o instanceof Mercado)) {</span>
+<span class="nc" id="L68">            return false;</span>
         }
-<span class="nc" id="L59">        Mercado mercado = (Mercado) o;</span>
-<span class="nc bnc" id="L60" title="All 6 branches missed.">        return Objects.equals(idMoneda, mercado.idMoneda) &amp;&amp; Objects.equals(idWallet, mercado.idWallet) &amp;&amp; Objects.equals(cantidad, mercado.cantidad);</span>
+<span class="nc" id="L70">        Mercado mercado = (Mercado) o;</span>
+<span class="nc bnc" id="L71" title="All 6 branches missed.">        return Objects.equals(moneda, mercado.moneda) &amp;&amp; Objects.equals(wallet, mercado.wallet) &amp;&amp; Objects.equals(cantidad, mercado.cantidad);</span>
     }
 
-   
-
-    
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
