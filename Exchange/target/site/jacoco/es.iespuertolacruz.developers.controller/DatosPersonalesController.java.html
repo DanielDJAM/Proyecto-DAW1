@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DatosPersonalesController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Exchange</a> &gt; <a href="index.source.html" class="el_package">es.iespuertolacruz.developers.controller</a> &gt; <span class="el_source">DatosPersonalesController.java</span></div><h1>DatosPersonalesController.java</h1><pre class="source lang-java linenums">package es.iespuertolacruz.developers.controller;
+
+import java.sql.SQLException;
+
+import es.iespuertolacruz.developers.api.DatosPersonales;
+import es.iespuertolacruz.developers.excepcion.BbddException;
+import es.iespuertolacruz.developers.excepcion.DatosPersonalesException;
+import es.iespuertolacruz.developers.excepcion.FicheroException;
+import es.iespuertolacruz.developers.modelo.DatosPersonalesModelo;
+
+public class DatosPersonalesController {
+    
+    DatosPersonalesModelo datosPersonalesModelo;
+    private static final int EDAD_MINIMA = 18;
+     /**
+     * Constructor por defecto de la clase datosPersonalesController
+     * @throws BbddException
+     * @throws FicheroException
+     * @throws SQLException
+     */
+<span class="fc" id="L21">    public DatosPersonalesController() throws BbddException, FicheroException, SQLException{</span>
+<span class="fc" id="L22">        datosPersonalesModelo = new DatosPersonalesModelo();</span>
+<span class="fc" id="L23">    }</span>
+
+    /**
+     * Metodo para validar datosPersonaless
+     * @param datosPersonales a validar
+     * @throws datosPersonalesException
+     */
+    public void validar(DatosPersonales datosPersonales) throws DatosPersonalesException{
+<span class="fc" id="L31">        String mensaje = &quot;&quot;;</span>
+
+<span class="fc bfc" id="L33" title="All 2 branches covered.">        if (datosPersonales == null){</span>
+<span class="fc" id="L34">            mensaje = &quot;Los datosPersonales son nulos&quot;;</span>
+<span class="fc" id="L35">            throw new DatosPersonalesException(mensaje);</span>
+        }
+<span class="pc bpc" id="L37" title="1 of 4 branches missed.">        if(datosPersonales.getDni() == null || datosPersonales.getDni().isEmpty()) {</span>
+<span class="fc" id="L38">            mensaje = &quot;El Dni es nulo o vacio,&quot;;</span>
+        }
+<span class="pc bpc" id="L40" title="1 of 4 branches missed.">        if (datosPersonales.getNombre() == null || datosPersonales.getNombre().isEmpty()) {</span>
+<span class="fc" id="L41">            mensaje += &quot;El nombre es nulo o vacio,&quot;;</span>
+        }
+<span class="pc bpc" id="L43" title="1 of 4 branches missed.">        if (datosPersonales.getApellidos() == null || datosPersonales.getApellidos().isEmpty()) {</span>
+<span class="fc" id="L44">            mensaje += &quot;Los apellidos son nulos o vacios,&quot;;</span>
+        }
+<span class="fc bfc" id="L46" title="All 2 branches covered.">        if (datosPersonales.getEdad() &lt; EDAD_MINIMA ) {</span>
+<span class="fc" id="L47">            mensaje += &quot;La edad es menor de 18&quot;;</span>
+        }
+       
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        if(!mensaje.isEmpty()) {</span>
+<span class="fc" id="L51">            throw new DatosPersonalesException(mensaje);</span>
+        }
+<span class="fc" id="L53">    }</span>
+
+    /**
+     * Metodo para insertar un datosPersonales
+     * @param datosPersonales a insertar
+     * @throws datosPersonalesException
+     * @throws FicheroException
+     * @throws BbddException
+     */
+    public void insertar(DatosPersonales datosPersonales) throws DatosPersonalesException, BbddException {
+<span class="fc" id="L63">        validar(datosPersonales);</span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">        if(existe(datosPersonales)) {</span>
+<span class="fc" id="L65">            throw new DatosPersonalesException(&quot;Los datosPersonales ya existe&quot;);</span>
+        }
+<span class="fc" id="L67">        datosPersonalesModelo.insertar(datosPersonales);</span>
+<span class="fc" id="L68">    }</span>
+
+      /**
+     * Metodo para eliminar un datosPersonales
+     * @param datosPersonales a eliminar
+     * @throws FicheroException
+     * @throws datosPersonalesException
+     * @throws BbddException
+     */
+    public void eliminar(DatosPersonales datosPersonales) throws  DatosPersonalesException, BbddException{
+<span class="fc" id="L78">        validar(datosPersonales);</span>
+<span class="pc bpc" id="L79" title="1 of 2 branches missed.">        if (!existe(datosPersonales)) {</span>
+<span class="nc" id="L80">          throw new DatosPersonalesException(&quot;Los datosPersonales no existe&quot;);</span>
+        }
+<span class="fc" id="L82">        datosPersonalesModelo.eliminar(datosPersonales);</span>
+<span class="fc" id="L83">    }</span>
+
+    /**
+     * Metodo para modificar de la clase datosPersonalesController.
+     * 
+     * @param datosPersonales  a modificar.
+     * @throws FicheroException
+     * @throws BbddException
+     * @throws datosPersonalesException
+     */
+    public void modificar(DatosPersonales datosPersonales) throws  BbddException, DatosPersonalesException{
+<span class="fc" id="L94">        validar(datosPersonales);</span>
+<span class="pc bpc" id="L95" title="1 of 2 branches missed.">        if(!existe(datosPersonales)){</span>
+<span class="nc" id="L96">            throw new DatosPersonalesException(&quot;El datosPersonales no existe&quot;);</span>
+        }
+<span class="fc" id="L98">        datosPersonalesModelo.modificar(datosPersonales);</span>
+<span class="fc" id="L99">    }</span>
+
+
+    /**
+     * Funcion que busca un datosPersonales por su Dni
+     * @param uid del datosPersonales a buscar
+     * @return un datosPersonales
+     * @throws datosPersonalesException
+     * @throws FicheroException
+     * @throws BbddException
+     */
+    public DatosPersonales buscar(String dni) throws DatosPersonalesException, BbddException {
+<span class="fc" id="L111">        DatosPersonales datosPersonales = null;</span>
+<span class="pc bpc" id="L112" title="2 of 4 branches missed.">        if (dni == null || dni.isEmpty()) {</span>
+<span class="nc" id="L113">            throw new DatosPersonalesException(&quot;El dni está vacio&quot;);</span>
+        }
+<span class="fc" id="L115">        datosPersonales = datosPersonalesModelo.buscarDatosPersonales(dni);</span>
+<span class="fc" id="L116">        return datosPersonales;</span>
+    }
+
+      /**
+     * Funcion que verifica si existe un datosPersonales
+     * @param uid por el que se busca
+     * @return True/false si se ha encontrado
+     * @throws datosPersonalesException
+     * @throws FicheroException
+     * @throws BbddException
+     */
+    public boolean existe(DatosPersonales datosPersonales) throws DatosPersonalesException, BbddException {
+<span class="fc" id="L128">        boolean encontrado = false;</span>
+        DatosPersonales datosPersonalesEncontrado;
+<span class="fc" id="L130">        datosPersonalesEncontrado = buscar(datosPersonales.getDni());</span>
+<span class="fc bfc" id="L131" title="All 2 branches covered.">        if (datosPersonalesEncontrado != null) {</span>
+<span class="fc" id="L132">            encontrado = true;</span>
+        }
+<span class="fc" id="L134">        return encontrado;</span>
+    }
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

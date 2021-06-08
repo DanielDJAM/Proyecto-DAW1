@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Moneda.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Exchange</a> &gt; <a href="index.source.html" class="el_package">es.iespuertolacruz.developers.api</a> &gt; <span class="el_source">Moneda.java</span></div><h1>Moneda.java</h1><pre class="source lang-java linenums">package es.iespuertolacruz.developers.api;
+
+import java.util.Objects;
+
+public class Moneda {
+
+    String ticket;
+    String nombreMoneda;
+    double valor;
+    
+
+
+<span class="fc" id="L13">    public Moneda() {</span>
+<span class="fc" id="L14">    }</span>
+
+    /**
+     * Constructor de la clase Moneda
+     */
+<span class="fc" id="L19">    public Moneda(String ticket, String nombreMoneda, double valor) {</span>
+<span class="fc" id="L20">        this.ticket = ticket;</span>
+<span class="fc" id="L21">        this.nombreMoneda = nombreMoneda;</span>
+<span class="fc" id="L22">        this.valor = valor;</span>
+<span class="fc" id="L23">    }</span>
+
+
+    /**
+     * GETTERS y Setters de la clase Moneda
+     */
+    public String getNombreMoneda() {
+<span class="fc" id="L30">        return nombreMoneda;</span>
+    }
+
+
+    public void setNombreMoneda(String nombreMoneda) {
+<span class="fc" id="L35">        this.nombreMoneda = nombreMoneda;</span>
+<span class="fc" id="L36">    }</span>
+
+
+    public String getTicket() {
+<span class="fc" id="L40">        return ticket;</span>
+    }
+
+
+    public void setTicket(String ticket) {
+<span class="fc" id="L45">        this.ticket = ticket;</span>
+<span class="fc" id="L46">    }</span>
+
+
+    public double getValor() {
+<span class="fc" id="L50">        return valor;</span>
+    }
+
+
+    public void setValor(double valor) {
+<span class="fc" id="L55">        this.valor = valor;</span>
+<span class="fc" id="L56">    }</span>
+
+    @Override
+    public String toString() {
+<span class="fc" id="L60">        return &quot;Moneda&quot;  + &quot;, moneda=&quot; + nombreMoneda + &quot;, ticket=&quot; + ticket + &quot;, valor=&quot; + valor + &quot;]&quot;;</span>
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+<span class="fc bfc" id="L66" title="All 2 branches covered.">        if (o == this)</span>
+<span class="fc" id="L67">            return true;</span>
+<span class="pc bpc" id="L68" title="1 of 2 branches missed.">        if (!(o instanceof Moneda)) {</span>
+<span class="nc" id="L69">            return false;</span>
+        }
+<span class="fc" id="L71">        Moneda moneda = (Moneda) o;</span>
+<span class="pc bpc" id="L72" title="3 of 6 branches missed.">        return Objects.equals(ticket, moneda.ticket) &amp;&amp; Objects.equals(nombreMoneda, moneda.nombreMoneda) &amp;&amp; valor == moneda.valor;</span>
+    }
+
+    
+  
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MiembroModelo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Exchange</a> &gt; <a href="index.source.html" class="el_package">es.iespuertolacruz.developers.modelo</a> &gt; <span class="el_source">MiembroModelo.java</span></div><h1>MiembroModelo.java</h1><pre class="source lang-java linenums">package es.iespuertolacruz.developers.modelo;
+
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import java.util.ArrayList;
+
+import es.iespuertolacruz.developers.api.DatosPersonales;
+import es.iespuertolacruz.developers.api.Direccion;
+import es.iespuertolacruz.developers.api.Miembro;
+import es.iespuertolacruz.developers.api.Tarjeta;
+import es.iespuertolacruz.developers.excepcion.BbddException;
+import es.iespuertolacruz.developers.excepcion.FicheroException;
+
+public class MiembroModelo {
+    private static final String TABLA = &quot;Miembro&quot;;
+    SqliteDb persistencia;
+    DireccionModelo direccionModelo;
+    TarjetaModelo tarjetaModelo;
+    DatosPersonalesModelo datosPersonalesModelo;
+
+
+    
+    /**
+     * Constructor por defecto de la clase MiembroModelo
+     * 
+     * @throws FicheroException
+     * @throws SQLException
+     */
+<span class="fc" id="L31">    public MiembroModelo() throws BbddException, FicheroException, SQLException {</span>
+<span class="fc" id="L32">        persistencia = new SqliteDb(TABLA,null, null);</span>
+<span class="fc" id="L33">        direccionModelo = new DireccionModelo();</span>
+<span class="fc" id="L34">        tarjetaModelo = new TarjetaModelo();</span>
+<span class="fc" id="L35">        datosPersonalesModelo = new DatosPersonalesModelo();</span>
+
+<span class="fc" id="L37">    }</span>
+
+    /**
+     * Metodo que permite insertar un miembro en la DB
+     * 
+     * @param miembro a insertar
+     * @throws BbddException controlada
+     */
+    public void insertar(Miembro miembro) throws BbddException {
+<span class="fc" id="L46">        String sql = &quot;INSERT INTO Miembro (uid, dni,tipo, email, contrasenia,idDireccion,idTarjeta)&quot;</span>
+<span class="fc" id="L47">                + &quot; VALUES ('&quot; + miembro.getUid()</span>
+<span class="fc" id="L48">                + &quot;', '&quot; + miembro.getDatosPersonales().getDni()</span>
+<span class="fc" id="L49">                + &quot;', '&quot; + miembro.getTipoUsuario()</span>
+<span class="fc" id="L50">                + &quot;', '&quot; + miembro.getEmail() </span>
+<span class="fc" id="L51">                + &quot;', '&quot; + miembro.getContrasenia()</span>
+<span class="fc" id="L52">                + &quot;', '&quot; + miembro.getDireccion().getIdDireccion() </span>
+<span class="fc" id="L53">                + &quot;','&quot; + miembro.getTarjeta().getidTarjeta() </span>
+                + &quot;')&quot;;
+<span class="fc" id="L55">        persistencia.actualizar(sql);</span>
+<span class="fc" id="L56">    }</span>
+
+    /**
+     * Metodo que permite eliminar un miembro de la DB
+     * 
+     * @param miembro a eliminar
+     * @throws BbddException controlada
+     */
+    public void eliminar(Miembro miembro) throws BbddException {
+<span class="fc" id="L65">        String sql = &quot;DELETE from Miembro WHERE uid ='&quot; + miembro.getUid() + &quot;'&quot;;</span>
+<span class="fc" id="L66">        persistencia.actualizar(sql);</span>
+
+<span class="fc" id="L68">    }</span>
+
+    /**
+     * Metodo que permite modificar un miembro de la DB
+     * 
+     * @param miembro a modificar
+     * @throws BbddException controlada
+     */
+    public void modificar(Miembro miembro) throws BbddException {
+<span class="fc" id="L77">        String sql = &quot;UPDATE Miembro SET email = '&quot; + miembro.getEmail() + &quot;', contrasenia = '&quot; + miembro.getContrasenia() </span>
+<span class="fc" id="L78">                + &quot;' WHERE uid = '&quot; + miembro.getUid() + &quot;'&quot;;</span>
+<span class="fc" id="L79">        persistencia.actualizar(sql);</span>
+<span class="fc" id="L80">    }</span>
+
+  
+
+      /**
+     * Funcion que obtiene el listado de todas las miembros
+     * 
+     * @return lista total
+     * @throws BbddException Error controlado
+     */
+    public ArrayList&lt;Miembro&gt; obtenerListado() throws BbddException {
+<span class="fc" id="L91">        String sql = &quot;SELECT * FROM Miembro&quot;;</span>
+<span class="fc" id="L92">        return obtenerListadoMiembro(sql);</span>
+    }
+
+    /**
+     * Funcion que obtiene una miembro
+     * 
+     * @param
+     * @return lista total
+     * @throws BbddException Error controlado
+     */
+    public Miembro obtenerMiembroUid(String identificador) throws BbddException {
+<span class="fc" id="L103">        Miembro miembro = null;</span>
+<span class="fc" id="L104">        ArrayList&lt;Miembro&gt; listaMiembros = null;</span>
+<span class="fc" id="L105">        String sql = &quot;SELECT * FROM Miembro where uid = &quot;;</span>
+<span class="fc" id="L106">        sql = sql + &quot;'&quot; + identificador + &quot;'&quot;;</span>
+<span class="fc" id="L107">        listaMiembros = obtenerListadoMiembro(sql);</span>
+<span class="fc bfc" id="L108" title="All 2 branches covered.">        if (!listaMiembros.isEmpty()) {</span>
+<span class="fc" id="L109">            miembro = listaMiembros.get(0);</span>
+        }
+
+<span class="fc" id="L112">        return miembro;</span>
+
+    }
+
+    public Miembro obtenerMiembroDni(String identificador) throws BbddException {
+<span class="nc" id="L117">        Miembro miembro = null;</span>
+<span class="nc" id="L118">        ArrayList&lt;Miembro&gt; listaMiembros = null;</span>
+<span class="nc" id="L119">        String sql = &quot;SELECT * FROM Miembro where dni = '&quot; + identificador + &quot;'&quot;;</span>
+<span class="nc" id="L120">        listaMiembros = obtenerListadoMiembro(sql);</span>
+<span class="nc bnc" id="L121" title="All 2 branches missed.">        if (!listaMiembros.isEmpty()) {</span>
+<span class="nc" id="L122">            miembro = listaMiembros.get(0);</span>
+        }
+<span class="nc" id="L124">        return miembro;</span>
+    }
+
+    /**
+     * Funcion que realiza la consulta sobre la BBDD y la tabla Miembro
+     * 
+     * @param sql de la consulta
+     * @return lista de resultados
+     * @throws BbddException Error controlado
+     */
+    private ArrayList&lt;Miembro&gt; obtenerListadoMiembro(String sql) throws BbddException {
+<span class="fc" id="L135">        ArrayList&lt;Miembro&gt; listaMiembros = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L136">        ResultSet resultSet = null;</span>
+<span class="fc" id="L137">        Miembro miembro = null;</span>
+
+<span class="fc" id="L139">        resultSet = persistencia.buscarElemento(sql);</span>
+        try {
+<span class="fc bfc" id="L141" title="All 2 branches covered.">            while (resultSet.next()) {</span>
+<span class="fc" id="L142">                String uid = resultSet.getString(&quot;uid&quot;);</span>
+<span class="fc" id="L143">                String tipoUsuario = resultSet.getString(&quot;tipo&quot;);</span>
+<span class="fc" id="L144">                String dni = resultSet.getString(&quot;dni&quot;);</span>
+<span class="fc" id="L145">                String email = resultSet.getString(&quot;email&quot;);</span>
+<span class="fc" id="L146">                String contrasenia = resultSet.getString(&quot;contrasenia&quot;);</span>
+<span class="fc" id="L147">                String idDireccion = resultSet.getString(&quot;idDireccion&quot;);</span>
+<span class="fc" id="L148">                String idTarjeta = resultSet.getString(&quot;idTarjeta&quot;);</span>
+
+<span class="fc" id="L150">                Direccion direccion = direccionModelo.buscarDireccion(idDireccion);</span>
+<span class="fc" id="L151">                DatosPersonales datosPersonales = datosPersonalesModelo.buscarDatosPersonales(dni);</span>
+<span class="fc" id="L152">                Tarjeta tarjeta = tarjetaModelo.buscartTarjeta(idTarjeta);</span>
+<span class="fc" id="L153">                miembro = new Miembro(uid, tipoUsuario, datosPersonales, email, contrasenia, direccion, tarjeta);</span>
+<span class="fc" id="L154">                listaMiembros.add(miembro);</span>
+<span class="fc" id="L155">            }</span>
+<span class="nc" id="L156">        } catch (Exception exception) {</span>
+<span class="nc" id="L157">            throw new BbddException(&quot;Se ha producido un error realizando la consulta&quot;, exception);</span>
+        } finally {
+<span class="fc" id="L159">            persistencia.closeConnection(null, null, resultSet);</span>
+        }
+<span class="fc" id="L161">        return listaMiembros;</span>
+    }
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

@@ -1,0 +1,186 @@
+body {
+margin: 0;
+padding: 0;
+font-family: Helvetica, Arial, sans-serif;
+color: #666;
+background: #f2f2f2;
+font-size: 1em;
+line-height: 1.5em; 
+}
+
+h1 {
+font-size: 2.3em;
+line-height: 1.3em;
+margin: 15px 0;
+text-align: center;
+font-weight: 300;
+}
+
+p {
+margin: 0 0 1.5em 0;
+}
+
+img {
+max-width: 100%;
+}
+
+
+#main-header {
+background: #333;
+color: white;
+
+}
+
+
+#main-header a {
+color: white;
+}
+
+
+#logo-header {
+float: left;
+padding: 15px 0 0 20px;
+text-decoration: none;
+}
+
+#logo-header:hover {
+color: #0b76a6;
+}
+
+#logo-header .site-name {
+display: block;
+font-weight: 700;
+font-size: 1.4em;
+}
+
+
+
+
+#logo-header .site-desc {
+display: block;
+font-weight: 300;
+font-size: 0.9em;
+color: #999;
+}
+
+
+
+nav {
+float: right;
+}
+nav ul {
+margin: 0;
+padding: 0;
+list-style: none;
+padding-right: 20px;
+}
+
+nav ul li {
+display: inline-block;
+line-height: 80px;
+}
+
+nav ul li a {
+display: block;
+padding: 0 10px;
+text-decoration: none;
+}
+
+nav ul li a:hover {
+background: #0b76a6;
+}
+
+
+
+
+#main-content {
+background: white;
+width: 100%;
+
+margin: 15px auto;
+box-shadow: 0 0 10px rgba(0,0,0,.1);
+}
+
+#main-content img {
+display: block;
+margin: auto;
+margin-top: -15px
+}
+
+#main-content header,
+#main-content .content {
+padding: 40px;
+
+}
+
+
+#main-footer {
+background: #333;
+color: white;
+text-align: center;
+padding: 20px;
+margin-top: 40px;
+}
+
+#main-footer p {
+margin: 0;
+}
+
+#main-footer a {
+color: white;
+}
+
+#main-header {
+background: #333;
+color: white;
+height: 80px;
+width: 100%;
+left: 0;
+top: 0;
+position: fixed;
+}
+
+.logo{
+    margin-bottom: 10px;
+    width: 90%;
+
+}
+
+.slider{
+    width: 25%;
+    margin: auto;
+    margin-top: -100px;
+    margin-bottom: -50px;
+    overflow: hidden;
+    
+   
+}
+
+.slider ul{
+    display: flex;
+    padding: 0;
+    width: 400%;
+    animation: cambiar 20s infinite alternate;
+}
+
+.slider li{
+    width: 100%;
+    list-style: none;
+}
+
+.slider img{
+    width: 100%;
+    height: 80%;
+    border-bottom-style: 
+}
+
+@keyframes cambiar{
+    0%{margin-left: 0;}
+    20%{margin-left: 0;}
+    25%{margin-left: -100%;}
+    45%{margin-left: -100%;}
+    50%{margin-left: -200%;}
+    70%{margin-left: -200%;}
+    75%{margin-left: -300%;}
+    100%{margin-left: -300%;}
+}

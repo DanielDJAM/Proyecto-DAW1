@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MercadoModelo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Exchange</a> &gt; <a href="index.source.html" class="el_package">es.iespuertolacruz.developers.modelo</a> &gt; <span class="el_source">MercadoModelo.java</span></div><h1>MercadoModelo.java</h1><pre class="source lang-java linenums">package es.iespuertolacruz.developers.modelo;
+
+import java.sql.*;
+import java.util.ArrayList;
+
+import es.iespuertolacruz.developers.api.Mercado;
+import es.iespuertolacruz.developers.api.Moneda;
+import es.iespuertolacruz.developers.api.Wallet;
+import es.iespuertolacruz.developers.excepcion.*;
+
+public class MercadoModelo {
+
+    SqliteDb persistencia;
+    WalletModelo walletModelo;
+    MonedaModelo monedaModelo;
+    Mercado mercado;
+    private static final String TABLA = &quot;Mercado&quot;;
+    
+    /**
+     * Constructor por defecto de la clase MercadoModelo
+     * 
+     * @throws FicheroException
+     * @throws SQLException
+     */
+<span class="nc" id="L25">    public MercadoModelo() throws BbddException, FicheroException, SQLException {</span>
+<span class="nc" id="L26">        persistencia = new SqliteDb(TABLA,null, null);</span>
+<span class="nc" id="L27">    }</span>
+
+    /**
+     * Metodo que permite insertar un mercado en la DB
+     * 
+     * @param mercado a insertar
+     * @throws BbddException controlada
+     */
+    public void insertar(Mercado mercado) throws BbddException {
+<span class="nc" id="L36">        String sql = &quot;INSERT INTO Mercado (idMoneda, idWallet, cantidad)&quot;</span>
+<span class="nc" id="L37">                + &quot; VALUES ('&quot; + mercado.getMoneda().getTicket()</span>
+<span class="nc" id="L38">                + &quot;', '&quot; + mercado.getWallet().getIdWallet()</span>
+<span class="nc" id="L39">                + &quot;', '&quot; + mercado.getCantidad()</span>
+                + &quot;')&quot;;
+<span class="nc" id="L41">        persistencia.actualizar(sql);</span>
+<span class="nc" id="L42">    }</span>
+
+    /**
+     * Metodo que permite modificar un mercado de la DB
+     * 
+     * @param mercado a modificar
+     * @throws BbddException controlada
+     */
+    public void modificar(Mercado mercado) throws BbddException {
+<span class="nc" id="L51">        String sql = &quot;UPDATE Mercado SET WHERE idWallet = '&quot; + mercado.getWallet().getIdWallet() + &quot;' idMoneda = '&quot; + mercado.getMoneda().getTicket() </span>
+<span class="nc" id="L52">        + &quot;', cantidad = '&quot; + mercado.getCantidad()</span>
+        + &quot;'&quot;;
+<span class="nc" id="L54">        persistencia.actualizar(sql);</span>
+<span class="nc" id="L55">    }</span>
+
+    /**
+     * Funcion encargada de realizar la busqueda de un mercado
+     * 
+     * @param uid del mercado
+     * @return Mercado a buscar
+     * @throws BbddException
+     */
+    public Mercado buscarMercado(String uid) throws BbddException {
+<span class="nc" id="L65">        return obtenerMercado(uid);</span>
+
+    }
+
+      /**
+     * Funcion que obtiene el listado de todas las mercados
+     * 
+     * @return lista total
+     * @throws BbddException Error controlado
+     */
+    public ArrayList&lt;Mercado&gt; obtenerListado() throws BbddException {
+<span class="nc" id="L76">        String sql = &quot;SELECT * FROM Mercado&quot;;</span>
+<span class="nc" id="L77">        return obtenerListadoMercado(sql);</span>
+    }
+
+    /**
+     * Funcion que obtiene una mercado
+     * 
+     * @param
+     * @return lista total
+     * @throws BbddException Error controlado
+     */
+    public Mercado obtenerMercado(String idWallet) throws BbddException {
+<span class="nc" id="L88">        Mercado mercado = null;</span>
+<span class="nc" id="L89">        ArrayList&lt;Mercado&gt; listaMercados = null;</span>
+<span class="nc" id="L90">        String sql = &quot;SELECT * FROM Mercado where idWallet = '&quot; + idWallet + &quot;'&quot;;</span>
+<span class="nc" id="L91">        listaMercados = obtenerListadoMercado(sql);</span>
+<span class="nc bnc" id="L92" title="All 2 branches missed.">        if (!listaMercados.isEmpty()) {</span>
+<span class="nc" id="L93">            mercado = listaMercados.get(0);</span>
+        }
+
+<span class="nc" id="L96">        return mercado;</span>
+
+    }
+
+    /**
+     * Funcion que realiza la consulta sobre la BBDD y la tabla Mercado
+     * 
+     * @param sql de la consulta
+     * @return lista de resultados
+     * @throws BbddException Error controlado
+     */
+    private ArrayList&lt;Mercado&gt; obtenerListadoMercado(String sql) throws BbddException {
+<span class="nc" id="L108">        ArrayList&lt;Mercado&gt; listaMercados = new ArrayList&lt;&gt;();</span>
+
+<span class="nc" id="L110">        Mercado mercado = null;</span>
+<span class="nc" id="L111">        Statement statement = null;</span>
+<span class="nc" id="L112">        ResultSet resultSet = null;</span>
+<span class="nc" id="L113">        Connection connection = null;</span>
+        try {
+<span class="nc" id="L115">            connection = persistencia.getConnection();</span>
+<span class="nc" id="L116">            statement = connection.createStatement();</span>
+<span class="nc" id="L117">            resultSet = statement.executeQuery(sql);</span>
+<span class="nc bnc" id="L118" title="All 2 branches missed.">            while (resultSet.next()) {</span>
+<span class="nc" id="L119">                String idWallet = resultSet.getString(&quot;idWallet&quot;);</span>
+<span class="nc" id="L120">                String idMoneda = resultSet.getString(&quot;idMoneda&quot;);</span>
+<span class="nc" id="L121">                Double cantidad = resultSet.getDouble(&quot;cantidad&quot;);</span>
+
+<span class="nc" id="L123">                Wallet wallet = walletModelo.obtenerWalletId(idWallet);</span>
+<span class="nc" id="L124">                Moneda moneda = monedaModelo.obtenerMoneda(idMoneda);</span>
+<span class="nc" id="L125">                mercado = new Mercado(moneda, wallet, cantidad);</span>
+<span class="nc" id="L126">                listaMercados.add(mercado);</span>
+<span class="nc" id="L127">            }</span>
+<span class="nc" id="L128">        } catch (Exception exception) {</span>
+<span class="nc" id="L129">            throw new BbddException(&quot;Se ha producido un error realizando la consulta&quot;, exception);</span>
+        } finally {
+<span class="nc" id="L131">            persistencia.closeConnection(connection, statement, resultSet);</span>
+        }
+<span class="nc" id="L133">        return listaMercados;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

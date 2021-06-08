@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TarjetaModelo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Exchange</a> &gt; <a href="index.source.html" class="el_package">es.iespuertolacruz.developers.modelo</a> &gt; <span class="el_source">TarjetaModelo.java</span></div><h1>TarjetaModelo.java</h1><pre class="source lang-java linenums">package es.iespuertolacruz.developers.modelo;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+import es.iespuertolacruz.developers.api.Tarjeta;
+import es.iespuertolacruz.developers.excepcion.BbddException;
+import es.iespuertolacruz.developers.excepcion.FicheroException;
+
+public class TarjetaModelo {
+    SqliteDb persistencia;
+    private static final String TABLA = &quot;Tarjeta&quot;;
+
+    /**
+     * Constructor por defecto de la clase TarjetaModelo
+     * 
+     * @throws BbddException
+     * @throws FicheroException
+     * @throws SQLException
+     */
+<span class="fc" id="L24">    public TarjetaModelo() throws BbddException, FicheroException, SQLException {</span>
+<span class="fc" id="L25">        persistencia = new SqliteDb(TABLA, null, null);</span>
+<span class="fc" id="L26">    }</span>
+
+    /**
+     * Metodo que permiter insertar una moneda en la DB
+     * 
+     * @param moneda a insertar
+     * @throws BbddException controlada
+     */
+    public void insertar(Tarjeta tarjeta) throws BbddException {
+<span class="fc" id="L35">        String sql = &quot;INSERT INTO Tarjeta (idTarjeta, titular, fechaCaducidad, cvv)&quot; + &quot; VALUES ('&quot;</span>
+<span class="fc" id="L36">                + tarjeta.getidTarjeta() + &quot;', '&quot; + tarjeta.getTitular() + &quot;', '&quot; + tarjeta.getFechaCaducidad() + &quot;', '&quot;</span>
+<span class="fc" id="L37">                + tarjeta.getCvv() + &quot;')&quot;;</span>
+<span class="fc" id="L38">        persistencia.actualizar(sql);</span>
+<span class="fc" id="L39">    }</span>
+
+    /**
+     * Metodo que permite eliminar una tarjeta de la DB
+     * 
+     * @param tarjeta a eliminar
+     * @throws BbddException controlada
+     */
+    public void eliminar(Tarjeta tarjeta) throws BbddException {
+<span class="fc" id="L48">        String sql = &quot;DELETE from Tarjeta WHERE idTarjeta ='&quot; + tarjeta.getidTarjeta() + &quot;'&quot;;</span>
+<span class="fc" id="L49">        persistencia.actualizar(sql);</span>
+
+<span class="fc" id="L51">    }</span>
+
+    /**
+     * Funcion encargada de realizar la busqueda de una tarjeta
+     * 
+     * @param uid del moneda
+     * @return Moneda a buscar
+     * @throws BbddException
+     */
+    public Tarjeta buscartTarjeta(String idTarjeta) throws BbddException {
+
+<span class="fc" id="L62">        return obtenerTarjeta(idTarjeta);</span>
+
+    }
+
+    /**
+     * Funcion que realiza la consulta sobre la BBDD y la tabla Moneda
+     * 
+     * @param sql de la consulta
+     * @return lista de resultados
+     * @throws BbddException Error controlado
+     */
+    private ArrayList&lt;Tarjeta&gt; obtenerListadoTarjeta(String sql) throws BbddException {
+<span class="fc" id="L74">        ArrayList&lt;Tarjeta&gt; listaTarjetas = new ArrayList&lt;&gt;();</span>
+
+<span class="fc" id="L76">        Tarjeta tarjeta = null;</span>
+<span class="fc" id="L77">        Statement statement = null;</span>
+<span class="fc" id="L78">        ResultSet resultSet = null;</span>
+<span class="fc" id="L79">        Connection connection = null;</span>
+        try {
+<span class="fc" id="L81">            connection = persistencia.getConnection();</span>
+<span class="fc" id="L82">            statement = connection.createStatement();</span>
+<span class="fc" id="L83">            resultSet = statement.executeQuery(sql);</span>
+<span class="fc bfc" id="L84" title="All 2 branches covered.">            while (resultSet.next()) {</span>
+<span class="fc" id="L85">                tarjeta = new Tarjeta();</span>
+<span class="fc" id="L86">                tarjeta.setidTarjeta(resultSet.getString(&quot;idTarjeta&quot;));</span>
+<span class="fc" id="L87">                tarjeta.setTitular(resultSet.getString(&quot;titular&quot;));</span>
+<span class="fc" id="L88">                tarjeta.setFechaCaducidad(resultSet.getString(&quot;fechaCaducidad&quot;));</span>
+<span class="fc" id="L89">                tarjeta.setCvv(resultSet.getInt(&quot;cvv&quot;));</span>
+
+<span class="fc" id="L91">                listaTarjetas.add(tarjeta);</span>
+            }
+<span class="nc" id="L93">        } catch (Exception exception) {</span>
+<span class="nc" id="L94">            throw new BbddException(&quot;Se ha producido un error realizando la consulta&quot;, exception);</span>
+        } finally {
+<span class="fc" id="L96">            persistencia.closeConnection(connection, statement, resultSet);</span>
+        }
+<span class="fc" id="L98">        return listaTarjetas;</span>
+    }
+
+    /**
+     * Funcion que obtiene el listado de todas las tarjetas
+     * 
+     * @return lista total
+     * @throws BbddException Error controlado
+     */
+    public ArrayList&lt;Tarjeta&gt; obtenerListadoTarjetas() throws BbddException {
+<span class="nc" id="L108">        String sql = &quot;SELECT * FROM Tarjeta&quot;;</span>
+<span class="nc" id="L109">        return obtenerListadoTarjeta(sql);</span>
+    }
+
+    /**
+     * Funcion que obtiene una tarjeta
+     * 
+     * @param idTarjeta de la tarjeta
+     * @return lista total
+     * @throws BbddException Error controlado
+     */
+    public Tarjeta obtenerTarjeta(String idTarjeta) throws BbddException {
+<span class="fc" id="L120">        Tarjeta tarjeta = null;</span>
+<span class="fc" id="L121">        ArrayList&lt;Tarjeta&gt; listaTarjetas = null;</span>
+<span class="fc" id="L122">        String sql = &quot;SELECT * FROM Tarjeta where idTarjeta = &quot;;</span>
+<span class="fc" id="L123">        sql = sql + &quot;'&quot; + idTarjeta + &quot;'&quot;;</span>
+<span class="fc" id="L124">        listaTarjetas = obtenerListadoTarjeta(sql);</span>
+<span class="fc bfc" id="L125" title="All 2 branches covered.">        if (!listaTarjetas.isEmpty()) {</span>
+<span class="fc" id="L126">            tarjeta = listaTarjetas.get(0);</span>
+        }
+
+<span class="fc" id="L129">        return tarjeta;</span>
+
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

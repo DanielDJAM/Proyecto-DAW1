@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DatosPersonales.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Exchange</a> &gt; <a href="index.source.html" class="el_package">es.iespuertolacruz.developers.api</a> &gt; <span class="el_source">DatosPersonales.java</span></div><h1>DatosPersonales.java</h1><pre class="source lang-java linenums">package es.iespuertolacruz.developers.api;
+
+import java.util.Objects;
+
+public class DatosPersonales {
+
+    String dni;
+    String nombre;
+    String apellidos;
+    int edad;
+
+    
+<span class="fc" id="L13">    public DatosPersonales() {</span>
+<span class="fc" id="L14">    }</span>
+
+    /**
+     * Constructor de la clase DatosPersonales
+     * @param nombre de miembro
+     * @param apellidos de miembro
+     * @param edad de miembro
+     * @param dni de miembro
+     */
+
+<span class="fc" id="L24">    public DatosPersonales(String dni, String nombre, String apellidos, int edad) {</span>
+<span class="fc" id="L25">        this.dni = dni;</span>
+<span class="fc" id="L26">        this.nombre = nombre;</span>
+<span class="fc" id="L27">        this.apellidos = apellidos;</span>
+<span class="fc" id="L28">        this.edad = edad;</span>
+<span class="fc" id="L29">    }</span>
+
+    /**
+     * Getters y Setters de la clase DatosPersonales
+     */
+
+    public String getNombre() {
+<span class="fc" id="L36">        return this.nombre;</span>
+    }
+
+    public void setNombre(String nombre) {
+<span class="fc" id="L40">        this.nombre = nombre;</span>
+<span class="fc" id="L41">    }</span>
+
+    public String getApellidos() {
+<span class="fc" id="L44">        return this.apellidos;</span>
+    }
+
+    public void setApellidos(String apellidos) {
+<span class="fc" id="L48">        this.apellidos = apellidos;</span>
+<span class="fc" id="L49">    }</span>
+
+    public int getEdad() {
+<span class="fc" id="L52">        return this.edad;</span>
+    }
+
+    public void setEdad(int edad) {
+<span class="fc" id="L56">        this.edad = edad;</span>
+<span class="fc" id="L57">    }</span>
+
+    public String getDni() {
+<span class="fc" id="L60">        return this.dni;</span>
+    }
+
+    public void setDni(String dni) {
+<span class="fc" id="L64">        this.dni = dni;</span>
+<span class="fc" id="L65">    }</span>
+
+
+    @Override
+    public String toString() {
+<span class="fc" id="L70">        return &quot;DatosPersonales [apellidos=&quot; + apellidos + &quot;, dni=&quot; + dni + &quot;, edad=&quot; + edad + &quot;, nombre=&quot; + nombre</span>
+                + &quot;]&quot;;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+<span class="fc bfc" id="L77" title="All 2 branches covered.">        if (o == this)</span>
+<span class="fc" id="L78">            return true;</span>
+<span class="pc bpc" id="L79" title="1 of 2 branches missed.">        if (!(o instanceof DatosPersonales)) {</span>
+<span class="nc" id="L80">            return false;</span>
+        }
+<span class="fc" id="L82">        DatosPersonales datosPersonales = (DatosPersonales) o;</span>
+<span class="pc bpc" id="L83" title="4 of 8 branches missed.">        return Objects.equals(nombre, datosPersonales.nombre) &amp;&amp; Objects.equals(apellidos, datosPersonales.apellidos) &amp;&amp; edad == datosPersonales.edad &amp;&amp; Objects.equals(dni, datosPersonales.dni);</span>
+    }
+
+   
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
