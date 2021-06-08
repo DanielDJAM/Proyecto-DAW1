@@ -18,20 +18,18 @@
 			
 			
 			
-			<span class="site-desc"> Busca / Compra / Vende</span>
+			<span class="site-desc"> Busca • Compra • Vende</span>
 		</a> 
 
 		<nav>
 			<ul>
-				<li><a href="#">Login</a></li>
-				<li><a href="#">Registro</a></li>
+				<li><a href="login.jsp">Login</a></li>
+				<li><a href="registro.jsp">Registro</a></li>
 				<li><a href="#">Contacto</a></li>
 			</ul>
 		</nav>
 
 	</header>
-
-	
 	<section id="main-content">
 	
 		<article>
