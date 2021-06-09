@@ -22,26 +22,28 @@
   }
   
   .form-register h4 {
-    font-size: 22px;
-    margin-bottom: 20px;
-  }
+    font-size: 26px;
+    margin-bottom: 40px;
+    color: #23272b;
+}
   
   .controls {
     width: 100%;
-    background: #24303c;
+    background: #ecf0f1;
     padding: 10px;
     border-radius: 4px;
     margin-bottom: 16px;
     border: 1px solid #1f53c5;
     font-family: 'calibri';
     font-size: 18px;
-    color: #777;
+    color: #000;
+    text-align: center;
   }
   
   .form-register p {
     height: 40px;
     text-align: center;
-    font-size: 18px;
+    font-size: 14px;
     line-height: 40px;
   }
   
@@ -60,7 +62,7 @@
     background: #24303c;
     border: none;
     padding: 12px;
-    color: #777;
+    color: #fff;
     margin: 16px 0;
     font-size: 16px;
   }

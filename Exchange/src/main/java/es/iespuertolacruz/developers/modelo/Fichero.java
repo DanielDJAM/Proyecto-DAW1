@@ -21,6 +21,7 @@ public class Fichero {
         Scanner scanner = null;
 
         try {
+           nombre = nombre.toLowerCase();
            fichero = new File(nombre);
            if (!validarFichero(fichero)) {
               throw new FicheroException("El fichero a leer no existe");

@@ -28,6 +28,7 @@
 				</div>
 
 				<a class="btn btn-primary btn-large btn-block" href="#">login</a>
+                <a class="login-link" href="registro.jsp"> No tengo cuenta</a>
 				<a class="login-link" href="#">Lost your password?</a>
 			</div>
 		</div>

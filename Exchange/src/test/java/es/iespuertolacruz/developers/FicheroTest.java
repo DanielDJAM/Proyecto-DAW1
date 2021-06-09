@@ -27,11 +27,11 @@ public class FicheroTest {
     public void leerFicheroTest() {
         String texto = null;
         try {
-            texto = new Fichero().leer("resources/sqlite/mercadoCrear.sql");
+            texto = new Fichero().leer("resources/sqlite/mercado-crear.sql");
             boolean validar = texto.contains(mensaFichero);
             assertTrue(validar, "El programa no lee correctamente el fichero");
         } catch (Exception e) {
-            fail("Se ha producido un error en el test leer fichero");
+            fail(e.getMessage());
         }
     }
 

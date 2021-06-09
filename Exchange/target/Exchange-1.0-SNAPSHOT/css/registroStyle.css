@@ -28,14 +28,14 @@
   
   .controls {
     width: 100%;
-    background: #777;
+    background: #24303c;
     padding: 10px;
     border-radius: 4px;
     margin-bottom: 16px;
     border: 1px solid #1f53c5;
     font-family: 'calibri';
     font-size: 18px;
-    color: #1c2225;
+    color: #777;
   }
   
   .form-register p {
@@ -46,12 +46,12 @@
   }
   
   .form-register a {
-    color: #1c2225;
+    color: #777;
     text-decoration: none;
   }
   
   .form-register a:hover {
-    color: #1c2225;
+    color: #777;
     text-decoration: underline;
   }
   
@@ -60,7 +60,7 @@
     background: #24303c;
     border: none;
     padding: 12px;
-    color: #1c2225;
+    color: #777;
     margin: 16px 0;
     font-size: 16px;
   }
