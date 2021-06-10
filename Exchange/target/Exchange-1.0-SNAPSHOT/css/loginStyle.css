@@ -1,4 +1,6 @@
 * {
+  margin: 0;
+  padding: 0;
     box-sizing: border-box;
     }
     
@@ -12,12 +14,14 @@
     }
     .login {
     margin: auto;
-    width: 300px;
+    width: 400px;
     }
     .login-screen {
     background-color: #FFF;
     padding: 20px;
-    border-radius: 5px
+    border-radius: 5px;
+    margin-top: 50px;
+
     }
     
     .app-title {
@@ -26,9 +30,10 @@
     }
     
     .app-title img{
-        width: 160%;
-        margin-bottom: -30px;
-        margin-left: -74px;
+      width: 250%;
+      margin-bottom: -90px;
+      margin-top: -30px;
+      margin-left: -270px;
         
     }
     
