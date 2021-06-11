@@ -21,8 +21,8 @@
                     <label class="email" for="email"></label>
                     <input type="password" name="contrasenia" placeholder="password" required>
                     <label class="contrasenia" for="contrasenia"></label>
+                    <input class="btn btn-primary btn-large btn-block" type="submit" value="continuar">
                 </div>
-                    <a class="btn btn-primary btn-large btn-block" href="action-login.jsp">login</a>
 					<a class="login-link" href="registro.jsp"> No tengo cuenta</a>
             </div>
         </form>

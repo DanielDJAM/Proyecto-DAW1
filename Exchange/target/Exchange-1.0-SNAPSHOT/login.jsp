@@ -5,28 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>InicioSesion</title>
-    <link rel="stylesheet" href="css/estilo.css">
+    <link rel="stylesheet" href="css/loginStyle.css">
 </head>
 <body>
-    <div class="page">
-        <h1>Inicio Sesion</h1>
-        <p>Seleccion que rol quieres iniciar sesion</p>
-        <form method="post" action="action-login.jsp">
-            <div class="login">
-                <input type="text" name="email" placeholder="email" required>
-                <input type="password" name="contrasenia" placeholder="password" required>
+    <div class="login">
+        <div class="login-screen">
+            <div class="app-title">
+                <img src="img/1_1-.png" alt="">
+					<h1>Login</h1>
             </div>
-            <input type="submit" value="Continuar"> <br>
+        <form method="post" action="action-login.jsp">
+            <div class="login-form">
+                <div class="control-group">
+                    <input type="text" name="email" placeholder="email" required>
+                    <label class="email" for="email"></label>
+                    <input type="password" name="contrasenia" placeholder="password" required>
+                    <label class="contrasenia" for="contrasenia"></label>
+                </div>
+                    <a class="btn btn-primary btn-large btn-block" href="action-login.jsp">login</a>
+					<a class="login-link" href="registro.jsp"> No tengo cuenta</a>
+            </div>
         </form>
-
-        <div class="bottom-container">
-            <div class="row">
-                <div class="col">
-                    <a href="registro.jsp" style="color:black" class="btn">Registrarse</a>
-                </div>
-                <div class="col">
-                    <a href="#" style="color:black" class="btn">olvido su Contraseña?</a>
-                </div>
+            
             </div>
         </div>
     </div>
