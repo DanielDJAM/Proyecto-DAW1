@@ -1,6 +1,6 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
 Exchange,es.iespuertolacruz.developers.modelo,Fichero,7,60,0,6,2,20,0,6,0,3
-Exchange,es.iespuertolacruz.developers.modelo,Bbdd,46,159,3,11,11,52,2,11,0,6
+Exchange,es.iespuertolacruz.developers.modelo,Bbdd,68,137,4,10,15,48,3,10,0,6
 Exchange,es.iespuertolacruz.developers.modelo,MiembroModelo,49,185,4,4,16,53,4,9,2,7
 Exchange,es.iespuertolacruz.developers.modelo,DireccionModelo,13,159,0,4,4,51,1,9,1,7
 Exchange,es.iespuertolacruz.developers.modelo,TarjetaModelo,13,126,0,4,4,37,1,8,1,6

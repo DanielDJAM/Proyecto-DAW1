@@ -68,11 +68,11 @@ public class Bbdd {
 <span class="fc" id="L68">                listaTablas.add(resultSet.getString(&quot;TABLE_NAME&quot;));</span>
             }
             
-<span class="fc bfc" id="L71" title="All 2 branches covered.">                if (!listaTablas.contains(nombreTabla)) {</span>
-<span class="fc" id="L72">                    String sqlCrearTabla = new Fichero().leer(&quot;resources/sqlite/&quot; + nombreTabla + &quot;-crear.sql&quot;);</span>
-<span class="fc" id="L73">                    actualizar(sqlCrearTabla);</span>
-<span class="fc" id="L74">                    String sqlInsertarDatos = new Fichero().leer(&quot;resources/sqlite/&quot; + nombreTabla + &quot;-insertar.sql&quot;);</span>
-<span class="fc" id="L75">                    actualizar(sqlInsertarDatos);</span>
+<span class="pc bpc" id="L71" title="1 of 2 branches missed.">                if (!listaTablas.contains(nombreTabla)) {</span>
+<span class="nc" id="L72">                    String sqlCrearTabla = new Fichero().leer(&quot;resources/sqlite/&quot; + nombreTabla + &quot;-crear.sql&quot;);</span>
+<span class="nc" id="L73">                    actualizar(sqlCrearTabla);</span>
+<span class="nc" id="L74">                    String sqlInsertarDatos = new Fichero().leer(&quot;resources/sqlite/&quot; + nombreTabla + &quot;-insertar.sql&quot;);</span>
+<span class="nc" id="L75">                    actualizar(sqlInsertarDatos);</span>
                 }
            
 <span class="nc" id="L78">        } catch (Exception e) {</span>
