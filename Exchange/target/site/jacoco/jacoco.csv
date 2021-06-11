@@ -24,12 +24,12 @@ Exchange,es.iespuertolacruz.developers.api,Tarjeta,3,93,5,7,1,26,5,13,0,12
 Exchange,es.iespuertolacruz.developers.api,Moneda,3,76,4,6,1,22,4,11,0,10
 Exchange,es.iespuertolacruz.developers.api,Wallet,3,58,3,5,1,18,3,9,0,8
 Exchange,es.iespuertolacruz.developers.api,Direccion,3,130,7,9,1,34,7,17,0,16
-Exchange,es.iespuertolacruz.developers.api,Administrador,81,0,10,0,23,0,15,0,10,0
 Exchange,es.iespuertolacruz.developers.api,Visitante,8,0,0,0,4,0,2,0,2,0
+Exchange,es.iespuertolacruz.developers.api,Administrador,81,0,10,0,23,0,15,0,10,0
 Exchange,es.iespuertolacruz.developers.api,Usuario,23,26,4,0,7,12,4,6,2,6
 Exchange,es.iespuertolacruz.developers.excepcion,DireccionException,0,9,0,0,0,4,0,2,0,2
-Exchange,es.iespuertolacruz.developers.excepcion,DatosPersonalesException,0,9,0,0,0,4,0,2,0,2
 Exchange,es.iespuertolacruz.developers.excepcion,TarjetaException,0,9,0,0,0,4,0,2,0,2
+Exchange,es.iespuertolacruz.developers.excepcion,DatosPersonalesException,0,9,0,0,0,4,0,2,0,2
 Exchange,es.iespuertolacruz.developers.excepcion,MonedaException,0,9,0,0,0,4,0,2,0,2
 Exchange,es.iespuertolacruz.developers.excepcion,MiembroException,0,9,0,0,0,4,0,2,0,2
 Exchange,es.iespuertolacruz.developers.excepcion,FicheroException,0,9,0,0,0,4,0,2,0,2
