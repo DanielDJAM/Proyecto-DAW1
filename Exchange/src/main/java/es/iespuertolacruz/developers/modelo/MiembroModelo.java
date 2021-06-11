@@ -55,6 +55,17 @@ public class MiembroModelo {
         persistencia.actualizar(sql);
     }
 
+    public Miembro obtenerMiembroEmail(String email) throws BbddException {
+        Miembro miembro = null;
+        ArrayList<Miembro> listaMiembros = null;
+        String sql = "SELECT * FROM Miembro where email = '" + email + "'";
+        listaMiembros = obtenerListadoMiembro(sql);
+        if (!listaMiembros.isEmpty()) {
+            miembro = listaMiembros.get(0);
+        }
+        return miembro;
+    }
+
     /**
      * Metodo que permite eliminar un miembro de la DB
      * 

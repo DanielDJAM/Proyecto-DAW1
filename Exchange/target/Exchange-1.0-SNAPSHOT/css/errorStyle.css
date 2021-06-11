@@ -1,0 +1,24 @@
+body{
+    padding: 0;
+    margin: 0;
+    background-color: #26678f;
+}
+.mensaje img{
+    width: 60px;
+}
+
+.mensaje table{
+    border: solid 2px;
+    margin: auto;
+}
+
+.enlace{
+    text-decoration: none;
+    color: #fff;
+}
+
+.mensaje table td p {
+    font-size: 26px;
+    color: #fff;
+}
+

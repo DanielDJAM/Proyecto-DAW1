@@ -146,6 +146,19 @@ public class MiembroController {
 <span class="nc" id="L146">        return miembro;</span>
     }
 
+    public Miembro login(String email, String contrasenia) throws BbddException, MiembroException{
+<span class="nc" id="L150">        Miembro miembro = null;</span>
+<span class="nc" id="L151">        miembro = miembroModelo.obtenerMiembroEmail(email);</span>
+<span class="nc bnc" id="L152" title="All 2 branches missed.">        if (miembro == null) {</span>
+<span class="nc" id="L153">            throw new MiembroException(&quot;El miembro que se a introducido no existe&quot;);</span>
+        }
+<span class="nc bnc" id="L155" title="All 2 branches missed.">        if (!miembro.getContrasenia().equals(contrasenia)) {</span>
+<span class="nc" id="L156">            throw new MiembroException(&quot;Las credenciales introducidas son incorrectas&quot;);</span>
+        }
+
+<span class="nc" id="L159">        return miembro;</span>
+    }
+
     
 
 
@@ -158,13 +171,13 @@ public class MiembroController {
      * @throws BbddException
      */
     public boolean existe(Miembro miembro) throws MiembroException, BbddException {
-<span class="fc" id="L161">        boolean encontrado = false;</span>
+<span class="fc" id="L174">        boolean encontrado = false;</span>
         Miembro miembroEncontrado;
-<span class="fc" id="L163">        miembroEncontrado = buscarUid(miembro.getUid());</span>
-<span class="fc bfc" id="L164" title="All 2 branches covered.">        if (miembroEncontrado != null) {</span>
-<span class="fc" id="L165">            encontrado = true;</span>
+<span class="fc" id="L176">        miembroEncontrado = buscarUid(miembro.getUid());</span>
+<span class="fc bfc" id="L177" title="All 2 branches covered.">        if (miembroEncontrado != null) {</span>
+<span class="fc" id="L178">            encontrado = true;</span>
         }
-<span class="fc" id="L167">        return encontrado;</span>
+<span class="fc" id="L180">        return encontrado;</span>
     }
     
 }

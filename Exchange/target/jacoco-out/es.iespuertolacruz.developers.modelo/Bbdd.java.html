@@ -69,7 +69,7 @@ public class Bbdd {
             }
             
 <span class="pc bpc" id="L71" title="1 of 2 branches missed.">                if (!listaTablas.contains(nombreTabla)) {</span>
-<span class="nc" id="L72">                    String sqlCrearTabla = new Fichero().leer(&quot;resources/sqlite/&quot; + nombreTabla + &quot;Crear.sql&quot;);</span>
+<span class="nc" id="L72">                    String sqlCrearTabla = new Fichero().leer(&quot;resources/sqlite/&quot; + nombreTabla + &quot;-crear.sql&quot;);</span>
 <span class="nc" id="L73">                    actualizar(sqlCrearTabla);</span>
 <span class="nc" id="L74">                    String sqlInsertarDatos = new Fichero().leer(&quot;resources/sqlite/&quot; + nombreTabla + &quot;-insertar.sql&quot;);</span>
 <span class="nc" id="L75">                    actualizar(sqlInsertarDatos);</span>

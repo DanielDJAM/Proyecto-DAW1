@@ -1,7 +1,7 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
 Exchange,es.iespuertolacruz.developers.modelo,Fichero,7,60,0,6,2,20,0,6,0,3
 Exchange,es.iespuertolacruz.developers.modelo,Bbdd,68,137,4,10,15,48,3,10,0,6
-Exchange,es.iespuertolacruz.developers.modelo,MiembroModelo,28,185,2,4,9,53,2,9,1,7
+Exchange,es.iespuertolacruz.developers.modelo,MiembroModelo,49,185,4,4,16,53,4,9,2,7
 Exchange,es.iespuertolacruz.developers.modelo,DireccionModelo,13,159,0,4,4,51,1,9,1,7
 Exchange,es.iespuertolacruz.developers.modelo,TarjetaModelo,13,126,0,4,4,37,1,8,1,6
 Exchange,es.iespuertolacruz.developers.modelo,MonedaModelo,54,129,2,4,17,40,4,9,3,7
@@ -9,7 +9,7 @@ Exchange,es.iespuertolacruz.developers.modelo,MercadoModelo,148,0,4,0,44,0,9,0,7
 Exchange,es.iespuertolacruz.developers.modelo,SqliteDb,0,8,0,0,0,2,0,1,0,1
 Exchange,es.iespuertolacruz.developers.modelo,DatosPersonalesModelo,13,141,0,4,4,42,1,9,1,7
 Exchange,es.iespuertolacruz.developers.modelo,WalletModelo,34,105,2,4,11,32,3,7,2,5
-Exchange,es.iespuertolacruz.developers.controller,MiembroController,34,150,12,28,8,45,11,18,1,8
+Exchange,es.iespuertolacruz.developers.controller,MiembroController,60,150,16,28,15,45,14,18,2,8
 Exchange,es.iespuertolacruz.developers.controller,MonedaController,46,115,10,18,10,36,11,13,2,8
 Exchange,es.iespuertolacruz.developers.controller,MercadoController,35,0,0,0,10,0,2,0,2,0
 Exchange,es.iespuertolacruz.developers.controller,DireccionController,15,155,10,30,3,44,10,17,0,7

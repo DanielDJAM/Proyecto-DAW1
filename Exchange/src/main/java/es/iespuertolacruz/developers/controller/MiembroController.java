@@ -146,6 +146,19 @@ public class MiembroController {
         return miembro;
     }
 
+    public Miembro login(String email, String contrasenia) throws BbddException, MiembroException{
+        Miembro miembro = null;
+        miembro = miembroModelo.obtenerMiembroEmail(email);
+        if (miembro == null) {
+            throw new MiembroException("El miembro que se a introducido no existe");
+        }
+        if (!miembro.getContrasenia().equals(contrasenia)) {
+            throw new MiembroException("Las credenciales introducidas son incorrectas");
+        }
+
+        return miembro;
+    }
+
     
 
 

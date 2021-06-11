@@ -69,7 +69,7 @@ public class Bbdd {
             }
             
                 if (!listaTablas.contains(nombreTabla)) {
-                    String sqlCrearTabla = new Fichero().leer("resources/sqlite/" + nombreTabla + "Crear.sql");
+                    String sqlCrearTabla = new Fichero().leer("resources/sqlite/" + nombreTabla + "-crear.sql");
                     actualizar(sqlCrearTabla);
                     String sqlInsertarDatos = new Fichero().leer("resources/sqlite/" + nombreTabla + "-insertar.sql");
                     actualizar(sqlInsertarDatos);
