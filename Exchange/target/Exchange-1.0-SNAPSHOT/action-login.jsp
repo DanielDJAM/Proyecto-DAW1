@@ -28,26 +28,10 @@
         }
         %>
         <% if (miembro.getTipoUsuario().equals("miembro")){
-            response.sendRedirect("http://localhost:8080/index.jsp"); 
+            response.sendRedirect("http://localhost:8080/miembro-page.jsp"); 
         }
         %>
 
-        <table>
-            <tr>
-                <th>DatosPersonales</th>
-                <th>email</th>
-                <th>contrasenia</th>
-                <th>Direccion</th>
-                <th>Tarjeta</th>
-            </tr>
-            <tr>
-                <td><%= miembro.getDatosPersonales()%></td>
-                <td><%= miembro.getEmail()%></td>
-                <td><%= miembro.getContrasenia()%></td>
-                <td><%= miembro.getDireccion()%></td>
-                <td><%= miembro.getTarjeta()%></td>
-            </tr>
-        </table>
     </body>
 
 </html>

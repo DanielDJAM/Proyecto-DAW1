@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: es.iespuertolacruz.developers.DatosPersonalesControllerTest
 -------------------------------------------------------------------------------
-Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.732 s - in es.iespuertolacruz.developers.DatosPersonalesControllerTest
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.816 s - in es.iespuertolacruz.developers.DatosPersonalesControllerTest
